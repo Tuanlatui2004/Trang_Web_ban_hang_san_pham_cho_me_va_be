@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="header">
-        <div class="logo-container nav_item" id="logo" data-src="#">
+        <div class="logo-container nav_item" id="logo" data-src="../../component/home/homeBody.html">
             <img  class="logo" src="..\..\resource\image\logo.jpg" alt="Me&Be">
         </div>
         <nav class="navBar">
@@ -23,6 +23,7 @@
                     <a href="#">Combo Đồ sơ sinh</a>
                     <div class="submenu submenu-combo-do-so-sinh">
                         <div class="submenu-column">
+                            <a class="nav_item" data-src="..\..\component\product_component\Search_Refrigerator.html" href="#">Tất cả combo đồ sơ sinh</a>
                             <a href="#">Quần áo sơ sinh</a>
                             <a href="#">Bình sữa sơ sinh</a>
                             <a href="#">Bao tay, bao chân</a>
@@ -39,6 +40,7 @@
                     <a href="#">Máy móc thiết yếu</a>
                     <div class="submenu submenu-may-moc-thiet-yeu">
                         <div class="submenu-column">
+                            <a class="nav_item" data-src="#" href="#">Tất cả các loại máy</a>
                             <a href="#">Máy hút sữa</a>
                             <a href="#">Nồi nấu</a>
                             <a href="#">Máy làm ấm khăn</a>
@@ -53,6 +55,7 @@
                     <a href="#">Sữa & Bình Sữa</a>
                     <div class="submenu submenu-sua-&-binh-sua">
                         <div class="submenu-column">
+                            <a class="nav_item" data-src="#" href="#">Tất cả các loại sữa</a>
                             <a href="#">Sữa bột</a>
                             <a href="#">Sữa pha sẵn</a>
                             <a href="#">Sữa non</a>
@@ -70,6 +73,7 @@
                     <a href="#">Ăn dặm</a>
                     <div class="submenu submenu-an-dam">
                         <div class="submenu-column">
+                            <a class="nav_item" data-src="#" href="#">Tất cả món ăn dặm</a>
                             <a href="#">Bánh ăn dặm</a>
                             <a href="#">Bột ăn dặm</a>
                             <a href="#">Gia vị ăn dặm</a>
@@ -81,13 +85,14 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#">Bỉm tã & vệ sinh</a>
                     <div class="submenu submenu-bim-ta-&-ve-sinh">
                         <div class="submenu-column">
-                            <a href="#">Bỉm tã</a>
-                            <a href="#">Quần đóng bỉm</a>
-                            <a href="#">Quần bỏ bỉm</a>
+                            <a class="nav_item" data-src="#" href="#">Tất cả các loại bĩm tả</a>
+                            <a href="#">Bĩm tã</a>
+                            <a href="#">Quần đóng bĩm</a>
+                            <a href="#">Quần bỏ bĩm</a>
                             <a href="#">Bỉm người lớn</a>
                             <a href="#">Sữa tắm gội</a>
                             <a href="#">Chậu rữa mặt</a>
@@ -100,6 +105,7 @@
                     <a href="#">Thời trang cho bé</a>
                     <div class="submenu submenu-thoi-trang-cho-be">
                         <div class="submenu-column">
+                            <a class="nav_item" data-src="#" href="#">Tất cả mẫu quần áo</a>
                             <a href="#">Quần áo</a>
                             <a href="#">Balo, túi xách</a>
                             <a href="#">Giày dép</a>
@@ -152,6 +158,17 @@
                         </div>
                     </div>
                 </li>
+                <li>
+                    <a href="#">Hỗ Trợ</a>
+                    <div class="submenu submenu-ho-tro">
+                        <div class="submenu-column">
+                            <a href="#">Trung Tâm Hỗ Trợ</a>
+                            <a href="#">Bảo Hành</a>
+                            <a href="#">Hướng dẫn sử dụng</a>
+                            <a href="#">Câu Hỏi Thường Gặp</a>
+                        </div>
+                    </div>
+                </li>
             </ul>
             <div class="icons">
                 <a href="#" class="icon" id="search-icon"><i class="fas fa-search"></i>
@@ -162,13 +179,14 @@
                     <i class="fas fa-user"></i>
                     <div class="user-popup">
                         <a class="nav_item" href="#" id="my-page-link">Trang của tôi</a>
-                        <a href="#" id="login-link">Đăng nhập/Đăng ký</a>
+                        <a href="..\..\fontend\src\pages\auth.html" id="login-link">Đăng nhập/Đăng ký</a>
                     </div>
                 </div>
             </div>
 
             <div id="search-overlay" class="overlay">
                 <div class="search-container">
+                    <iframe src="..\..\component\home\search.html" frameborder="0"></iframe>
                     <button id="close-search-overlay" class="close-btn">
                         <i class="fas fa-times"></i>
                     </button>
