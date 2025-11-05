@@ -30,7 +30,7 @@ body {
 }
 
 .logo {
-    height: 40px;
+    height: 60px;
     width: auto;
     display: inline-block;
     cursor: pointer;
@@ -68,7 +68,7 @@ body > #header > nav > ul{
     text-decoration: none;
     transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
     border-radius: 5px;
-    text-align: center
+    text-align: left;
 }
 
 .navBar ul li.active a{
@@ -222,4 +222,134 @@ body > #header > nav > ul > li > a{
     max-width: 600px;
     border-radius: 10px;
     position: relative;
+}
+#body{
+    width: 100%;
+    height: 95%;
+    background-color: white;
+    padding-top: 10px;
+}
+
+
+#body iframe{
+    width: 100%;
+    height: 100%
+}
+
+.user-login {
+    position: relative;
+    font-size: 18px;
+}
+
+.user-popup {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 165px;
+    z-index: 10;
+    transform: translate(50%, 0px);
+
+}
+
+.user-popup a {
+    display: block;
+    padding: 8px 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.user-popup a:hover {
+    background-color: #f0f0f0;
+
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0.8, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.search-container {
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.search-bar {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    padding-left: 40px;
+}
+
+.search-icon svg {
+    width: 20px;
+    height: 20px;
+    color: #333;
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #333;
+}
+
+#search-iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    margin-top: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: -20px;
+    right: -300px;
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    font-weight: bold;
+}
+
+#close-search-overlay i {
+    font-size: 30px;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
