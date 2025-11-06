@@ -5,32 +5,43 @@
 }
 body{
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    background-color: #f5f5f5;
 }
 .container {
     display: grid;
     gap: 20px;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto; /* Căn giữa container */
-    background-color: lavender;
+    background-color: white;
 }
 .iframe {
-    width: 100%;
-    height: 400px;
+    width: 80%;
+    max-height: 100%;
     border: none;
 }
 ul{
     list-style: none;
 }
+.left_display,.right_display{
+    width: 100%;
+    height: 560px;
+}
 .left_display{
-    height: 400px;
+    display: flex;
+    justify-content: right;
+}
+.right_display .iframe{
+    width:100%;
+    height: 100%;
+    box-sizing: border-box;
 }
 .product_display {
     display: flex;
-    gap: 0px;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    align-content: space-between;
-    background: #eeeeee;
+    height: fit-content;
+    max-height: 100%;
 }
+.info_item{
+    width: 100%;
+}
+
 
