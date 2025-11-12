@@ -2,9 +2,137 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Đồ dùng cho bé</title>
+    <title>List Product</title>
+    <link rel="stylesheet" href="../../src/style/style-component/style-product/Search_Clothes.css">
 </head>
 <body>
+
+<div id="banner">
+    <iframe src = "../../component/home/banner.html"></iframe>
+</div>
+
+<div id="body" class="row">
+    <div id="sidebar">
+
+        <div class="title f18 ">
+            <i class="fa-solid fa-filter"></i>
+            Bộ lọc
+        </div>
+
+        <div class="section_type section_item col">
+            <div class="title">Thương Hiệu</div>
+
+            <div class="item mid_align">
+                <input type="checkbox" id="type1">
+                <label for="type1">Bamboo</label>
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="type2">
+                <label for="type2">Bons</label>
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="type3">
+                <label for="type3">Carter</label>
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="type4">
+                <label for="type4">Joyo</label>
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="type5">
+                <label for="type5">Khác</label>
+            </div>
+        </div>
+
+        <div class="rec-horizontal"></div>
+
+        <div class="section_price section_item col">
+
+            <div class="title">Mức giá</div>
+
+            <div class="item mid_align">
+                <input type="checkbox" id="price1">
+                <label for="price1">Từ 1-3 trăm</label>
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="price2">
+                <label for="price2">Từ 3-5 trăm</label>
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="price3">
+                <label for="price3">Từ 5-7 trăm</label>
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="price4">
+                <label for="price4">Từ 7-9 trăm</label>
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="price5">
+                <label for="price5">Trên 1 triệu</label>
+            </div>
+        </div>
+
+        <div class="rec_horizontal"></div>
+
+        <div class="section_size section_item col">
+
+            <div class="title">Phù hợp với bé</div>
+
+            <div class="item mid_align">
+                <input type="checkbox" id="capacity1">
+                <lable for="capacity1">0-3M</lable>
+            </div>
+
+            <div class="item mid_align">
+                <input type="checkbox" id="capacity2">
+                <lable for="capacity2">3-6M</lable>
+            </div>
+
+            <div class="item mid_align">
+                <input type="checkbox" id="capacity3">
+                <lable for="capacity3">6-9M</lable>
+            </div>
+
+            <div class="item mid_align">
+                <input type="checkbox" id="capacity4">
+                <lable for="capacity4">9-12M</lable>
+            </div>
+        </div>
+
+        <div class="rec_horizontal"></div>
+    </div>
+
+    <div id="list_product">
+
+        <div id="top_product" class="col mid_align">
+            <span>Top sản phẩm bán chạy</span>
+
+            <div class="wrap_item row mid_align">
+                <iframe src="../../component/product_component/TopProduct.html" frameborder="0"></iframe>
+                <iframe src="../../component/product_component/TopProduct.html" frameborder="0"></iframe>
+                <iframe src="../../component/product_component/TopProduct.html" frameborder="0"></iframe>
+            </div>
+
+        </div>
+        <div class="product_item col">
+            <span class="mid_align">Sản Phẩm Nổi Bật</span>
+            <div class="wrap_item col mid_align f22 ">
+                <iframe src="../../component/product_component/SearchProductItem.html" frameborder="0"></iframe>
+                <iframe src="../../component/product_component/SearchProductItem.html" frameborder="0"></iframe>
+                <iframe src="../../component/product_component/SearchProductItem.html" frameborder="0"></iframe>
+                <iframe src="../../component/product_component/SearchProductItem.html" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
