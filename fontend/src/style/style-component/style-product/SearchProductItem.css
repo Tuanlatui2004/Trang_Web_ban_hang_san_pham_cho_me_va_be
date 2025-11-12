@@ -4,15 +4,6 @@
     box-sizing: border-box;
     font-family: Helvetica Neue, Helvetica, Arial, serif;
 }
-html{
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-}
-body{
-    width: 100%;
-    height: 100%;
-}
 
 /*Reuse*/
 .mid_align{
@@ -31,24 +22,16 @@ body{
     flex-direction: column;
 }
 
-
 .rec_horizontal{
     width: 70%;
     height: 1px;
     background-color: #cfcfcf;
 }
 
+/* Ẩn đi vì không dùng trong layout mới */
 .rec_vertical{
-    height: 90%;
-    width: 1px;
-    background-color: #cfcfcf;
-    margin:  0 10px;
-    min-height: 20px;
+    display: none;
 }
-
-
-
-
 
 i{
     color: #616060;
@@ -64,6 +47,9 @@ a{
     font-size: 12px;
 }
 
+.f14{
+    font-size: 14px; /* Điều chỉnh lại f14 */
+}
 
 .f16{
     font-size: 16px;
@@ -74,7 +60,6 @@ a{
 
 .f22{
     font-size: 22px;
-
 }
 
 .bold{
@@ -84,42 +69,41 @@ a{
     font-weight: normal;
 }
 
-
-
-
 /*Wrap*/
 
 .wrap{
     width: 100%;
     height: 100%;
-    /*width: 1000px;*/
-    /*height: 400px;*/
     background-color: #ffffff;
-    border-radius: 15px;
+    padding: 20px; /* Thêm padding cho wrap */
+    justify-content: space-between; /* Căn chỉnh các cột */
 }
 
 
 .img_section{
-    width: 50%;
-    height: 50%;
-    padding: 30px;
-
-
+    width: 45%; /* Tăng chiều rộng cột ảnh */
+    height: 100%;
+    padding: 10px;
 }
 
 .img_section img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
-
+    object-fit: contain; /* Đổi thành contain để thấy rõ sản phẩm */
 }
 
+/* Đây là cột thông tin ở giữa (div bọc mới) */
+.info_middle_section {
+    width: 30%; /* Chiều rộng cột thông tin */
+    height: 100%;
+    padding: 20px 0;
+    justify-content: flex-start; /* Căn các mục lên trên */
+    text-align: left;
+}
 
 .infor_section{
-    width: 35%;
-    height: 100%;
-    padding: 30px 0;
-
+    width: 100%; /* Đặt lại width thành 100% vì nó nằm trong cột mới */
+    padding: 0; /* Xóa padding cũ */
 }
 .infor_name{
     cursor: pointer;
@@ -135,7 +119,7 @@ a{
 }
 
 .col_item{
-    margin: 0 10px;
+    margin: 0 10px 0 0; /* Chỉ margin bên phải */
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -147,7 +131,6 @@ a{
 .col_item:hover{
     scale: 1.1;
 }
-
 
 #pink{
     background-color: #E9D2C6;
@@ -161,23 +144,13 @@ a{
     background-color: #EEE29B;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .rating{
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 30px;
     align-items: center;
+    padding: 10px 0; /* Thêm padding cho rating */
 }
 
 .star{
@@ -193,10 +166,8 @@ a{
     overflow: hidden;
     object-fit: contain;
     background-repeat: no-repeat;
-
     background-image: url("../../../../resource/image/icon-rating-star-empty-grayscale-dd.svg");
 }
-
 
 .star_fill{
     display: inline-block;
@@ -211,9 +182,6 @@ a{
     background-image: url("../../../../resource/image/icon-rating-star-filled.svg");
 }
 
-
-
-
 #description{
     display: flex;
     width: 100%;
@@ -226,14 +194,13 @@ a{
     display: flex;
     justify-content: flex-start;
     position: relative;
+    text-align: left; /* Đảm bảo text căn trái */
 }
-
 
 #description .list_descriptions {
-    list-style-type: none; /* Loại bỏ dấu chấm mặc định */
-    padding-left: 0; /* Loại bỏ padding mặc định của ul */
+    list-style-type: none;
+    padding-left: 10px; /* Thêm padding để cho dấu • */
 }
-
 
 #description .desc_item::before {
     content: '•';
@@ -244,29 +211,29 @@ a{
     top: 2px;
 }
 
-
-
 /*section_right*/
 .section_right{
-    padding: 30px 20px;
-    width: 35%;
+    padding: 20px;
+    width: 25%; /* Giảm chiều rộng cột mua hàng */
     height: 100%;
     display: flex;
-
+    justify-content: flex-start; /* Căn các mục lên trên */
 }
 .price{
-    padding-top: 30px;
+    padding-top: 10px; /* Giảm padding top */
+    text-align: right; /* Căn giá sang phải như ảnh */
+    width: 100%;
 }
 
-
 .service{
-    padding-top:30px ;
+    padding-top: 30px ;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     text-align: left;
     font-size: 12px;
     color: #605e5e;
+    width: 100%; /* Đảm bảo service chiếm đủ rộng */
 }
 .service i{
     font-size: 12px;
@@ -278,25 +245,37 @@ a{
 
 .wrap_btn{
     padding-top: 30px;
+    width: 100%; /* Đảm bảo wrap_btn chiếm đủ rộng */
 }
 .btn{
     height: 40px;
-    margin: 5px;
+    margin: 5px 0; /* Chỉ margin trên dưới */
     border: 1px solid #000000;
-    border-radius: 15px;
+    border-radius: 5px; /* Giảm bo góc cho giống ảnh */
     cursor: pointer;
     transition: 0.3s;
+    width: 100%; /* Cho nút bấm 100% chiều rộng */
+    font-size: 14px; /* Thêm font-size */
+    font-weight: 500; /* Thêm font-weight */
 }
 
-
 .btn:hover{
-    transform: scale(1.05);
+    transform: scale(1.02); /* Giảm hiệu ứng hover */
 }
 
 .wrap_btn .buy{
     background-color: black;
     color: white;
 }
+
+/* Thêm style cho nút "Thêm vào giỏ hàng" */
+.wrap_btn .add {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #cfcfcf; /* Border xám nhạt */
+}
+
+/* CSS cho thông báo */
 .notification {
     position: fixed;
     top: 20%;
@@ -318,6 +297,7 @@ a{
 
 .notification i {
     font-size: 20px;
+    color: #fff; /* Đảm bảo icon màu trắng */
 }
 
 .notification.show {
