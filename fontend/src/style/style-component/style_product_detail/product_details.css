@@ -59,4 +59,71 @@ body {
     height: 50px; /* Chiều cao của đường phân cách */
     background-color: #ccc; /* Màu sắc đường phân cách */
 }
+.Section_Pt{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
 
+
+.carousel-container {
+    width: 50%;
+    max-width: 1200px;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+}
+.carousel-slide {
+    position: relative;
+}
+.carousel-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.carousel-button.left {
+    left: 10px;
+}
+
+.carousel-button.right {
+    right: 10px;
+}
+
+/*mục hdsd*/
+.feature-benefit {
+    display: flex;
+    align-items: stretch;
+    max-width: 1200px;
+    margin: auto;
+    border-radius: 8px;
+    padding: 40px 0;
+}
+.feature-benefit__text {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}.feature-benefit__text ul {
+     list-style-type: none;
+     padding: 0;
+     color: #555;
+ }
+
+.feature-benefit__text li {
+    margin: 5px 0;
+}
