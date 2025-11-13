@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản trị</title>
-    <link rel="stylesheet" href="../../resource/fontawesome/css/all.css">
     <link rel="stylesheet" href="../style/style-pages/admin/Admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
 
 </head>
 <body>
@@ -23,12 +23,7 @@
             <div class="avatar" id="avatar">
                 <img src="../../resource/image/avatar_admin.jpg" alt="Avatar" height="1024" width="1024"/>
                 <div class="user-popup">
-                    <a
-                            class="nav_item"
-                            href="#" onclick="loadPage('my_profile')"
-                            id="my-page-link"
-                    >Trang của tôi</a
-                    >
+                    <a class="nav_item" href="#" id="my-page-link">Trang của tôi</a>
                     <a href="../pages/auth.html" id="login-link">Đăng xuất</a>
                 </div>
             </div>
@@ -56,14 +51,13 @@
                     </div>
 
                     <ul class="submenu">
-                        <li class="submenu_item" onclick="loadPage('list_products')" > Danh sách sản phẩm </li>
-                        <!--                        <li onclick="loadPage('product_details')" ><a href="#" >Chi tiết sản phẩm</a></li>-->
-                        <li class="submenu_item" onclick="loadPage('add_product')" > Thêm sản phẩm </li>
+                        <li class="submenu_item" > Danh sách sản phẩm </li>
+                        <li class="submenu_item"> Thêm sản phẩm </li>
                     </ul>
                 </li>
 
                 <!-- Đơn hàng -->
-                <li class="menu_item"  onclick="loadPage('orders')" >
+                <li class="menu_item">
                     <div class="wrap_menu_item">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span>Đơn hàng</span>
@@ -72,7 +66,7 @@
                 </li>
 
                 <!-- Khách hàng -->
-                <li class="menu_item" onclick="loadPage('customers')" >
+                <li class="menu_item">
                     <div class="wrap_menu_item">
                         <i class="fa-solid fa-users"></i>
                         <span>Khách hàng</span>
@@ -83,7 +77,7 @@
 
 
                 <!-- Hồ sơ -->
-                <li class="menu_item" onclick="loadPage('my_profile')" >
+                <li class="menu_item">
                     <div class="wrap_menu_item">
                         <i class="fa-solid fa-user"></i>
                         <span>Hồ sơ</span>
@@ -94,7 +88,7 @@
 
 
                 <!-- Cài đặt -->
-                <li class="menu_item" onclick="loadPage('setting')" >
+                <li class="menu_item">
                     <div class="wrap_menu_item">
                         <i class="fa-solid fa-gear"></i>
                         <span>  Cài đặt </span>
