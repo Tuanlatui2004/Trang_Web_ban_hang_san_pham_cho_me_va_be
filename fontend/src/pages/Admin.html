@@ -33,7 +33,7 @@
         <nav id="sidebar" class="col">
             <ul>
                 <!-- Bảng điều khiển -->
-                <li class="menu_item " onclick="loadPage('dashboard')" >
+                <li class="menu_item " >
                     <div class="wrap_menu_item">
                         <i class="fa-solid fa-house"></i>
                         <a href="Admin.html" target="_self">Tổng quan</a>
@@ -52,7 +52,9 @@
                     </div>
 
                     <ul class="submenu">
-                        <li class="submenu_item" > Danh sách sản phẩm </li>
+                        <li class="submenu_item" > <a href="../../component/admin_components/listProduct.html" target="_blank">Danh sách sản phẩm</a> </li>
+
+
                         <li class="submenu_item"><a href="../../component/admin_components/addProduct.html" target="_blank"> Thêm sản phẩm </a> </li>
                     </ul>
                 </li>
@@ -101,10 +103,8 @@
                 </li>
             </ul>
         </nav>
-
         <div id="content">
             <iframe src="../../component/admin_components/Dashboard.html" frameborder="0"></iframe>
-
         </div>
     </div>
 </div>
