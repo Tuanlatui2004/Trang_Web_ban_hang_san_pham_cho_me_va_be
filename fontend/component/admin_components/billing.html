@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Thanh toán</title>
-    <link rel="stylesheet" href="../../styles/style-component/style-admin/billing.css">
+    <link rel="stylesheet" href="../../src/style/style-component/style_admin/billing.css">
+
+
 </head>
 <body>
 
@@ -37,7 +39,7 @@
             <span class="detail-label">Số tiền hóa đơn tiếp theo</span>
         </div>
         <div class="detail-item">
-            <span class="detail-amount">23 Tháng 8, 24</span>
+            <span class="detail-amount">6 Tháng 8, 25</span>
             <span class="detail-label">Ngày thanh toán tiếp theo</span>
         </div>
     </div>
@@ -66,7 +68,7 @@
                     <img alt="" class="logo"
                          src="https://keenthemes.com/static/metronic/tailwind/dist/assets/media/brand-logos/visa.svg">
                     <div class="payment-details">
-                        <a href="#" class="payment-name">NGUYEN TUAN KIET</a>
+                        <a href="#" class="payment-name">Ninh Tuấn Tú</a>
                         <span class="payment-desc">Kết thúc bằng 3604 - Hết hạn vào 12/2026</span>
                     </div>
                 </div>
@@ -84,7 +86,7 @@
                     <img alt="" class="logo"
                          src="https://keenthemes.com/static/metronic/tailwind/dist/assets/media/brand-logos/ideal.svg">
                     <div class="payment-details">
-                        <a href="#" class="payment-name">TRAN QUOC HUNG</a>
+                        <a href="#" class="payment-name">Phạm Trung Bình</a>
                         <span class="payment-desc">iDeal với ABN Ambro</span>
                     </div>
                 </div>
@@ -102,7 +104,7 @@
                     <img alt="" class="logo"
                          src="https://keenthemes.com/static/metronic/tailwind/dist/assets/media/brand-logos/paypal.svg">
                     <div class="payment-details">
-                        <a href="#" class="payment-name">PHAN VAN SY</a>
+                        <a href="#" class="payment-name">Nguyễn Biển Cả</a>
                         <span class="payment-desc">jasontt@studio.co</span>
                     </div>
                 </div>
@@ -148,7 +150,99 @@
     </div>
 </div>
 
-
+<!-- Billing and Invoicing Section -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Hóa đơn và thanh toán</h3>
+        <button class="btn btn-light btn-sm">
+            <i class="icon icon-download"></i>
+            Tải tất cả
+        </button>
+    </div>
+    <div class="card-table scrollable-x">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Hóa đơn</th>
+                <th class="text-end">Trạng thái</th>
+                <th class="text-end">Ngày</th>
+                <th class="text-end">Số tiền</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="value">Hóa đơn-2025-xd912c</td>
+                <td class="text-end">
+                    <div class="badge badge-warning">Sắp tới</div>
+                </td>
+                <td class="value text-end">6 Tháng 8, 2025</td>
+                <td class="value text-end">$24.00</td>
+                <td>
+                    <button class="btn-icon btn-download">
+                        <i class="icon icon-download"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td class="value">Hóa đơn-2025-rq857m</td>
+                <td class="text-end">
+                    <div class="badge badge-success">Đã thanh toán</div>
+                </td>
+                <td class="value text-end">17 Tháng 6, 2025</td>
+                <td class="value text-end">$29.99</td>
+                <td>
+                    <button class="btn-icon btn-download">
+                        <i class="icon icon-download"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td class="value">Hóa đơn-2025-jk563z</td>
+                <td class="text-end">
+                    <div class="badge badge-success">Đã thanh toán</div>
+                </td>
+                <td class="value text-end">30 Tháng 4, 2025</td>
+                <td class="value text-end">$24.00</td>
+                <td>
+                    <button class="btn-icon btn-download">
+                        <i class="icon icon-download"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td class="value">Hóa đơn-2025-hg234x</td>
+                <td class="text-end">
+                    <div class="badge badge-danger">Từ chối</div>
+                </td>
+                <td class="value text-end">21 Tháng 4, 2025</td>
+                <td class="value text-end">$6.59</td>
+                <td>
+                    <button class="btn-icon btn-download">
+                        <i class="icon icon-download"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td class="value">Hóa đơn-2025-lp098y</td>
+                <td class="text-end">
+                    <div class="badge badge-success">Đã thanh toán</div>
+                </td>
+                <td class="value text-end">14 Tháng 3, 2025</td>
+                <td class="value text-end">$24.00</td>
+                <td>
+                    <button class="btn-icon btn-download">
+                        <i class="icon icon-download"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <a class="btn-link" href="#">Xem tất cả thanh toán</a>
+    </div>
+</div>
 
 
 </body>

@@ -1,0 +1,106 @@
+
+body {
+    font-family: Helvetica Neue, Helvetica, Arial, serif;
+    background-color: #FFFFFF;
+    color: #333;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.billing-card {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 780px;
+    width: 100%;
+}
+
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-info-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.badge {
+    background-color: #eafff1;
+    color: #17c653;
+    padding: 4px 8px;
+    border: 1px solid #17c653;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.plan-description {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.btn-cancel {
+    background-color: #fff;
+    color: #4b5675;
+    border: 1px solid #dbdfe9;
+}
+
+.btn-upgrade {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+.plan-details {
+    display: flex;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+.detail-item {
+    text-align: center;
+    border: 1px dashed #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    width: 20%;
+    background: white;
+}
+
