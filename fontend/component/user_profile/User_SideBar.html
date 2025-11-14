@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link rel="stylesheet" href="../../src/style/style-component/style_user_profile/User_SideBar.css">
+</head>
+<body>
+<div id="side_bar" class="container  col">
+    <div class=" infor row mid_align  ">
+        <div class="profile_avatar">
+            <img src="https://i.pinimg.com/736x/59/25/50/592550ada476c0f3e7eef451f8490c7f--pitbull-search.jpg" height="500" width="500"/>
+        </div>
+        <div class="name">
+            <span>PitBull</span>
+        </div>
+
+    </div>
+
+    <div class="rec_horizontal"></div>
+
+    <div class=" wrap_item  col">
+
+        <input type="checkbox" id="tai-khoan-toggle" class="menu_toggle_input">
+
+        <label class="item" for="tai-khoan-toggle">
+            <i class="fa-solid fa-user-large"></i>
+            <span>Tài Khoản</span>
+            <i class="fa-solid fa-caret-down icon_down"></i>
+        </label>
+
+        <div class="menu_sub_item  ">
+            <ul>
+                <li class="sub_items  nav ">
+                    <i class="fa-solid fa-address-card"></i>
+                    <a href="#" class="item_link" data-src="../../component/user_profile/User_Profile_Detail.html">Hồ sơ</a>
+                </li>
+
+                <li class="sub_items nav">
+                    <i class="fa-regular fa-credit-card"></i>
+                    <a href="#" class="item_link" data-src="../../component/user_profile/Payment.html">Thanh toán</a>
+                </li>
+
+                <li class="sub_items nav">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <a href="#" class="item_link" data-src="../../component/user_profile/Address.html">Địa chỉ</a>
+                </li>
+
+                <li class="sub_items nav">
+                    <i class="fa-solid fa-key"></i>
+                    <a href="#" class="item_link" data-src="../../component/user_profile/Password.html">Bảo
+                        mật</a>
+                </li>
+
+                <li class="sub_items nav">
+                    <i class="fa-regular fa-bell"></i>
+                    <a href="#" class="item_link" data-src="#">Thông báo</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="item nav ">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>  <a href="#" class="item_link"  data-src="../../component/user_order/User_order.html">Đơn hàng</a></span>
+
+    </div>
+
+
+    <div class="item  ">
+        <i class="fa-brands fa-rocketchat"></i>
+        <span>  <a href="#" class="item_link"  data-src="../../component/user_order/User_order.html">Tin nhắn</a></span>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
