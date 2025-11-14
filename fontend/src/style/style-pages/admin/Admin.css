@@ -73,7 +73,7 @@ a {
 
 #header .logo {
     height: 100%;
-    width: 200px;
+    width: 90px;
     display: flex;
     align-items: center;
 }
@@ -269,7 +269,6 @@ a {
 
 
 .submenu {
-    display: none;
     flex-direction: column;
     padding-left: 25px; /* Đẩy submenu vào trong một chút */
     margin-top: 5px;
