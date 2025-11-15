@@ -40,10 +40,26 @@ body {
 
 .product-features li {
     margin-bottom: 8px;
+    line-height: 1.7;
 }
 .price{
     font-size: 20px;
     font-weight: bold;
     padding-top: 20px;
     color: red;
+}
+.btn-add-to-cart {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
 }
