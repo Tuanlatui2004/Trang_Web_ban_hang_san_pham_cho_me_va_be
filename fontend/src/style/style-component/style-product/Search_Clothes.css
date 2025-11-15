@@ -1,15 +1,17 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: Helvetica Neue, Helvetica, Arial, serif;
 }
-html{
+
+html {
     overflow: hidden;
     width: 100%;
     height: 100%;
 }
-body{
+
+body {
     width: 100%;
     height: 100%;
     overflow: scroll;
@@ -17,79 +19,83 @@ body{
 
 
 /*Reuse*/
-.mid_align{
-    display: flex;
+.mid_align {
     align-items: center;
     text-align: center;
 }
-
-.row{
-    display: flex;
-    flex-direction: row;
+.row.mid_align {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 580px);
+    place-items: center;
 }
 
-.col{
+.row {
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: repeat(2, 580px);
+}
+.wrap_item {
+    overflow: hidden;   /* bắt buộc không cho tràn */
+}
+
+.col {
     display: flex;
     flex-direction: column;
 }
 
 
-.rec_horizontal{
+.rec_horizontal {
     width: 100%;
     height: 1px;
     background-color: #cfcfcf;
     margin-top: 20px;
 }
 
-.rec_vertical{
+.rec_vertical {
     height: 70%;
     width: 1px;
     background-color: #cfcfcf;
-    margin:  0 10px;
+    margin: 0 10px;
     min-height: 20px;
 }
 
 
-
-
-
-i{
+i {
     color: #616060;
 }
 
-a{
+a {
     text-decoration: none;
     color: #000000;
 }
 
 
-.f12{
+.f12 {
     font-size: 12px;
 }
 
 
-.f16{
+.f16 {
     font-size: 16px;
 }
-.f18{
+
+.f18 {
     font-size: 18px;
 }
 
-.f22{
+.f22 {
     font-size: 22px;
 
 }
 
-.bold{
+.bold {
     font-weight: 500;
 }
 
 
-
-
-
 /*Banner*/
-
 
 
 #banner {
@@ -109,34 +115,33 @@ iframe {
 }
 
 
-
-
-
-
-
-#body  {
-    width: 100%;
+/*#body {*/
+/*    width: 100%;*/
+/*    min-height: 1000px;*/
+/*    background-color: rgba(239, 239, 239, 0.78);*/
+/*    flex-direction: row;*/
+/*    display: flex;*/
+/*}*/
+#body {
+    width: 90%;
     min-height: 1000px;
     background-color: rgba(239, 239, 239, 0.78);
     flex-direction: row;
     display: flex;
+    margin: auto;
 }
-
-
-
-
 
 
 /*Side bar*/
 
-#sidebar{
+#sidebar {
     width: 25%;
     background-color: #ffffff;
     padding: 20px 50px;
 }
 
 
-#list_product{
+#list_product {
     width: 75%;
     height: 80%;
     display: flex;
@@ -146,39 +151,38 @@ iframe {
 
 
 /*Top Product*/
-#top_product{
+#top_product {
     width: 100%;
     height: auto;
     min-height: 500px;
     background-color: #E2ECF7;
     border-radius: 15px;
 }
-#top_product span  {
+
+#top_product span {
     font-size: 22px;
     font-weight: bold;
     padding: 20px;
 }
 
-#top_product .wrap_item{
+#top_product .wrap_item {
     height: auto;
     width: 100%;
-    justify-content: center;
     padding-bottom: 20px;
 }
 
 
-#top_product iframe{
+#top_product iframe {
     width: 450px;
     height: 550px;
     padding: 0 10px
 }
 
 
-
 /*Product item*/
 
 
-.product_item{
+.product_item {
     width: 100%;
     margin-top: 30px;
 }
@@ -189,43 +193,39 @@ iframe {
     justify-content: center;
     font-size: 22px;
     font-weight: bold;
-    padding-top: 20px ;
+    padding-top: 20px;
 
 
 }
 
-.product_item iframe{
+.product_item iframe {
     padding: 20px 0;
     width: 100%;
     height: 500px;
 }
 
 
-
-
-
-
-
-
 /*Side Bar*/
 
 
-#sidebar{
+#sidebar {
     padding: 20px 50px;
 
 
 }
-.section_item .title{
-    padding: 5px 10px ;
+
+.section_item .title {
+    padding: 5px 10px;
     font-size: 16px;
     font-weight: 500;
 
 }
-.section_item{
-    padding-top:20px;
+
+.section_item {
+    padding-top: 20px;
 }
 
-.section_item .item{
+.section_item .item {
     padding: 5px 0;
     display: flex;
     flex-direction: row;
@@ -234,17 +234,17 @@ iframe {
 }
 
 
-.section_item label{
+.section_item label {
     font-size: 12px;
     font-weight: 400;
 
 
 }
+
 .section_item .item input {
     margin-right: 10px;
 
 }
-
 
 
 input[type="checkbox"] {
