@@ -353,3 +353,10 @@ body > #header > nav > ul > li > a{
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
+.user-login:hover .user-popup {
+    /* Khi di chuột vào .user-login, hiển thị .user-popup */
+    display: block;
+    /* Có thể thêm hiệu ứng chuyển đổi nếu muốn */
+    /* opacity: 1; */
+    /* visibility: visible; */
+}
