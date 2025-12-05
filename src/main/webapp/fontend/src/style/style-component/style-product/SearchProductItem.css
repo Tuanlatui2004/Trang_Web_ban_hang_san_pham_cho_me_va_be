@@ -1,0 +1,296 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Helvetica Neue, Helvetica, Arial, serif;
+}
+
+/*Reuse*/
+.mid_align {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.rec_horizontal {
+    width: 70%;
+    height: 1px;
+    background-color: #cfcfcf;
+}
+
+/* Ẩn đi vì không dùng trong layout mới */
+.rec_vertical {
+    display: none;
+}
+
+i {
+    color: #616060;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+
+.f12 {
+    font-size: 12px;
+}
+
+.f14 {
+    font-size: 14px; /* Điều chỉnh lại f14 */
+}
+
+.f16 {
+    font-size: 16px;
+}
+
+.f18 {
+    font-size: 18px;
+}
+
+.f22 {
+    font-size: 22px;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+/*Wrap*/
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    background-color: #E2ECF7;
+    padding: 20px; /* Thêm padding cho wrap */
+    justify-content: space-between; /* Căn chỉnh các cột */
+}
+
+
+.img_section {
+    width: 45%; /* Tăng chiều rộng cột ảnh */
+    height: 80%;
+    padding: 10px;
+}
+
+.img_section img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Đổi thành contain để thấy rõ sản phẩm */
+}
+
+/* Đây là cột thông tin ở giữa (div bọc mới) */
+.info_middle_section {
+    width: 30%; /* Chiều rộng cột thông tin */
+    height: 100%;
+    padding: 20px 0;
+    justify-content: flex-start; /* Căn các mục lên trên */
+    text-align: left;
+}
+
+.infor_section {
+    width: 100%; /* Đặt lại width thành 100% vì nó nằm trong cột mới */
+    padding: 0; /* Xóa padding cũ */
+}
+
+.infor_name {
+    cursor: pointer;
+}
+
+.infor_name, .infor_color {
+    display: flex;
+    text-align: left;
+    padding: 10px 0;
+}
+
+.choose_color {
+    padding: 10px 0;
+}
+
+.col_item {
+    margin: 0 10px 0 0; /* Chỉ margin bên phải */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #575757;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.col_item:hover {
+    scale: 1.1;
+}
+
+#pink {
+    background-color: #E9D2C6;
+}
+
+#gray {
+    background-color: #C0C0C0;
+}
+
+#yellow {
+    background-color: #EEE29B;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 30px;
+    align-items: center;
+    padding: 10px 0; /* Thêm padding cho rating */
+}
+
+.star {
+    position: relative;
+    height: 20px;
+    width: 20px;
+}
+
+#description {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 10px;
+}
+
+#description .desc_item {
+    padding: 3px 0;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    text-align: left; /* Đảm bảo text căn trái */
+}
+
+#description .list_descriptions {
+    list-style-type: none;
+    padding-left: 10px; /* Thêm padding để cho dấu • */
+}
+
+#description .desc_item::before {
+    content: '•';
+    color: black;
+    font-size: 1.2em;
+    position: absolute;
+    left: -10px;
+    top: 2px;
+}
+
+/*section_right*/
+.section_right {
+    padding: 20px;
+    width: 25%; /* Giảm chiều rộng cột mua hàng */
+    height: 100%;
+    display: flex;
+    justify-content: flex-start; /* Căn các mục lên trên */
+}
+
+.price {
+    padding-top: 10px; /* Giảm padding top */
+    text-align: right; /* Căn giá sang phải như ảnh */
+    width: 100%;
+}
+
+.service {
+    padding-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: left;
+    font-size: 12px;
+    color: #605e5e;
+    width: 100%; /* Đảm bảo service chiếm đủ rộng */
+}
+
+.service i {
+    font-size: 12px;
+    padding-right: 10px;
+}
+
+.service_item {
+    padding: 5px;
+}
+
+.wrap_btn {
+    padding-top: 30px;
+    width: 100%; /* Đảm bảo wrap_btn chiếm đủ rộng */
+}
+
+.btn {
+    height: 40px;
+    margin: 5px 0; /* Chỉ margin trên dưới */
+    border: 1px solid #000000;
+    border-radius: 5px; /* Giảm bo góc cho giống ảnh */
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%; /* Cho nút bấm 100% chiều rộng */
+    font-size: 14px; /* Thêm font-size */
+    font-weight: 500; /* Thêm font-weight */
+}
+
+.btn:hover {
+    transform: scale(1.02); /* Giảm hiệu ứng hover */
+}
+
+.wrap_btn .buy {
+    background-color: black;
+    color: white;
+}
+
+/* Thêm style cho nút "Thêm vào giỏ hàng" */
+.wrap_btn .add {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #cfcfcf; /* Border xám nhạt */
+}
+
+/* CSS cho thông báo */
+.notification {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -200%);
+    background-color: #28a745;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.notification i {
+    font-size: 20px;
+    color: #fff; /* Đảm bảo icon màu trắng */
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+.notification.hidden {
+    opacity: 0;
+    transform: translate(-50%, -70%);
+}
