@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản trị</title>
+    <link rel="stylesheet" href="../style/style-pages/admin/Admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+
+</head>
+<body>
+<div class="wrap col">
+    <div id="header" class="row">
+        <div class="logo">
+            <a href="home.html" class="private"><img class="logo" src="../../resource/image/logo.jpg" alt="Logo"></a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm...">
+            <button type="submit"><i class="fa-solid fa-search"></i></button>
+        </div>
+        <div class="menu row mid_align">
+            <i class="fa-regular fa-bell"></i>
+            <i class="fa-regular fa-envelope"></i>
+            <div class="avatar" id="avatar">
+                <img src="../../resource/image/avatar_admin.jpg" alt="Avatar" height="1024g" width="1024"/>
+                <div class="user-popup">
+                    <a class="nav_item" href="#" id="my-page-link">Trang của tôi</a>
+                    <a href="auth.html" id="login-link">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="body" class="row">
+        <nav id="sidebar" class="col">
+            <ul>
+                <!-- Bảng điều khiển -->
+                <li class="menu_item ">
+                    <div class="wrap_menu_item">
+                        <i class="fa-solid fa-house"></i>
+                        <a href="Admin.html" target="_self">Tổng quan</a>
+                        <!--                        <span>Tổng quan</span>-->
+                    </div>
+                </li>
+
+
+                <!--                 Sản phẩm-->
+                <li class="menu_item">
+                    <div class="wrap_menu_item">
+                        <i class="fa-solid fa-box"></i>
+                        <span>Sản phẩm</span>
+                        <i class="fa-solid fa-chevron-down toggle-arrow"></i>
+                    </div>
+
+                    <ul class="submenu">
+                        <li class="submenu_item"><a href="../../component/admin_components/listProduct.html"
+                                                    target="_blank">Danh sách sản phẩm</a></li>
+
+
+                        <li class="submenu_item"><a href="../../component/admin_components/addProduct.html"
+                                                    target="_blank"> Thêm sản phẩm </a></li>
+                    </ul>
+                </li>
+
+                <!-- Đơn hàng -->
+                <li class="menu_item">
+                    <div class="wrap_menu_item">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <a href="../../component/admin_components/oders.html" target="_blank">Đơn hàng</a>
+
+                        <!--                        <span>Đơn hàng</span>-->
+                    </div>
+
+                </li>
+
+                <!-- Khách hàng -->
+                <li class="menu_item">
+                    <div class="wrap_menu_item">
+                        <i class="fa-solid fa-users"></i>
+                        <a href="../../component/admin_components/customers.html" target="_blank">Khách hàng</a>
+                    </div>
+
+                </li>
+
+
+                <!-- Hồ sơ -->
+                <li class="menu_item">
+                    <div class="wrap_menu_item">
+                        <i class="fa-solid fa-user"></i>
+                        <a href="../../component/admin_components/myProfile.html" target="_blank">Hồ sơ</a>
+                    </div>
+                </li>
+
+
+                <!-- Cài đặt -->
+                <li class="menu_item">
+                    <div class="wrap_menu_item">
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="../../component/admin_components/myProfile.html" target="_blank">Cài đặt</a>
+
+                        <!--                        <span>  Cài đặt </span>-->
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="content">
+            <iframe src="../../component/admin_components/Dashboard.html" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+</body>
+</html>
