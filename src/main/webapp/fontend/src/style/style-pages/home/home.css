@@ -15,6 +15,32 @@ body {
     overflow: hidden;
 }
 
+#search-input {
+    width: 200px;
+    padding: 8px 35px 8px 15px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+.icons>div:first-child {
+    position: relative;
+}
+
+.icons>div:first-child i.fa-search {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    cursor: pointer;
+}
+
 #header {
     justify-content: center;
     width: 100%;
@@ -27,6 +53,7 @@ body {
     padding: 0 50px;
     background-color: white;
     box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    gap: 20px;
 }
 
 .logo {
@@ -34,17 +61,21 @@ body {
     width: auto;
     display: inline-block;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .navBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex: 1;
+    min-width: 0;
 }
 
-#header > nav > ul {
-    margin: 0 100px;
-    gap: 10px;
+#header>nav>ul {
+    margin: 0 50px;
+    gap: 5px;
+    flex-shrink: 0;
 }
 
 .navBar ul {
@@ -53,12 +84,14 @@ body {
     align-items: center;
 }
 
-body > #header > nav > ul {
-    font-size: 12px;
+body>#header>nav>ul {
+    font-size: 13px;
 }
 
 .navBar ul li {
     position: relative;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .navBar ul li a {
@@ -84,7 +117,7 @@ body > #header > nav > ul {
     transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-.navBar ul li:hover > a {
+.navBar ul li:hover>a {
     color: white;
     background-color: #17a2b8;
     border-radius: 5px !important;
@@ -98,7 +131,7 @@ body > #header > nav > ul {
 .submenu {
     position: absolute;
     top: 100%;
-    left: 50%;
+
     transform: translate(-50%, 20px);
     width: 300px;
     background-color: #ffffff;
@@ -113,9 +146,11 @@ body > #header > nav > ul {
     justify-content: space-around;
 }
 
-body > #header > nav > ul > li > a {
+body>#header>nav>ul>li>a {
     font-size: 13px;
     font-weight: bold;
+    white-space: nowrap;
+    padding: 8px 4px;
 }
 
 .navBar ul li:hover .submenu {
@@ -144,8 +179,15 @@ body > #header > nav > ul > li > a {
 
 .icons {
     display: flex;
-    gap: 10px;
-    margin-right: 20px;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.icons>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icons a {
@@ -153,6 +195,9 @@ body > #header > nav > ul > li > a {
     font-size: 18px;
     text-decoration: none;
     padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icons a:hover {
@@ -162,8 +207,10 @@ body > #header > nav > ul > li > a {
 .user-login {
     display: flex;
     align-items: center;
-    font-size: 14px;
+    justify-content: center;
+    font-size: 18px;
     padding: 5px;
+    cursor: pointer;
 }
 
 .user-login span {
@@ -365,4 +412,122 @@ body > #header > nav > ul > li > a {
     /* Có thể thêm hiệu ứng chuyển đổi nếu muốn */
     /* opacity: 1; */
     /* visibility: visible; */
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    gap: 5px;
+}
+
+/* Search Results Dropdown */
+.search-results-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 400px;
+    max-height: 500px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.search-results-content {
+    padding: 10px;
+}
+
+.search-loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.search-results-list {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s ease;
+    gap: 12px;
+}
+
+.search-result-item:hover {
+    background-color: #f8f9fa;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.search-result-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.search-result-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.search-result-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #17a2b8;
+}
+
+.no-results {
+    text-align: center;
+    padding: 30px 20px;
+    color: #999;
+    font-size: 14px;
+}
+
+/* Scrollbar styling for search results */
+.search-results-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.search-results-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.search-results-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.search-results-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

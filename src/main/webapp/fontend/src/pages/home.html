@@ -15,7 +15,7 @@
         </a>
     </div>
     <nav class="navBar">
-        <ul>
+        <ul class="nav-list">
             <li class="active">
                 <a href="#">Combo Đồ sơ sinh</a>
                 <div class="submenu submenu-combo-do-so-sinh">
@@ -180,10 +180,23 @@
             </li>
         </ul>
         <div class="icons">
-            <a href="../../component/home/search.html" class="icon" id="search-icon"><i class="fas fa-search"></i>
-            </a>
-            <a href="../../component/cart/cart.html" class="icon" id="cart-link"><i class="fas fa-shopping-cart"></i>
-            </a>
+            <div class="search-wrapper">
+                <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm">
+                <i class="fas fa-search"></i>
+                <div id="search-results" class="search-results-dropdown">
+                    <div class="search-results-content">
+                        <div class="search-loading" style="display: none;">Đang tìm kiếm...</div>
+                        <div class="search-results-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <a href="../../component/cart/cart.html" class="icon" id="cart-link"><i
+                        class="fas fa-shopping-cart"></i>
+                </a>
+            </div>
+
             <div class="icon user-login" target="_top">
                 <i class="fas fa-user"></i>
                 <div class="user-popup">
@@ -206,5 +219,86 @@
 <div id="body">
     <iframe src="../../component/home/homeBody.html" frameborder="0"></iframe>
 </div>
+<script>
+    const sampleProducts = [
+        { id: 1, name: "Sữa bột DHA cho bé", price: "450.000đ", image: "../../resource/image/milk.jpg", link: "../../component/product_component/Search_milk.html" },
+        { id: 2, name: "Xe tập đi cho bé", price: "850.000đ", image: "../../resource/image/listProduct/product1.jpg", link: "../../component/product_component/Search_Dochoi.html" },
+        { id: 3, name: "Quần áo sơ sinh", price: "250.000đ", image: "../../resource/image/listProduct/product2.png", link: "../../component/product_component/Search_Clothes.html" },
+        { id: 4, name: "Bỉm tã sơ sinh", price: "320.000đ", image: "../../resource/image/listProduct/product3.jpg", link: "../../component/product_component/Search_bimta.html" },
+        { id: 5, name: "Máy pha sữa", price: "1.200.000đ", image: "../../resource/image/listProduct/product4.jpg", link: "../../component/product_component/Search_mayphasua.html" },
+        { id: 6, name: "Vitamin cho mẹ bầu", price: "380.000đ", image: "../../resource/image/listProduct/product5.jpg", link: "../../component/product_component/Search_thuocvitamin.html" },
+        { id: 7, name: "Bột ăn dặm", price: "150.000đ", image: "../../resource/image/listProduct/product6.jpg", link: "../../component/product_component/Search_eat.html" },
+        { id: 8, name: "Quần áo thời trang bé", price: "280.000đ", image: "../../resource/image/listProduct/product7.png", link: "../../component/product_component/Search_ThoiTrang.html" }
+    ];
+
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    const resultsList = searchResults.querySelector('.search-results-list');
+    const searchLoading = searchResults.querySelector('.search-loading');
+    let searchTimeout;
+
+    function searchProducts(query) {
+        if (!query || query.trim().length === 0) {
+            searchResults.style.display = 'none';
+            return;
+        }
+
+        searchLoading.style.display = 'block';
+        resultsList.innerHTML = '';
+
+        setTimeout(() => {
+            const filteredProducts = sampleProducts.filter(product =>
+                product.name.toLowerCase().includes(query.toLowerCase())
+            );
+
+            searchLoading.style.display = 'none';
+
+            if (filteredProducts.length === 0) {
+                resultsList.innerHTML = '<div class="no-results">Không tìm thấy sản phẩm nào</div>';
+            } else {
+                resultsList.innerHTML = filteredProducts.map(product => `
+                        <a href="${product.link}" class="search-result-item">
+                            <img src="${product.image}" alt="${product.name}" onerror="this.src='../../resource/image/listProduct/product1.jpg'">
+                            <div class="search-result-info">
+                                <div class="search-result-name">${product.name}</div>
+                                <div class="search-result-price">${product.price}</div>
+                            </div>
+                        </a>
+                    `).join('');
+            }
+
+            searchResults.style.display = 'block';
+        }, 300);
+    }
+
+    searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        const query = e.target.value;
+        searchTimeout = setTimeout(() => {
+            searchProducts(query);
+        }, 300);
+    });
+
+    searchInput.addEventListener('focus', () => {
+        if (searchInput.value.trim().length > 0) {
+            searchProducts(searchInput.value);
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-wrapper')) {
+            searchResults.style.display = 'none';
+        }
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const query = searchInput.value.trim();
+            if (query.length > 0) {
+                window.location.href = `../../component/home/search.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+    });
+</script>
 </body>
 </html>
