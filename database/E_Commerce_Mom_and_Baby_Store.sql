@@ -14,8 +14,6 @@ CREATE TABLE IF NOT EXISTS `address` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
@@ -32,7 +30,7 @@ CREATE TABLE `attributes` (
 PRIMARY KEY (`id`),
 KEY `category_id` (`id`),
 CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- 
 --  Table structure for table `banners`
@@ -40,17 +38,7 @@ CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` 
 -- 
 -- bảng ecommerce
 DROP TABLE IF EXISTS `banners`;
-  CREATE TABLE `banners` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-   `image_id` int(11) NOT NULL,
-   `status` varchar(50) NOT NULL,
-   `startDate` date NOT NULL,
-   `endDate` date NOT NULL,
-   PRIMARY KEY (`id`),
-   KEY `image_id` (`image_id`),
-  CONSTRAINT `banners_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`) ON DELETE CASCADE
-  ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-  --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+
 
 -- 
 --  Table structure for table `brands`
@@ -61,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(191) default null,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
@@ -80,7 +68,7 @@ CREATE TABLE `card` (
                         PRIMARY KEY (`id`),
                         KEY `user_id` (`user_id`),
                         CONSTRAINT `fk_card` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
 -- 
@@ -93,11 +81,6 @@ CREATE TABLE `categories` (
                               `name` varchar(255) NOT NULL,
                               PRIMARY KEY (`id`),
                               UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-
-
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 --  Table structure for image
@@ -107,7 +90,7 @@ CREATE TABLE `image` (
                          `id` int(11) NOT NULL AUTO_INCREMENT,
                          `url` text NOT NULL,
                          PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
@@ -134,7 +117,7 @@ CREATE TABLE `option_variant` (
                            PRIMARY KEY (`id`),
                            KEY `option_variant_fk_1` (`product_id`),
                            CONSTRAINT `option_variant_fk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT    CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 -- 
 --  Table structure for table `orders`
@@ -160,7 +143,7 @@ CREATE TABLE `orders` (
                           CONSTRAINT `order_fk1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                           CONSTRAINT `order_fk2` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                           CONSTRAINT `order_fk3` FOREIGN KEY (`card_id`) REFERENCES `card` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
@@ -179,7 +162,7 @@ CREATE TABLE `order_detail` (
                                 KEY `product_id` (`product_id`),
                                 CONSTRAINT `order_detail_fk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                                 CONSTRAINT `order_detail_fk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
@@ -196,7 +179,7 @@ CREATE TABLE `product_images` (
                                   KEY `image_id` (`image_id`),
                                   CONSTRAINT `product_images_fk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
                                   CONSTRAINT `product_images_fk_2` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
@@ -223,7 +206,6 @@ CREATE TABLE `products` (
                             CONSTRAINT `product_fk_2` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
                             CONSTRAINT `products_fk_3` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                             CONSTRAINT `products_fk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
@@ -246,7 +228,6 @@ KEY `user_id` (`user_id`),
 KEY `product_id` (`product_id`),
 CONSTRAINT `review_fk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
 CONSTRAINT `review_fk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
@@ -275,12 +256,12 @@ CREATE TABLE `users` (
                         `avatar_id` int(11) DEFAULT NULL,
                         `status` enum('PENDING','ACTIVE','BANNED','DEACTIVE') NOT NULL DEFAULT 'PENDING',
                         `confirmationToken` varchar(255) DEFAULT NULL,
-                        `role` enum('USER', 'ADMIN') NOT NULL DEFAULT 'USER', 
+
                         PRIMARY KEY (`id`),
                         UNIQUE KEY `email` (`email`),
                         KEY `user_fk_1` (`avatar_id`),
                         CONSTRAINT `user_fk_1` FOREIGN KEY (`avatar_id`) REFERENCES `image` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT  CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
@@ -291,7 +272,7 @@ CREATE TABLE `users` (
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 --  Table structure for variant
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-DROP TABLE IF EXISTS `variants`;
+
 CREATE TABLE `variant` (
                            `id` int(11) NOT NULL AUTO_INCREMENT,
                            `category_id` int(11) DEFAULT NULL,
@@ -300,7 +281,6 @@ CREATE TABLE `variant` (
                            PRIMARY KEY (`id`),
                            KEY `fk_category` (`category_id`),
                            CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
