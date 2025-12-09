@@ -1,6 +1,6 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection;
 
-import com.example.backend.config.ConfigLoader;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.config.ConfigLoader;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import com.zaxxer.hikari.HikariConfig;
