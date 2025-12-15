@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Banner {
     Integer id;
     String title;
-    String imageId;
+    String image_id;
     LocalDate startDate;
     LocalDate endDate;
     Boolean isActive;
@@ -14,7 +14,7 @@ public class Banner {
 
     public Banner(@ColumnName("id") Integer id,
                   @ColumnName("title") String title,
-                  @ColumnName("imageId") String imageId,
+                  @ColumnName("image_id") String imageId,
                   @ColumnName("startDate") LocalDate startDate,
                   @ColumnName("endDate") LocalDate endDate,
                   @ColumnName("isActive") Boolean isActive,
@@ -22,7 +22,7 @@ public class Banner {
     ) {
         this.id = id;
         this.title = title;
-        this.imageId = imageId;
+        this.image_id = imageId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.isActive = isActive;
@@ -31,7 +31,7 @@ public class Banner {
 
     public Integer getId() { return id; }
     public String getTitle() { return title; }
-    public String getImageId() { return imageId; }
+    public String getImageId() { return image_id; }
     public LocalDate getStartDate() { return startDate; }
     public LocalDate getEndDate() { return endDate; }
     public Boolean getIsActive() { return isActive; }
@@ -40,7 +40,7 @@ public class Banner {
 
     public void setId(Integer id) { this.id = id; }
     public void setTitle(String title) { this.title = title; }
-    public void setImageId(String imageId) { this.imageId = imageId; }
+    public void setImageId(String image_id) { this.image_id = image_id; }
     public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
     public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
     public void setIsActive(Boolean isActive) { this.isActive = isActive; }

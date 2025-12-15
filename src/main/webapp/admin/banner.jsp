@@ -135,7 +135,7 @@
                             <tr>
                                 <td>${b.id}</td>
                                 <td>
-                                    <img src="${imageMap[b.imageId]}" alt="Banner" class="banner-image" style="width: 100px; border-radius: 8px;"/>
+                                    <img src="${imageMap[b.image_id]}" alt="Banner" class="banner-image" style="width: 100px; border-radius: 8px;"/>
                                 </td>
                                 <td>${b.title}</td>
                                 <td>${b.description}</td>

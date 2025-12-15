@@ -6,6 +6,7 @@
     <title>Header menu sidebar</title>
     <link rel="stylesheet" href="../style/style-pages/home/home.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 <div id="header">
@@ -219,86 +220,86 @@
 <div id="body">
     <iframe src="../../component/home/homeBody.html" frameborder="0"></iframe>
 </div>
-<script>
-    const sampleProducts = [
-        { id: 1, name: "Sữa bột DHA cho bé", price: "450.000đ", image: "../../resource/image/milk.jpg", link: "../../component/product_component/Search_milk.html" },
-        { id: 2, name: "Xe tập đi cho bé", price: "850.000đ", image: "../../resource/image/listProduct/product1.jpg", link: "../../component/product_component/Search_Dochoi.html" },
-        { id: 3, name: "Quần áo sơ sinh", price: "250.000đ", image: "../../resource/image/listProduct/product2.png", link: "../../component/product_component/Search_Clothes.html" },
-        { id: 4, name: "Bỉm tã sơ sinh", price: "320.000đ", image: "../../resource/image/listProduct/product3.jpg", link: "../../component/product_component/Search_bimta.html" },
-        { id: 5, name: "Máy pha sữa", price: "1.200.000đ", image: "../../resource/image/listProduct/product4.jpg", link: "../../component/product_component/Search_mayphasua.html" },
-        { id: 6, name: "Vitamin cho mẹ bầu", price: "380.000đ", image: "../../resource/image/listProduct/product5.jpg", link: "../../component/product_component/Search_thuocvitamin.html" },
-        { id: 7, name: "Bột ăn dặm", price: "150.000đ", image: "../../resource/image/listProduct/product6.jpg", link: "../../component/product_component/Search_eat.html" },
-        { id: 8, name: "Quần áo thời trang bé", price: "280.000đ", image: "../../resource/image/listProduct/product7.png", link: "../../component/product_component/Search_ThoiTrang.html" }
-    ];
+<!--<script>-->
+<!--    const sampleProducts = [-->
+<!--        { id: 1, name: "Sữa bột DHA cho bé", price: "450.000đ", image: "../../resource/image/milk.jpg", link: "../../component/product_component/Search_milk.html" },-->
+<!--        { id: 2, name: "Xe tập đi cho bé", price: "850.000đ", image: "../../resource/image/listProduct/product1.jpg", link: "../../component/product_component/Search_Dochoi.html" },-->
+<!--        { id: 3, name: "Quần áo sơ sinh", price: "250.000đ", image: "../../resource/image/listProduct/product2.png", link: "../../component/product_component/Search_Clothes.html" },-->
+<!--        { id: 4, name: "Bỉm tã sơ sinh", price: "320.000đ", image: "../../resource/image/listProduct/product3.jpg", link: "../../component/product_component/Search_bimta.html" },-->
+<!--        { id: 5, name: "Máy pha sữa", price: "1.200.000đ", image: "../../resource/image/listProduct/product4.jpg", link: "../../component/product_component/Search_mayphasua.html" },-->
+<!--        { id: 6, name: "Vitamin cho mẹ bầu", price: "380.000đ", image: "../../resource/image/listProduct/product5.jpg", link: "../../component/product_component/Search_thuocvitamin.html" },-->
+<!--        { id: 7, name: "Bột ăn dặm", price: "150.000đ", image: "../../resource/image/listProduct/product6.jpg", link: "../../component/product_component/Search_eat.html" },-->
+<!--        { id: 8, name: "Quần áo thời trang bé", price: "280.000đ", image: "../../resource/image/listProduct/product7.png", link: "../../component/product_component/Search_ThoiTrang.html" }-->
+<!--    ];-->
 
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-    const resultsList = searchResults.querySelector('.search-results-list');
-    const searchLoading = searchResults.querySelector('.search-loading');
-    let searchTimeout;
+<!--    const searchInput = document.getElementById('search-input');-->
+<!--    const searchResults = document.getElementById('search-results');-->
+<!--    const resultsList = searchResults.querySelector('.search-results-list');-->
+<!--    const searchLoading = searchResults.querySelector('.search-loading');-->
+<!--    let searchTimeout;-->
 
-    function searchProducts(query) {
-        if (!query || query.trim().length === 0) {
-            searchResults.style.display = 'none';
-            return;
-        }
+<!--    function searchProducts(query) {-->
+<!--        if (!query || query.trim().length === 0) {-->
+<!--            searchResults.style.display = 'none';-->
+<!--            return;-->
+<!--        }-->
 
-        searchLoading.style.display = 'block';
-        resultsList.innerHTML = '';
+<!--        searchLoading.style.display = 'block';-->
+<!--        resultsList.innerHTML = '';-->
 
-        setTimeout(() => {
-            const filteredProducts = sampleProducts.filter(product =>
-                product.name.toLowerCase().includes(query.toLowerCase())
-            );
+<!--        setTimeout(() => {-->
+<!--            const filteredProducts = sampleProducts.filter(product =>-->
+<!--                product.name.toLowerCase().includes(query.toLowerCase())-->
+<!--            );-->
 
-            searchLoading.style.display = 'none';
+<!--            searchLoading.style.display = 'none';-->
 
-            if (filteredProducts.length === 0) {
-                resultsList.innerHTML = '<div class="no-results">Không tìm thấy sản phẩm nào</div>';
-            } else {
-                resultsList.innerHTML = filteredProducts.map(product => `
-                        <a href="${product.link}" class="search-result-item">
-                            <img src="${product.image}" alt="${product.name}" onerror="this.src='../../resource/image/listProduct/product1.jpg'">
-                            <div class="search-result-info">
-                                <div class="search-result-name">${product.name}</div>
-                                <div class="search-result-price">${product.price}</div>
-                            </div>
-                        </a>
-                    `).join('');
-            }
+<!--            if (filteredProducts.length === 0) {-->
+<!--                resultsList.innerHTML = '<div class="no-results">Không tìm thấy sản phẩm nào</div>';-->
+<!--            } else {-->
+<!--                resultsList.innerHTML = filteredProducts.map(product => `-->
+<!--                        <a href="${product.link}" class="search-result-item">-->
+<!--                            <img src="${product.image}" alt="${product.name}" onerror="this.src='../../resource/image/listProduct/product1.jpg'">-->
+<!--                            <div class="search-result-info">-->
+<!--                                <div class="search-result-name">${product.name}</div>-->
+<!--                                <div class="search-result-price">${product.price}</div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    `).join('');-->
+<!--            }-->
 
-            searchResults.style.display = 'block';
-        }, 300);
-    }
+<!--            searchResults.style.display = 'block';-->
+<!--        }, 300);-->
+<!--    }-->
 
-    searchInput.addEventListener('input', (e) => {
-        clearTimeout(searchTimeout);
-        const query = e.target.value;
-        searchTimeout = setTimeout(() => {
-            searchProducts(query);
-        }, 300);
-    });
+<!--    searchInput.addEventListener('input', (e) => {-->
+<!--        clearTimeout(searchTimeout);-->
+<!--        const query = e.target.value;-->
+<!--        searchTimeout = setTimeout(() => {-->
+<!--            searchProducts(query);-->
+<!--        }, 300);-->
+<!--    });-->
 
-    searchInput.addEventListener('focus', () => {
-        if (searchInput.value.trim().length > 0) {
-            searchProducts(searchInput.value);
-        }
-    });
+<!--    searchInput.addEventListener('focus', () => {-->
+<!--        if (searchInput.value.trim().length > 0) {-->
+<!--            searchProducts(searchInput.value);-->
+<!--        }-->
+<!--    });-->
 
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.search-wrapper')) {
-            searchResults.style.display = 'none';
-        }
-    });
+<!--    document.addEventListener('click', (e) => {-->
+<!--        if (!e.target.closest('.search-wrapper')) {-->
+<!--            searchResults.style.display = 'none';-->
+<!--        }-->
+<!--    });-->
 
-    searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const query = searchInput.value.trim();
-            if (query.length > 0) {
-                window.location.href = `../../component/home/search.html?q=${encodeURIComponent(query)}`;
-            }
-        }
-    });
-</script>
+<!--    searchInput.addEventListener('keydown', (e) => {-->
+<!--        if (e.key === 'Enter') {-->
+<!--            const query = searchInput.value.trim();-->
+<!--            if (query.length > 0) {-->
+<!--                window.location.href = `../../component/home/search.html?q=${encodeURIComponent(query)}`;-->
+<!--            }-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>
