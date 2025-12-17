@@ -1,0 +1,33 @@
+package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model;
+
+import java.io.Serializable;
+
+public class Brand implements Serializable
+{
+    private int id;
+    private String name;
+
+    public Brand(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Brand() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
