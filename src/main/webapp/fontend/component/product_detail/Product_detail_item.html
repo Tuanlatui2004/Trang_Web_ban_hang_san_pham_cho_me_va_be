@@ -1,24 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>imgae</title>
     <link rel="stylesheet" href="../../src/style/style-component/style_product_detail/Product_detail_item.css">
 </head>
+
 <body>
-<!-- Carousel Container -->
 <div class="carousel-container">
-    <!-- Main Image Display -->
-    <img id="mainImage" src="../../resource/image/img-showcase/milk.jpg" alt="Carousel Image" class="carousel-image"/>
-    <!-- Navigation Arrows -->
+    <img id="mainImage" src="../../resource/image/img-showcase/milk.jpg" alt="Carousel Image"
+         class="carousel-image" />
 
     <div class="nav-arrow left" onclick="prevImage()">&#10094;</div>
     <div class="nav-arrow right" onclick="nextImage()">&#10095;</div>
 </div>
-<!-- Thumbnails -->
 <div class="thumbnails">
     <img src="../../resource/image/img-showcase/milk.jpg" alt="Thumbnail 1" class="thumbnail active"
-         onclick="showImage(0)"/>
+         onclick="showImage(0)" />
+    <img src="../../resource/image/img-showcase/img_slide1.jpg" alt="Thumbnail 2" class="thumbnail"
+         onclick="showImage(1)" />
+    <img src="../../resource/image/img-showcase/img_slide2.jpg" alt="Thumbnail 3" class="thumbnail"
+         onclick="showImage(2)" />
+    <img src="../../resource/image/img-showcase/img_slide3.jpg" alt="Thumbnail 4" class="thumbnail"
+         onclick="showImage(3)" />
 </div>
+
+<script>
+
+    const images = [
+        '../../resource/image/img-showcase/milk.jpg',
+        '../../resource/image/img-showcase/img_slide1.jpg',
+        '../../resource/image/img-showcase/img_slide2.jpg',
+        '../../resource/image/img-showcase/img_slide3.jpg'
+    ];
+
+    let currentIndex = 0;
+
+
+    const showImage = (index) => {
+        currentIndex = index;
+        document.getElementById('mainImage').src = images[index];
+
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        thumbnails.forEach((thumb, i) => {
+            if (i === index) {
+                thumb.classList.add('active');
+            } else {
+                thumb.classList.remove('active');
+            }
+        });
+    };
+
+
+    const prevImage = () => {
+        currentIndex = currentIndex - 1;
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1;
+        }
+        showImage(currentIndex);
+    };
+
+
+    const nextImage = () => {
+        currentIndex = currentIndex + 1;
+        if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+        showImage(currentIndex);
+    };
+</script>
 </body>
+
 </html>
