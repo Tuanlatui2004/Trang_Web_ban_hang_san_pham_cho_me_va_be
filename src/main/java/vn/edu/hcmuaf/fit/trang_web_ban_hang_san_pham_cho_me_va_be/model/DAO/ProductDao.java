@@ -47,7 +47,7 @@ public interface ProductDao {
             "ov.price as price, \n" +
             "ov.stock as stock, \n" +
             "img.url as image_url, \n"
-//            +"p.height as height, p.length as length, p.width as width, p.weight as weight"
+//           +"p.height as height, p.length as length, p.width as width, p.weight as weight"
             +
             "FROM products as p \n"+
             "inner join categories as c on c.id = p.category_id \n" +
@@ -189,7 +189,7 @@ public interface ProductDao {
                     INNER JOIN categories as c on c.id = p.category_id 
                     INNER JOIN option_variant as ov on ov.product_id = p.id 
                     INNER JOIN image as img on p.image_id = img.id
-                    INNER JOIN variant as v on v.category_id = c.id 
+                    INNER JOIN variant as v on v.option_id = ov.id 
                 WHERE p.id = :id 
                   AND ov.price = (
                         SELECT MIN(price) 
@@ -345,10 +345,10 @@ public interface ProductDao {
             "                                           ov.stock      as stock,  \n" +
             "                                           img.url        as image_url\n" +
             "                        FROM products as p  \n" +
-            "                         INNER JOIN option_variant as opt ON p.id = ov.product_id\n" +
+            "                         INNER JOIN option_variant as v ON p.id = ov.product_id\n" +
             "                        INNER JOIN image as img on img.id = p.image_id\n" +
             "                        INNER JOIN categories as c on p.category_id = c.id\n" +
-            "                        INNER JOIN variant_value as v ON c.id = v.category_id\n" +
+            "                        INNER JOIN variant as v ON ov.id = v.option_id\n" +
             "                         ORDER BY p.no_of_views DESC, p.no_of_sold DESC\n" +
             "                         LIMIT 3")
 
@@ -374,7 +374,7 @@ public interface ProductDao {
                           @Bind("sku") String sku,
                           @Bind("categoryId") Integer category_id,
                           @Bind("brandId") Integer brand_id,
-                          @Bind("primaryImage") Integer image_id,
+                          @Bind("umage") Integer image_id,
                           @Bind("height") Integer height,
                           @Bind("length") Integer length,
                           @Bind("width") Integer width,
