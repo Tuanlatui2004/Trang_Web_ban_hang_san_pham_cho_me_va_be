@@ -3,14 +3,14 @@ package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Cart implements Serializable {
+public class Card implements Serializable {
     private int id;
     private int user_id;
     private Date duration;
     private String type;
     private int is_default;
 
-    public Cart(int id, int user_id, Date duration, String type, int is_default) {
+    public Card(int id, int user_id, Date duration, String type, int is_default) {
         this.id = id;
         this.user_id = user_id;
         this.duration = duration;
@@ -18,7 +18,7 @@ public class Cart implements Serializable {
         this.is_default = is_default;
     }
 
-    public Cart() {
+    public Card() {
     }
 
     public int getId() {
