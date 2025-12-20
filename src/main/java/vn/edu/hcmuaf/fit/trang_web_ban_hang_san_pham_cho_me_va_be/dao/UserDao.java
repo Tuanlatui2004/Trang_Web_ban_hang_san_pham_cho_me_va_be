@@ -196,5 +196,14 @@ public interface UserDao {
                                        @Bind("confirmationToken") String confirmationToken,
                                        @Bind("facebookId") String facebookId);
 
+    @SqlUpdate(value = """
+            UPDATE user
+            set needRefresh = :needRefresh
+            where id = :userId
+            """)
+    Boolean updateNeedRefresh(@Bind("userId") Integer userId, @Bind("needRefresh") Boolean needRefresh);
 
+
+
+}
 
