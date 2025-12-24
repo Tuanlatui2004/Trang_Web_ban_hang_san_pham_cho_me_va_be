@@ -13,33 +13,33 @@ public interface AddressDao {
 
         @SqlQuery(value = "SELECT * " +
                 "FROM address as a " +
-                "WHERE a.userId = :userId and a.status= 'ACTIVE'" )
-        List<Address> getAddressByUserId(@Bind("userId") Integer userId);
+                "WHERE a.user_id = :user_id and a.status= 'ACTIVE'" )
+        List<Address> getAddressByUserId(@Bind("user_id") Integer user_id);
 
 
         @SqlQuery(value = "SELECT *" +
                 " FROM address" +
-                " WHERE id = :addressId;")
-        Address getAddressById(@Bind("addressId") Integer addressId);
+                " WHERE id = :address_id;")
+        Address getAddressById(@Bind("address_id") Integer address_id);
 
 
 
         @SqlQuery(value = "SELECT *" +
                 " FROM address" +
-                " WHERE userId = :userId and isDefault =1;")
-        Address getAddressDefaultByUserId(@Bind("userId") Integer userId);
+                " WHERE user_id = :user_id and is_default =1;")
+        Address getAddressDefaultByUserId(@Bind("user_id") Integer user_id);
 
 
         @SqlUpdate("UPDATE address " +
-                "SET isDefault = :defaultStatus " +
+                "SET is_default = :default_status " +
                 "WHERE id = :id; ")
-        Boolean updateDefaultById(@Bind("id") Integer id, @Bind("defaultStatus") boolean defaultStatus);
+        Boolean updateDefaultById(@Bind("id") Integer id, @Bind("default_status") boolean default_status);
 
 
 
 
-        @SqlUpdate("INSERT INTO address (userId, province, provinceId, district, districtId, commune, communeId, detail, phone, name, isDefault, type, status) " +
-                "VALUES (:userId, :province, :provinceId, :district, :districtId , :commune, :communeId, :detail, :phone, :name, :isDefault, :type, :status)")
+        @SqlUpdate("INSERT INTO address (user_id, province, district, commune,  detail, phone, name, is_default, type, status) " +
+                "VALUES (:user_id, :province, :district,  :commune, :detail, :phone, :name, :is_default, :type, :status)")
         int addAddress(    @BindBean Address address);
 
 
