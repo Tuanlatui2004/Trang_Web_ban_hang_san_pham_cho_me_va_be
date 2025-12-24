@@ -3,9 +3,9 @@ package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.pr
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.OptionVariant;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Product;
-//import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ImageService;
-//import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.OptionService;
-//import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ProductService;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ImageService;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.OptionService;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,7 +23,7 @@ public class ProductDetailController extends HttpServlet {
     OptionService optionService = new OptionService(DBConnection.getJdbi());
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int product_id = Integer.parseInt(request.getParameter("id"));
         Product product = productService.getProductById(product_id);
 
@@ -38,31 +38,32 @@ public class ProductDetailController extends HttpServlet {
         String image_id = imageService.getImageUrlById(product.getImage_id());
         List<String> descriptions = List.of(product.getDescription().split("\\n"));
 
-
+// lỗi
         List<OptionVariant> options = optionService.getOptionsByProductId(product.getId());
         List<Integer> optionIds = options.stream().map(OptionVariant::getId).collect(Collectors.toList());
 
         List<OptionVariant> optionVariant = optionService.getVariantByOptionId(optionIds);
-        List<String> varaints = optionVariant.stream().map(OptionVariant::).distinct().collect(Collectors.toList());
+        List<String> variants = optionVariant.stream().map(OptionVariant::getVariant_name).distinct().collect(Collectors.toList());
 
 
 
         request.setAttribute("images", images);
-        request.setAttribute("primaryImageUrl", primaryImageUrl); // Add primary image URL
+        request.setAttribute("image_id", image_id); // Add primary image URL
         request.setAttribute("product", product);
         request.setAttribute("descriptions", descriptions);
         request.setAttribute("product_price", product_price);
         request.setAttribute("optionVariant", optionVariant);
-        request.setAttribute("varaints", varaints);
+        request.setAttribute("variants ", variants );
 
 
         productService.increaseNoOfViews(product_id);
 
         request.getRequestDispatcher("product_detail/ProductDetail.jsp").forward(request, response);
     }
-    }
+// lỗi
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-}
+    }
+
