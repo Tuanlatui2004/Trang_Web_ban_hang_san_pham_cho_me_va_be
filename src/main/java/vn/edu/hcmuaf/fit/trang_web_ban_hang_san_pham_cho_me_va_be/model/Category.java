@@ -1,24 +1,28 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model;
 
-import java.io.Serializable;
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
-public class Category implements Serializable {
-    private int id;
-    private String name;
+public class Category {
+    Integer id;
+    String name;
+    Boolean is_active;
 
-    public Category(int id, String name) {
+    public Category(@ColumnName("id") Integer id,
+                    @ColumnName("name")  String name,
+                    @ColumnName("is_active") Boolean is_active) {
         this.id = id;
         this.name = name;
+        this.is_active = is_active;
     }
 
     public Category() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -28,5 +32,21 @@ public class Category implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(Boolean is_active) {
+        this.is_active = is_active;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
