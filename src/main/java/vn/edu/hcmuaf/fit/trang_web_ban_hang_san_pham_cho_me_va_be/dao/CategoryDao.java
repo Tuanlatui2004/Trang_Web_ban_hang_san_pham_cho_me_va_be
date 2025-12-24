@@ -14,15 +14,15 @@ public interface CategoryDao {
 
 
 
-    @SqlQuery("SELECT * FROM categories WHERE isActive = 1")
+    @SqlQuery("SELECT * FROM categories WHERE is_active = 1")
     List<Category> getAllCategories();
 
     @SqlQuery("SELECT * FROM categories WHERE id = :id")
     Category getCategoryById(@Bind("id") Integer id);
 
-    @SqlUpdate("INSERT INTO categories (name, isActive) VALUES (:name, COALESCE(:isActive, 1))")
+    @SqlUpdate("INSERT INTO categories (name, is_active) VALUES (:name, COALESCE(:is_active, 1))")
     @GetGeneratedKeys("id")
-    int createCategory(@Bind("name") String name, @Bind("isActive") Boolean isActive);
+    int createCategory(@Bind("name") String name, @Bind("is_active") Boolean is_active);
 
 
     @SqlUpdate("UPDATE categories SET name = :name WHERE id = :id")
@@ -34,8 +34,8 @@ public interface CategoryDao {
 //    @SqlUpdate("UPDATE categories SET isActive = :isActive WHERE id = :id")
 //    void updateCategoryStatus(@Bind("id") Integer id, @Bind("isActive") Boolean isActive);
 
-    @SqlUpdate("UPDATE categories SET isActive = :isActive WHERE id = :id")
-    void updateCategoryStatus(@Bind("id") Integer id, @Bind("isActive") int isActive);
+    @SqlUpdate("UPDATE categories SET isActive = :is_active WHERE id = :id")
+    void updateCategoryStatus(@Bind("id") Integer id, @Bind("is_active") int is_active);
 
 
     //    @SqlQuery("""
