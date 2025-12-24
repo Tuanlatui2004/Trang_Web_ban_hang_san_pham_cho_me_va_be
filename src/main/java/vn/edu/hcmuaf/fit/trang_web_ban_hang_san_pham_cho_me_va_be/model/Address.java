@@ -1,20 +1,35 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.annotation.Nullable;
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
+import org.jdbi.v3.core.mapper.reflect.JdbiConstructor;
 
-public class Address implements Serializable {
-    private int id;
-    private int user_id;
-    private String address_type; // shipping | billing
-    private String full_name;
-    private String phone_number;
-    private String street;
-    private String city;
-    private String state;
-    private String country;
-    private int is_default;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Address {
+    Integer id;
+    Integer user_id;
+    String address_type; // shipping | billing
+    String full_name;
+    String phone_number;
+    String street;
+    String city;
+    String state;
+    String country;
+    Integer is_default;
 
-    public Address(int id, int user_id, String address_type, String full_name, String phone_number, String street, String city, String state, String country, int is_default) {
+    @JdbiConstructor
+    public Address(@ColumnName("id")  Integer id,
+                   @ColumnName("user_id") @Nullable Integer user_id,
+                   @ColumnName("address_type") @Nullable String address_type,
+                   @ColumnName("full_name") @Nullable String full_name,
+                   @ColumnName("phone_number") @Nullable String phone_number,
+                   @ColumnName("street") @Nullable String street,
+                   @ColumnName("city") @Nullable String city,
+                   @ColumnName("state") @Nullable String state,
+                   @ColumnName("country") @Nullable String country,
+                   @ColumnName("is_default") @Nullable Integer is_default
+    ) {
         this.id = id;
         this.user_id = user_id;
         this.address_type = address_type;
@@ -26,23 +41,21 @@ public class Address implements Serializable {
         this.country = country;
         this.is_default = is_default;
     }
+    public Address() {}
 
-    public Address() {
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
@@ -102,11 +115,27 @@ public class Address implements Serializable {
         this.country = country;
     }
 
-    public int getIs_default() {
+    public Integer getIs_default() {
         return is_default;
     }
 
-    public void setIs_default(int is_default) {
+    public void setIs_default(Integer is_default) {
         this.is_default = is_default;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", address_type='" + address_type + '\'' +
+                ", full_name='" + full_name + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", is_default=" + is_default +
+                '}';
     }
 }
