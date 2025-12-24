@@ -37,7 +37,7 @@ public interface OptionVariantDao {
     @SqlQuery(value = "select *\n" +
             "from option_variant\n" +
             "where product_id = :product_id")
-    List<OptionVariant> getoption_variantByproduct_id(@Bind("product_id") Integer product_id);
+    List<OptionVariant> getOptionsByProductId(@Bind("product_id") Integer product_id);
 
 
 

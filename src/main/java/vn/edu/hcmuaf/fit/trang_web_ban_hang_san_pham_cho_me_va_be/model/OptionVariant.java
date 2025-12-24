@@ -9,17 +9,23 @@ public class OptionVariant {
     Integer price;
     Integer stock;
     Integer variant_id;
+    String variant_name;
+    String variant_value;
     public OptionVariant(@ColumnName("id") @Nullable Integer id,
                    @ColumnName("product_id") @Nullable Integer product_id,
                    @ColumnName("price") @Nullable Integer price,
                    @ColumnName("stock") @Nullable  Integer stock ,
-                   @ColumnName("variant_id") @Nullable Integer variant_id
+                   @ColumnName("variant_id") @Nullable Integer variant_id,
+                         @ColumnName("variant_name") @Nullable Integer variant_name,
+                         @ColumnName("variant_value") @Nullable Integer variant_value
     ){
         this.id = id;
         this.product_id = product_id;
         this.price = price;
         this.stock = stock;
         this.variant_id = variant_id;
+        this.variant_name = variant_name;
+        this.variant_value = variant_value;
 
     }
 
@@ -63,6 +69,22 @@ public class OptionVariant {
         this.variant_id = variant_id;
     }
 
+    public String getVariant_name() {
+        return variant_name;
+    }
+
+    public void setVariant_name(String variant_name) {
+        this.variant_name = variant_name;
+    }
+
+    public String getVariant_value() {
+        return variant_value;
+    }
+
+    public void setVariant_value(String variant_value) {
+        this.variant_value = variant_value;
+    }
+
     @Override
     public String toString() {
         return "OptionVariant{" +
@@ -71,6 +93,8 @@ public class OptionVariant {
                 ", price=" + price +
                 ", stock=" + stock +
                 ", variant_id=" + variant_id +
+                ", variant_name='" + variant_name + '\'' +
+                ", variant_value='" + variant_value + '\'' +
                 '}';
     }
 }
