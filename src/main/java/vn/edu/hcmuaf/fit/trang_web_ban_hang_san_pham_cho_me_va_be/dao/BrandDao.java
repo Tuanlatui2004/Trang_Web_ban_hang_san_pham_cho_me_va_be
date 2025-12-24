@@ -11,7 +11,7 @@ import java.util.List;
 
 @RegisterConstructorMapper(Brand.class)
 public interface BrandDao {
-    @SqlQuery("SELECT * FROM brand WHERE isActive = 1")
+    @SqlQuery("SELECT * FROM brand WHERE is_active = 1")
     List<Brand> getAllBrand();
 
     @SqlQuery("SELECT * FROM brand WHERE id = :id")
@@ -27,12 +27,12 @@ public interface BrandDao {
     @SqlUpdate("DELETE FROM brand WHERE id = :id")
     void deleteBrand(@Bind("id") Integer id);
 
-    @SqlUpdate("INSERT INTO brand (name, isActive) VALUES (:name, COALESCE(:isActive, 1))")
+    @SqlUpdate("INSERT INTO brand (name, is_active) VALUES (:name, COALESCE(:is_active, 1))")
     @GetGeneratedKeys("id")
-    int createBrand(@Bind("name") String name, @Bind("isActive") Boolean isActive);
+    int createBrand(@Bind("name") String name, @Bind("is_active") Boolean is_active);
 
 
-    @SqlUpdate("UPDATE brand SET isActive = :isActive WHERE id = :id")
-    void updateBrandStatus(@Bind("id") Integer id, @Bind("isActive") boolean isActive);
+    @SqlUpdate("UPDATE brand SET is_active = :is_active WHERE id = :id")
+    void updateBrandStatus(@Bind("id") Integer id, @Bind("is_active") boolean isActive);
 
 }
