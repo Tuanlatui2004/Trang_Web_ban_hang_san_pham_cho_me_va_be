@@ -90,7 +90,7 @@ public interface ProductDao {
                     "WHERE p.id= :product_id and ops.id =:option_id ;")
 
     @RegisterConstructorMapper(Product.class)
-    Product getProductByIdAndoption_id(@Bind("product_id") int product_id,
+    Product getProductByIdAndOptionId(@Bind("product_id") int product_id,
                                       @Bind("option_id") int option_id);
 
     @SqlQuery(value = "SELECT p.id, p.name, p.sku, p.description, p.is_active, " +
@@ -193,7 +193,7 @@ public interface ProductDao {
             "                       and p.is_active = true ) " +
             "order by p.no_of_views desc , p.no_of_sold desc " +
             "limit 3")
-    public List<Product> getTopProductsBycategory_id(@Bind("category_id") int category_id, @Bind("limit") Integer limit);
+    public List<Product> getTopProductsByCategoryId(@Bind("category_id") int category_id, @Bind("limit") Integer limit);
 
 
     @SqlUpdate("UPDATE products SET is_active = false WHERE id = :id")
@@ -260,13 +260,13 @@ public interface ProductDao {
     @SqlUpdate(value = "update products\n" +
             "set no_of_views = no_of_views +1\n" +
             "where id = :id;")
-    Boolean increaseno_of_views(@Bind("id") int id);
+    Boolean increaseNoOfViews(@Bind("id") int id);
 
 
     @SqlUpdate(value = "update products\n" +
             "set no_of_sold = no_of_sold + :quantity\n" +
             "where id = :id ;\n")
-    Boolean increaseno_of_sold(@Bind("id") int id, @Bind("quantity") Integer quantity);
+    Boolean increaseNoOfSold(@Bind("id") int id, @Bind("quantity") Integer quantity);
 
 
     @SqlQuery(value = "SELECT p.id           as id,\n" +
