@@ -207,7 +207,7 @@ public interface ProductDao {
                        ops.id as option_id, ops.price as price,
                        ops.stock as stock,  
                        img.url as image_url,
-                       v.id as variantId,
+                       v.id as variant_id,
                        v.value as variantValue,
                        v.name as variantName,
                        p.height as height,
@@ -238,7 +238,7 @@ public interface ProductDao {
                        ops.id as option_id, ops.price as price,
                        ops.stock as stock,  
                        img.url as image_url,
-                       v.id as variantId,
+                       v.id as variant_id,
                        v.value as variantValue,
                        v.name as variantName 
                 FROM products as p 
@@ -326,7 +326,7 @@ public interface ProductDao {
 
     public List<Product> filterProduct(
             @Bind("category_id") int category_id,
-//            @BindList(value = "option_variantId") List<Integer> option_variantId,
+//            @BindList(value = "option_variant_id") List<Integer> option_variant_id,
             @Bind("minPrice") @Nullable Integer minPrice,
             @Bind("maxPrice") @Nullable Integer maxPrice);
 
