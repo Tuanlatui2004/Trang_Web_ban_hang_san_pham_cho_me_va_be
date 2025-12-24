@@ -5,6 +5,8 @@ import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.contant.OrderStatus;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.contant.PaymentStatus;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Order;
 
 import java.time.LocalDate;
@@ -13,21 +15,21 @@ import java.util.List;
 @RegisterConstructorMapper(Order.class)
 public interface OrderDao {
 
-    @SqlUpdate(value = "INSERT INTO orders(createAt, paymentStatus, orderStatus, userId, addressId, cardId, isCOD, shippingFee)" +
+    @SqlUpdate(value = "INSERT INTO orders(create_at, payment_status, order_status, user_id, address_id, card_id, isCOD, shipping_fee)" +
             "VALUE (" +
-            "  :createAt , :paymentStatus, :orderStatus , :userId, :addressId, :cardId, :isCOD, :shippingFee" +
+            "  :create_at , :payment_status, :order_status , :user_id, :address_id, :card_id, :isCOD, :shipping_fee" +
             " )")
-//chưa fix cái ánh xạ db ngay dưới
+
     @GetGeneratedKeys
     Integer createOrder(
-            @Bind("createAt")LocalDate createAt,
-            @Bind("paymentStatus") PaymentStatus paymentStatus,
-            @Bind("orderStatus") OrderStatus orderStatus,
-            @Bind("userId") Integer userId,
-            @Bind("addressId") Integer addressId,
-            @Bind("cardId") Integer cardId,
+            @Bind("createAt")LocalDate create_at,
+            @Bind("paymentStatus") PaymentStatus payment_status,
+            @Bind("orderStatus") OrderStatus order_status,
+            @Bind("userId") Integer user_id,
+            @Bind("addressId") Integer address_id,
+            @Bind("cardId") Integer card_id,
             @Bind("isCOD") Boolean isCOD,
-            @Bind("shippingFee") Integer shippingFee
+            @Bind("shippingFee") Integer shipping_fee
     );
 
 
@@ -35,63 +37,63 @@ public interface OrderDao {
     @SqlQuery(value = """
             SELECT
                 o.id,
-                o.createAt,
-                o.paymentStatus,
-                o.orderStatus,
-                o.userId,
-                o.addressId,
-                o.cardId,
+                o.create_at,
+                o.payment_status,
+                o.order_status,
+                o.user_id,
+                o.address_id,
+                o.card_id,
                 o.isCOD,
-                o.shippingFee,
+                o.shipping_fee,
                 SUM(od.quantity) AS quantity,
-                (SUM(od.total) + o.shippingFee) AS total,
-                MIN(p.name) AS productName,
-                i.url AS productImage
+                (SUM(od.total) + o.shipping_fee) AS total,
+                MIN(p.name) AS product_name,
+                i.url AS product_image
             FROM
                 orders o
-                    INNER JOIN order_detail od ON o.id = od.orderId
-                    INNER JOIN products p ON p.id = od.productId
-                    INNER JOIN image i ON i.id = p.primaryImage
+                    INNER JOIN order_detail od ON o.id = od.order_id
+                    INNER JOIN products p ON p.id = od.product_id
+                    INNER JOIN image i ON i.id = p.image_id
             WHERE
-                o.userId = :userId
+                o.user_id = :user_id
             GROUP BY
-                o.id, o.createAt, o.paymentStatus, o.orderStatus,
-                o.userId, o.addressId, o.cardId, o.isCOD, o.shippingFee, i.url
+                o.id, o.create_at, o.payment_status, o.order_status,
+                o.user_id, o.address_id, o.card_id, o.isCOD, o.shipping_fee, i.url
             ORDER BY
-                o.createAt DESC;
+                o.create_at DESC;
 """
 
     )
-    List<Order> getOrdersByUserId(@Bind("userId") Integer userId);
+    List<Order> getOrdersByUserId(@Bind("userId") Integer user_id);
 
 
     @SqlQuery(value = "select\n" +
-            "    o.id as id, o.createAt, o.paymentStatus, o.orderStatus,\n" +
-            "    o.userId, o.addressId, o.cardId, o.isCOD,  o.shippingFee as  shippingFee,\n " +
-            " o.shippingId as shippingId , " +
+            "    o.id as id, o.create_at, o.payment_status, o.order_status,\n" +
+            "    o.user_id, o.address_id, o.card_id, o.isCOD,  o.shipping_fee as  shipping_fee,\n " +
+            " o.shipping_id as shipping_id , " +
             "    sum(od.total) as total\n" +
             "from orders as o inner join order_detail as od\n" +
-            "                            on o.id = od.orderId\n" +
-            "where o.userId = :userId and o.id = :orderId\n" +
+            "                            on o.id = od.order_id\n" +
+            "where o.user_id = :user_id and o.id = :order_id\n" +
             "group by\n" +
-            "    o.id, o.createAt, o.paymentStatus, o.orderStatus,\n" +
-            "    o.userId, o.addressId, o.cardId, o.isCOD, o.shippingFee " +
-            " order by o.createAt DESC ")
-    Order getOrderByIdAndUserId(@Bind("orderId") Integer orderId, @Bind("userId") Integer userId);
+            "    o.id, o.create_at, o.payment_status, o.order_status,\n" +
+            "    o.user_id, o.address_id, o.card_id, o.isCOD, o.shipping_fee " +
+            " order by o.create_at DESC ")
+    Order getOrderByIdAndUserId(@Bind("order_id") Integer order_id, @Bind("user_id") Integer user_id);
 
 
     @SqlQuery(value = "select\n" +
-            "    o.id as id, o.createAt, o.paymentStatus, o.orderStatus,\n" +
-            "    o.userId, o.addressId, o.cardId, o.isCOD,  o.shippingFee as  shippingFee,\n" +
-            "     o.shippingId as shippingId ," +
+            "    o.id as id, o.create_at, o.payment_status, o.order_status,\n" +
+            "    o.user_id, o.address_id, o.card_id, o.isCOD,  o.shipping_fee as  shipping_fee,\n" +
+            "     o.shipping_id as shipping_id ," +
             "    sum(od.total) as total\n" +
             "from orders as o inner join order_detail as od\n" +
-            "                            on o.id = od.orderId\n" +
-            "where o.id = :orderId\n" +
+            "                            on o.id = od.order_id\n" +
+            "where o.id = :order_id\n" +
             "group by\n" +
-            "    o.id, o.createAt, o.paymentStatus, o.orderStatus,\n" +
-            "    o.userId, o.addressId, o.cardId, o.isCOD\n")
-    Order getOrderById (@Bind("orderId") Integer orderId );
+            "    o.id, o.create_at, o.payment_status, o.order_status,\n" +
+            "    o.user_id, o.address_id, o.card_id, o.isCOD\n")
+    Order getOrderById (@Bind("order_id") Integer order_id );
 
 
 
@@ -99,46 +101,46 @@ public interface OrderDao {
 
 
     @SqlQuery(value ="select \n" +
-            "\to.id, o.createAt, o.paymentStatus, o.orderStatus, \n" +
-            "  u.fullName as userName , o.shippingFee as  shippingFee,\n" +
+            "\to.id, o.create_at, o.payment_status, o.order_status, \n" +
+            "  u.fullName as userName , o.shipping_fee as  shipping_fee,\n" +
             "  sum(od.total) as total\n" +
             "from orders as o\n" +
             "     inner join order_detail as od\n" +
-            "           on o.id = od.orderId\n" +
+            "           on o.id = od.order_id\n" +
             "     inner join user as u\n" +
-            "           on u.id = o.userId\n" +
+            "           on u.id = o.user_id\n" +
             "group by\n" +
-            "   o.id, o.createAt, o.paymentStatus,\n" +
-            "   o.orderStatus,\n" +
+            "   o.id, o.create_at, o.payment_status,\n" +
+            "   o.order_status,\n" +
             "   u.fullName \n" +
-            "order by o.createAt desc")
+            "order by o.create_at desc")
 
     List<Order> getAllOrders();
 
 
 
     @SqlUpdate("UPDATE orders " +
-            "SET orderStatus = :orderStatus "+
-            "WHERE id = :orderId ")
+            "SET order_status = :order_status "+
+            "WHERE id = :order_id ")
 
-    void updateOrderStatus(@Bind("orderId") Integer orderId, @Bind("orderStatus") OrderStatus orderStatus);
-
-
-    @SqlUpdate("UPDATE orders " +
-            "SET orderStatus = :orderStatus "+
-            "WHERE shippingId = :shippingId ")
-
-    boolean updateOrderStatusByShippingId(@Bind("shippingId") String shippingId, @Bind("orderStatus") OrderStatus orderStatus);
-
-
-
+    void updateOrderStatus(@Bind("order_id") Integer order_id, @Bind("order_status") OrderStatus order_status);
 
 
     @SqlUpdate("UPDATE orders " +
-            "SET shippingId = :shippingId "+
-            "WHERE id = :orderId ")
+            "SET order_status = :order_status "+
+            "WHERE shipping_id = :shipping_id ")
 
-    void updateOrderShippingId(@Bind("orderId") Integer orderId, @Bind("shippingId") String shippingId);
+    boolean updateOrderStatusByShippingId(@Bind("shipping_id") String shipping_id, @Bind("order_status") OrderStatus order_status);
+
+
+
+
+
+    @SqlUpdate("UPDATE orders " +
+            "SET shipping_id = :shipping_id "+
+            "WHERE id = :order_id ")
+
+    void updateOrderShippingId(@Bind("order_id") Integer order_id, @Bind("shipping_id") String shipping_id);
 
 
 }

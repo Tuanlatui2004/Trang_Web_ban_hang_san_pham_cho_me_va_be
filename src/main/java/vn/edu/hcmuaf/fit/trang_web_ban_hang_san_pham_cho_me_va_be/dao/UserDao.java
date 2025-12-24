@@ -15,77 +15,77 @@ import java.util.List;
 //chưa thêm mapper, đang còn thiếu
 public interface UserDao {
 
-    @SqlQuery("SELECT u.id, u.fullName, u.displayName, u.birth, u.gender, u.email, u.phone, " +
-            "u.password, u.avatarId, u.salt, i.url as avatarUrl, u.status, u.confirmationToken, u.facebookId,  u.needRefresh , " +
-            "r.id as 'role.id', r.roleType as 'role.roleType', r.name as 'role.name', " +
-            "r.description as 'role.description', r.isActive as 'role.isActive' " +
+    @SqlQuery("SELECT u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phone, " +
+            "u.password, u.avatar_id, u.salt, i.url as avatar_url, u.status, u.confirmationToken, u.facebook_id,  u.need_refresh , " +
+            "r.id as 'role.id', r.role_type as 'role.role_type', r.name as 'role.name', " +
+            "r.description as 'role.description', r.isActive as 'role.is_active' " +
             "FROM user u " +
-            "LEFT JOIN image i ON u.avatarId = i.id " +
-            "LEFT JOIN user_role ur ON u.id = ur.userId " +
-            "LEFT JOIN role r ON ur.roleId = r.id")
+            "LEFT JOIN image i ON u.avatar_id = i.id " +
+            "LEFT JOIN user_role ur ON u.id = ur.user_id " +
+            "LEFT JOIN role r ON ur.role_id = r.id")
     List<User> getAllUsers();
 
-    @SqlQuery(value = "select u.id, u.fullName, u.displayName, u.birth, u.gender, u.email, u.phone,\n" +
-            "        i.url as avatarUrl, u.status, u.confirmationToken, u.password, u.salt, u.facebookId,  u.needRefresh ,\n" +
-            "        r.id as role_id, r.roleType as role_roleType, r.name as role_name, r.description as role_description, r.isActive as role_isActive\n" +
+    @SqlQuery(value = "select u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phone,\n" +
+            "        i.url as avatar_url, u.status, u.confirmationToken, u.password, u.salt, u.facebook_id,  u.need_refresh ,\n" +
+            "        r.id as role_id, r.role_type as role_role_type, r.name as role_name, r.description as role_description, r.is_active as role_is_active\n" +
             "from user as u\n" +
-            "    left join image as i on u.avatarId = i.id\n" +
-            "    left join user_role as ur on u.id = ur.userId\n" +
-            "    left join role as r on ur.roleId = r.id\n" +
+            "    left join image as i on u.avatar_id = i.id\n" +
+            "    left join user_role as ur on u.id = ur.user_id\n" +
+            "    left join role as r on ur.role_id = r.id\n" +
             "where u.id  = :id")
     User getUserById(@Bind("id") Integer id);
 
-    @SqlQuery("SELECT u.id, u.fullName, u.displayName, u.birth, u.gender, u.email, u.phone, " +
-            "u.password, u.salt, u.avatarId, u.status, u.confirmationToken, u.facebookId, u.needRefresh ," +
-            "i.url as avatarUrl, " +
-            "r.id as role_id, r.roleType as role_roleType, r.name as role_name, " +
-            "r.description as role_description, r.isActive as role_isActive " +
+    @SqlQuery("SELECT u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phone, " +
+            "u.password, u.salt, u.avatar_id, u.status, u.confirmationToken, u.facebook_id, u.need_refresh ," +
+            "i.url as avatar_url, " +
+            "r.id as role_id, r.role_type as role_role_type, r.name as role_name, " +
+            "r.description as role_description, r.is_active as role_is_active " +
             "FROM user as u " +
-            "LEFT JOIN image as i ON u.avatarId = i.id " +
-            "LEFT JOIN user_role as ur ON u.id = ur.userId " +
-            "LEFT JOIN role as r ON ur.roleId = r.id " +
+            "LEFT JOIN image as i ON u.avatar_id = i.id " +
+            "LEFT JOIN user_role as ur ON u.id = ur.user_id " +
+            "LEFT JOIN role as r ON ur.role_id = r.id " +
             "WHERE u.email = :email")
     @RegisterRowMapper(UserWithRoleMapper.class)
     User getUserByEmail(@Bind("email") String email);
 
-    @SqlQuery(value = "SELECT u.id, u.fullName, u.displayName, u.birth, u.gender, u.email, u.phone,\n" +
-            "        i.url as avatarUrl, u.status, u.confirmationToken, u.password, u.salt, u.facebookId , u.needRefresh , \n" +
-            "        r.id as role_id, r.roleType as role_roleType, r.name as role_name, r.description as role_description, r.isActive as role_isActive\n" +
+    @SqlQuery(value = "SELECT u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phone,\n" +
+            "        i.url as avatar_url, u.status, u.confirmationToken, u.password, u.salt, u.facebook_id , u.need_refresh , \n" +
+            "        r.id as role_id, r.role_type as role_role_type, r.name as role_name, r.description as role_description, r.isActive as role_isActive\n" +
             "FROM user as u\n" +
-            "    left join image as i on u.avatarId = i.id\n" +
-            "    left join user_role as ur on u.id = ur.userId\n" +
-            "    left join role as r on ur.roleId = r.id\n" +
+            "    left join image as i on u.avatar_id = i.id\n" +
+            "    left join user_role as ur on u.id = ur.user_id\n" +
+            "    left join role as r on ur.role_id = r.id\n" +
             "WHERE u.confirmationToken = :token")
     User getUserByConfirmationToken(@Bind("token") String token);
 
     @SqlQuery("""
-    SELECT u.id, u.fullName, u.displayName, u.birth, u.gender, u.email, u.phone,
+    SELECT u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phone,
            i.url AS avatarUrl,
-           u.status, u.confirmationToken, u.password, u.salt, u.facebookId,
-           r.id as role_id, r.roleType as role_roleType, r.name as role_name, 
-           r.description as role_description, r.isActive as role_isActive
+           u.status, u.confirmationToken, u.password, u.salt, u.facebook_id,
+           r.id as role_id, r.role_type as role_role_type, r.name as role_name, 
+           r.description as role_description, r.is_active as role_isActive
     FROM user u
-    LEFT JOIN image i ON u.avatarId = i.id
-    LEFT JOIN user_role ur ON u.id = ur.userId
-    LEFT JOIN role r ON ur.roleId = r.id
-    where r.roleType = "USER"
+    LEFT JOIN image i ON u.avatar_id = i.id
+    LEFT JOIN user_role ur ON u.id = ur.user_id
+    LEFT JOIN role r ON ur.role_id = r.id
+    where r.role_type = "USER"
     """)
     List<User> getCustomers();
 
 
 
     @SqlQuery("""
-            SELECT u.id, u.fullName, u.displayName, u.birth, u.gender, u.email, u.phone,   \s
-             u.password, u.salt, u.avatarId, u.status, u.confirmationToken, u.facebookId , u.needRefresh ,   \s
-             i.url as avatarUrl,   \s
-             r.id as role_id, r.roleType as role_roleType, r.name as role_name,   \s
-             r.description as role_description, r.isActive as role_isActive   \s
+            SELECT u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phone,   \s
+             u.password, u.salt, u.avatar_id, u.status, u.confirmationToken, u.facebook_id , u.need_refresh ,   \s
+             i.url as avatar_url,   \s
+             r.id as role_id, r.role_type as role_role_type, r.name as role_name,   \s
+             r.description as role_description, r.is_active as role_isActive   \s
              FROM user as u   \s
-             LEFT JOIN image as i ON u.avatarId = i.id   \s
-             LEFT JOIN user_role as ur ON u.id = ur.userId   \s
-             LEFT JOIN role as r ON ur.roleId = r.id   \s
+             LEFT JOIN image as i ON u.avatar_id = i.id   \s
+             LEFT JOIN user_role as ur ON u.id = ur.user_id   \s
+             LEFT JOIN role as r ON ur.role_id = r.id   \s
       
-            where r.roleType  != "USER"
+            where r.role_type  != "USER"
     """)
     @RegisterRowMapper(UserWithRoleMapper.class)
     List<User> getMembers();
@@ -94,8 +94,8 @@ public interface UserDao {
 
 
 
-    @SqlUpdate("INSERT INTO user (fullName, displayName, email, password, salt, status, confirmationToken, facebookId) " +
-            "VALUES (:fullName, :displayName, :email, :password, :salt, 'PENDING', :confirmationToken, :facebookId)")
+    @SqlUpdate("INSERT INTO user (fullName, displayName, email, password, salt, status, confirmationToken, facebook_id) " +
+            "VALUES (:fullName, :displayName, :email, :password, :salt, 'PENDING', :confirmationToken, :facebook_id)")
     @GetGeneratedKeys("id")
     Integer createUser(@Bind("fullName") String fullName,
                        @Bind("displayName") String displayName,
@@ -103,19 +103,19 @@ public interface UserDao {
                        @Bind("password") String password,
                        @Bind("salt") String salt,
                        @Bind("confirmationToken") String confirmationToken,
-                       @Bind("facebookId") String facebookId);
+                       @Bind("facebook_id") String facebook_id);
 
-    @SqlUpdate("INSERT INTO user (fullName, displayName, email, password, roleId, salt, status, confirmationToken, facebookId) " +
-            "VALUES (:fullName, :displayName, :email, :password, :roleId, :salt, 'PENDING', :confirmationToken, :facebookId)")
+    @SqlUpdate("INSERT INTO user (fullName, displayName, email, password, role_id, salt, status, confirmationToken, facebook_id) " +
+            "VALUES (:fullName, :displayName, :email, :password, :role_id, :salt, 'PENDING', :confirmationToken, :facebook_id)")
     @GetGeneratedKeys("id")
     String createUserWithRole(@Bind("fullName") String fullName,
                               @Bind("displayName") String displayName,
                               @Bind("email") String email,
                               @Bind("password") String password,
-                              @Bind("roleId") Integer roleId,
+                              @Bind("roleId") Integer role_id,
                               @Bind("salt") String salt,
                               @Bind("confirmationToken") String confirmationToken,
-                              @Bind("facebookId") String facebookId);
+                              @Bind("facebook_id") String facebook_id);
 
     @SqlUpdate("UPDATE user SET status = :status WHERE id = :id")
     void updateUserStatus(@Bind("id") Integer id, @Bind("status") String status);
@@ -138,55 +138,55 @@ public interface UserDao {
     @SqlUpdate("UPDATE user SET password = :password, salt = :salt WHERE id = :id")
     int updatePassword(@Bind("id") Integer id, @Bind("password") String password, @Bind("salt") String salt);
 
-    @SqlQuery(value = "SELECT u.id, u.fullName, u.displayName, u.birth, u.gender, u.email, u.phone,\n" +
-            "        i.url as avatarUrl, u.status, u.confirmationToken, u.password, u.salt, u.facebookId, u.needRefresh , \n" +
-            "        r.id as role_id, r.roleType as role_roleType, r.name as role_name, r.description as role_description, r.isActive as role_isActive\n" +
+    @SqlQuery(value = "SELECT u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phone,\n" +
+            "        i.url as avatarUrl, u.status, u.confirmationToken, u.password, u.salt, u.facebook_id, u.needRefresh , \n" +
+            "        r.id as role_id, r.role_type as role_role_type, r.name as role_name, r.description as role_description, r.isActive as role_isActive\n" +
             "FROM user as u\n" +
-            "    left join image as i on u.avatarId = i.id\n" +
-            "    left join user_role as ur on u.id = ur.userId\n" +
+            "    left join image as i on u.avatar_id = i.id\n" +
+            "    left join user_role as ur on u.id = ur.user_id\n" +
             "    left join role as r on ur.roleId = r.id\n" +
             "WHERE u.id = :id")
-    User getPasswordByUserId(@Bind("id") Integer userId);
+    User getPasswordByuser_id(@Bind("id") Integer user_id);
 
-    @SqlQuery("SELECT url FROM image WHERE id = :avatarId")
-    String getAvatarUrlById(@Bind("avatarId") Integer avatarId);
+    @SqlQuery("SELECT url FROM image WHERE id = :avatar_id")
+    String getAvatarUrlById(@Bind("avatar_id") Integer avatar_id);
 
     @SqlUpdate(value ="UPDATE user\n" +
-            "SET avatarId = :avatarId " +
-            "where id = :userId")
-    Boolean updateAvatar(@Bind("userId") Integer userId, @Bind("avatarId") Integer avatarId);
+            "SET avatar_id = :avatar_id " +
+            "where id = :user_id")
+    Boolean updateAvatar(@Bind("user_id") Integer user_id, @Bind("avatar_id") Integer avatar_id);
 
     @SqlUpdate(value = "UPDATE user\n" +
             "SET\n" +
             "    fullName = :fullName ,\n" +
             "    displayName = :displayName,\n" +
-            "    birth = :birth, " +
+            "    dOB = :dOB, " +
             "    gender = :gender,\n" +
             "    phone = :phone " +
-            "where id = :userId")
+            "where id = :user_id")
     Boolean updateUser(
-            @Bind("userId") Integer userId,
+            @Bind("user_id") Integer user_id,
             @Bind("fullName") String fullName,
             @Bind("displayName") String displayName,
-            @Bind("birth") LocalDate birth,
+            @Bind("dOB") LocalDate dOB,
             @Bind("gender") String gender,
             @Bind("phone") String phone
     );
 
     // Helper method to get default user role
-    @SqlQuery("SELECT id, roleType, name, description, isActive FROM role WHERE roleType = 'USER' LIMIT 1")
+    @SqlQuery("SELECT id, role_type, name, description, isActive FROM role WHERE role_type = 'USER' LIMIT 1")
     Role getDefaultUserRole();
 
     // Helper method to get role by name
-    @SqlQuery("SELECT id, roleType, name, description, isActive FROM role WHERE name = :name")
+    @SqlQuery("SELECT id, role_type, name, description, isActive FROM role WHERE name = :name")
     Role getRoleByName(@Bind("name") String name);
 
     // Helper method to get role by type
-    @SqlQuery("SELECT id, roleType, name, description, isActive FROM role WHERE roleType = :roleType")
-    Role getRoleByType(@Bind("roleType") String roleType);
+    @SqlQuery("SELECT id, role_type, name, description, isActive FROM role WHERE role_type = :role_type")
+    Role getRoleByType(@Bind("role_type") String role_type);
 
-    @SqlUpdate("INSERT INTO user (fullName, displayName, email, password, salt, status, confirmationToken, facebookId) " +
-            "VALUES (:fullName, :displayName, :email, :password, :salt, 'ACTIVE', :confirmationToken, :facebookId)")
+    @SqlUpdate("INSERT INTO user (fullName, displayName, email, password, salt, status, confirmationToken, facebook_id) " +
+            "VALUES (:fullName, :displayName, :email, :password, :salt, 'ACTIVE', :confirmationToken, :facebook_id)")
     @GetGeneratedKeys("id")
     Integer createUserWithActiveStatus(@Bind("fullName") String fullName,
                                        @Bind("displayName") String displayName,
@@ -194,14 +194,14 @@ public interface UserDao {
                                        @Bind("password") String password,
                                        @Bind("salt") String salt,
                                        @Bind("confirmationToken") String confirmationToken,
-                                       @Bind("facebookId") String facebookId);
+                                       @Bind("facebook_id") String facebook_id);
 
     @SqlUpdate(value = """
             UPDATE user
-            set needRefresh = :needRefresh
-            where id = :userId
+            set need_refresh = :need_refresh
+            where id = :user_id
             """)
-    Boolean updateNeedRefresh(@Bind("userId") Integer userId, @Bind("needRefresh") Boolean needRefresh);
+    Boolean updateNeedRefresh(@Bind("user_id") Integer user_id, @Bind("need_refresh") Boolean need_refresh);
 
 
 

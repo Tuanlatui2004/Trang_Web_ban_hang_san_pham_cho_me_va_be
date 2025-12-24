@@ -11,7 +11,7 @@ public interface ProductReviewDao {
 
     @SqlUpdate(value =
             "INSERT INTO review (user_id, product_id, order_id, rating, description) " +
-                    "VALUES (:userId, :productId, :orderId, :rating, :description)")
+                    "VALUES (:user_id, :product_id, :order_id, :rating, :description)")
 
     Boolean addReview(@Bind("user_id") Integer user_id,
                       @Bind("product_id") Integer product_id,
@@ -21,13 +21,13 @@ public interface ProductReviewDao {
 
     );
 
-    @SqlUpdate("UPDATE order_detail SET isReviewed = 1 WHERE order_id = :order_id AND product_id = :product_id")
+    @SqlUpdate("UPDATE order_detail SET is_reviewed = 1 WHERE order_id = :order_id AND product_id = :product_id")
     void updateIsReviewed(@Bind("order_id") int order_id,
                           @Bind("product_id") int product_id);
 
 //chưa fix cái này
-//    @SqlQuery("SELECT orderStatus FROM orders WHERE id = :orderId AND userId = :userId")
-//    OrderStatus getOrderStatus(@Bind("orderId") int orderId, @Bind("userId") int userId);
+//    @SqlQuery("SELECT orderStatus FROM orders WHERE id = :order_id AND userId = :user_id")
+//    OrderStatus getOrderStatus(@Bind("order_id") int order_id, @Bind("user_id") int user_id);
 
 
 
@@ -38,9 +38,9 @@ public interface ProductReviewDao {
 
 
     @SqlQuery("SELECT COUNT(*) FROM review WHERE user_id = :user_id AND order_id = :order_id AND product_id = :product_id")
-    int countExistingReview(@Bind("userId") int user_id,
-                            @Bind("orderId") int order_id,
-                            @Bind("productId") int product_id);
+    int countExistingReview(@Bind("user_id") int user_id,
+                            @Bind("order_id") int order_id,
+                            @Bind("product_id") int product_id);
 
 }
 

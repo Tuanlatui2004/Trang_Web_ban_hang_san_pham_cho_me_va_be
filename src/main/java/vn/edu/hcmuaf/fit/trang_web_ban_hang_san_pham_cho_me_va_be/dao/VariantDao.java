@@ -16,19 +16,19 @@ public interface VariantDao {
     @SqlQuery("SELECT * FROM variant")
     List<Variant> getAllVariants();
 
-    @SqlQuery("SELECT * FROM variant_value WHERE id = :id")
+    @SqlQuery("SELECT * FROM variant WHERE id = :id")
     Variant getVariantById(@Bind("id") Integer id);
 //chưa fix
 //    @SqlQuery("SELECT * FROM variant_value WHERE variantId = :variantId")
 //    List<VariantValue> getVariantValuesByVariantId(@Bind("variantId") Integer variantId);
 
-    @SqlQuery("SELECT * FROM variant WHERE categoryId IS NULL OR categoryId = :categoryId")
-    List<Variant> getVariantsByCategoryId(@Bind("categoryId") Integer categoryId);
+    @SqlQuery("SELECT * FROM variant WHERE category_id IS NULL OR category_id = :category_id")
+    List<Variant> getVariantsByCategoryId(@Bind("category_id") Integer category_id);
 
 
-    @SqlUpdate("INSERT INTO variant (name, category_id) VALUES (:name, :categoryId)")
+    @SqlUpdate("INSERT INTO variant (name, category_id) VALUES (:name, :category_id)")
     @GetGeneratedKeys("id")
-    int createVariant(@Bind("name") String name, @Bind("categoryId") Integer categoryId);
+    int createVariant(@Bind("name") String name, @Bind("category_id") Integer category_id);
 
 //    @SqlUpdate("UPDATE variant SET name = :name, category_id = :categoryId WHERE id = :id")
 //    void updateVariant(@Bind("id") Integer id, @Bind("name") String name, @Bind("categoryId") Integer categoryId);

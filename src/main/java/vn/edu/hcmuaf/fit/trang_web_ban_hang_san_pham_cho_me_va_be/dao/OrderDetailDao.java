@@ -11,38 +11,38 @@ import java.util.List;
 @RegisterConstructorMapper(OrderDetail.class)
 public interface OrderDetailDao {
 
-    @SqlUpdate(value = "INSERT INTO order_detail (orderId, productId, quantity, total, optionId) " +
-            "VALUES (:orderId, :productId, :quantity, :total, :optionId)")
+    @SqlUpdate(value = "INSERT INTO order_detail (order_id, product_id, quantity, total, option_id) " +
+            "VALUES (:order_id, :product_id, :quantity, :total, :option_id)")
     Boolean addOrderDetail(
-            @Bind("orderId") Integer orderId,
-            @Bind("productId") Integer productId,
+            @Bind("order_id") Integer order_id,
+            @Bind("product_id") Integer product_id,
             @Bind("quantity") Integer quantity,
             @Bind("total") Integer total,
-            @Bind("optionId") Integer optionId
+            @Bind("option_id") Integer option_id
     );
 
-    @SqlQuery("SELECT name FROM products WHERE id = :productId")
-    String getProductNameById(@Bind("productId") Integer productId);
+    @SqlQuery("SELECT name FROM products WHERE id = :product_id")
+    String getProductNameById(@Bind("product_id") Integer product_id);
 
-    @SqlQuery("SELECT quantity FROM order_detail WHERE id = :orderDetailId")
-    Integer getQuantityByOrderDetailId(@Bind("orderDetailId") Integer orderDetailId);
+    @SqlQuery("SELECT quantity FROM order_detail WHERE id = :orderDetail_id")
+    Integer getQuantityByOrderDetailId(@Bind("orderDetail_id") Integer orderDetail_id);
 
-    @SqlQuery("SELECT orderStatus FROM orders WHERE id = :orderId")
-    String getOrderStatusByOrderId(@Bind("orderId") Integer orderId);
+    @SqlQuery("SELECT order_status FROM orders WHERE id = :order_id")
+    String getOrderStatusByOrderId(@Bind("order_id") Integer order_id);
 
     @SqlQuery(value = "SELECT " +
             "od.id AS id, " +
-            "od.orderId AS orderId, " +
-            "od.productId AS productId, " +
+            "od.order_id AS order_id, " +
+            "od.product_id AS product_id, " +
             "od.quantity AS quantity, " +
             "od.total AS total, " +
-            "p.name AS productName, " +
-            "i.url AS imageUrl " + // Lấy thêm URL hình ảnh
+            "p.name AS product_name, " +
+            "i.url AS image_url " + // Lấy thêm URL hình ảnh
             "FROM order_detail od " +
-            "JOIN products p ON od.productId = p.id " +
-            "LEFT JOIN image i ON p.primaryImage = i.id " +
-            "WHERE od.orderId = :orderId")
-    OrderDetail getOrderDetailById(@Bind("orderId") Integer orderId);
+            "JOIN products p ON od.product_id = p.id " +
+            "LEFT JOIN image i ON p.image_id = i.id " +
+            "WHERE od.order_id = :order_id")
+    OrderDetail getOrderDetailById(@Bind("order_id") Integer order_id);
 
 //    @SqlQuery(value ="\n" +
 //            "select\n" +
@@ -65,19 +65,19 @@ public interface OrderDetailDao {
     @SqlQuery("""
         SELECT 
             od.id AS id,
-            od.orderId AS orderId,
-            od.productId AS productId,
+            od.order_id AS order_id,
+            od.product_id AS product_id,
             od.quantity AS quantity,
             od.total AS total,
-            p.name AS productName,
-            i.url AS imageUrl
+            p.name AS product_name,
+            i.url AS image_url
         FROM order_detail od
-            INNER JOIN products p ON p.id = od.productId
-            LEFT JOIN image i ON i.id = p.primaryImage
-        WHERE od.orderId = :orderId
+            INNER JOIN products p ON p.id = od.product_id
+            LEFT JOIN image i ON i.id = p.image_id
+        WHERE od.order_id = :order_id
     """)
     @RegisterConstructorMapper(OrderDetail.class)
-    List<OrderDetail> getOrderDetailByOrderId(@Bind("orderId") Integer orderId);
+    List<OrderDetail> getOrderDetailByOrderId(@Bind("order_id") Integer order_id);
 
 }
 
