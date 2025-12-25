@@ -15,7 +15,8 @@
 <head>
     <title>Header</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-page/home/Home.css"/>
 
     <script>
@@ -173,17 +174,21 @@
         <!-- User Login Icon and Popup -->
         <div class="icons">
             <a href="#" class="icon" id="search-icon" onclick="showSearchOverlay()">
-                <i class="fas fa-search"></i>
+<%--  đổi version 6.5.1               <i class="fas fa-search"></i>--%>
+                <i class="fa-solid fa-magnifying-glass"></i>
             </a>
 
 
             <a class="nav_item icon"
-               href="cart" id="cart-link"><i class="fas fa-shopping-cart"></i>
+               href="cart" id="cart-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+<%--                <i class="fas fa-shopping-cart"></i>--%>
                 <%--            <span class="cart-count" id="cart-count">0</span>--%>
             </a>
 
             <div class="icon user-login" target="_top">
-                <i class="fas fa-user"></i>
+<%--                <i class="fas fa-user"></i>--%>
+                <i class="fa-solid fa-user"></i>
                 <div class="user-popup">
                     <!-- cần tạo user-profile.jsp  login  -->
                     <a class="nav_item" href="user-profile" id="my-page-link">Trang của tôi</a>
@@ -226,7 +231,8 @@
 
 
                 <button id="close-search-overlay" class="close-btn">
-                    <i class="fas fa-times"></i>
+<%--                    <i class="fas fa-times"></i>--%>
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
         </div>
