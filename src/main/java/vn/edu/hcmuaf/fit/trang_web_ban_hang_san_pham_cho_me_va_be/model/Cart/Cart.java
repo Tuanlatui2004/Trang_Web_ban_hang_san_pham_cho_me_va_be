@@ -40,8 +40,8 @@ public class Cart {
 
 
 
-    public void delete(Integer productId) {
-        data.remove(productId);
+    public void delete(Integer product_id) {
+        data.remove(product_id);
     }
 
 

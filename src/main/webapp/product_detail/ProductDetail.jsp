@@ -8,11 +8,23 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Detail</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/static/style-component/product-detail/Product-detail.css">
+
+
 </head>
 <body>
+<div class="cart_header">
+    <jsp:include page="/home/header.jsp"/>
+</div>
 
 </body>
 </html>

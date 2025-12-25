@@ -18,9 +18,9 @@ public class ProductCart {
 
         public ProductCart(Product product) {
             this.product_id = product.getId();
-            this.option_id = product.getOptionId();
+            this.option_id = product.getOption_id();
             this.name = product.getName();
-            this.imageUrl = product.getImageUrl();
+            this.imageUrl = product.getImage_url();
             this.quantity = 1;
             this.price = product.getPrice();
             this.stock = product.getStock();
