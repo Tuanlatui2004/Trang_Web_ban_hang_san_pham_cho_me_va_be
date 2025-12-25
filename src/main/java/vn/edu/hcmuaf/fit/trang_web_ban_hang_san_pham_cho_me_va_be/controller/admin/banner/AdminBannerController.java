@@ -1,14 +1,12 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.admin.banner;
 
-//import com.example.backend.Connection.DBConnection;
-//import com.example.backend.model.Banner;
-//import com.example.backend.model.DAO.ImageDao;
-//import com.example.backend.service.BannerService;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.ImageDao;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Banner;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.BannerService;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -29,10 +27,10 @@ public class AdminBannerController extends HttpServlet {
         Map<String, String> imageMap = new HashMap<>();
         for (Banner b : banners) {
             try {
-                String url = imageDao.getImageUrlById(Integer.parseInt(b.getImageId()));
-                imageMap.put(b.getImageId(), url);
+                String url = imageDao.getImageUrlById(Integer.parseInt(b.getImage_id()));
+                imageMap.put(b.getImage_id(), url);
             } catch (NumberFormatException e) {
-                imageMap.put(b.getImageId(), ""); // fallback nếu imageId lỗi
+                imageMap.put(b.getImage_id(), ""); // fallback nếu imageId lỗi
             }
         }
 
