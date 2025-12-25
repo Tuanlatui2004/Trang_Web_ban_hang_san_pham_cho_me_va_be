@@ -99,10 +99,10 @@ public class ProductService {
     public List<Product> getTop10(){
         return productDao.getTopProducts();
     }
-
-    public List<Product> filterProduct(Integer category_id, //List<Integer> optionsId
+// option_variant_id đặt tên biến để gọi DAO
+    public List<Product> filterProduct(Integer category_id, List<Integer> option_variant_id,
             Integer minPrice, Integer maxPrice) {
-        return productDao.filterProduct(category_id, //optionsId,
+        return productDao.filterProduct(category_id, option_variant_id,
                 minPrice, maxPrice);
     }
 
