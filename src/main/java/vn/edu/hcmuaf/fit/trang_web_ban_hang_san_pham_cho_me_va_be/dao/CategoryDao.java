@@ -6,6 +6,7 @@ import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Category;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.CategoryWithStock;
 
 import java.util.List;
 
@@ -37,15 +38,21 @@ public interface CategoryDao {
     @SqlUpdate("UPDATE categories SET isActive = :is_active WHERE id = :id")
     void updateCategoryStatus(@Bind("id") Integer id, @Bind("is_active") int is_active);
 
+    @SqlQuery("""
+    SELECT c.id,
+           c.name,
+           CASE WHEN c.is_active = 1 THEN TRUE ELSE FALSE END AS is_active,
+           COUNT(p.id) AS total_stock
+    FROM categories c
+    LEFT JOIN products p ON p.categoryId = c.id
+    WHERE c.is_active = 1
+    GROUP BY c.id, c.name, c.is_active
+""")
 
-    //    @SqlQuery("""
-//    SELECT c.id, c.name, c.isActive, COUNT(p.id) AS totalStock
-//    FROM categories c
-//    LEFT JOIN products p ON p.categoryId = c.id
-//    GROUP BY c.id, c.name, c.isActive
-//""")
 
-//chưa full đâu
+    @RegisterConstructorMapper(CategoryWithStock.class)
+    List<CategoryWithStock> getCategoriesWithStock();
+
 
 
 }
