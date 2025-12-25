@@ -30,17 +30,17 @@ public class OrderService {
         );
     }
 
-    public List<Order> getOrdersByUserId(Integer userId) {
-        return orderDao.getOrdersByUserId(userId);
+    public List<Order> getOrdersByUserId(Integer user_id) {
+        return orderDao.getOrdersByUserId(user_id);
     }
 
 
-    public  Order getOrderByIdAndUserId(Integer orderId ,Integer userId) {
-        return orderDao.getOrderByIdAndUserId(orderId, userId);
+    public  Order getOrderByIdAndUserId(Integer order_id ,Integer user_id) {
+        return orderDao.getOrderByIdAndUserId(order_id, user_id);
     }
 
-    public  Order getOrderById(Integer orderId  ) {
-        return orderDao.getOrderById(orderId);
+    public  Order getOrderById(Integer order_id  ) {
+        return orderDao.getOrderById(order_id);
     }
 
 
@@ -50,17 +50,17 @@ public class OrderService {
     }
 
 
-    public void updateStatus(Integer orderId, OrderStatus orderStatus) {
-        orderDao.updateOrderStatus(orderId, orderStatus);
+    public void updateStatus(Integer order_id, OrderStatus order_status) {
+        orderDao.updateOrderStatus(order_id, order_status);
     }
 
 
-    public boolean updateStatusByShippingId(String shippingId, OrderStatus orderStatus) {
-        return orderDao.updateOrderStatusByShippingId(shippingId, orderStatus);
+    public boolean updateStatusByShippingId(String shipping_id, OrderStatus order_status) {
+        return orderDao.updateOrderStatusByShippingId(shipping_id, order_status);
     }
 
-    public void updateShippingId(Integer orderId, String shippingId) {
-        orderDao.updateOrderShippingId(orderId, shippingId);
+    public void updateShippingId(Integer order_id, String shipping_id) {
+        orderDao.updateOrderShippingId(order_id, shipping_id);
     }
 
 

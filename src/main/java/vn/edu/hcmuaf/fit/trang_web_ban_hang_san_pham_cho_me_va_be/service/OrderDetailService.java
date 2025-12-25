@@ -44,26 +44,26 @@ public class OrderDetailService {
 
 
     }
-    public String getProductNameById(Integer productId) {
-        return orderDetailDao.getProductNameById(productId);
+    public String getProductNameById(Integer product_id) {
+        return orderDetailDao.getProductNameById(product_id);
     }
 
-    public Integer getQuantityByOrderDetailId(Integer orderDetailId) {
-        return orderDetailDao.getQuantityByOrderDetailId(orderDetailId);
+    public Integer getQuantityByOrderDetailId(Integer orderDetail_id) {
+        return orderDetailDao.getQuantityByOrderDetailId(orderDetail_id);
     }
 
-    public String getOrderStatusByOrderId(Integer orderId) {
-        return orderDetailDao.getOrderStatusByOrderId(orderId);
+    public String getOrderStatusByOrderId(Integer order_id) {
+        return orderDetailDao.getOrderStatusByOrderId(order_id);
     }
 
-    public OrderDetail getOrderDetailsByOrderId(Integer orderId) {
-        return orderDetailDao.getOrderDetailById(orderId);
+    public OrderDetail getOrderDetailsByOrderId(Integer order_id) {
+        return orderDetailDao.getOrderDetailById(order_id);
     }
 
 
 
-    public List<OrderDetail> getOrderDetailByOrderId(Integer orderId) {
-        return orderDetailDao.getOrderDetailByOrderId(orderId);
+    public List<OrderDetail> getOrderDetailByOrderId(Integer order_id) {
+        return orderDetailDao.getOrderDetailByOrderId(order_id);
     }
 
 
