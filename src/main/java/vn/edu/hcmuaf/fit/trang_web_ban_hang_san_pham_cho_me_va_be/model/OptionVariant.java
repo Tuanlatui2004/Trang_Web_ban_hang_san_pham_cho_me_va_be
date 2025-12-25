@@ -16,8 +16,8 @@ public class OptionVariant {
                    @ColumnName("price") @Nullable Integer price,
                    @ColumnName("stock") @Nullable  Integer stock ,
                    @ColumnName("variant_id") @Nullable Integer variant_id,
-                         @ColumnName("variant_name") @Nullable Integer variant_name,
-                         @ColumnName("variant_value") @Nullable Integer variant_value
+                         @ColumnName("variant_name") @Nullable String variant_name,
+                         @ColumnName("variant_value") @Nullable String variant_value
     ){
         this.id = id;
         this.product_id = product_id;

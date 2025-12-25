@@ -127,7 +127,7 @@ public class ProductService {
         ProductService productService = new ProductService(DBConnection.getJdbi());
 //        System.out.println(productService.suggestProducts( ).size());
 //        System.out.println(productService.getProductByIdAndOptionId(211, 85 ));
-        System.out.println(productService.getProductById(215 ));
+        System.out.println(productService.getProductById(1 ));
 
     }
 }
