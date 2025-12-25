@@ -326,7 +326,7 @@ public interface ProductDao {
 
     public List<Product> filterProduct(
             @Bind("category_id") int category_id,
-//            @BindList(value = "option_variant_id") List<Integer> option_variant_id,
+            @BindList(value = "option_variant_id") List<Integer> option_variant_id, //bỏ comment
             @Bind("minPrice") @Nullable Integer minPrice,
             @Bind("maxPrice") @Nullable Integer maxPrice);
 
