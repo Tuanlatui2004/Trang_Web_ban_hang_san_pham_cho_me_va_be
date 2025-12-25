@@ -18,9 +18,8 @@ public interface VariantDao {
 
     @SqlQuery("SELECT * FROM variant WHERE id = :id")
     Variant getVariantById(@Bind("id") Integer id);
-//chưa fix
-//    @SqlQuery("SELECT * FROM variant_value WHERE variantId = :variantId")
-//    List<VariantValue> getVariantValuesByVariantId(@Bind("variantId") Integer variantId);
+
+
 
     @SqlQuery("SELECT * FROM variant WHERE category_id IS NULL OR category_id = :category_id")
     List<Variant> getVariantsByCategoryId(@Bind("category_id") Integer category_id);

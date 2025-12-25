@@ -1,0 +1,90 @@
+package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service;
+
+import org.jdbi.v3.core.Jdbi;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.UserDao;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
+
+import java.util.List;
+
+public class UserService {
+    UserDao userDao;
+
+    public UserService(Jdbi jdbi) {
+        this.userDao= jdbi.onDemand(UserDao.class);
+    }
+
+
+    public User getUserById(Integer id) {
+        User user = userDao.getUserById(id);
+        return user;
+    }
+
+    public User getUserByEmail(String email) {
+        User user = userDao.getUserByEmail(email);
+        return user;
+    }
+
+
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
+    }
+
+    public List<User> getCustomers() {
+        return userDao.getCustomers();
+    }
+
+    public List<User> getMembers() {
+        return userDao.getMembers();
+    }
+
+    public String getAvatarUrlById(Integer avatar_id) {
+        return userDao.getAvatarUrlById(avatar_id);
+    }
+
+
+    public Boolean updateAvatar(Integer user_id, Integer avatar_id) {
+        return userDao.updateAvatar(user_id, avatar_id);
+    }
+
+
+    public Boolean updateUser(User user) {
+        return userDao.updateUser(
+                user.getId(),
+                user.getFullName(),
+                user.getDisplayName(),
+                user.getdOB(),
+                user.getGender(),
+                user.getPhone_number()
+        );
+    }
+
+
+
+    public Boolean updateNeedRefresh (Integer user_id, Boolean need_refresh ) {
+        return userDao.updateNeedRefresh(user_id, need_refresh);
+    }
+
+    public static void main(String[] args) {
+        UserService userService = new UserService(DBConnection.getJdbi());
+//        User user =new User(
+//                1, "qhung", "qhung",
+//                LocalDate.now(), "male","hun@gmad.ee", "232232222", null, null, null, null, null
+//
+//        );
+//
+//        System.out.println(userService.updateUser(user));
+//        System.out.println(userService.getUserById(112));
+
+//        System.out.println(userService.getMembers());
+//        System.out.println(userService.getCustomers());
+//        System.out.println(userService.getUserByEmail("admin@gmail.com"));
+        System.out.println(userService.updateNeedRefresh(39,false));
+
+
+
+    }
+
+
+}
+

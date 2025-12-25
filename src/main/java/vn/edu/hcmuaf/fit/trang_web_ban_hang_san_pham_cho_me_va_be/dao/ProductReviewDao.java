@@ -4,6 +4,7 @@ import org.jdbi.v3.sqlobject.config.RegisterConstructorMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.contant.OrderStatus;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.ProductReview;
 
 @RegisterConstructorMapper(ProductReview.class)
@@ -25,9 +26,9 @@ public interface ProductReviewDao {
     void updateIsReviewed(@Bind("order_id") int order_id,
                           @Bind("product_id") int product_id);
 
-//chưa fix cái này
-//    @SqlQuery("SELECT orderStatus FROM orders WHERE id = :order_id AND userId = :user_id")
-//    OrderStatus getOrderStatus(@Bind("order_id") int order_id, @Bind("user_id") int user_id);
+
+    @SqlQuery("SELECT orderStatus FROM orders WHERE id = :order_id AND userId = :user_id")
+    OrderStatus getOrderStatus(@Bind("order_id") int order_id, @Bind("user_id") int user_id);
 
 
 
