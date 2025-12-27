@@ -35,7 +35,7 @@ public class ProductDetailController extends HttpServlet {
 
 
         List<String> images = imageService.getAllImagesByProductId(product.getId());
-        String image_id = imageService.getImageUrlById(product.getImage_id());
+        String image_url = imageService.getImageUrlById(product.getImage_id());
         List<String> descriptions = List.of(product.getDescription().split("\\n"));
 
 // lỗi
@@ -48,7 +48,7 @@ public class ProductDetailController extends HttpServlet {
 
 
         request.setAttribute("images", images);
-        request.setAttribute("image_id", image_id); // Add primary image URL
+        request.setAttribute("image_url", image_url); // Add primary image URL
         request.setAttribute("product", product);
         request.setAttribute("descriptions", descriptions);
         request.setAttribute("product_price", product_price);
