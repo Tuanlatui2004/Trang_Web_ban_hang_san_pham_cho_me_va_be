@@ -31,7 +31,7 @@ public abstract class BaseDao {
         }
         jdbi = jdbi.create(src);
     }
-    //test running
+//    test running
 //    public static void main(String[] args) {
 //        BaseDao dao = new BaseDao();
 //        dao.get();

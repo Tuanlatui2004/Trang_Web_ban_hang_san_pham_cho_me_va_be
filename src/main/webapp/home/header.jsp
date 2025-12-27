@@ -70,8 +70,8 @@
                 </div>
             </li>
             <li>
-                <a href="#">Máy Giặt</a>
-                <div class="submenu submenu-may-giat">
+                <a href="#">Máy móc thiết yếu</a>
+                <div class="submenu submenu-may-moc-thiet-yeu">
                     <div class="submenu-column">
                         <%--                        <a class="nav_item" href="search-tat-ca-loai-may" >Tất cả các loại máy</a>--%>
                         <a class="nav_item" href="search-category?category_id=2">Tất cả các loại máy</a>
