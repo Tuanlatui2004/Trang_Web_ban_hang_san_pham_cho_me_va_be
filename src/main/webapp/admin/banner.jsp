@@ -20,16 +20,16 @@
 </head>
 <body>
 
-<div class="container">
-    <div class="left">
-        <div class="side_bar">
-            <jsp:include page="SideBar.jsp"/>
-        </div>
-    </div>
+<%--<div class="container">--%>
+<%--    <div class="left">--%>
+<%--        <div class="side_bar">--%>
+<%--            <jsp:include page="SideBar.jsp"/>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 
     <div class="center">
         <div class="wrap_header">
-            <jsp:include page="Header.jsp"/>
+            <jsp:include page="header.jsp"/>
         </div>
 
         <div class="content">
