@@ -131,20 +131,20 @@
                             <div id="search_body">
 
                                 <div class="wrap_img">
-                                    <img id="image" src="${p.image_url}"
+                                    <img id="image" src="${pro.image_url}"
                                          alt="" height="225"
                                          width="225"/>
                                 </div>
 
                                 <div class="infor mid_align col ">
                                     <div id="top_name" class="bold f16">
-                                        <a href="product-detail?id=${p.id}"> ${p.name}</a>
+                                        <a href="product-detail?id=${pro.id}"> ${pro.name}</a>
                                     </div>
 
 
                                     <div id="price" class="bold f22">
                                             <%--                                        1.900.999 ₫--%>
-                                        <fmt:formatNumber value="${p.price}" pattern="#,###"/> VND
+                                        <fmt:formatNumber value="${pro.price}" pattern="#,###"/> VND
 
                                         <span id="ratting" class="" style="padding: 0 5px">
                                             5 (153)
@@ -153,12 +153,12 @@
 
                                     </div>
 
-<%--chưa làm xong--%>
                                     <div id="top_description">
                                         <ul class="list_descriptions">
-                                            <li class="desc_item f12">Ngăn Đông Mềm -1 độ giữ thịt cá tươi ngon</li>
-                                            <li class=" desc_item f12">Làm đá tự động nhanh chóng, tiện lợi</li>
-                                            <li class="desc_item f12">Công nghệ làm lạnh vòm All Around Cooling</li>
+                                            <li class="desc_item f12">Bộ quần áo dài êm mềm giúp giữ ấm cơ thể bé, đặc biệt là lưng và bụng</li>
+                                            <li class=" desc_item f12">Áo cổ tròn, phom suông giúp ba mẹ dễ dàng thay ra mặc vào cho bé</li>
+                                            <li class="desc_item f12">Hoạ tiết độc đáo, giúp vẻ ngoài của bé thêm đáng yêu và năng động</li>
+                                            <li class="desc_item f12">Chất liệu 100% vải cotton mềm mại, an toàn và có khả năng thấm hút mồ hôi vượt trội</li>
                                         </ul>
                                     </div>
 
@@ -166,17 +166,15 @@
 
 
                                 <div class="operation col">
-                                    <button id="buy_now"  onclick="buyNow(${pro.id}, ${pro.optionId})">
+                                    <button id="buy_now"  onclick="buyNow(${pro.id}, ${pro.option_id})">
                                             <%--                                        <a href="buy-now?productId=${pro.id}&optionId=${pro.optionId}">Mua ngay</a>--%>
                                         Mua ngay
                                     </button>
-                                    <button onclick="addToCart(${pro.id},${pro.optionId})" class="btn add">Thêm vào giỏ
-                                        hàng
-                                    </button>
+                                    <button onclick="addToCart(${pro.id},${pro.option_id})" class="btn add">Thêm vào giỏ hàng</button>
                                 </div>
 
                                 <div id="top_cart-notification" class="notification hidden">
-                                    <i class="fa fa-check-circle"></i>
+                                    <i class="fa-solid fa-circle-check"></i>
                                     <span>Thêm vào giỏ hàng thành công</span>
                                 </div>
 
@@ -195,7 +193,7 @@
             </div>
 
 
-            <span class="popular_title mid_align">Top Sản Phẩm Nổi Bậc </span>
+            <span class="popular_title mid_align">Top Sản Phẩm Nổi Bật </span>
 
             <div id="product_list">
                 <c:if test="${not empty products}">
@@ -207,8 +205,8 @@
 
                                 <div class="img_section">
 
-                                    <c:if test="${not empty p.imageUrl}">
-                                        <img src="${p.imageUrl}" alt=""/>
+                                    <c:if test="${not empty p.image_url}">
+                                        <img src="${p.image_url}" alt=""/>
                                     </c:if>
 
                                 </div>
@@ -219,7 +217,7 @@
                                     <div class="infor_name bold f22" id="name">
                                         <a href="product-detail?id=${p.id}"> ${p.name}</a>
                                     </div>
-
+<%--phân biệt màu sắc or khối lượng--%>
 
                                     <div class="infor_color col">
                                         <span class="bold f16">Màu Sắc: <span class="normal f16"> Đen Starry</span></span>
@@ -232,10 +230,11 @@
 
 
                                     </div>
-
+                                        <%--phân biệt màu sắc or khối lượng--%>
                                     <div class="rating row mid_align">
                             <span id="noOfRatting" class="bold" style="padding: 0 5px">
                                 4.7 (153)
+<%--                                <i class="fa-solid fa-star" style="color: #FFD43B;"></i>--%>
                                 <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                             </span>
                                     </div>
@@ -265,7 +264,7 @@
                                     <div class="service">
                                         <div class="service_item">
                                             <i class="fa-solid fa-gift"></i>
-                                            <span>Ưu đãi thêm 5% (đến 1TRIỆU đồng)</span>
+                                            <span>Ưu đãi thêm 5% (giảm đến 1 trăm đồng)</span>
                                         </div>
 
                                         <div class="service_item">
@@ -275,31 +274,27 @@
 
                                         <div class="service_item">
                                             <i class="fa-solid fa-box-open"></i>
-                                            <span>Đổi trả trong 14 ngày nếu phát sinh lỗi</span>
+                                            <span>Đổi trả trong 14 ngày</span>
                                         </div>
 
-                                        <div class="service_item">
-                                            <i class="fa-solid fa-wallet"></i>
-                                            <span>Trả Góp 0% Linh Hoạt Đến 24 Tháng</span>
-                                        </div>
 
                                     </div>
 
 
                                     <div class="wrap_btn col">
 
-                                        <button onclick="buyNow(${p.id}, ${p.optionId})" class="btn buy" id="buy-now-btn">Mua Ngay</button>
+                                        <button onclick="buyNow(${p.id}, ${p.option_id})" class="btn buy" id="buy-now-btn">Mua Ngay</button>
                                             <%--                                        <a href="buy-now?productId=${p.id}&optionId=${p.optionId}" class="btn buy"--%>
                                             <%--                                           id="buy-now-btn">Mua Ngay</a>--%>
 
-                                        <button onclick="addToCart(${p.id},${p.optionId})" class="btn add">
+                                        <button onclick="addToCart(${p.id},${p.option_id})" class="btn add">
                                             Thêm vào giỏ hàng
                                         </button>
 
                                     </div>
 
                                     <div id="cart-notification" class="notification hidden">
-                                        <i class="fa fa-check-circle"></i>
+                                        <i class="fa-solid fa-circle-check"></i>
                                         <span>Thêm vào giỏ hàng thành công</span>
                                     </div>
 
