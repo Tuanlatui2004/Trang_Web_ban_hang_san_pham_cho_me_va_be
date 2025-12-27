@@ -14,10 +14,10 @@
     <meta charset="UTF-8">
     <title>Giỏ Hàng của bạn</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/fontend/src/style/style-component/style-cart/Cart.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-component/style-cart/Cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="${pageContext.request.contextPath}/fontend/src/style/style-component/style-cart/Cart.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}fontend/src/style/style-component/style-cart/CartItem.css">
+    <script src="${pageContext.request.contextPath}/static/style-component/style-cart/Cart.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-component/style-cart/CartItem.css">
 </head>
 <body>
     <div id="wrap_cart">
