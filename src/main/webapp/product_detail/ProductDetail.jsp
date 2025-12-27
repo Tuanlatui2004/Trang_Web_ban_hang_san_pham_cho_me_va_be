@@ -135,5 +135,50 @@
 
 </div>
 <%--summary__list--%>
+<div class="summary__list">
+    <div class="summary__item">
+        <img src="${pageContext.request.contextPath}/static/image/img-detail/pediatrics_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="Icon 1"
+             class="summary__icon">
+        <p class="summary__text">Thương Hiệu Abbott</p>
+    </div>
+    <div class="summary__divider"></div>
+    <div class="summary__item">
+        <img src="${pageContext.request.contextPath}/static/image/img-detail/replay_10_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="Icon 2"
+             class="summary__icon">
+        <p class="summary__text">Độ Tuổi Phù Hợp cho trẻ từ 1-10 tuổi</p>
+    </div>
+    <div class="summary__divider"></div>
+    <div class="summary__item">
+        <img src="${pageContext.request.contextPath}/static/image/img-detail/cool_to_dry_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="Icon 3"
+             class="summary__icon">
+        <p class="summary__text">Bảo quản nơi khô ráo, hộp đã mở sử dụng trong vòng 3 tuần</p>
+    </div>
+</div>
+<div class="Section-Pt">
+    <img src="${pageContext.request.contextPath}/static/image/img-detail/img00.1.jpg" alt="Section1">
+</div>
+<%--fix nay--%>
+<%--<div class="text1">--%>
+<%--    <h2>Thiết kế phẳng hiện đại, hoàn hảo mọi gian bếp</h2>--%>
+<%--    <p>Nâng tầm không gian bếp với thiết kế thời thượng từ tủ lạnh Samsung thế hệ mới. Thiết kế phẳng giảm thiểu--%>
+<%--        chi--%>
+<%--        tiết đem lại sự tao nhã sang trọng, cùng chất liệu cao cấp bền đẹp theo thời gian.</p>--%>
+<%--</div>--%>
+<div class="feature-benefit">
+    <div class="feature-benefit__text">
+        <h3>Hướng Dẫn Sử Dụng</h3>
+        <ul>
+            <li>Để có 225 ml PediaSure BA pha chuẩn, cho 190ml nước chín để nguội (≤ 37 độ C) vào ly.</li>
+            <li>Vừa cho từ từ 5 muỗng gạt ngang bột PediaSure BA (muỗng có sẵn trong hộp) vừa khuấy cho tan đều.</li>
+            <li>Khi pha đúng theo hướng dẫn, 1ml PediaSure BA cung cấp 1 kcal hoặc 4.18 KJ.</li>
+            <li>Sữa vừa pha dùng ngay hay đậy kín, cho vào tủ lạnh và dùng trong vòng 24 giờ.</li>
+            <li>Để bổ sung dinh dưỡng: 2 ly/ngày (trẻ 1 - 8 tuổi), 2-3 ly/ngày (trẻ 9 - 10 tuổi) hoặc theo hướng dẫn của
+                chuyên viên dinh dưỡng.
+            </li>
+            <li>Không dùng lò vi sóng để hâm nóng sữa.</li>
+        </ul>
+    </div>
+</div>
+<%--chua xong--%>
 </body>
 </html>
