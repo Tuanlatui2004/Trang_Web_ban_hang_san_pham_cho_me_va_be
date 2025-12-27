@@ -191,6 +191,13 @@
           <version>2023.9.0</version>
       </dependency>
 
+<!--      thêm org.json cho JSONOBJECT VÀ JSONARRAY-->
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+          <version>20240303</version>
+      </dependency>
+
 
 
 
