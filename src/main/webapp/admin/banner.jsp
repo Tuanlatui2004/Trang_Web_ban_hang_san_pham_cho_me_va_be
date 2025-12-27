@@ -29,7 +29,7 @@
 
     <div class="center">
         <div class="wrap_header">
-            <jsp:include page="Header.jsp"/>
+            <jsp:include page="header.jsp"/>
         </div>
 
         <div class="content">
