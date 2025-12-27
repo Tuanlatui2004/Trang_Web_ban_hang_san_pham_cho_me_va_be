@@ -149,17 +149,17 @@
                     </div>
 
                     <div class="address_body">
-                        <c:if test="${not empty addressList }">
+                        <c:if test="${not empty address_list }">
 
                             <c:set var="found" value="fasle"/>
-                            <c:forEach items="${addressList}" var="address">
+                            <c:forEach items="${address_list}" var="address">
 
                                 <c:if test="${address.isDefault == true }">
                                     <div id="address" class="item_header row mid_align"
                                          data-address-id="${address.id}"
-                                         data-province-id="${address.provinceId}"
-                                         data-district-id="${address.districtId}"
-                                         data-commune-id="${address.communeId}"
+                                         data-province-id="${address.province_id}"
+                                         data-district-id="${address.district_id}"
+                                         data-commune-id="${address.commune_id}"
 
                                     >
 
@@ -182,14 +182,14 @@
 
                             <c:if test="${found == false }">
 
-                                <c:forEach items="${addressList}" var="address">
+                                <c:forEach items="${address_list}" var="address">
 
                                     <c:if test="${found == false}">
                                         <div id="address" class="item_header row mid_align"
                                              data-address-id="${address.id}"
-                                             `                                        data-province-id="${address.provinceId}"
-                                             data-district-id="${address.districtId}"
-                                             data-commune-id="${address.communeId}"
+                                             data-province-id="${address.province_id}"
+                                             data-district-id="${address.district_id}"
+                                             data-commune-id="${address.commune_id}"
 
                                         >
 
@@ -243,8 +243,8 @@
 
                             <div class="card_list col">
 
-                                <c:if test="${not empty cardList }">
-                                    <c:forEach items="${cardList}" var="card">
+                                <c:if test="${not empty card_list }">
+                                    <c:forEach items="${card_list}" var="card">
 
                                         <div class="card_item">
                                             <div class="wrap_card">
@@ -260,12 +260,12 @@
                                                 <span>**** ${card.last4}</span>
 
 
-                                                <c:if test="${card.isDefault == 'true'}">
+                                                <c:if test="${card.is_default == 'true'}">
                                                     <input type="radio" name="payment-method" data-payment="${card.id}"
                                                            checked>
                                                 </c:if>
 
-                                                <c:if test="${card.isDefault == 'false'}">
+                                                <c:if test="${card.is_default == 'false'}">
                                                     <input type="radio" name="payment-method" data-payment="${card.id}">
                                                 </c:if>
 
