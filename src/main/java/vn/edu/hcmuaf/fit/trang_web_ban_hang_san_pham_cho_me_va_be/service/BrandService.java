@@ -6,7 +6,7 @@ import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Brand;
 
 import java.util.List;
 
-
+// NV fix is_active theo models
 public class BrandService {
         private final BrandDao brandDao;
 
@@ -22,13 +22,13 @@ public class BrandService {
             return brandDao.getBrandById(id);
         }
 
-        public Brand createBrand(String name, boolean isActive) {
-            int id = brandDao.createBrand(name, isActive);
+        public Brand createBrand(String name, boolean is_active) {
+            int id = brandDao.createBrand(name, is_active);
             return brandDao.getBrandById(id);
         }
 
-        public void toggleBrandStatus(Integer id, boolean isActive) {
-            brandDao.updateBrandStatus(id, isActive);
+        public void toggleBrandStatus(Integer id, boolean is_active) {
+            brandDao.updateBrandStatus(id, is_active);
         }
 
 
