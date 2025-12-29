@@ -10,7 +10,7 @@ public class Brand {
 
 
     @JdbiConstructor
-    public Brand(@ColumnName("id") Integer id, @ColumnName("name") String name, @ColumnName("is_active") Boolean isActive) {
+    public Brand(@ColumnName("id") Integer id, @ColumnName("name") String name, @ColumnName("is_active") Boolean is_active) {
         this.id = id;
         this.name = name;
         this.is_active = is_active;
