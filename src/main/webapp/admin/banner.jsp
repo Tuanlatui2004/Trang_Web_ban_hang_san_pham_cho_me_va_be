@@ -20,16 +20,16 @@
 </head>
 <body>
 
-<%--<div class="container">--%>
-<%--    <div class="left">--%>
-<%--        <div class="side_bar">--%>
-<%--            <jsp:include page="SideBar.jsp"/>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+<div class="container">
+    <div class="left">
+        <div class="side_bar">
+            <jsp:include page="/admin/SideBar.jsp"/>
+        </div>
+    </div>
 
     <div class="center">
         <div class="wrap_header">
-            <jsp:include page="header.jsp"/>
+            <jsp:include page="/home/header.jsp"/>
         </div>
 
         <div class="content">
@@ -142,16 +142,16 @@
                                 <td>${b.startDate}</td>
                                 <td>${b.endDate}</td>
                                 <td>
-                  <span class="status ${b.isActive ? 'active' : 'deactive'}">
-                          ${b.isActive ? 'Hoạt động' : 'Không hoạt động'}
+                  <span class="status ${b.is_active ? 'active' : 'deactive'}">
+                          ${b.is_active ? 'Hoạt động' : 'Không hoạt động'}
                   </span>
                                 </td>
                                 <td>
                                     <div class="action-icons">
                     <span class="icon toggle-icon"
                           data-id="${b.id}"
-                          data-active="${b.isActive}">
-                      <i class="fa-solid ${b.isActive ? 'fa-trash' : 'fa-eye-slash'}"></i>
+                          data-active="${b.is_active}">
+                      <i class="fa-solid ${b.is_active ? 'fa-trash' : 'fa-eye-slash'}"></i>
                     </span>
                                     </div>
                                 </td>
