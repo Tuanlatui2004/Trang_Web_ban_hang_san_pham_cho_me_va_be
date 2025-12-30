@@ -46,4 +46,13 @@ public class VariantService {
 //    public void deleteVariant(Integer id) {
 //        variantDAO.deleteVariant(id);
 //    }
+
+    public int addOptionVariantValue(Integer optionId, Integer variantId) {
+        return variantDao.addOptionVariantValue(optionId, variantId);
+    }
+
+
+    public Variant getOptionById(Integer id) {
+        return variantDao.getOptionVariantValueId(id);
+    }
 }

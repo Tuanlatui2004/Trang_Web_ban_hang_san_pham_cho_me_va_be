@@ -34,5 +34,17 @@ public interface VariantDao {
 //
 //    @SqlUpdate("DELETE FROM variant WHERE id = :id")
 //    void deleteVariant(@Bind("id") Integer id);
+@SqlUpdate("INSERT INTO variant (optionId, category_id) VALUES (:option_id, :category_id)")
+@GetGeneratedKeys
+int addOptionVariantValue(@Bind("option_id") Integer option_id, @Bind("category_id") Integer category_id);
+
+
+    @SqlQuery(value = "select *\n" +
+            "from option_variant_value\n" +
+            "where id = :id;")
+    Variant getOptionVariantValueId(@Bind("id") Integer id);
+
+    @SqlQuery("SELECT * FROM variant WHERE id = :id")
+    List<Variant> getVariantValuesByVariantId(@Bind("id") Integer id);
 }
 

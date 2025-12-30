@@ -38,7 +38,7 @@
 <body id="container">
 
 <div id="home_header">
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="/home/header.jsp"/>
 </div>
 
 <div id="home_banner">
@@ -86,7 +86,7 @@
 </div>
 
 <div id="home_body">
-    <jsp:include page="body-home.jsp"/>
+    <jsp:include page="/home/body-home.jsp"/>
 </div>
 
 
