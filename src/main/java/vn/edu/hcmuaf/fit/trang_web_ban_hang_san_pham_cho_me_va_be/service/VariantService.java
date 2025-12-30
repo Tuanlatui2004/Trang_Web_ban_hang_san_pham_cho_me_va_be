@@ -37,7 +37,10 @@ public class VariantService {
         }
         return variantDao.getVariantsByCategoryId(category_id);
     }
-
+    // haianh thêm bên DAO
+    public List<Variant> getVariantValuesByVariantId(Integer id) {
+        return variantDao.getVariantValuesByVariantId(id);
+    }
 
 //    public void updateVariant(Integer id, String name, Integer categoryId) {
 //        variantDAO.updateVariant(id, name, categoryId);
