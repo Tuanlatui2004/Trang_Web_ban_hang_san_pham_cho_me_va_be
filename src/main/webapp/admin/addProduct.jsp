@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/frontend/src/style/style-component/style_admin/addProduct.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/frontend/src/style/style-component/style_admin/products/addProduct.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
@@ -50,7 +50,7 @@
                         <form>
                             <div class="form-group">
                                 <label for="productName">Tên  <span class="required">*</span> </label>
-                                <input type="text" id="productName" placeholder="Tủ lạnh, máy giặt, ect.">
+                                <input type="text" id="productName" placeholder="Quần áo,bình sữa, ect.">
                             </div>
 
                             <div class="form-row">
@@ -74,19 +74,17 @@
                                 <label for="description" id="product-description">Mô tả (Tùy chọn)</label>
 
                                 <div class="toolbar">
-                                    <button type="button" class="toolbar-btn"><i class="fas fa-bold"></i></button> <!-- Bold -->
-                                    <button type="button" class="toolbar-btn"><i class="fas fa-italic"></i></button> <!-- Italic -->
-                                    <button type="button" class="toolbar-btn"><i class="fas fa-underline"></i></button>
-                                    <!-- Underline -->
-                                    <button type="button" class="toolbar-btn"><i class="fas fa-strikethrough"></i></button>
-                                    <!-- Strike -->
-                                    <button type="button" class="toolbar-btn"><i class="fas fa-link"></i></button> <!-- Link -->
-                                    <button type="button" class="toolbar-btn"><i class="fas fa-image"></i></button> <!-- Image -->
-                                    <button type="button" class="toolbar-btn"><i class="fas fa-quote-right"></i></button>
-                                    <!-- Blockquote -->
-                                    <button type="button" class="toolbar-btn"><i class="fas fa-code"></i></button> <!-- Code -->
-                                    <button type="button" class="toolbar-btn"><i class="fas fa-list-ul"></i></button>
+                                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-bold"></i></button>
+                                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-italic"></i></button>
+                                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-underline"></i></button>
+                                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-strikethrough"></i></button>
+                                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-link"></i></button>
+                                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-image"></i></button>
+                                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-quote-right"></i></button>
+                                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-code"></i></button>
+                                    <button type="button" class="toolbar-btn"><i class="fa-solid fa-list-ul"></i></button>
                                 </div>
+
 
                                 <textarea id="description" placeholder="Nhập mô tả của bạn..."></textarea>
                             </div>
@@ -162,31 +160,7 @@
 
                 <div class="right-column">
 
-                    <div class="section dimension-section">
-                        <h2>Kích thước</h2>
 
-                        <div class="wrap_dimension">
-                            <div class="dimension-item">
-                                <label for="height">Chiều cao<span class="required">*</span></label>
-                                <input id="height" placeholder="cm" required>
-                            </div>
-
-                            <div class="dimension-item">
-                                <label for="length">Chiều dài<span class="required">*</span></label>
-                                <input id="length" placeholder="cm" required>
-                            </div>
-
-                            <div class="dimension-item">
-                                <label for="width">Chiều rộng<span class="required">*</span></label>
-                                <input id="width" placeholder="cm" required>
-                            </div>
-
-                            <div class="dimension-item">
-                                <label for="weight">Khối lượng <span class="required">*</span></label>
-                                <input id="weight" placeholder="kg" required>
-                            </div>
-                        </div>
-                    </div>
 
 
 
@@ -217,6 +191,6 @@
 </div>
 
 
-<script src="${pageContext.request.contextPath}frontend/src/style/style-component/style_admin/addProduct.js"></script>
+<script src="${pageContext.request.contextPath}frontend/src/style/style-component/style_admin/products/addProduct.js"></script>
 </body>
 </html>
