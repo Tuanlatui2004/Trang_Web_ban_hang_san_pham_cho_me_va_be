@@ -5,7 +5,7 @@ import org.jdbi.v3.sqlobject.config.RegisterConstructorMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
-// Hai_Anh xem cái câu query nay nghe
+
 @RegisterConstructorMapper(Category.class)
 public interface CategoryRepository {
     @SqlUpdate("INSERT INTO categories (name) VALUES (:name)")

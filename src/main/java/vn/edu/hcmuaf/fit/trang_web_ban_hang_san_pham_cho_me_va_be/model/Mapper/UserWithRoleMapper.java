@@ -37,26 +37,26 @@ public class UserWithRoleMapper implements RowMapper<User> {
         }
 
         // Tạo đối tượng User
-        //chưa fix ae bình tĩnh
-        return null;
-//        return new User(
-//                (Integer) rs.getObject("id"),
-//                rs.getString("fullName"),
-//                rs.getString("displayName"),
-//                rs.getObject("birth", LocalDate.class),
-//                rs.getString("gender"),
-//                rs.getString("email"),
-//                rs.getString("phone"),
-//                rs.getString("password"),
-//                (Integer) rs.getObject("avatar_id"),
-//                role, // Truyền đối tượng Role vào đây
+        //fix sơ sơ
+//        return null;
+        return new User(
+                (Integer) rs.getObject("id"),
+                rs.getString("fullName"),
+                rs.getString("displayName"),
+                rs.getObject("dOB", LocalDate.class),
+                rs.getString("gender"),
+                rs.getString("email"),
+                rs.getString("phone"),
+                rs.getString("password"),
 //                rs.getString("salt"),
 //                rs.getString("avatarUrl"),
-//                rs.getString("status"),
-//                rs.getString("confirmationToken"),
-//                rs.getString("facebookId"),
+                (Integer) rs.getObject("avatar_id"),
+                rs.getString("status"),
+                role, // Truyền đối tượng Role vào đây
+                rs.getString("confirmationToken")
+//                ,rs.getString("facebookId"),
 //                rs.getBoolean("needRefresh")
-//        );
+        );
     }
 
 }
