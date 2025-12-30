@@ -83,13 +83,13 @@ function startAutoSlide() {
     }, 3000);
     isPlaying = true;
     updateProgressBars();
-    document.getElementById("pausePlayBtn").innerHTML = '<i class="fas fa-pause"></i>';
+    document.getElementById("pausePlayBtn").innerHTML = '<i class="fa-solid fa-pause"></i>';
 }
 
 function stopAutoSlide() {
     clearInterval(slideInterval);
     isPlaying = false;
-    document.getElementById("pausePlayBtn").innerHTML = '<i class="fas fa-play"></i>';
+    document.getElementById("pausePlayBtn").innerHTML = '<i class="fa-solid fa-play"></i>';
 
     const progressBars = document.querySelectorAll(".progress-loader .progress");
     progressBars.forEach(bar => {
