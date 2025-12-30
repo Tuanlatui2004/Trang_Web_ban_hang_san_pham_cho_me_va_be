@@ -3,7 +3,10 @@ package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.ProductDao;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.OptionVariant;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Product;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.ProductDTO;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Variant;
 
 import java.util.List;
 
@@ -121,6 +124,13 @@ public class ProductService {
         return jdbi.withExtension(ProductDao.class, dao ->
                 dao.updateProduct(id, name, description, sku, categoryId, brandId, primaryImage,
                         height, length, width, weight));
+    }
+
+    // mới thêm vô bởi NV
+    public ProductDTO editProductById(int id) {
+        Product product = productDao.editProduct(id);
+        List<Variant> variants = productDao.getVariants(id);
+        return new ProductDTO(product, variants);
     }
 
     public static void main(String[] args) {
