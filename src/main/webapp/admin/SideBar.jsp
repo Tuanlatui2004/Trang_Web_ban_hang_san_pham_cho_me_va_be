@@ -250,7 +250,7 @@
     <nav id="sidebar" class="col">
 
         <div class="logo">
-            <img class="logo" src="${pageContext.request.contextPath}/static/image/logo_web.png" alt="Logo">
+            <img class="logo" src="${pageContext.request.contextPath}/static/image/logo_web.jpg" alt="Logo">
         </div>
 
         <ul>
@@ -259,7 +259,7 @@
                 <li class="menu_item ">
                     <div class="wrap_menu_item">
                         <i class="fa-solid fa-house"></i>
-                        <a href="dashboard">Tổng quan</a>
+                        <a href="Dashboard.jsp">Tổng quan</a>
                     </div>
                 </li>
 
@@ -278,7 +278,7 @@
                     <c:if test="${permissions != null and
                         (permissions.contains('VIEW_PRODUCTS'))}">
                         <li class="submenu_item">
-                            <button onclick="location.href='${pageContext.request.contextPath}/admin/list-product'">
+                            <button onclick="location.href='${pageContext.request.contextPath}/admin/listProduct.jsp'">
                                 Danh sách sản phẩm
                             </button>
                         </li>
@@ -288,7 +288,7 @@
                     <c:if test="${permissions != null and
                         (permissions.contains('CREATE_PRODUCTS'))}">
                         <li class="submenu_item">
-                            <button onclick="location.href='${pageContext.request.contextPath}/admin/add-product'">
+                            <button onclick="location.href='${pageContext.request.contextPath}/admin/addProduct.jsp'">
                                 Thêm sản phẩm
                             </button>
                         </li>
@@ -300,7 +300,7 @@
 
             <!-- Đơn hàng -->
 
-
+<%--chưa fix chỗ này--%>
             <c:if test="${permissions != null and
                         (permissions.contains('VIEW_ORDERS') or
                         permissions.contains('UPDATE_ORDERS_STATUS')
@@ -316,7 +316,7 @@
                 </li>
             </c:if>
 
-
+<%--chưa fix cả chỗ này--%>
             <c:if test="${permissions != null and
                         (permissions.contains('VIEW_CUSTOMERS')
                         )}">
@@ -387,7 +387,7 @@
                 <li class="menu_item">
                     <div class="wrap_menu_item">
                         <i class="fa-brands fa-microblog"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/brand'">
+                        <button onclick="location.href='${pageContext.request.contextPath}/admin/brand.jsp'">
                             Nhà sản xuất
                         </button>
                     </div>
@@ -402,7 +402,7 @@
                 <li class="menu_item">
                     <div class="wrap_menu_item">
                         <i class="fa-solid fa-user-shield"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/manage-role'">
+                        <button onclick="location.href='${pageContext.request.contextPath}/admin/ManageRole.jsp'">
                             Quản lý Vai Trò
                         </button>
                     </div>
@@ -417,7 +417,7 @@
                 <li class="menu_item">
                     <div class="wrap_menu_item">
                         <i class="fa-solid fa-image"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/banner'">
+                        <button onclick="location.href='${pageContext.request.contextPath}/admin/banner.jsp'">
                             Quản lý Banner
                         </button>
                     </div>
@@ -427,7 +427,7 @@
 
 
 
-
+<%--chưa fix--%>
             <li class="menu_item">
                 <div class="wrap_menu_item">
                     <i class="fa-solid fa-gear"></i>
@@ -438,7 +438,8 @@
     </nav>
 
 </div>
-<script src="${pageContext.request.contextPath}/frontend/src/style/style-pages/admin/Admin.js"></script>
+<script src="${pageContext.request.contextPath}/fontend/src/style/style-pages/admin/Admin.js"></script>
 
 </body>
 </html>
+<%--chưa fix mấy cái href trong file, aẻ bình tĩnh--%>
