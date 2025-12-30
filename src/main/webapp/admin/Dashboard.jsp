@@ -14,9 +14,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dashboard</title>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/frontend/src/style/style-component/style_admin/Dashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-component/style-admin/dashboard/Dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
 <div class="container">
     <div class ="left">
         <div class="side_bar">
-            <jsp:include page="SideBar.jsp"/>
+            <jsp:include page="/admin/SideBar.jsp"/>
         </div>
 
     </div>
@@ -32,7 +32,7 @@
 
     <div class="center">
         <div class="wrap_header">
-            <jsp:include page="header.jsp"/>
+            <jsp:include page="/admin/header.jsp"/>
         </div>
 
         <div class=" wrap">
@@ -145,12 +145,12 @@
                                     ></i>
                                 </td>
                                 <td class="product">
-                                    <img class="product_image" src="${p.imageUrl}"/>
+                                    <img class="product_image" src="${p.image_url}"/>
                                     <span class="product_name">${p.name}</span>
                                 </td>
-                                <td class="sold">${p.noOfSold}</td>
+                                <td class="sold">${p.no_of_sold}</td>
                                 <td class="remaining">${p.stock}</td>
-                                <td class="view">${p.noOfViews}</td>
+                                <td class="view">${p.no_of_views}</td>
                                 <td class="rating">
                                     4.8
                                     <i class="fa-solid fa-star" style="color: #FFD43B;"></i>

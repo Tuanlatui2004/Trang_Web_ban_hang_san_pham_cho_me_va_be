@@ -147,14 +147,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".toggle-icon").forEach(icon => {
         icon.addEventListener("click", () => {
             const category_id = icon.dataset.id;
-            const isActive = icon.dataset.active === 'true';
+            const is_active = icon.dataset.active === 'true';
 
             fetch(`${contextPath}/admin/api/categories/${category_id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ isActive: !isActive })
+                body: JSON.stringify({ is_active: !is_active })
             })
                 .then(res => res.json())
                 .then(data => {
@@ -163,16 +163,16 @@ document.addEventListener("DOMContentLoaded", () => {
                         const statusEl = row.querySelector(".category-status-toggle");
 
                         // Cập nhật trạng thái chữ và class
-                        statusEl.classList.toggle("active", !isActive);
-                        statusEl.classList.toggle("deactive", isActive);
-                        statusEl.textContent = !isActive ? "Hoạt động" : "Không hoạt động";
+                        statusEl.classList.toggle("active", !is_active);
+                        statusEl.classList.toggle("deactive", is_active);
+                        statusEl.textContent = !is_active ? "Hoạt động" : "Không hoạt động";
 
                         // Cập nhật biểu tượng
                         const iconEl = icon.querySelector("i");
-                        iconEl.className = `fa-solid ${!isActive ? 'fa-trash' : 'fa-eye-slash'}`;
+                        iconEl.className = `fa-solid ${!is_active ? 'fa-trash' : 'fa-eye-slash'}`;
 
                         // Cập nhật thuộc tính data-active
-                        icon.dataset.active = (!isActive).toString();
+                        icon.dataset.active = (!is_active).toString();
                     } else {
                         alert("Cập nhật trạng thái thất bại!");
                     }
