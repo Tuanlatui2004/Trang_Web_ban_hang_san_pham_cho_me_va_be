@@ -285,7 +285,7 @@
                     productCard.innerHTML = `
                     <div class="product-card">
                         <div class="product-image" onclick="window.location.href='product-detail?id=\${product.id}'" style="cursor: pointer;">
-                            <img src="\${product.imageUrl}" alt="\${product.name}">
+                            <img src="\${product.image_url}" alt="\${product.name}">
                         </div>
                         <h3 class="product-name" onclick="window.location.href='product-detail?id=\${product.id}'" style="cursor: pointer;">\${product.name}</h3>
                         <p class="product-price">\${product.price.toLocaleString('vi-VN')} VND</p>
