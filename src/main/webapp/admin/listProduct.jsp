@@ -15,8 +15,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản Lý Sản Phẩm</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-component/style-admin/products/listProduct.css">
-    <script src="${pageContext.request.contextPath}/static/style-component/style-admin/products/listProduct.js"></script>
+    frontend/src/style/style-component/style_admin/
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-component/style-admin/list_product/listProduct.css">
+    <script src="${pageContext.request.contextPath}/static/style-component/style-admin/list_product/listProduct.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 <body>
@@ -30,7 +32,7 @@
 
     <div class ="left">
         <div class="side_bar">
-            <jsp:include page="SideBar.jsp"/>
+            <jsp:include page="/admin/SideBar.jsp"/>
         </div>
 
     </div>
@@ -39,7 +41,7 @@
 
     <div class="center">
         <div class="header">
-            <jsp:include page="Header.jsp"/>
+            <jsp:include page="/admin/header.jsp"/>
         </div>
 
 
@@ -63,7 +65,7 @@
                 <div class="export-container">
                     <button type="button" id="exportBtn" class="export-btn"
                             data-context-path="${pageContext.request.contextPath}">
-                        <i class="fas fa-file-excel"></i>
+                        <i class="fa-solid fa-file-excel"></i>
                         Xuất Excel
                     </button>
                 </div>
@@ -184,7 +186,7 @@
 
                                         <span class="icon edit-icon">
     <a href="addProduct.jsp?id=${p.id}">
-        <i class="fa-solid fa-pencil-alt" style="padding: 5px;"></i> Chỉnh sửa
+        <i class="fa-solid fa-pen-to-square" style="padding: 5px;"></i> Chỉnh sửa
     </a>
 </span>
 
@@ -223,4 +225,12 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
 

@@ -33,7 +33,7 @@ CREATE TABLE `attributes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
---  Table structure for table `banners`
+--  Table structure  for table `banners`
 --
 --
 -- bảng ecommerce
@@ -305,7 +305,10 @@ CREATE TABLE `variant` (
                            CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-
+ALTER TABLE variant
+ADD COLUMN `option_id` int(11) DEFAULT NULL;
+ALTER TABLE variant
+ADD CONSTRAINT `fk_option` FOREIGN KEY(`option_id`) REFERENCES `option_variant` (`id`);
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
 

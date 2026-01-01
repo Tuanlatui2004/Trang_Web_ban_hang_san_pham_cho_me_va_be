@@ -72,6 +72,11 @@
           <version>2.0.0</version>
       </dependency>
       <dependency>
+          <groupId>jakarta.annotation</groupId>
+          <artifactId>jakarta.annotation-api</artifactId>
+          <version>3.0.0</version>
+      </dependency>
+      <dependency>
           <groupId>io.github.cdimascio</groupId>
           <artifactId>dotenv-java</artifactId>
           <version>3.1.0</version>
@@ -81,30 +86,11 @@
           <artifactId>commons-fileupload</artifactId>
           <version>1.4</version>
       </dependency>
-      <dependency>
-          <groupId>org.json</groupId>
-          <artifactId>json</artifactId>
-          <version>20210307</version>
-      </dependency>
-
-      <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>javax.servlet-api</artifactId>
-          <version>4.0.1</version>
-          <scope>provided</scope>
-      </dependency>
-
       <!-- https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api -->
       <dependency>
           <groupId>jakarta.annotation</groupId>
           <artifactId>jakarta.annotation-api</artifactId>
           <version>3.0.0</version>
-      </dependency>
-
-      <dependency>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-databind</artifactId>
-          <version>2.15.2</version>
       </dependency>
 
       <dependency>
@@ -130,6 +116,12 @@
           <version>2.3.1</version>
       </dependency>
       <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.15.2</version>
+      </dependency>
+
+      <dependency>
           <groupId>ch.qos.logback</groupId>
           <artifactId>logback-classic</artifactId>
           <version>1.2.11</version>
@@ -149,6 +141,11 @@
           <groupId>com.google.apis</groupId>
           <artifactId>google-api-services-oauth2</artifactId>
           <version>v2-rev157-1.25.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.datatype</groupId>
+          <artifactId>jackson-datatype-jsr310</artifactId>
+          <version>2.15.2</version>
       </dependency>
 
       <!-- Add JavaMail dependency -->
@@ -181,13 +178,6 @@
           <artifactId>poi-ooxml</artifactId>
           <version>5.2.3</version>
       </dependency>
-
-      <dependency>
-          <groupId>com.fasterxml.jackson.datatype</groupId>
-          <artifactId>jackson-datatype-jsr310</artifactId>
-          <version>2.15.2</version>
-      </dependency>
-
       <dependency>
           <groupId>org.apache.commons</groupId>
           <artifactId>commons-io</artifactId>
@@ -204,6 +194,13 @@
           <groupId>com.restfb</groupId>
           <artifactId>restfb</artifactId>
           <version>2023.9.0</version>
+      </dependency>
+
+<!--      thêm org.json cho JSONOBJECT VÀ JSONARRAY-->
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+          <version>20240303</version>
       </dependency>
 
 

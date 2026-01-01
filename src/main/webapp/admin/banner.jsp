@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <title>Quản lý Banner</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-component/style-admin/banner/banner.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         const contextPath = "${pageContext.request.contextPath}";
     </script>
@@ -23,13 +23,13 @@
 <div class="container">
     <div class="left">
         <div class="side_bar">
-            <jsp:include page="SideBar.jsp"/>
+            <jsp:include page="/admin/SideBar.jsp"/>
         </div>
     </div>
 
     <div class="center">
         <div class="wrap_header">
-            <jsp:include page="Header.jsp"/>
+            <jsp:include page="/home/header.jsp"/>
         </div>
 
         <div class="content">
@@ -135,23 +135,23 @@
                             <tr>
                                 <td>${b.id}</td>
                                 <td>
-                                    <img src="${imageMap[b.imageId]}" alt="Banner" class="banner-image" style="width: 100px; border-radius: 8px;"/>
+                                    <img src="${imageMap[b.image_id]}" alt="Banner" class="banner-image" style="width: 100px; border-radius: 8px;"/>
                                 </td>
                                 <td>${b.title}</td>
                                 <td>${b.description}</td>
                                 <td>${b.startDate}</td>
                                 <td>${b.endDate}</td>
                                 <td>
-                  <span class="status ${b.isActive ? 'active' : 'deactive'}">
-                          ${b.isActive ? 'Hoạt động' : 'Không hoạt động'}
+                  <span class="status ${b.is_active ? 'active' : 'deactive'}">
+                          ${b.is_active ? 'Hoạt động' : 'Không hoạt động'}
                   </span>
                                 </td>
                                 <td>
                                     <div class="action-icons">
                     <span class="icon toggle-icon"
                           data-id="${b.id}"
-                          data-active="${b.isActive}">
-                      <i class="fa-solid ${b.isActive ? 'fa-trash' : 'fa-eye-slash'}"></i>
+                          data-active="${b.is_active}">
+                      <i class="fa-solid ${b.is_active ? 'fa-trash' : 'fa-eye-slash'}"></i>
                     </span>
                                     </div>
                                 </td>

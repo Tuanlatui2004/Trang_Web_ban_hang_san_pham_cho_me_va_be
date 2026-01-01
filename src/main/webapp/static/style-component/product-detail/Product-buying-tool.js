@@ -1,0 +1,121 @@
+// Sử lý variant
+$(document).ready(function () {
+
+    const buy_now = $('#buy-now');
+    const add_to_cart = $('#add-to-cart');
+    const product = $('#product');
+    const product_id = product.attr('data-id');
+    const option_id_default = product.attr('data-option-default');
+
+    const wrap_variant = $('.wrap_variant');
+
+
+    // Mac dinh select option dau tien
+
+    const option_item = $(wrap_variant).find('.option-item');
+    const firstOption = option_item.first();
+
+    wrap_variant.each(function () {
+        const option_item = $(this).find('.option-item');
+        const firstOption = option_item.first();
+        option_item.removeClass('selected');
+        firstOption.addClass('selected');
+
+
+        const price = $('#price');
+        const formatedPrice = Number(firstOption.attr("data-price")).toLocaleString('vi-VN');
+        price.text(formatedPrice + ' VND');
+
+    })
+    // set default cho 2 nut nay
+    buy_now.attr('href', 'buy-now?product_id=' + product_id + '&option_id=' + firstOption.attr('data-option-id'));
+
+    // Thêm kiểm tra đăng nhập cho nút mua ngay
+    buy_now.on('click', function(e) {
+        e.preventDefault();
+        const sessionId = sessionStorage.getItem("session_id");
+        if (!sessionId) {
+            alert("Bạn cần đăng nhập trước khi mua hàng!");
+            return;
+        }
+        // Lấy đúng productId và optionId từ DOM
+        const product_id = product.attr('data-id');
+        const selectedOption = $('.option-item.selected');
+        const option_id = selectedOption.attr('data-option-id');
+
+        fetch("buy-now", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `product_id=${product_id}&option_id=${option_id}`
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = `buy-now?product_id=${product_id}&option_id=${option_id}`;
+                } else {
+                    alert(data.message || "Có lỗi xảy ra khi xử lý đơn hàng");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Có lỗi xảy ra. Vui lòng thử lại sau!");
+            });
+    });
+
+    add_to_cart.on('click', function (e) {
+        e.preventDefault();
+        addToCart(product_id, firstOption.attr('data-option-id'));
+    })
+
+
+
+
+    wrap_variant.each(function () {
+        const option_item = $(this).find('.option-item');
+        option_item.each(function () {
+
+            $(this).on('click', function () {
+                 // optionId sửa thành option_id
+                const option_id = $(this).attr('data-option-id');
+                $('.option-item').removeClass('selected');
+                $('.option-item[data-option-id="' + option_id + '"]').addClass('selected');
+
+
+                //Update price
+                const price = $('#price');
+                const formatedPrice = Number($(this).attr("data-price")).toLocaleString('vi-VN');
+                price.text(formatedPrice + ' VND');
+
+                // Update option id cho nút buy now và add to cart
+
+                buy_now.attr('href', 'buy-now?productId=' + product_id + '&optionId=' + option_id);
+
+
+            })
+        })
+
+    })
+
+
+})
+
+
+function addToCart(product_id, option_id) {
+    fetch("add-cart", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `product_id=${product_id}&option_id=${option_id}`
+    })
+        .then(data => {
+            console.log(data);
+            // alert("Sản Phẩm đã");
+
+        }).catch(error => console.log(error));
+
+}
+
+
