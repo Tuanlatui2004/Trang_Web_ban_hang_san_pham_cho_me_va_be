@@ -11,9 +11,7 @@ import java.util.List;
 public interface CategoryCustomDao {
 
     @SqlQuery("""
-        SELECT c.id,
-               c.name,
-               c.is_active,
+        SELECT c.id, c.name, c.is_active,
                COALESCE(SUM(o.stock), 0) AS totalStock
         FROM categories c
         LEFT JOIN products p ON c.id = p.category_id

@@ -45,9 +45,8 @@ public interface OptionVariantDao {
 
     @SqlQuery(value = "select\n" +
             "    o.id as id, o.product_id, o.price, o.stock,\n" +
-            "\n" +
             "    v.id as variantId, v.name as variantName,\n" +
-            "    vv.value as variantValue \n" +
+            "    v.value as variantValue \n" +
             "from\n" +
             "    option_variant as o\n" +
             "    inner join variant as  v\n" +
@@ -56,14 +55,5 @@ public interface OptionVariantDao {
     List<OptionVariant> getVariantByOptionId(@BindList("option_ids") List<Integer> option_ids);
 
 
-    @SqlUpdate("""
-            UPDATE option_variant 
-            SET price = :price,
-                stock = :stock
-            WHERE id = :id
-            """)
-    boolean updateOption(@Bind("id") Integer id,
-                         @Bind("price") Integer price,
-                         @Bind("stock") Integer stock);
 
 }
