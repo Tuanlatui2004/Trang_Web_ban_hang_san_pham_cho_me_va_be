@@ -438,8 +438,7 @@
     </nav>
 
 </div>
-<script src="${pageContext.request.contextPath}/fontend/src/style/style-pages/admin/Admin.js"></script>
+<script src="${pageContext.request.contextPath}/static/style-component/style-admin/sidebar/Admin.js"></script>
 
 </body>
 </html>
-<%--chưa fix mấy cái href trong file, aẻ bình tĩnh--%>
