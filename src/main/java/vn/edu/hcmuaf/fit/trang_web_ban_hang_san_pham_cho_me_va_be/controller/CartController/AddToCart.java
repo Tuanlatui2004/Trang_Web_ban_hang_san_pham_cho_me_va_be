@@ -23,10 +23,10 @@ public class AddToCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer product_id=  Integer.parseInt(request.getParameter("product_id"));
-        Integer option_id =Integer.parseInt(request.getParameter("option_id"));
+        Integer productId=  Integer.parseInt(request.getParameter("product_id"));
+        Integer optionId =Integer.parseInt(request.getParameter("option_id"));
 
-        Product product = productService.getProductByIdAndOptionId(product_id,option_id);
+        Product product = productService.getProductByIdAndOptionId(productId,optionId);
 
         HttpSession session = request.getSession();
         Cart cart= (Cart) session.getAttribute("cart");
