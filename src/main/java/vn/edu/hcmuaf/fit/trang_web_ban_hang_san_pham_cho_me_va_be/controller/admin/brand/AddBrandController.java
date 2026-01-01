@@ -29,13 +29,14 @@ public class AddBrandController extends HttpServlet {
 
         JSONObject jsonRequest = new JSONObject(jsonString.toString());
 //   String brand_name = jsonRequest.getString("brand"); hay name
+//        String categoryName = jsonRequest.getString("name");
         String brand_name = jsonRequest.getString("brand");
-        boolean is_active = jsonRequest.getBoolean("is_active");
+//        boolean is_active = jsonRequest.getBoolean("is_active");
 
-        brandService.createBrand(brand_name, is_active);
+        brandService.createBrand(brand_name);
 
         // Phản hồi cho client
-        response.setContentType("application/json");
-        response.getWriter().write("{\"status\": \"success\", \"message\": \"Brand added successfully\"}");
+//        response.setContentType("application/json");
+//        response.getWriter().write("{\"status\": \"success\", \"message\": \"Brand added successfully\"}");
     }
 }

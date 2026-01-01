@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.CheckOut;
+package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.user.password;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,12 +7,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-@WebServlet(name = "OrderSuccessController", value = "/success")
-public class OrderSuccessController extends HttpServlet {
+
+@WebServlet(name = "AuthController", value = "/user-password")
+public class PasswordController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("checkout/OrderSuccess.jsp").forward(request, response);
+
+        request.getRequestDispatcher("user/user-password.jsp").forward(request, response);
     }
 
     @Override

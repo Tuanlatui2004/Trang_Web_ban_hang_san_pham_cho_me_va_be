@@ -6,9 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Address;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Card;
@@ -22,9 +19,8 @@ import java.util.List;
 
 @WebServlet(name = "BuyNowController", value = "/buy-now")
 public class BuyNowController extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(BuyNowController.class);
     ProductService productService = new ProductService(DBConnection.getJdbi());
-    OrderService orderSerivce = new OrderService(DBConnection.getJdbi());
+    OrderSerivce orderSerivce = new OrderSerivce(DBConnection.getJdbi());
     OrderDetailService orderDetailService = new OrderDetailService(DBConnection.getJdbi());
     CardService cardService = new CardService(DBConnection.getJdbi());
     AddressService addressService = new AddressService(DBConnection.getJdbi());
@@ -32,7 +28,7 @@ public class BuyNowController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Product product = productService.getProductByIdAndOptionId(Integer.parseInt(request.getParameter("product_id")),
+        Product product = productService.getProductByIdAndOptionId(Integer.parseInt(request.getParameter("productId")),
                 Integer.parseInt(request.getParameter("option_id")));
 
 
@@ -64,51 +60,13 @@ public class BuyNowController extends HttpServlet {
 
 
 
-        request.getRequestDispatcher("Checkout/Checkout.jsp").forward(request, response);
+        request.getRequestDispatcher("checkout/checkout.jsp").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
 
-        try {
-            String productId = request.getParameter("product_id");
-            String optionId = request.getParameter("option_id");
-
-            if (productId == null || optionId == null) {
-                JSONObject errorResponse = new JSONObject();
-                errorResponse.put("success", false);
-                errorResponse.put("message", "Missing required parameters");
-                response.getWriter().write(errorResponse.toString());
-                return;
-            }
-
-            Product product = productService.getProductByIdAndOptionId(
-                    Integer.parseInt(productId),
-                    Integer.parseInt(optionId)
-            );
-
-            if (product == null) {
-                JSONObject errorResponse = new JSONObject();
-                errorResponse.put("success", false);
-                errorResponse.put("message", "Product not found");
-                response.getWriter().write(errorResponse.toString());
-                return;
-            }
-
-            JSONObject successResponse = new JSONObject();
-            successResponse.put("success", true);
-            successResponse.put("message", "Product found");
-            response.getWriter().write(successResponse.toString());
-
-        } catch (Exception e) {
-            JSONObject errorResponse = new JSONObject();
-            errorResponse.put("success", false);
-            errorResponse.put("message", "An error occurred: " + e.getMessage());
-            response.getWriter().write(errorResponse.toString());
-        }
     }
 }

@@ -22,14 +22,14 @@ public interface OrderDao {
 
     @GetGeneratedKeys
     Integer createOrder(
-            @Bind("createAt")LocalDate create_at,
-            @Bind("paymentStatus") PaymentStatus payment_status,
-            @Bind("orderStatus") OrderStatus order_status,
-            @Bind("userId") Integer user_id,
-            @Bind("addressId") Integer address_id,
-            @Bind("cardId") Integer card_id,
+            @Bind("create_at")LocalDate create_at,
+            @Bind("payment_status") PaymentStatus payment_status,
+            @Bind("order_status") OrderStatus order_status,
+            @Bind("user_id") Integer user_id,
+            @Bind("address_id") Integer address_id,
+            @Bind("card_id") Integer card_id,
             @Bind("isCOD") Boolean isCOD,
-            @Bind("shippingFee") Integer shipping_fee
+            @Bind("shipping_fee") Integer shipping_fee
     );
 
 
