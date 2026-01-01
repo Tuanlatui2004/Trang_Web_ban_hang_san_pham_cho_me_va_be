@@ -112,7 +112,9 @@ public class OptionVariantValueController  extends HttpServlet {
     }
 
     private void writeResponse(HttpServletResponse response, ResponseWrapper<?> responseWrapper) throws IOException {
+        response.setContentType("application/json");
         response.setStatus(responseWrapper.getStatusCode());
-        response.getWriter().write(responseWrapper.toJson());
+        ObjectMapper objectMapper = new ObjectMapper();
+        response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
     }
 }

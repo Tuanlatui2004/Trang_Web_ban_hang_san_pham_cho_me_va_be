@@ -9,6 +9,7 @@ public class Card {
     Integer id;
     Integer user_id;
     LocalDate duration;
+    Integer last4;
     String type;
     Boolean is_default;
 
@@ -18,12 +19,14 @@ public class Card {
             @ColumnName("id") @Nullable Integer id,
             @ColumnName("user_id")  @Nullable Integer user_id,
             @ColumnName("duration")  @Nullable LocalDate duration,
+            @ColumnName("last4")  @Nullable Integer last4,
             @ColumnName("type")  @Nullable String type,
             @ColumnName("is_default")  @Nullable Boolean is_default) {
 
         this.id = id;
         this.user_id = user_id;
         this.duration = duration;
+        this.last4 = last4;
         this.type = type;
         this.is_default = is_default;
     }
@@ -70,5 +73,13 @@ public class Card {
 
     public void setIs_default(Boolean is_default) {
         this.is_default = is_default;
+    }
+
+    public Integer getLast4() {
+        return last4;
+    }
+
+    public void setLast4(Integer last4) {
+        this.last4 = last4;
     }
 }

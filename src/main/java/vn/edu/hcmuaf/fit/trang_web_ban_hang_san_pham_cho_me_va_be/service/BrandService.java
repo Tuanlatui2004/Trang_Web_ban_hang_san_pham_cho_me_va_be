@@ -22,15 +22,10 @@ public class BrandService {
             return brandDao.getBrandById(id);
         }
 
-        public Brand createBrand(String name, boolean is_active) {
-            int id = brandDao.createBrand(name, is_active);
+        public Brand createBrand(String name) {
+            int id = brandDao.createBrand(name);
             return brandDao.getBrandById(id);
         }
-
-        public void toggleBrandStatus(Integer id, boolean is_active) {
-            brandDao.updateBrandStatus(id, is_active);
-        }
-
 
         public void updateBrand(Integer id, String name) {
             brandDao.updateBrand(id, name);

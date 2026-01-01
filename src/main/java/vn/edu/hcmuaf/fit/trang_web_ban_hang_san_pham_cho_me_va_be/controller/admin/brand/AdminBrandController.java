@@ -31,19 +31,19 @@ public class AdminBrandController extends HttpServlet {
             throws ServletException, IOException {
         // Xử lý yêu cầu POST ở đây
     }
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        BufferedReader reader = request.getReader();
-        String body = reader.lines().collect(Collectors.joining());
-        JSONObject json = new JSONObject(body);
-
-        int id = json.getInt("id");
-        boolean is_active = json.getBoolean("is_active");
-
-        brandService.toggleBrandStatus(id, is_active);
-
-        response.setContentType("application/json");
-        response.getWriter().write("{\"success\": true}");
-    }
+//    @Override
+//    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        BufferedReader reader = request.getReader();
+//        String body = reader.lines().collect(Collectors.joining());
+//        JSONObject json = new JSONObject(body);
+//
+//        int id = json.getInt("id");
+//        boolean is_active = json.getBoolean("is_active");
+//
+//        brandService.toggleBrandStatus(id, is_active);
+//
+//        response.setContentType("application/json");
+//        response.getWriter().write("{\"success\": true}");
+//    }
 }
