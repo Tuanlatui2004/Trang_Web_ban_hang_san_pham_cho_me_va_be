@@ -25,12 +25,12 @@ public interface CardDao {
 
 
     @SqlUpdate(value = "insert into card( user_id, duration, type, is_default) VALUE (\n" +
-            "  :userId, :duration , :type , :isDefault  \n" +
+            "  :user_id, :duration , :type , :is_default  \n" +
             " );")
     Boolean addCard(
-            @Bind("userId") Integer user_id,
+            @Bind("user_id") Integer user_id,
             @Bind("duration") LocalDate duration,
             @Bind("type") String type,
-            @Bind("isDefault") Boolean is_default
+            @Bind("is_default") Boolean is_default
     );
 }
