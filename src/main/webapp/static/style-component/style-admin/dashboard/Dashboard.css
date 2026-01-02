@@ -1,44 +1,43 @@
-
-* {
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: Helvetica Neue, Helvetica, Arial, serif;
 }
-
-html {
+html{
     width: 100%;
     height: auto;
     overflow: visible;
 }
-
-body {
-    width: 100%;
-    height: auto;
+body{
+    height: auto ;
     overflow: visible;
+    display: flex;
+    flex-direction: column;
+
 
 }
 
 
 /*Reuse*/
-.mid_align {
+.mid_align{
     display: flex;
     align-items: center;
     text-align: center;
 }
 
-.row {
+.row{
     display: flex;
     flex-direction: row;
 }
 
-.col {
+.col{
     display: flex;
     flex-direction: column;
 }
 
 
-.rec_horizontal {
+.rec_horizontal{
     width: 100%;
     height: 1px;
     background-color: #ffffff;
@@ -47,7 +46,7 @@ body {
 
 }
 
-.rec_vertical {
+.rec_vertical{
     height: 75%;
     width: 1px;
     background-color: #ffffff;
@@ -56,50 +55,60 @@ body {
 }
 
 
-i {
+
+
+
+i{
     color: #616060;
 }
 
-a {
+a{
     text-decoration: none;
     color: #000000;
 }
 
 
-.f12 {
+.f12{
     font-size: 12px;
 }
 
 
-.f16 {
+.f16{
     font-size: 16px;
 }
-
-.f18 {
+.f18{
     font-size: 18px;
 }
 
-.f22 {
+.f22{
     font-size: 22px;
 
 }
 
-.bold {
+.bold{
     font-weight: 500;
 }
 
 
 /*Wrap*/
-body {
+body{
     display: flex;
     justify-content: center;
     background-color: #F0F4F8;
-    padding: 20px 0;
-    /*border: 1px solid #e5e7eb;*/
 
 }
 
-.wrap {
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.side_bar{
+}
+
+
+.wrap{
     width: 90%;
     height: 100%;
     padding: 20px;
@@ -107,26 +116,26 @@ body {
     border-radius: 5px;
 }
 
-.wrap > .title {
+.wrap>.title{
     height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.wrap .title h2 {
+.wrap .title h2{
     font-weight: 500;
 }
 
-.wrap > .title span {
+.wrap>.title span{
     width: 100%;
     color: #5e5e5e;
-    padding: 10px 25px 20px 25px;
+    padding:  10px 25px 20px 25px;
     font-size: 14px;
 }
 
 
-.report {
+.report{
     display: flex;
     justify-content: space-evenly;
     height: 120px;
@@ -143,15 +152,15 @@ body {
     padding: 0 20px;
     border-radius: 10px;
     border: 1px solid #cfcfcf;
-    box-shadow: 2px 5px 15px 0px #cfcfcf;
+    box-shadow:2px 5px 15px 0px #cfcfcf;
     transition: 0.4s;
 }
 
-.report_item:hover {
+.report_item:hover{
     scale: 1.05;
 }
 
-.report_item > .title {
+.report_item>.title{
     font-size: 16px;
     color: #555555;
     width: 100%;
@@ -159,49 +168,46 @@ body {
     justify-content: space-between;
 }
 
-.report_item > .value {
+.report_item>.value{
     width: 100%;
     font-size: 24px;
     font-weight: bold;
     padding-left: 10px;
     color: #333333;
 }
-
-.report_item > .value > i {
+.report_item>.value>i {
     font-size: 18px;
 }
 
-.report_item > .title > .status {
+.report_item >.title >.status{
     font-size: 12px;
     padding: 5px 10px;
     border-radius: 5px;
     margin-left: auto;
 }
-
-.increase {
+.increase{
     background-color: #EBF9F6;
     width: 80px;
 }
-
-.decrease {
+.decrease{
     background-color: #fbeaea;
     width: 80px;
 }
-
-.increase i, .increase span {
+.increase i, .increase span{
     color: #03d12a;
     font-weight: bold;
 }
 
 
-.decrease i, .decrease span {
+
+.decrease i,  .decrease span{
     color: #da0101;
     font-weight: bold;
 }
 
 
 /*Table Product*/
-#table_product {
+#table_product{
     width: 100%;
     margin-top: 50px;
     overflow: hidden;
@@ -209,17 +215,16 @@ body {
 
 }
 
-td {
+td{
     align-items: center;
     text-align: center;
 }
-
-tr {
+tr{
     margin-top: 10px;
     border-bottom: 1px solid #cfcfcf;
 }
 
-#table {
+#table{
     width: 100%;
     padding: 0;
     border-collapse: collapse;
@@ -232,30 +237,40 @@ tr {
     border-radius: 10px;
     background-color: #dfdfdf;
 }
-
 #table thead .product_col {
     width: 350px
 }
 
-tbody .product {
+tbody .product{
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-.product .product_image {
+.product .product_image{
     padding: 10px;
     width: 100px;
     height: 100px;
     object-fit: contain;
 }
 
-.wrap_trend_up > i, .wrap_trend_up > span {
+.wrap_trend_up>i,.wrap_trend_up>span {
     color: #03d12a;
     font-weight: bold;
 }
 
-.wrap_trend_down > i, .wrap_trend_down > span {
+.wrap_trend_down> i, .wrap_trend_down>span {
     color: #da0101;
     font-weight: bold;
+}
+
+.top1{
+    color: #FFD43B !important;
+}
+.top2{
+    color: #d5d1c1 !important;
+}
+.top3{
+    color: #a86b00 !important;
 }

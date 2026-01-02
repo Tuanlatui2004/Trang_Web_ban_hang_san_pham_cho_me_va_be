@@ -21,23 +21,19 @@
 </head>
 <body>
 
+<div class="wrap_header">
+    <jsp:include page="header.jsp"/>
+</div>
+
 <div class="container">
-    <div class ="left">
+
         <div class="side_bar">
             <jsp:include page="/admin/SideBar.jsp"/>
         </div>
 
-    </div>
-
-
-    <div class="center">
-        <div class="wrap_header">
-            <jsp:include page="/admin/header.jsp"/>
-        </div>
-
         <div class=" wrap">
             <div class="title ">
-                <h2>Tổng quan tháng 5</h2>
+                <h2>Tổng quan tháng 12 </h2>
             </div>
 
             <div class="report row mid_align">
@@ -172,10 +168,7 @@
 
 
         </div>
-    </div>
-
 </div>
-
 
 </body>
 </html>

@@ -22,29 +22,14 @@
 
 </head>
 <body>
-
-
-
-
-
+<div class="header">
+    <jsp:include page="header.jsp"/>
+</div>
 
 <div class="container">
-
-    <div class ="left">
         <div class="side_bar">
             <jsp:include page="/admin/SideBar.jsp"/>
         </div>
-
-    </div>
-
-
-
-    <div class="center">
-        <div class="header">
-            <jsp:include page="/admin/header.jsp"/>
-        </div>
-
-
 
         <div class="content">
             <div class="toolbar">
@@ -61,13 +46,6 @@
                         <option value="100">100</option>
                     </select>
                     mục
-                </div>
-                <div class="export-container">
-                    <button type="button" id="exportBtn" class="export-btn"
-                            data-context-path="${pageContext.request.contextPath}">
-                        <i class="fa-solid fa-file-excel"></i>
-                        Xuất Excel
-                    </button>
                 </div>
             </div>
 
@@ -147,7 +125,7 @@
                             <td>
                                 <div class="product">
 
-                                    <img src="${p.imageUrl}" alt="${p.name}" class="product-img">
+                                    <img src="${p.image_url}" alt="${p.name}" class="product-img">
 
                                     <p>${p.name}</p>
                                 </div>
