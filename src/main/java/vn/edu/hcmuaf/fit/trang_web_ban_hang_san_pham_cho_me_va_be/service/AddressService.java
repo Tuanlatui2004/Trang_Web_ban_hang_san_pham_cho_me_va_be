@@ -25,25 +25,26 @@ public class AddressService {
         return addressDao.getAddressById(id);
     }
 
-    public Address findDefautlByUserId(Integer id) {
-        return addressDao.getAddressDefaultByUserId(id);
-    }
 
     public int addAddress(Address address) {
         // Đảm bảo isDefault mặc định là false nếu không được chỉ định
         if (address.getIs_default() == null) {
-            address.setIs_default(0);//đại diện cho giá trị boolean
+            address.setIs_default(false);//đại diện cho giá trị boolean
         }
-        return addressDao.addAddress(address);
+        return addressDao.addAddress(
+                address.getUser_id(),
+                address.getAddress_type(),
+                address.getFull_name(),
+                address.getPhone_number(),
+                address.getStreet(),
+                address.getCity(),
+                address.getState(),
+                address.getCountry(),
+                address.getIs_default()
+        );
     }
 
-    public Boolean updateDefautlById(Integer id, boolean default_status) {
-        return addressDao.updateDefaultById(id, default_status);
-    }
 
-    public Boolean updateStatus(Integer id, String status) {
-        return addressDao.updateStatus(id, status);
-    }
 
     public static void main(String[] args) {
         AddressService addressService = new AddressService(DBConnection.getJdbi());

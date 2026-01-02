@@ -25,7 +25,7 @@ public class AddAddressController extends HttpServlet {
             String state = request.getParameter("state");
             String country = request.getParameter("country");
             // xem lại này nha HaiAnh
-            Integer is_default = request.getParameter("is_default")==null?0:Integer.parseInt(request.getParameter("is_default"));
+            Boolean is_default = Boolean.valueOf(request.getParameter("is_default"));
 
             // Khởi tạo Address
             Address newAddress = new Address(
