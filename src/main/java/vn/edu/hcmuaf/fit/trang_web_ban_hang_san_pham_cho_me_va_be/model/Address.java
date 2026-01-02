@@ -16,7 +16,7 @@ public class Address {
     String city;
     String state;
     String country;
-    Integer is_default;
+    Boolean is_default;
 
     @JdbiConstructor
     public Address(@ColumnName("id")  Integer id,
@@ -28,7 +28,7 @@ public class Address {
                    @ColumnName("city") @Nullable String city,
                    @ColumnName("state") @Nullable String state,
                    @ColumnName("country") @Nullable String country,
-                   @ColumnName("is_default") @Nullable Integer is_default
+                   @ColumnName("is_default") @Nullable Boolean is_default
     ) {
         this.id = id;
         this.user_id = user_id;
@@ -115,11 +115,11 @@ public class Address {
         this.country = country;
     }
 
-    public Integer getIs_default() {
+    public Boolean getIs_default() {
         return is_default;
     }
 
-    public void setIs_default(Integer is_default) {
+    public void setIs_default(Boolean is_default) {
         this.is_default = is_default;
     }
 
