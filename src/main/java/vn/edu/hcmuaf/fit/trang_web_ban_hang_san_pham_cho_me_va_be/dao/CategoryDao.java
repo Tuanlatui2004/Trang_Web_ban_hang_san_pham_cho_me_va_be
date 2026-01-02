@@ -13,8 +13,6 @@ import java.util.List;
 @RegisterConstructorMapper(Category.class)
 public interface CategoryDao {
 
-
-
     @SqlQuery("SELECT * FROM categories WHERE is_active = 1")
     List<Category> getAllCategories();
 
@@ -31,27 +29,6 @@ public interface CategoryDao {
 
     @SqlUpdate("DELETE FROM categories WHERE id = :id")
     void deleteCategory(@Bind("id") Integer id);
-//
-//    @SqlUpdate("UPDATE categories SET isActive = :isActive WHERE id = :id")
-//    void updateCategoryStatus(@Bind("id") Integer id, @Bind("isActive") Boolean isActive);
-
-    @SqlUpdate("UPDATE categories SET isActive = :is_active WHERE id = :id")
-    void updateCategoryStatus(@Bind("id") Integer id, @Bind("is_active") int is_active);
-
-    @SqlQuery("""
-    SELECT c.id,
-           c.name,
-           CASE WHEN c.is_active = 1 THEN TRUE ELSE FALSE END AS is_active,
-           COUNT(p.id) AS total_stock
-    FROM categories c
-    LEFT JOIN products p ON p.categoryId = c.id
-    WHERE c.is_active = 1
-    GROUP BY c.id, c.name, c.is_active
-""")
-
-
-    @RegisterConstructorMapper(CategoryWithStock.class)
-    List<CategoryWithStock> getCategoriesWithStock();
 
 
 

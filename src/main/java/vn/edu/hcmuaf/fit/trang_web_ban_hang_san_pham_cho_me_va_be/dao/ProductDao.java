@@ -49,18 +49,16 @@ public interface ProductDao {
             "       p.name         as name,\n" +
             "       p.description  as description,\n" +
             "       p.sku          as sku,\n" +
-            "       p.is_active     as is_active,\n" +
-            "       p.brand_id      as brand_id,\n" +
-            "       p.no_of_views    as no_of_views,\n" +
-            "       p.no_of_sold     as no_of_sold,\n" +
-            "       p.category_id   as category_id,\n" +
-            "       p.image_id as image_id,\n" +
+            "       p.is_active    as is_active,\n" +
+            "       p.brand_id     as brand_id,\n" +
+            "       p.no_of_views  as no_of_views,\n" +
+            "       p.no_of_sold   as no_of_sold,\n" +
+            "       p.category_id  as category_id,\n" +
+            "       p.image_id     as image_id,\n" +
             "       ops.id         as option_id,\n" +
             "       ops.price      as price,\n" +
             "       ops.stock      as stock,\n" +
             "       img.url        as image_url, \n" +
-            " p.height as height , p.length as length , p.width as width , p.weight as weight " +
-
             "FROM products as p\n" +
             "         INNER JOIN categories as cate on cate.id = p.category_id\n" +
             "         INNER JOIN `option_variant` as ops on ops.product_id = p.id\n" +
@@ -76,7 +74,6 @@ public interface ProductDao {
 
     @SqlQuery(value =
             "SELECT p.id as id, p.name as name, p.description as description, " +
-                    " p.height as height , p.length as length , p.width as width , p.weight as weight, " +
                     "         p.is_active as is_active, " +
                     "       p.no_of_views as no_of_views, p.no_of_sold as no_of_sold, " +
                     "        p.image_id as image_id, " +
@@ -114,8 +111,8 @@ public interface ProductDao {
     Integer getPriceForOption(@Bind("option_id") int option_id);
 
 
-    @SqlUpdate("INSERT INTO products (name,description, is_active, category_id, brand_id, no_of_views, no_of_sold, image_id, sku, height,length, width, weight ) "
-            + "VALUES (:name, :description,COALESCE(:is_active, 1), :category_id, :brand_id, 0, 0, COALESCE(:image_id, NULL), :sku,:height, :length, :width, :weight )")
+    @SqlUpdate("INSERT INTO products (name,description, is_active, category_id, brand_id, no_of_views, no_of_sold, image_id, sku) "
+            + "VALUES (:name, :description,COALESCE(:is_active, 1), :category_id, :brand_id, 0, 0, COALESCE(:image_id, NULL), :sku)")
     @GetGeneratedKeys
     int addProduct(@Bind("name") String name,
                    @Bind("description") String description,
@@ -123,11 +120,7 @@ public interface ProductDao {
                    @Bind("category_id") Integer category_id,
                    @Bind("brand_id") Integer brand_id,
                    @Bind("image_id") Integer image_id,
-                   @Bind("sku") String sku,
-                   @Bind("height") Integer height,
-                   @Bind("length") Integer length,
-                   @Bind("width") Integer width,
-                   @Bind("weight") Integer weight
+                   @Bind("sku") String sku
     );
 
     @SqlQuery("""
@@ -139,32 +132,6 @@ public interface ProductDao {
             """)
     @RegisterConstructorMapper(Product.class)
     List<Product> searchProducts(@Bind("name") String name);
-
-
-//
-//
-//    @SqlQuery("""
-//   SELECT p.id AS id, p.name AS name, p.image_id AS image, i.url AS image_url, o.price AS price
-//   FROM products p
-//   LEFT JOIN option_variant o ON p.id = o.product_id
-//   LEFT JOIN image i ON p.image_id = i.id
-//   WHERE LOWER(p.name) LIKE CONCAT('%', LOWER(:name), '%')
-//   LIMIT : limit
-//""")
-//    @RegisterConstructorMapper(Product.class)
-//    List<Product> searchProducts(@Bind("name") String name, @Bind("limit") int limit);
-//
-
-
-    @SqlQuery("""
-                SELECT p.id AS id, p.name AS name, p.image_id AS image, i.url AS image_url, o.price AS price
-                FROM products p
-                LEFT JOIN option_variant o ON p.id = o.product_id
-                LEFT JOIN image i ON p.image_id = i.id
-                WHERE LOWER(p.name) LIKE CONCAT('%', LOWER(:name), '%')
-                LIMIT :limit OFFSET :offset
-            """)
-    List<Product> searchProducts(@Bind("name") String name, @Bind("limit") int limit, @Bind("offset") int offset);
 
 
     @SqlQuery(value = "SELECT p.id           as id, " +
@@ -190,7 +157,7 @@ public interface ProductDao {
             "                   FROM option_variant as ops " +
             "                   WHERE p.id = ops.product_id " +
             "                     and ops.stock > 0" +
-            "                       and p.is_active = true ) " +
+            "                     and p.is_active = true ) " +
             "order by p.no_of_views desc , p.no_of_sold desc " +
             "limit 3")
     public List<Product> getTopProductsByCategoryId(@Bind("category_id") int category_id, @Bind("limit") Integer limit);
@@ -209,11 +176,7 @@ public interface ProductDao {
                        img.url as image_url,
                        v.id as variant_id,
                        v.value as variantValue,
-                       v.name as variantName,
-                       p.height as height,
-                       p.length as length,
-                       p.width as width,
-                       p.weight as weight
+                       v.name as variantName
                 FROM products as p 
                     INNER JOIN categories as cate on cate.id = p.category_id 
                     INNER JOIN `option_variant` as ops on ops.product_id = p.id 
@@ -279,139 +242,30 @@ public interface ProductDao {
             "       p.category_id   as category_id,\n" +
             "       p.image_id as image_id,\n" +
             "       img.url        as image_url,\n" +
+            //(0)cái này t giữ lại do thấy hợp lí, nếu jsp fix lỏ thì lấy cái dưới nữa
             "       ops.id         as option_id,\n" +
             "       ops.price      as price,\n" +
             "       ops.stock      as stock\n" +
+            //(1)"       sum(ops.stock) as stock\n" +
             "FROM products as p\n" +
             "         INNER JOIN `option_variant` as ops on ops.product_id = p.id\n" +
             "         inner join image as img on p.image_id = img.id\n" +
             "where p.is_active = true\n" +
+            //(0) lấy theo số
             "  and ops.price = (SELECT MIN(price)\n" +
             "                   FROM option_variant as ops\n" +
             "                   WHERE p.id = ops.product_id\n" +
             "                     and ops.stock > 0)\n" +
+            //(1) lấy theo số
+//             "group by p.id, p.name, p.description,\n" +
+//            "         p.sku, p.is_active, p.brand_id,\n" +
+//            "         p.no_of_views, p.no_of_sold, p.category_id,\n" +
+//            "         p.image_id, img.url\n" +
             "order by p.no_of_sold desc, p.no_of_views desc\n" +
-            "limit 12")
+            "limit 10\n")
     List<Product> getTopProducts();
 
 
-    @SqlQuery(
-            """
-                    SELECT\s
-                            p.id           AS id,
-                            p.name         AS name,
-                            p.description  AS description,
-                            p.sku          AS sku,
-                            p.is_active     AS is_active,
-                            p.brand_id      AS brand_id,
-                            p.no_of_views    AS no_of_views,
-                            p.no_of_sold     AS no_of_sold,
-                            p.category_id   AS category_id,
-                            p.image_id AS image_id,
-                            opt.id         AS option_id,
-                            opt.price      AS price,
-                            opt.stock      AS stock,
-                            img.url        AS image_url
-                       \s
-                        FROM products AS p
-                            INNER JOIN option_variant AS opt ON p.id = opt.product_id
-                            INNER JOIN image AS img ON img.id = p.image_id
-                            INNER JOIN categories AS cate ON p.category_id = cate.id
-                       \s
-                        WHERE\s
-                            AND cate.id = :category_id
-                            AND opt.price >= COALESCE(:minPrice, 0)
-                            AND opt.price <= COALESCE(:maxPrice, 999999999)
-                       \s""")
 
-    public List<Product> filterProduct(
-            @Bind("category_id") int category_id,
-            @BindList(value = "option_variant_id") List<Integer> option_variant_id, //bỏ comment
-            @Bind("minPrice") @Nullable Integer minPrice,
-            @Bind("maxPrice") @Nullable Integer maxPrice);
-
-
-    @SqlQuery("""
-            SELECT
-                    p.id           AS id,
-                    p.name         AS name,
-                    p.description  AS description,
-                    p.sku          AS sku,
-                    p.is_active     AS is_active,
-                    p.brand_id      AS brand_id,
-                    p.no_of_views    AS no_of_views,
-                    p.no_of_sold     AS no_of_sold,
-                    p.category_id   AS category_id,
-                    p.image_id AS image_id,
-                    opt.id         AS option_id,
-                    opt.price      AS price,
-                    opt.stock      AS stock,
-                    img.url        AS image_url
-                    FROM products AS p
-                    INNER JOIN option_variant AS opt ON p.id = opt.product_id
-                    INNER JOIN image AS img ON img.id = p.image_id
-                    INNER JOIN categories AS cate ON p.category_id = cate.id
-                    
-                    WHERE 
-                    cate.id = :category_id
-                    AND opt.price >= COALESCE(:minPrice, 0)
-                    AND opt.price <= COALESCE(:maxPrice, 999999999)
-    """)
-
-    public List<Product> filterProductByPrice(
-            @Bind("category_id") int category_id,
-            @Bind("minPrice") @Nullable Integer minPrice,
-            @Bind("maxPrice") @Nullable Integer maxPrice);
-
-
-    @SqlQuery("SELECT p.id           as id, \n" +
-            "                                          p.name         as name, \n" +
-            "                                           p.description  as description, \n" +
-            "                                           p.sku          as sku,  \n" +
-            "                                           p.is_active     as is_active, \n" +
-            "                                           p.brand_id      as brand_id, \n" +
-            "                                           p.no_of_views    as no_of_views, \n" +
-            "                                           p.no_of_sold     as no_of_sold,  \n" +
-            "                                          p.category_id   as category_id,  \n" +
-            "                                           p.image_id as image_id,  \n" +
-            "                                           opt.id         as option_id, \n" +
-            "                                           opt.price      as price, \n" +
-            "                                           opt.stock      as stock,  \n" +
-            "                                           img.url        as image_url\n" +
-            "                        FROM products as p  \n" +
-            "                         INNER JOIN option_variant as opt ON p.id = opt.product_id\n" +
-            "                        INNER JOIN image as img on img.id = p.image_id\n" +
-            "                        INNER JOIN categories as cate on p.category_id = cate.id\n" +
-            "                        INNER JOIN option_variant_value as ovv ON opt.id = ovv.option_id\n" +
-            "                         ORDER BY p.no_of_views DESC, p.no_of_sold DESC\n" +
-            "                         LIMIT 3")
-
-    public List<Product> suggestProduct();
-
-    @SqlUpdate("""
-            UPDATE products 
-            SET name = :name,
-                description = :description,
-                sku = :sku,
-                category_id = :category_id,
-                brand_id = :brand_id,
-                image_id = COALESCE(:image_id, image_id),
-                height = :height,
-                length = :length,
-                width = :width,
-                weight = :weight
-            WHERE id = :id
-            """)
-    boolean updateProduct(@Bind("id") Integer id,
-                          @Bind("name") String name,
-                          @Bind("description") String description,
-                          @Bind("sku") String sku,
-                          @Bind("category_id") Integer category_id,
-                          @Bind("brand_id") Integer brand_id,
-                          @Bind("image_id") Integer image_id,
-                          @Bind("height") Integer height,
-                          @Bind("length") Integer length,
-                          @Bind("width") Integer width,
-                          @Bind("weight") Integer weight);
 
 }

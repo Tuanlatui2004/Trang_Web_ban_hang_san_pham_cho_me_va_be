@@ -15,11 +15,8 @@ import java.util.List;
 @RegisterConstructorMapper(Order.class)
 public interface OrderDao {
 
-    @SqlUpdate(value = "INSERT INTO orders(create_at, payment_status, order_status, user_id, address_id, card_id, isCOD, shipping_fee)" +
-            "VALUE (" +
-            "  :create_at , :payment_status, :order_status , :user_id, :address_id, :card_id, :isCOD, :shipping_fee" +
-            " )")
-
+    @SqlUpdate(value = "INSERT INTO orders(create_at, payment_status, order_status, user_id, address_id, card_id, isCOD)" +
+            "VALUE (" + "  :create_at , :payment_status, :order_status , :user_id, :address_id, :card_id, :isCOD)")
     @GetGeneratedKeys
     Integer createOrder(
             @Bind("create_at")LocalDate create_at,
@@ -28,8 +25,7 @@ public interface OrderDao {
             @Bind("user_id") Integer user_id,
             @Bind("address_id") Integer address_id,
             @Bind("card_id") Integer card_id,
-            @Bind("isCOD") Boolean isCOD,
-            @Bind("shipping_fee") Integer shipping_fee
+            @Bind("isCOD") Boolean isCOD
     );
 
 
@@ -44,9 +40,8 @@ public interface OrderDao {
                 o.address_id,
                 o.card_id,
                 o.isCOD,
-                o.shipping_fee,
                 SUM(od.quantity) AS quantity,
-                (SUM(od.total) + o.shipping_fee) AS total,
+                SUM(od.total) AS total,
                 MIN(p.name) AS product_name,
                 i.url AS product_image
             FROM
@@ -58,34 +53,30 @@ public interface OrderDao {
                 o.user_id = :user_id
             GROUP BY
                 o.id, o.create_at, o.payment_status, o.order_status,
-                o.user_id, o.address_id, o.card_id, o.isCOD, o.shipping_fee, i.url
+                o.user_id, o.address_id, o.card_id, o.isCOD, i.url
             ORDER BY
                 o.create_at DESC;
-"""
-
-    )
-    List<Order> getOrdersByUserId(@Bind("userId") Integer user_id);
+""")
+    List<Order> getOrdersByUserId(@Bind("user_id") Integer user_id);
 
 
     @SqlQuery(value = "select\n" +
             "    o.id as id, o.create_at, o.payment_status, o.order_status,\n" +
-            "    o.user_id, o.address_id, o.card_id, o.isCOD,  o.shipping_fee as  shipping_fee,\n " +
-            " o.shipping_id as shipping_id , " +
+            "    o.user_id, o.address_id, o.card_id, o.isCOD,\n" +
             "    sum(od.total) as total\n" +
             "from orders as o inner join order_detail as od\n" +
             "                            on o.id = od.order_id\n" +
             "where o.user_id = :user_id and o.id = :order_id\n" +
             "group by\n" +
             "    o.id, o.create_at, o.payment_status, o.order_status,\n" +
-            "    o.user_id, o.address_id, o.card_id, o.isCOD, o.shipping_fee " +
+            "    o.user_id, o.address_id, o.card_id, o.isCOD " +
             " order by o.create_at DESC ")
     Order getOrderByIdAndUserId(@Bind("order_id") Integer order_id, @Bind("user_id") Integer user_id);
 
 
     @SqlQuery(value = "select\n" +
             "    o.id as id, o.create_at, o.payment_status, o.order_status,\n" +
-            "    o.user_id, o.address_id, o.card_id, o.isCOD,  o.shipping_fee as  shipping_fee,\n" +
-            "     o.shipping_id as shipping_id ," +
+            "    o.user_id, o.address_id, o.card_id, o.isCOD,\n"+
             "    sum(od.total) as total\n" +
             "from orders as o inner join order_detail as od\n" +
             "                            on o.id = od.order_id\n" +
@@ -102,7 +93,9 @@ public interface OrderDao {
 
     @SqlQuery(value ="select \n" +
             "\to.id, o.create_at, o.payment_status, o.order_status, \n" +
-            "  u.fullName as userName , o.shipping_fee as  shipping_fee,\n" +
+            "o.user_id, o.address_id,\n" +
+            "    o.card_id, o.isCOD,\n" +
+            "  u.fullName as userName ,\n" +
             "  sum(od.total) as total\n" +
             "from orders as o\n" +
             "     inner join order_detail as od\n" +
@@ -111,37 +104,11 @@ public interface OrderDao {
             "           on u.id = o.user_id\n" +
             "group by\n" +
             "   o.id, o.create_at, o.payment_status,\n" +
-            "   o.order_status,\n" +
+            "   o.order_status,o.user_id, o.address_id,\n" +
+            "   o.card_id, o.isCOD,\n" +
             "   u.fullName \n" +
             "order by o.create_at desc")
-
     List<Order> getAllOrders();
-
-
-
-    @SqlUpdate("UPDATE orders " +
-            "SET order_status = :order_status "+
-            "WHERE id = :order_id ")
-
-    void updateOrderStatus(@Bind("order_id") Integer order_id, @Bind("order_status") OrderStatus order_status);
-
-
-    @SqlUpdate("UPDATE orders " +
-            "SET order_status = :order_status "+
-            "WHERE shipping_id = :shipping_id ")
-
-    boolean updateOrderStatusByShippingId(@Bind("shipping_id") String shipping_id, @Bind("order_status") OrderStatus order_status);
-
-
-
-
-
-    @SqlUpdate("UPDATE orders " +
-            "SET shipping_id = :shipping_id "+
-            "WHERE id = :order_id ")
-
-    void updateOrderShippingId(@Bind("order_id") Integer order_id, @Bind("shipping_id") String shipping_id);
-
 
 }
 
