@@ -319,6 +319,7 @@
 </div>
 <script src="${pageContext.request.contextPath}/static/style-component/style_product/SearchProductItem.js"></script>
 <script src="${pageContext.request.contextPath}/static/style-component/style_product/Search_Product.js"></script>
+<script src="${pageContext.request.contextPath}/static/style-component/style_product/FilterProduct.js"></script>
 
 </body>
 </html>
