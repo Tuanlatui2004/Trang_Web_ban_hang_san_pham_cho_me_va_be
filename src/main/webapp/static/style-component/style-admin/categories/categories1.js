@@ -1,6 +1,5 @@
-// xem lại categoryId đồ
 document.addEventListener("DOMContentLoaded", () => {
-    // ==== Sắp xếp bảng ====
+    // **Sắp xếp bảng**
     let currentSortColumn = null;
     let currentSortOrder = 'asc';
 
@@ -10,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const header = document.querySelectorAll("th")[columnIndex];
         const columnType = header.getAttribute("data-sort");
 
+        // Xác định hướng sắp xếp
         if (currentSortColumn === columnIndex) {
             currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
         } else {
@@ -17,32 +17,73 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         currentSortColumn = columnIndex;
 
+        // Sắp xếp các hàng
         const sortedRows = rows.sort((a, b) => {
             const valA = a.cells[columnIndex].innerText.trim();
             const valB = b.cells[columnIndex].innerText.trim();
 
-            return columnType === "number"
-                ? (currentSortOrder === 'asc' ? valA - valB : valB - valA)
-                : (currentSortOrder === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA));
+            if (columnType === "number") {
+                return currentSortOrder === 'asc'
+                    ? parseFloat(valA) - parseFloat(valB)
+                    : parseFloat(valB) - parseFloat(valA);
+            } else {
+                return currentSortOrder === 'asc'
+                    ? valA.localeCompare(valB)
+                    : valB.localeCompare(valA);
+            }
         });
 
+        // Cập nhật bảng
         tableBody.innerHTML = "";
         sortedRows.forEach(row => tableBody.appendChild(row));
 
+        // Cập nhật mũi tên sắp xếp
         document.querySelectorAll(".sort-arrow").forEach(arrow => arrow.classList.remove("active"));
-        header.querySelector(`.${currentSortOrder}`).classList.add("active");
+        if (currentSortOrder === 'asc') {
+            header.querySelector(".asc").classList.add("active");
+        } else {
+            header.querySelector(".desc").classList.add("active");
+        }
     }
 
     document.querySelectorAll("th[data-sort]").forEach((header, index) => {
         header.addEventListener("click", () => sortTable(index));
     });
 
-    // ==== Phân trang ====
+    // **Dropdown menu**
+    function toggleDropdown(button) {
+        const dropdownContent = button.nextElementSibling;
+        const isVisible = dropdownContent.style.display === "block";
+
+        document.querySelectorAll(".dropdown-content").forEach(content => {
+            content.style.display = "none";
+        });
+
+        dropdownContent.style.display = isVisible ? "none" : "block";
+    }
+
+    window.addEventListener("click", (e) => {
+        if (!e.target.closest(".dropdown")) {
+            document.querySelectorAll(".dropdown-content").forEach(content => {
+                content.style.display = "none";
+            });
+        }
+    });
+
+    // Gắn sự kiện cho các nút dropdown
+    document.querySelectorAll(".dropdown button").forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleDropdown(button);
+        });
+    });
+
+    // **Phân trang**
     const pageButtons = document.querySelectorAll(".page-number");
     const prevButton = document.querySelector(".prev-btn");
     const nextButton = document.querySelector(".next-btn");
     const tableBody = document.getElementById("product-table-body");
-    const rowsPerPage = 10;
+    const rowsPerPage = 10; // Có thể thay đổi số lượng hàng mỗi trang
     const rows = Array.from(tableBody.rows);
     const totalPages = Math.ceil(rows.length / rowsPerPage);
     let currentPage = 1;
@@ -55,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
             row.style.display = index >= start && index < end ? "table-row" : "none";
         });
 
+        // Cập nhật trạng thái nút
         pageButtons.forEach((btn, index) => {
             btn.classList.toggle("active", index + 1 === page);
         });
@@ -86,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderTable(1); // Hiển thị trang đầu tiên
 
-    // ==== Hiển thị/Ẩn form thêm ====
+    // **Hiển thị/Ẩn thêm sản phẩm**
     const addProductBtn = document.querySelector(".add-product-btn");
     const addCategoryBox = document.getElementById("add-category-box");
     const discardBtn = document.querySelector(".discard-btn");
@@ -99,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addCategoryBox.classList.add("hidden");
     });
 
-    // ==== Thêm danh mục ====
+    // **Xử lý nút "Thêm"**
     const addCateBtn = document.querySelector(".add-cate-btn");
     const inputField = document.querySelector(".input-field");
 
@@ -118,71 +160,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ name: categoryName }),
-                redirect: "manual"
-            }).then(res => {
-                console.log("Status:", res.status);
-                if (res.status === 0) {
-                    alert("Your session may have expired. Redirecting...");
-                    window.location.href = "login"
-                    return Promise.reject("Session expired");
-                }
-
-                return res.json();
-            }).then(data => {
-                console.log(data);
-                if (data && data.success) {
-                    currentRole = newRole;
-                    select.setAttribute("data-role-current", newRole);
-                    alert("Success!");
-                }
             });
 
-
+            const result = await response.json();
+            if (response.ok) {
+                alert("Danh mục được thêm thành công!");
+                inputField.value = ""; // Reset input field
+            } else {
+                alert(`Lỗi: ${result.message}`);
+            }
         } catch (error) {
+            alert("Có lỗi xảy ra khi thêm danh mục!");
             console.error(error);
         }
     });
-
-    // ==== Cập nhật trạng thái danh mục (toggle) ====
-    document.querySelectorAll(".toggle-icon").forEach(icon => {
-        icon.addEventListener("click", () => {
-            const category_id = icon.dataset.id;
-            const is_active = icon.dataset.active === 'true';
-
-            fetch(`${contextPath}/admin/api/categories/${category_id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ is_active: !is_active })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status === "success") {
-                        const row = icon.closest("tr");
-                        const statusEl = row.querySelector(".category-status-toggle");
-
-                        // Cập nhật trạng thái chữ và class
-                        statusEl.classList.toggle("active", !is_active);
-                        statusEl.classList.toggle("deactive", is_active);
-                        statusEl.textContent = !is_active ? "Hoạt động" : "Không hoạt động";
-
-                        // Cập nhật biểu tượng
-                        const iconEl = icon.querySelector("i");
-                        iconEl.className = `fa-solid ${!is_active ? 'fa-trash' : 'fa-eye-slash'}`;
-
-                        // Cập nhật thuộc tính data-active
-                        icon.dataset.active = (!is_active).toString();
-                    } else {
-                        alert("Cập nhật trạng thái thất bại!");
-                    }
-                })
-                .catch(err => {
-                    console.error("Lỗi khi cập nhật trạng thái category:", err);
-                });
-        });
-    });
-
-
 });
-

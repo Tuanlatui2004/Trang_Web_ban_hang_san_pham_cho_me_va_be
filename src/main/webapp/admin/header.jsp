@@ -20,12 +20,11 @@
             display: flex;
             align-items: center;
             padding: 0 20px;
-            right: 0;
-            top: 0;
-            position: fixed;
-            z-index: 998;
-            left: 270px;
-            box-shadow: 0 -10px 0 -5px rgba(0, 0, 0, 0.2), 0 3px 6px -2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            /*top: 0;*/
+            /*position: fixed;*/
+            /*z-index: 1000;*/
+            /*width: 100%;*/
         }
 
         #header .logo {
@@ -45,7 +44,7 @@
         .search-bar {
             display: flex;
             align-items: center;
-            /*margin-left: 30px;*/
+            margin-left: 30px;
             width: 250px;
         }
 
@@ -134,16 +133,16 @@
 <body>
 
 <div id="header" class="row">
-    <%--    <div class="logo">--%>
-    <%--        <img class="logo" src="${pageContext.request.contextPath}/static/image/logo_web.png" alt="Logo">--%>
-    <%--    </div>--%>
+        <div class="logo">
+            <img class="logo" src="${pageContext.request.contextPath}/static/image/logo_web.jpg" alt="Logo">
+        </div>
     <div class="search-bar">
         <input type="text" placeholder="Tìm kiếm...">
         <button type="submit"><i class="fa-solid fa-search"></i></button>
     </div>
     <div class="menu row mid_align">
         <i class="fa-regular fa-bell"></i>
-        <%--        <i class="fa-regular fa-envelope"></i>--%>
+        <i class="fa-regular fa-envelope"></i>
         <div class="avatar" id="avatar">
             <img src="${pageContext.request.contextPath}/static/image/avatar.jpg" alt="Avatar" height="1024"
                  width="1024"/>
@@ -152,7 +151,7 @@
                         class="nav_item"
                         href="profile">Trang của tôi</a
                 >
-                <a href="${pageContext.request.contextPath}/login">Đăng xuất</a>
+                <a href="/backend_war/login">Đăng xuất</a>
             </div>
         </div>
     </div>

@@ -15,33 +15,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/frontend/src/style/style-component/style_admin/products/addProduct.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-component/style-admin/products/addProduct.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 <body>
-
+<div class="wrap_header">
+    <jsp:include page="header.jsp"/>
+</div>
 
 
 <div class="container">
-    <div class ="left">
         <div class="side_bar">
             <jsp:include page="SideBar.jsp"/>
         </div>
 
-    </div>
-
-
-    <div class="center">
-        <div class="wrap_header">
-            <jsp:include page="header.jsp"/>
-        </div>
-
-
         <div class="content">
 
             <div class="page-header">
-                <h1 class="page-header-title">Thêm Sản phẩm</h1>
+                <div class="row align-items-center">
+                    <div class="col-sm mb-2 mb-sm-0">
+                        <h1 class="page-header-title">Sản phẩm</h1>
+                    </div>
+                </div>
             </div>
             <div class="main-container">
                 <div class="left-column">
@@ -58,6 +54,7 @@
                                     <label for="sku">Mã SKU</label>
                                     <input type="text" id="sku"  disabled>
                                 </div>
+
                                 <div class="form-group half-width">
                                     <label  for="categoryDropdown" >Danh mục  <span class="required">*</span> </label>
                                     <select id="categoryDropdown" class="option-select" data-url="<%= request.getContextPath() %>categories">
@@ -77,10 +74,13 @@
                                     <button type="button" class="toolbar-btn"><i class="fa-solid fa-bold"></i></button>
                                     <button type="button" class="toolbar-btn"><i class="fa-solid fa-italic"></i></button>
                                     <button type="button" class="toolbar-btn"><i class="fa-solid fa-underline"></i></button>
+
                                     <button type="button" class="toolbar-btn"><i class="fa-solid fa-strikethrough"></i></button>
+
                                     <button type="button" class="toolbar-btn"><i class="fa-solid fa-link"></i></button>
                                     <button type="button" class="toolbar-btn"><i class="fa-solid fa-image"></i></button>
                                     <button type="button" class="toolbar-btn"><i class="fa-solid fa-quote-right"></i></button>
+
                                     <button type="button" class="toolbar-btn"><i class="fa-solid fa-code"></i></button>
                                     <button type="button" class="toolbar-btn"><i class="fa-solid fa-list-ul"></i></button>
                                 </div>
@@ -101,8 +101,8 @@
                             <div class="upload-icon" id="uploadIcon">
                                 <img id="previewImage" src="${pageContext.request.contextPath}/static/image/screenshot-1730907930298-removebg-preview.png"
                                      height="170" width="130" alt="Preview Image"/>
-
                             </div>
+
                             <div id="imagePreviewContainer" class="image-preview-container"></div>
                             <p id="dragDropText">Kéo và thả tệp của bạn vào đây</p>
                             <span>hoặc</span>
@@ -110,10 +110,6 @@
                                 <input type="file" id="fileInput" name="file" style="display: none;" accept=".png, .jpg, .jpeg" multiple />
                                 <button type="button" class="browse-files" id="uploadButton">Tải ảnh lên</button>
                             </form>
-
-
-
-
                         </div>
                     </div>
 
@@ -159,13 +155,8 @@
 
 
                 <div class="right-column">
-
-
-
-
-
                     <div class="section organization-section">
-                        <h2>Khác</h2>
+                        <h2>Tổ chức</h2>
                         <label for="vendor">Nhà cung cấp <span class="required">*</span> </label>
                         <select id="vendor"  data-url="<%= request.getContextPath() %>categories">
                             <option value="winter">Chọn nhà cung cấp</option>
@@ -191,6 +182,6 @@
 </div>
 
 
-<script src="${pageContext.request.contextPath}frontend/src/style/style-component/style_admin/products/addProduct.js"></script>
+<script src="${pageContext.request.contextPath}/static/style-component/style-admin/products/addProduct.js"></script>
 </body>
 </html>
