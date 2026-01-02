@@ -30,13 +30,7 @@ public class UserService {
         return userDao.getAllUsers();
     }
 
-    public List<User> getCustomers() {
-        return userDao.getCustomers();
-    }
 
-    public List<User> getMembers() {
-        return userDao.getMembers();
-    }
 
     public String getAvatarUrlById(Integer avatar_id) {
         return userDao.getAvatarUrlById(avatar_id);
@@ -61,9 +55,7 @@ public class UserService {
 
 
 
-    public Boolean updateNeedRefresh (Integer user_id, Boolean need_refresh ) {
-        return userDao.updateNeedRefresh(user_id, need_refresh);
-    }
+
 
     public static void main(String[] args) {
         UserService userService = new UserService(DBConnection.getJdbi());
@@ -79,7 +71,6 @@ public class UserService {
 //        System.out.println(userService.getMembers());
 //        System.out.println(userService.getCustomers());
 //        System.out.println(userService.getUserByEmail("admin@gmail.com"));
-        System.out.println(userService.updateNeedRefresh(39,false));
 
 
 

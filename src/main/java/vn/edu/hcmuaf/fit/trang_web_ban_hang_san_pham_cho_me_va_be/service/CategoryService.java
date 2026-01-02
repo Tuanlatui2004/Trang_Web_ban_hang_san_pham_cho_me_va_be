@@ -14,9 +14,7 @@ public class CategoryService {
         this.categoryDao = jdbi.onDemand(CategoryDao.class);
     }
 
-    public void updateCategoryStatus(Integer id, boolean is_active) {
-        categoryDao.updateCategoryStatus(id, is_active ? 1 : 0);
-    }
+
 
 
     public List<Category> getAllCategories() {
@@ -24,9 +22,6 @@ public class CategoryService {
     }
 
 
-    public List<CategoryWithStock> getCategoriesWithStock() {
-        return categoryDao.getCategoriesWithStock();
-    }
 
     public Category getCategoryById(Integer id) {
         Category category = categoryDao.getCategoryById(id);

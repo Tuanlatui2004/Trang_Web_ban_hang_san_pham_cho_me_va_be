@@ -18,10 +18,6 @@ public class ProductDTO {
     private  String category_name;
     private  String image_url;
     private List<Variant> variants;
-    Integer height;
-    Integer length;
-    Integer width;
-    Integer weight;
 
     public ProductDTO(Product product, List<Variant> variants) {
         this.id = id;
@@ -40,10 +36,7 @@ public class ProductDTO {
         this.category_name = category_name;
         this.image_url = image_url;
         this.variants = variants;
-        this.height = height;
-        this.length = length;
-        this.width = width;
-        this.weight = weight;
+
     }
 
     public Integer getId() {
@@ -174,35 +167,4 @@ public class ProductDTO {
         this.variants = variants;
     }
 
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public Integer getLength() {
-        return length;
-    }
-
-    public void setLength(Integer length) {
-        this.length = length;
-    }
-
-    public Integer getWidth() {
-        return width;
-    }
-
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
 }
