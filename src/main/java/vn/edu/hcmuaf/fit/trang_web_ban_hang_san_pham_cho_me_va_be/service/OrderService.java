@@ -25,8 +25,7 @@ public class OrderService {
                 order.getUser_id(),
                 order.getAddress_id(),
                 order.getCard_id(),
-                order.getCOD(),
-                order.getShipping_fee()
+                order.getCOD()
         );
     }
 
@@ -47,20 +46,6 @@ public class OrderService {
 
     public List<Order> getAllOrders( ) {
         return orderDao.getAllOrders();
-    }
-
-
-    public void updateStatus(Integer order_id, OrderStatus order_status) {
-        orderDao.updateOrderStatus(order_id, order_status);
-    }
-
-
-    public boolean updateStatusByShippingId(String shipping_id, OrderStatus order_status) {
-        return orderDao.updateOrderStatusByShippingId(shipping_id, order_status);
-    }
-
-    public void updateShippingId(Integer order_id, String shipping_id) {
-        orderDao.updateOrderShippingId(order_id, shipping_id);
     }
 
 

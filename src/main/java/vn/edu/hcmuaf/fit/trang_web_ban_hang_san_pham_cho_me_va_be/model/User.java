@@ -18,15 +18,11 @@ public class User {
     Integer avatar_id;
     String status;
     String role;
-    String confirmationToken;
+    String salt;
     String avatar_url;
 
     // xem
 
-//    String facebookId;
-//    Boolean needRefresh;
-//    String salt;
-//    String avatarUrl;
 
     @JdbiConstructor
     public User(@ColumnName("id") Integer id,
@@ -40,7 +36,7 @@ public class User {
                 @ColumnName("avatarId") @Nullable Integer avatar_id,
                 @ColumnName("status") @Nullable String status,
                 @ColumnName("role") @Nullable String role,
-                @ColumnName("confirmationToken") @Nullable String confirmationToken,
+                @ColumnName("salt") @Nullable String salt,
                 @ColumnName("avatar_url") @Nullable String avatar_url
 
     ) {
@@ -55,7 +51,7 @@ public class User {
         this.avatar_id = avatar_id;
         this.status = status;
         this.role = role;
-        this.confirmationToken = confirmationToken;
+        this.salt = salt;
         this.avatar_url = avatar_url;
     }
 
@@ -150,12 +146,12 @@ public class User {
         this.role = role;
     }
 
-    public String getConfirmationToken() {
-        return confirmationToken;
+    public String getSalt() {
+        return salt;
     }
 
-    public void setConfirmationToken(String confirmationToken) {
-        this.confirmationToken = confirmationToken;
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public String getAvatar_url() {
@@ -179,8 +175,8 @@ public class User {
                 ", password_Username='" + password_Username + '\'' +
                 ", avatar_id=" + avatar_id +
                 ", status='" + status + '\'' +
-                ", role=" + role +
-                ", confirmationToken='" + confirmationToken + '\'' +
+                ", role='" + role + '\'' +
+                ", salt='" + salt + '\'' +
                 ", avatar_url='" + avatar_url + '\'' +
                 '}';
     }
