@@ -1,22 +1,20 @@
-package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.user.order;
+package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.user.profile;
 
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Order;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.OrderService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet(name = "UserOrderController", value = "/user-order")
-public class UserOrderController extends  HttpServlet {
-    OrderService orderService = new OrderService(DBConnection.getJdbi());
+@WebServlet(name = "UserDetailController", value = "/user-profile")
+public class UserDetailController extends HttpServlet{
+    UserService userService = new UserService(DBConnection.getJdbi());
 
 
     @Override
@@ -25,16 +23,16 @@ public class UserOrderController extends  HttpServlet {
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("user_id");
 
-        List<Order> orders = new ArrayList<>();
-        try {
+        User user= null;
+        if (userId != null) {
+            user = userService.getUserById(userId);
+            request.setAttribute("user", user);
 
-            orders = orderService.getOrdersByUserId(userId);
-            request.setAttribute("orders", orders);
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(user.toString());
         }
 
-        request.getRequestDispatcher("user/user-order.jsp").forward(request, response);
+        request.getRequestDispatcher("user/user-profile.jsp").forward(request, response);
+
     }
 
     @Override
@@ -42,4 +40,5 @@ public class UserOrderController extends  HttpServlet {
             throws ServletException, IOException {
         // Xử lý yêu cầu POST ở đây
     }
+
 }
