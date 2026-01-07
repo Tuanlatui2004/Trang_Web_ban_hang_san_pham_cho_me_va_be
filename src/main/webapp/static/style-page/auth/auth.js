@@ -76,11 +76,7 @@ document.querySelector(".sign-in-container form").addEventListener("submit", asy
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const recaptchaResponse = grecaptcha.getResponse();
-    if (!recaptchaResponse) {
-        alert("Vui lòng xác nhận bạn không phải là robot.");
-        return;
-    }
+
 
     try {
         const response = await fetch("login", {
@@ -92,7 +88,6 @@ document.querySelector(".sign-in-container form").addEventListener("submit", asy
                 credentials: "include",
                 email,
                 password,
-                recaptcha: recaptchaResponse
             }),
         });
 
@@ -103,24 +98,16 @@ document.querySelector(".sign-in-container form").addEventListener("submit", asy
             if (data && data.data) {
                 console.log("Session ID:", data.data.sessionId);
                 console.log("User ID:", data.data.id);
-                console.log("Role Type:", data.data.roleType);
-                console.log("Role ID:", data.data.roleId);
-                console.log("Permissions:", data.data.permissions);
+                console.log("Role:", data.data.role);
 
                 // Lưu vào sessionStorage
                 sessionStorage.setItem("sessionId", data.data.sessionId);
                 sessionStorage.setItem("userId", data.data.id);
-                sessionStorage.setItem("roleType", data.data.roleType);
-                sessionStorage.setItem("roleId", data.data.roleId);
+                sessionStorage.setItem("role", data.data.role);
 
-                // Lưu permissions dưới dạng JSON string
-                sessionStorage.setItem("permissions", JSON.stringify(data.data.permissions));
 
-                if(data.data.status === "BANNED"){
-                    // alert("test" + data.data.status)
-                    window.location.href = "home"
-                }
-                if (data.data.roleType !== "USER" && data.data.status === "ACTIVE" ) {
+
+                if (data.data.role === "ADMIN") {
                     window.location.href = "admin/dashboard";
                 }
                 else {
@@ -139,16 +126,7 @@ document.querySelector(".sign-in-container form").addEventListener("submit", asy
     }
 });
 
-// Helper function to check if user has specific permission
-function hasPermission(permissionType) {
-    const permissions = JSON.parse(sessionStorage.getItem("permissions") || "[]");
-    return permissions.includes(permissionType);
-}
 
-// Helper function to get all user permissions
-function getUserPermissions() {
-    return JSON.parse(sessionStorage.getItem("permissions") || "[]");
-}
 
 
 // Hàm kiểm tra mật khẩu
@@ -204,60 +182,3 @@ document.querySelector('form').addEventListener('submit', function(event) {
 });
 
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.querySelector('.sign-in-container form');
-    const rememberCheckbox = document.getElementById('remember-checkbox');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const signInButton = document.getElementById('signInButton');
-
-    checkSavedCredentials();
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const email = emailInput.value.trim();
-        const password = passwordInput.value;
-
-        if (rememberCheckbox.checked) {
-            saveCredentials(email, password);
-        } else {
-            clearSavedCredentials();
-        }
-        // login(email, password, recaptchaResponse);
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (!recaptchaResponse) {
-            alert("Vui lòng xác nhận bạn không phải là robot.");
-            return;
-        }
-
-        login(email, password, recaptchaResponse);
-    });
-
-    function saveCredentials(email, password) {
-        const encodedPassword = btoa(password);
-        localStorage.setItem('remembered_email', email);
-        localStorage.setItem('remembered_password', encodedPassword);
-        localStorage.setItem('remember_me', 'true');
-    }
-
-    function clearSavedCredentials() {
-        localStorage.removeItem('remembered_email');
-        localStorage.removeItem('remembered_password');
-        localStorage.removeItem('remember_me');
-    }
-
-    function checkSavedCredentials() {
-        const rememberedEmail = localStorage.getItem('remembered_email');
-        const rememberedPassword = localStorage.getItem('remembered_password');
-        const rememberMe = localStorage.getItem('remember_me');
-
-        if (rememberMe === 'true' && rememberedEmail && rememberedPassword) {
-            emailInput.value = rememberedEmail;
-            // Decode the password
-            passwordInput.value = atob(rememberedPassword);
-            rememberCheckbox.checked = true;
-        }
-    }
-
-});

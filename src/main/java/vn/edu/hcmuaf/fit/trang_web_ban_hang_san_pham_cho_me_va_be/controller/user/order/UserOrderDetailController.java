@@ -16,7 +16,7 @@ import java.util.List;
 @WebServlet(name = "UserOrderDetailController", value = "/user-order-detail")
 public class UserOrderDetailController extends HttpServlet {
     OrderDetailService orderDetailService = new OrderDetailService(DBConnection.getJdbi());
-    OrderSerivce orderSerivce = new OrderSerivce(DBConnection.getJdbi());
+    OrderService orderSerivce = new OrderService(DBConnection.getJdbi());
     UserService userService = new UserService(DBConnection.getJdbi());
     CardService cardService = new CardService(DBConnection.getJdbi());
     AddressService addressSevice = new AddressService(DBConnection.getJdbi());
