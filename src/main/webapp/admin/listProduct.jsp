@@ -23,7 +23,7 @@
 </head>
 <body>
 <div class="header">
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="Header.jsp"/>
 </div>
 
 <div class="container">
@@ -131,9 +131,9 @@
                                 </div>
                             </td>
 
-                            <td>${p.categoryName}</td>
+                            <td>${p.category_name}</td>
 
-                            <td>01/8/2023</td>
+                            <td>01/1/2026</td>
 
                             <td>   <fmt:formatNumber value="${p.price}" pattern="#,###"/> VND </td>
 
@@ -193,12 +193,6 @@
         </div>
 
     </div>
-
-</div>
-
-<script>
-    const pageContextPath = "${pageContext.request.contextPath}";
-</script>
 
 
 </body>
