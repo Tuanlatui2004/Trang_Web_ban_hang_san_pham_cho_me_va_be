@@ -15,41 +15,13 @@ public class ProductReviewService {
         this.productReviewDao = jdbi.onDemand(ProductReviewDao.class);
     }
 
-    public boolean isOrderDelivered(int order_id, int user_id) {
-        OrderStatus orderStatus = productReviewDao.getOrderStatus(order_id, user_id);
-        return orderStatus != null && orderStatus == OrderStatus.DELIVERED;
-    }
-
-    public ProductReview getReview(int user_id, int order_id, int product_id) {
-        return productReviewDao.getReview(user_id, order_id, product_id);
-    }
-
-
     public Boolean addReview(ProductReview review) {
-        int existing = productReviewDao.countExistingReview(
-                review.getUser_id(),
-                review.getOrder_id(),
-                review.getProduct_id()
-        );
-
-        if (existing > 0) {
-            System.out.println(" Review đã tồn tại");
-            return false;
-        }
-
-        boolean success = productReviewDao.addReview(
-                review.getUser_id(),
+        return productReviewDao.addReview(review.getUser_id(),
                 review.getProduct_id(),
                 review.getOrder_id(),
                 review.getRating(),
                 review.getDescription()
         );
-
-        if (success) {
-            productReviewDao.updateIsReviewed(review.getOrder_id(), review.getProduct_id());
-        }
-
-        return success;
     }
 
     public static void main(String[] args) {

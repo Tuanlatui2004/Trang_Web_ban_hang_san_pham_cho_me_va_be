@@ -7,13 +7,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.OrderService;
 
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "AdminOrdersController", value = "/admin/orders")
 public class AdminOrdersController extends HttpServlet {
-    OrderSerivce orderSerivce = new OrderSerivce(DBConnection.getJdbi());
+    OrderService orderSerivce = new OrderService(DBConnection.getJdbi());
 
 
 
