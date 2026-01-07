@@ -387,7 +387,7 @@ header {
 
 .product-image {
     width: 100%;
-    max-width: 500px;
+    /*max-width: 500px;*/
     margin-bottom: 40px;
     text-align: center;
 }

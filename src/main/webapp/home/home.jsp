@@ -69,7 +69,7 @@
         <c:forEach var="b" items="${banners}" varStatus="status">
             <c:if test="${status.index < 4}">
                 <div class="banner-slide ${status.index == 0 ? 'active' : ''}"
-                     style="background-image: url('${imageMap[b.imageId]}');">
+                     style="background-image: url('${imageMap[b.image_id]}');">
                     <div class="overlay"></div>
                     <div class="banner-content">
                         <h2>${b.title}</h2>
