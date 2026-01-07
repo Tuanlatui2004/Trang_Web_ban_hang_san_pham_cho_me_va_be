@@ -6,8 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
 <head>
     <title>Title</title>
@@ -38,22 +36,6 @@
             flex-direction: column;
         }
 
-        .menu_item button {
-            background: none;
-            border: none;
-            color: #4b5563;
-            font-size: 16px;
-            font-family: inherit;
-            cursor: pointer;
-            padding: 0;
-            text-align: left;
-        }
-
-        .menu_item button:hover {
-            color: #2563eb;
-        }
-
-
         .rec_horizontal {
             width: 100%;
             height: 1px;
@@ -75,7 +57,7 @@
 
         a {
             text-decoration: none;
-            color: #4b5563; /* Dark text color for links */
+            color: #111827; /* Dark text color for links */
         }
 
         .bold {
@@ -92,14 +74,12 @@
         }
 
         #sidebar {
-            width: 270px;
-            height: 100%;
+            width: 250px;
             background-color: #ffffff; /* Thay màu trắng */
             border-right: 1px solid #e5e7eb;
-
-            padding-bottom: 250px;
+            padding-top: 20px;
+            padding-bottom: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* Hiệu ứng shadow nhẹ */
-            position: fixed;
         }
 
         #sidebar ul {
@@ -114,7 +94,7 @@
             padding: 12px 20px;
             color: #4b5563;
             font-weight: 500;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
             position: relative;
@@ -225,47 +205,24 @@
             color: #2563eb;
             border-radius: 5px;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            margin: 0px 12px;
-            padding-bottom: 30px;
-        }
-
-        .logo img {
-            object-fit: contain;
-            width: 95%;
-            height: 80%;
-            cursor: pointer;
-        }
     </style>
 </head>
 
 
 <body>
 <div id="body" class="row">
-    <c:set var="permissions" value="${sessionScope.permissions}"/>
-
     <nav id="sidebar" class="col">
-
-        <div class="logo">
-            <img class="logo" src="${pageContext.request.contextPath}/static/image/logo_web.jpg" alt="Logo">
-        </div>
-
         <ul>
-            <c:if test="${permissions != null or
-             (permissions.contains('VIEW_DASHBOARD'))}">
-                <li class="menu_item ">
-                    <div class="wrap_menu_item">
-                        <i class="fa-solid fa-house"></i>
-                        <a href="Dashboard.jsp">Tổng quan</a>
-                    </div>
-                </li>
-
-            </c:if>
+            <!-- Bảng điều khiển -->
+            <li class="menu_item ">
+                <div class="wrap_menu_item">
+                    <i class="fa-solid fa-house"></i>
+                    <a href="dashboard">Tổng quan</a>
+                </div>
+            </li>
 
 
+            <!--Sản phẩm-->
             <li class="menu_item">
                 <div class="wrap_menu_item">
                     <i class="fa-solid fa-box"></i>
@@ -274,166 +231,63 @@
                 </div>
 
                 <ul class="submenu">
-
-                    <c:if test="${permissions != null and
-                        (permissions.contains('VIEW_PRODUCTS'))}">
-                        <li class="submenu_item">
-                            <button onclick="location.href='${pageContext.request.contextPath}/admin/listProduct.jsp'">
-                                Danh sách sản phẩm
-                            </button>
-                        </li>
-                    </c:if>
-
-
-                    <c:if test="${permissions != null and
-                        (permissions.contains('CREATE_PRODUCTS'))}">
-                        <li class="submenu_item">
-                            <button onclick="location.href='${pageContext.request.contextPath}/admin/addProduct.jsp'">
-                                Thêm sản phẩm
-                            </button>
-                        </li>
-                    </c:if>
-
-
+                    <li class="submenu_item">
+                        <a href="list-product">Danh sách sản phẩm</a>
+                    </li>
+                    <li class="submenu_item">
+                        <a href="add-product">Thêm sản phẩm</a>
+                    </li>
                 </ul>
             </li>
 
             <!-- Đơn hàng -->
-
-<%--chưa fix chỗ này--%>
-            <c:if test="${permissions != null and
-                        (permissions.contains('VIEW_ORDERS') or
-                        permissions.contains('UPDATE_ORDERS_STATUS')
-                        )}">
-                <li class="menu_item">
-                    <div class="wrap_menu_item">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/orders'">
-                            Đơn hàng
-                        </button>
-                    </div>
-
-                </li>
-            </c:if>
-
-<%--chưa fix cả chỗ này--%>
-            <c:if test="${permissions != null and
-                        (permissions.contains('VIEW_CUSTOMERS')
-                        )}">
-                <li class="menu_item">
-                    <div class="wrap_menu_item">
-                        <i class="fa-solid fa-users"></i>
-                            <%--                    <a href="customers">Khách hàng</a>--%>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/customers'">
-                            Khách hàng
-                        </button>
-                    </div>
-
-                </li>
-            </c:if>
-
-
-            <c:if test="${permissions != null and
-                        (permissions.contains('MANAGE_MEMBER')
-                        )}">
-                <li class="menu_item">
-                    <div class="wrap_menu_item">
-                        <i class="fa-solid fa-user"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/team-member'">
-                            Thành viên
-                        </button>
-                    </div>
-                </li>
-            </c:if>
-
-
-            <c:if test="${permissions != null and
-                        (permissions.contains('MANAGE_REVIEW') or
-                         permissions.contains('VIEW_REVIEW')
-                        )}">
-                <li class="menu_item">
-                    <div class="wrap_menu_item">
-                        <i class="fa-solid fa-star"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/review'">
-                            Xem Đánh giá
-                        </button>
-                    </div>
-                </li>
-            </c:if>
-
-
-
-
-            <c:if test="${permissions != null and
-                        (permissions.contains('MANAGE_CATEGORIES') or
-                         permissions.contains('MANAGE_INVENTORY')
-                        )}">
-                <li class="menu_item">
-                    <div class="wrap_menu_item">
-                        <i class="fa-solid fa-warehouse"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/category'">
-                            Danh mục
-                        </button>
-                    </div>
-                </li>
-            </c:if>
-
-
-
-            <c:if test="${permissions != null and
-                        (permissions.contains('MANAGE_BRAND') or
-                         permissions.contains('MANAGE_INVENTORY')
-                        )}">
-                <li class="menu_item">
-                    <div class="wrap_menu_item">
-                        <i class="fa-brands fa-microblog"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/brand.jsp'">
-                            Nhà sản xuất
-                        </button>
-                    </div>
-                </li>
-            </c:if>
-
-
-
-            <c:if test="${permissions != null and
-                        (permissions.contains('MANAGE_MEMBER')
-                        )}">
-                <li class="menu_item">
-                    <div class="wrap_menu_item">
-                        <i class="fa-solid fa-user-shield"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/ManageRole.jsp'">
-                            Quản lý Vai Trò
-                        </button>
-                    </div>
-                </li>
-            </c:if>
-
-
-
-            <c:if test="${permissions != null and
-                        (permissions.contains('MANAGE_BANNER')
-                        )}">
-                <li class="menu_item">
-                    <div class="wrap_menu_item">
-                        <i class="fa-solid fa-image"></i>
-                        <button onclick="location.href='${pageContext.request.contextPath}/admin/banner.jsp'">
-                            Quản lý Banner
-                        </button>
-                    </div>
-                </li>
-            </c:if>
-
-
-
-
-<%--chưa fix--%>
             <li class="menu_item">
                 <div class="wrap_menu_item">
-                    <i class="fa-solid fa-gear"></i>
-                    <a href="account_settings.jsp"> Cài đặt</a>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <a href="orders">Đơn hàng</a>
+                </div>
+
+            </li>
+
+            <!-- Khách hàng -->
+            <li class="menu_item">
+                <div class="wrap_menu_item">
+                    <i class="fa-solid fa-users"></i>
+                    <a href="customers">Khách hàng</a>
+                </div>
+
+            </li>
+
+
+            <!-- Hồ sơ -->
+            <li class="menu_item">
+                <div class="wrap_menu_item">
+                    <i class="fa-solid fa-user"></i>
+                    <a href="profile">Hồ sơ</a>
                 </div>
             </li>
+
+
+            <!-- Danh mục -->
+            <li class="menu_item">
+                <div class="wrap_menu_item">
+                    <%--                    <i class="fa-solid fa-gear"></i>--%>
+                    <i class="fa-solid fa-warehouse"></i>
+                    <a href="category">Danh mục</a>
+                    <%--                    <span>  Danh mục </span>--%>
+                </div>
+            </li>
+
+            <li class="menu_item">
+                <div class="wrap_menu_item">
+                    <%--                    <i class="fa-solid fa-gear"></i>--%>
+                    <i class="fa-solid fa-warehouse"></i>
+                    <a href="brand">Nhà sản xuất</a>
+                    <%--                    <span>  Danh mục </span>--%>
+                </div>
+            </li>
+
+
         </ul>
     </nav>
 

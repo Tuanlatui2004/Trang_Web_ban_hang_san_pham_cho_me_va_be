@@ -20,7 +20,7 @@ import java.util.List;
 @WebServlet(name = "BuyNowController", value = "/buy-now")
 public class BuyNowController extends HttpServlet {
     ProductService productService = new ProductService(DBConnection.getJdbi());
-    OrderService orderSerivce = new OrderService(DBConnection.getJdbi());
+    OrderService orderService = new OrderService(DBConnection.getJdbi());
     OrderDetailService orderDetailService = new OrderDetailService(DBConnection.getJdbi());
     CardService cardService = new CardService(DBConnection.getJdbi());
     AddressService addressService = new AddressService(DBConnection.getJdbi());

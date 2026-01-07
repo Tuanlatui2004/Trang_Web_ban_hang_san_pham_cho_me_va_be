@@ -16,10 +16,10 @@ import java.util.List;
 @WebServlet(name = "UserOrderDetailController", value = "/user-order-detail")
 public class UserOrderDetailController extends HttpServlet {
     OrderDetailService orderDetailService = new OrderDetailService(DBConnection.getJdbi());
-    OrderService orderSerivce = new OrderService(DBConnection.getJdbi());
+    OrderService orderService = new OrderService(DBConnection.getJdbi());
     UserService userService = new UserService(DBConnection.getJdbi());
     CardService cardService = new CardService(DBConnection.getJdbi());
-    AddressService addressSevice = new AddressService(DBConnection.getJdbi());
+    AddressService addressService = new AddressService(DBConnection.getJdbi());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,7 +34,7 @@ public class UserOrderDetailController extends HttpServlet {
             request.setAttribute("user", user);
         }
 
-        Order order = orderSerivce.getOrderByIdAndUserId(orderId,userId);
+        Order order = orderService.getOrderByIdAndUserId(orderId,userId);
         if (order != null) {
             request.setAttribute("order", order);
 
@@ -46,7 +46,7 @@ public class UserOrderDetailController extends HttpServlet {
             }
 
 
-            Address address = addressSevice.findById(order.getAddress_id());
+            Address address = addressService.findById(order.getAddress_id());
             if (address != null) {
                 request.setAttribute("address", address);
             }
