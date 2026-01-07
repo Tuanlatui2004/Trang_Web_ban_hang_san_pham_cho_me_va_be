@@ -38,10 +38,6 @@ public interface UserDao {
                       @Bind("salt") String salt);
 
 
-
-
-
-
     @SqlUpdate("UPDATE user SET fullname = :fullname, email = :email, password = :password WHERE id = :id")
     void updateUser(@Bind("id") Integer id,
                     @Bind("fullname") String fullname,
