@@ -18,7 +18,7 @@ import java.util.List;
 @WebServlet(name = "AdminOrderDetailController", value = "/admin/order-detail")
 public class AdminOrderDetailController extends HttpServlet {
     OrderDetailService orderDetailService = new OrderDetailService(DBConnection.getJdbi());
-    OrderService orderSerivce = new OrderService(DBConnection.getJdbi());
+    OrderService orderService = new OrderService(DBConnection.getJdbi());
     UserService userService = new UserService(DBConnection.getJdbi());
 
     @Override
@@ -27,7 +27,7 @@ public class AdminOrderDetailController extends HttpServlet {
 
 
         Integer orderId = Integer.parseInt(request.getParameter("order_id"));
-        Order order = orderSerivce.getOrderById(orderId);
+        Order order = orderService.getOrderById(orderId);
 
 
 

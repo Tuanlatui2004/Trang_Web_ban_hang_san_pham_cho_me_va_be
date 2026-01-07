@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet(name = "AdminOrdersController", value = "/admin/orders")
 public class AdminOrdersController extends HttpServlet {
-    OrderService orderSerivce = new OrderService(DBConnection.getJdbi());
+    OrderService orderService = new OrderService(DBConnection.getJdbi());
 
 
 
@@ -22,7 +22,7 @@ public class AdminOrdersController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Order> orders = orderSerivce.getAllOrders();
+        List<Order> orders = orderService.getAllOrders();
 
         request.setAttribute("orders", orders);
 

@@ -1,28 +1,3 @@
-const routes = {
-    dashboard: '../../component/admin_components/Dashboard.html',
-    my_profile: '../../component/admin_components/myProfile.html',
-    product_details: '../../component/product_detail/Product-detail-admin.html',
-    list_products: '../../component/admin_components/listProduct.html',
-    add_product: '../../component/admin_components/addProduct.html',
-    orders: '../../component/admin_components/orders.html',
-    order_detail: '../../component/admin_components/orderDetail.html',
-    customers: '../../component/admin_components/customers.html',
-    customers_detail: '../../component/admin_components/customerDetail.html',
-    setting: '../../component/admin_components/account_settings.html',
-};
-const userPopup = document.querySelector(".user-popup");
-const avatar = document.querySelector(".avatar");
-
-
-function loadPage(pageKey) {
-    const pagePath = routes[pageKey];
-    if (pagePath) {
-        document.querySelector("#content iframe").src = pagePath;
-    } else {
-        console.error("Page not found:", pageKey);
-    }
-}
-
 
 document.querySelectorAll('.menu_item').forEach(item => {
     item.addEventListener('click', (event) => {
@@ -67,9 +42,6 @@ document.querySelectorAll('.menu_item').forEach(item => {
 });
 
 
-
-
-
 // Xử lý sự kiện click vào submenu
 document.querySelectorAll('.submenu li').forEach(submenuItem => {
     submenuItem.addEventListener('click', (event) => {
@@ -84,23 +56,4 @@ document.querySelectorAll('.submenu li').forEach(submenuItem => {
         // Gán trạng thái active cho mục được chọn
         submenuItem.classList.add('active');
     });
-});
-
-
-avatar.addEventListener("mouseenter", () => {
-    userPopup.style.display = "block";
-});
-
-avatar.addEventListener("mouseleave", () => {
-    setTimeout(() => {
-        userPopup.style.display = "none";
-    }, 200);
-});
-
-userPopup.addEventListener("mouseenter", () => {
-    userPopup.style.display = "block";
-});
-
-userPopup.addEventListener("mouseleave", () => {
-    userPopup.style.display = "none";
 });
