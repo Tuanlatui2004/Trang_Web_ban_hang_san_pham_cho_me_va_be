@@ -5,8 +5,8 @@
   Time: 9:46 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%--<%@ page import="com.example.backend.model.User" %>--%>
-<%--<%@ page import="com.example.backend.model.Address" %>--%>
+<%@ page import="vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User" %>
+<%@ page import="vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Address" %>
 <%@ page import="java.util.List" %>
 
 
@@ -17,7 +17,8 @@
     <title>Title</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/static/style-component/style-user_profile/Address.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome/css/all.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
 
 </head>

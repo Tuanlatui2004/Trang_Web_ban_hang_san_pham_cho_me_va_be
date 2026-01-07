@@ -11,31 +11,15 @@ body {
 
 .container{
     display: flex;
-    flex-direction: row;
 }
-left {
-    width: 270px;
-}
-
-.center{
-    width: 100%;
-}
-
-.side_bar {
-    width: 270px;
-}
-
 
 .content {
-    margin-top: 60px;
-    padding: 20px;
     width: 100%;
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+    padding: 80px 10px;
+    border-radius: 10px;
 }
-
 
 .toolbar {
     display: flex;
@@ -92,18 +76,18 @@ left {
     gap: 5px;
 }
 
-/*.search-bar {*/
-/*    padding: 8px;*/
-/*    font-size: 14px;*/
-/*    border: 1px solid #ddd;*/
-/*    border-radius: 8px;*/
-/*    width: 100%;*/
-/*    transition: border-color 0.3s;*/
-/*}*/
+.search-bar {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    transition: border-color 0.3s;
+}
 
-/*.search-bar:focus {*/
-/*    border-color: #6c5ce7;*/
-/*}*/
+.search-bar:focus {
+    border-color: #6c5ce7;
+}
 
 .product-table {
     width: 100%;
@@ -125,7 +109,7 @@ left {
     /*background: #0DCAF0;*/
 }
 .header-content {
-    display: inline-flex;
+    display: flex;
     align-items: center;
 }
 
@@ -184,7 +168,6 @@ left {
     font-weight: bold;
     display: inline-block;
     text-align: center;
-    cursor: pointer;
 }
 
 .status.active {
@@ -196,7 +179,6 @@ left {
     color: #e74c3c;
     background-color: #fde2e2;
 }
-
 
 .action-icons {
     display: flex;
@@ -405,28 +387,3 @@ tr:hover{
     z-index: 9998; /* Slightly lower than the Add Category box */
 }
 
-.table-wrapper {
-    background-color: #ffffff; /* Nền trắng */
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* đổ bóng nhẹ */
-    overflow-x: auto;
-    margin-top: 20px;
-}
-
-.product-table {
-    width: 100%;
-    border-collapse: collapse;
-    color: #333333; /* Màu chữ đậm cho dễ đọc trên nền trắng */
-}
-
-.product-table th {
-    background-color: #f8f9fa; /* Header màu sáng */
-    color: #333333;
-    padding: 12px;
-}
-
-.product-table td {
-    padding: 12px;
-    border-bottom: 1px solid #e5e7eb;
-}
