@@ -6,10 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Cart.Cart" %>
-<% Cart cart = (Cart) session.getAttribute("cart");
-    int initialCartCount = (cart != null) ? cart.getProducts().size() : 0;
-%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,18 +17,6 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-page/home/Home.css"/>
 
-    <script>
-        const initialCartCount = <%= ((vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Cart.Cart) session.getAttribute("cart") != null) ? ((vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Cart.Cart) session.getAttribute("cart")).getProducts().size() : 0 %>;
-
-        document.addEventListener("DOMContentLoaded", function() {
-            // Gọi hàm updateCartCount từ home.js (đảm bảo home.js được load trước script này)
-            if (typeof updateCartCount === 'function') {
-                updateCartCount(initialCartCount);
-            } else {
-                console.error("Hàm updateCartCount chưa được định nghĩa.");
-            }
-        });
-    </script>
 </head>
 <body>
 
@@ -244,7 +230,7 @@
 
 
 <script src="${pageContext.request.contextPath}/static/style-page/home/home.js"></script>
-<script src="${pageContext.request.contextPath}/static/style-component/style-home/search.js"></script>
+<%--<script src="${pageContext.request.contextPath}/static/style-component/style-home/search.js"></script>--%>
 
 
 </body>
