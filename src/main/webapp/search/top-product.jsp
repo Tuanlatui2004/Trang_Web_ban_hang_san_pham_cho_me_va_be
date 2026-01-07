@@ -75,7 +75,7 @@
                 "Content-Type": "application/x-www-form-urlencoded",
             },
             // xem lại ben controller
-            body: `product_id=${product.id}&option_id=${product.optionId}&sessionI_id=${sessionId}`
+            body: `product_id=${product.id}&option_id=${product.optionId}&session_id=${sessionId}`
         })
             .then(response => response.json())
             .then(data => {

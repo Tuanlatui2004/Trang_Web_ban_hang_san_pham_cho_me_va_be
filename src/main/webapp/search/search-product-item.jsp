@@ -99,7 +99,7 @@
         <div class="service">
             <div class="service_item">
                 <i class="fa-solid fa-gift"></i>
-                <span>Ưu đãi thêm 5% (đến 1 trăm ngàn đồng)</span>
+                <span>Sản phẩm được đảm bảo chất lượng tốt</span>
             </div>
 
             <div class="service_item">

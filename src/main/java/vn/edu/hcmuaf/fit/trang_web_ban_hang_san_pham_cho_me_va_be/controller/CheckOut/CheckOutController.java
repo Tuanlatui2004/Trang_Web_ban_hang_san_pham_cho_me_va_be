@@ -145,7 +145,7 @@ public class CheckOutController extends HttpServlet {
                 od.setTotal(total);
                 od.setOption_id(optionId);
 
-                flag= orderDetailService.addOrderDetail(od);
+                flag = orderDetailService.addOrderDetail(od);
                 if (flag){
                     productService.increaseNoOfSold(productId, quantity);
                 }
