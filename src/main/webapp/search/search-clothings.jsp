@@ -46,7 +46,7 @@
             </div>
 
             <!---------------------------- Default ------------------------------------------------>
-
+<%--            kiểm tra xem cái này chưa có xử lí chức năng--%>
             <div class="section_price section_item col">
 
                 <div class="title">Mức giá</div>
@@ -82,39 +82,9 @@
             </div>
 
             <div class="rec_horizontal"></div>
-
-
-            <!---------------------------------------------------------------------------->
-            <%--xem bảng variant --%>
-            <c:if test="${not empty variant}">
-                <c:forEach var="var" items="${variant}">
-
-                    <div class="section_type section_item col">
-                        <div class="title">${v.name}</div>
-
-
-                        <c:if test="${not empty v.value}">
-                            <c:forEach var="value" items="${v.value}">
-                                <div class="item mid_align">
-                                    <input type="checkbox" id="${v.id}" data-options-id="${v.id}">
-                                    <label for="${v.id}">${v.value}</label>
-
-                                </div>
-
-                            </c:forEach>
-                        </c:if>
-
-                    </div>
-
-                    <div class="rec_horizontal"></div>
-
-                </c:forEach>
-
-
-            </c:if>
-            <%--xem bảng variant --%>
-
         </div>
+
+
 
 
         <div id="list_product">
@@ -156,7 +126,7 @@
                                     <div id="top_description">
                                         <ul class="list_descriptions">
                                             <li class="desc_item f12">Bộ quần áo dài êm mềm giúp giữ ấm cơ thể bé, đặc biệt là lưng và bụng</li>
-                                            <li class=" desc_item f12">Áo cổ tròn, phom suông giúp ba mẹ dễ dàng thay ra mặc vào cho bé</li>
+                                            <li class="desc_item f12">Áo cổ tròn, phom suông giúp ba mẹ dễ dàng thay ra mặc vào cho bé</li>
                                             <li class="desc_item f12">Hoạ tiết độc đáo, giúp vẻ ngoài của bé thêm đáng yêu và năng động</li>
                                             <li class="desc_item f12">Chất liệu 100% vải cotton mềm mại, an toàn và có khả năng thấm hút mồ hôi vượt trội</li>
                                         </ul>
@@ -166,8 +136,8 @@
 
 
                                 <div class="operation col">
-                                    <button id="buy_now"  onclick="buyNow(${pro.id}, ${pro.option_id})">
-                                            <%--                                        <a href="buy-now?productId=${pro.id}&optionId=${pro.optionId}">Mua ngay</a>--%>
+                                    <button id="buy_now">
+                                        <a href="buy-now?productId=${pro.id}&optionId=${pro.option_id}">Mua ngay</a>
                                         Mua ngay
                                     </button>
                                     <button onclick="addToCart(${pro.id},${pro.option_id})" class="btn add">Thêm vào giỏ hàng</button>
@@ -220,7 +190,7 @@
                                         <%--phân biệt màu sắc or khối lượng--%>
 
                                     <div class="infor_color col">
-                                        <span class="bold f16">Màu Sắc: <span class="normal f16"> Đen Starry</span></span>
+                                        <span class="bold f16">Size: <span class="normal f16"> Vừa vặn</span></span>
 
                                         <div class="choose_color row">
                                             <div class="col_item" id="pink"></div>
@@ -230,7 +200,7 @@
 
 
                                     </div>
-                                        <%--phân biệt màu sắc or khối lượng--%>
+<%--                                        phân biệt size quần áo hoặc khối lượng sữa--%>
                                     <div class="rating row mid_align">
                             <span id="noOfRatting" class="bold" style="padding: 0 5px">
                                 4.7 (153)
@@ -242,9 +212,9 @@
 
                                     <div id="description">
                                         <ul class="list_descriptions">
-                                            <li class="desc_item f14">Ngăn Đông Mềm -1 độ giữ thịt cá tươi ngon</li>
-                                            <li class=" desc_item f14">Làm đá tự động nhanh chóng, tiện lợi</li>
-                                            <li class="desc_item f14">Công nghệ làm lạnh vòm All Around Cooling</li>
+                                            <li class="desc_item f14">Phù hợp với trẻ mọi lứa tuổi</li>
+                                            <li class=" desc_item f14">Được các chuyên gia kiểm định đạt chuẩn</li>
+                                            <li class="desc_item f14">Là sự lựa chọn của mọi nhà</li>
                                         </ul>
                                     </div>
 
@@ -264,7 +234,7 @@
                                     <div class="service">
                                         <div class="service_item">
                                             <i class="fa-solid fa-gift"></i>
-                                            <span>Ưu đãi thêm 5% (giảm đến 1 trăm đồng)</span>
+                                            <span>Luôn sẵn sàng cho khách hàng</span>
                                         </div>
 
                                         <div class="service_item">
@@ -282,10 +252,8 @@
 
 
                                     <div class="wrap_btn col">
-
-                                        <button onclick="buyNow(${p.id}, ${p.option_id})" class="btn buy" id="buy-now-btn">Mua Ngay</button>
-                                            <%--                                        <a href="buy-now?productId=${p.id}&optionId=${p.optionId}" class="btn buy"--%>
-                                            <%--                                           id="buy-now-btn">Mua Ngay</a>--%>
+                                        <a href="buy-now?productId=${p.id}&optionId=${p.optionId}" class="btn buy"
+                                           id="buy-now-btn">Mua Ngay</a>
 
                                         <button onclick="addToCart(${p.id},${p.option_id})" class="btn add">
                                             Thêm vào giỏ hàng
@@ -319,8 +287,7 @@
 </div>
 <script src="${pageContext.request.contextPath}/static/style-component/style_product/SearchProductItem.js"></script>
 <script src="${pageContext.request.contextPath}/static/style-component/style_product/Search_Product.js"></script>
-<script src="${pageContext.request.contextPath}/static/style-component/style_product/FilterProduct.js"></script>
-
+<%-- xem thêm chỗ lọc sản phẩm bằng variant--%>
 </body>
 </html>
 

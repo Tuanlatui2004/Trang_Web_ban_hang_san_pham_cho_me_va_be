@@ -28,7 +28,7 @@ public class BuyNowController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Product product = productService.getProductByIdAndOptionId(Integer.parseInt(request.getParameter("productId")),
+         Product product = productService.getProductByIdAndOptionId(Integer.parseInt(request.getParameter("product_id")),
                 Integer.parseInt(request.getParameter("option_id")));
 
 

@@ -14,24 +14,43 @@ document.addEventListener("click", function(event) {
 });
 
 
+// Hàm đọc tham số từ URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
 
 
+// Lấy loại sản phẩm từ URL
+const productType = getQueryParam('product');
+
+// Hiển thị nội dung theo loại sản phẩm
+if (productType) {
+    const titleElement = document.querySelector('#list_product .product_item > span');
+    const productMap = {
+        'suabot': 'Sữa bột',
+        'dososinh': 'Đồ trẻ Sơ sinh',
+        'bimta': 'Bỉm tả',
+        'dome': 'Thời trang cho mẹ'
+    };
+
+    // Thay đổi tiêu đề danh sách sản phẩm
+    titleElement.textContent = productMap[productType] || 'Sản Phẩm Nổi Bật';
+}
 let debounceTimeout;
 
 document.getElementById('search-input').addEventListener('input', () => {
     const searchInput = document.getElementById('search-input').value.trim();
-    const searchIcon = document.querySelector('.search-icon i');
 
-    // Thay đổi icon thành loader khi người dùng nhập từ khóa
-    searchIcon.classList.remove('fa-magnifying-glass');
-    searchIcon.classList.add('fa-spinner', 'fa-spin');
+
+
 
     // Xóa timeout cũ nếu người dùng tiếp tục nhập
     clearTimeout(debounceTimeout);
-
+    // Thiết lập timeout mới
     debounceTimeout = setTimeout(() => {
         if (searchInput) {
-            fetch(`${contextPath}/home/products/search?name=${encodeURIComponent(searchInput)}`)
+            fetch(`products/search?name=${encodeURIComponent(searchInput)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
@@ -43,17 +62,9 @@ document.getElementById('search-input').addEventListener('input', () => {
                 })
                 .catch(err => {
                     console.error('Lỗi khi tìm kiếm sản phẩm:', err);
-                })
-                .finally(() => {
-                    // Khôi phục lại icon tìm kiếm sau khi hoàn thành
-                    searchIcon.classList.remove('fa-spinner', 'fa-spin');
-                    searchIcon.classList.add('fa-magnifying-glass');
                 });
         } else {
             clearSuggestions();
-            // Khôi phục lại icon nếu input rỗng
-            searchIcon.classList.remove('fa-spinner', 'fa-spin');
-            searchIcon.classList.add('fa-magnifying-glass');
         }
     }, 500); // 500ms debounce
 });
@@ -75,20 +86,17 @@ function updateSuggestions(products) {
 
             // Cập nhật nội dung của productDiv để hiển thị giá, tên và ảnh
             productDiv.innerHTML = `
-                <img class="" src="${product.imageUrl}">
-                <div class="product-content"> 
-                    <a href="product-detail?id=${encodeURIComponent(product.id)}" class="product-name" >
-                        ${product.name || 'Sản phẩm chưa có tên'}
-                     </a>
-                    <span class="product-price" >${price} VND</span>
-                </div>
+                <img class="" src="${product.image_url}">
+                <p>${product.name || 'Sản phẩm chưa có tên'}</p>
+                <span>${price} VND</span>
             `;
 
-            // productDiv.addEventListener('click', () => {
-            //     const url = `${window.location.origin}/backend_war/product-detail?id=${encodeURIComponent(product.id)}`;
-            //     console.log("Đang mở URL:", url); // Kiểm tra URL xem có đúng không
-            //     window.open(url, '_blank');
-            // });
+            productDiv.addEventListener('click', () => {
+                const url = new URL(window.location.origin + '/Trang_Web_ban_hang_san_pham_cho_me_va_be_war_exploded/product-detail');
+                // const url = new URL(window.location.origin + '/Trang_Web_ban_hang_san_pham_cho_me_va_be_war/product-detail');
+                url.searchParams.append('id', product.id);
+                window.location.href = url.toString();
+            });
             // Thêm vào danh sách kết quả
             suggestionsContainer.appendChild(productDiv);
         });
@@ -101,12 +109,4 @@ function clearSuggestions() {
     const suggestionsContainer = document.querySelector('.product-suggestions');
     suggestionsContainer.innerHTML = ''; // Xóa kết quả hiển thị
 }
-function performSearch() {
-    const searchInput = document.getElementById('search-input').value.trim();
-    if (searchInput) {
-        const searchURL = `${contextPath}/search-results?name=${encodeURIComponent(searchInput)}`;
-        window.open(searchURL, '_blank');
-    } else {
-        alert("Vui lòng nhập từ khóa tìm kiếm!");
-    }
-}
+

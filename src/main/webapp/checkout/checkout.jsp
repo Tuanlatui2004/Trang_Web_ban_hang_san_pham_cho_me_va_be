@@ -75,11 +75,8 @@
 
                         <div class="wrap mid_align row product-item"
                              data-stock="${p.stock}"
-                             data-id="${p.productId}"  data-option-id="${p.optionId}"
+                             data-id="${p.product_id}"  data-option-id="${p.option_id}"
                              data-quantity="${p.quantity}" data-price="${p.price}"
-
-                             data-height = "${p.height}" data-length = "${p.length}"
-                             data-width = "${p.width}" data-weight = "${p.weight}"
                         >
 
                             <div class="image">
@@ -149,19 +146,13 @@
                     </div>
 
                     <div class="address_body">
-                        <c:if test="${not empty address_list }">
+                        <c:if test="${not empty addressList }">
 
                             <c:set var="found" value="fasle"/>
-                            <c:forEach items="${address_list}" var="address">
+                            <c:forEach items="${addressList}" var="address">
 
                                 <c:if test="${address.isDefault == true }">
-                                    <div id="address" class="item_header row mid_align"
-                                         data-address-id="${address.id}"
-                                         data-province-id="${address.province_id}"
-                                         data-district-id="${address.district_id}"
-                                         data-commune-id="${address.commune_id}"
-
-                                    >
+                                    <div id="address" class="item_header row mid_align" data-address-id="${address.id}">
 
                                         <span class="name">${address.name}</span>
                                         <div class="rec_vertical"></div>
@@ -182,16 +173,10 @@
 
                             <c:if test="${found == false }">
 
-                                <c:forEach items="${address_list}" var="address">
+                                <c:forEach items="${addressList}" var="address">
 
                                     <c:if test="${found == false}">
-                                        <div id="address" class="item_header row mid_align"
-                                             data-address-id="${address.id}"
-                                             data-province-id="${address.province_id}"
-                                             data-district-id="${address.district_id}"
-                                             data-commune-id="${address.commune_id}"
-
-                                        >
+                                        <div id="address" class="item_header row mid_align" data-address-id="${address.id}">
 
                                             <span class="name">${address.name}</span>
                                             <div class="rec_vertical"></div>
@@ -243,8 +228,8 @@
 
                             <div class="card_list col">
 
-                                <c:if test="${not empty card_list }">
-                                    <c:forEach items="${card_list}" var="card">
+                                <c:if test="${not empty cardList }">
+                                    <c:forEach items="${cardList}" var="card">
 
                                         <div class="card_item">
                                             <div class="wrap_card">
@@ -260,12 +245,12 @@
                                                 <span>**** ${card.last4}</span>
 
 
-                                                <c:if test="${card.is_default == 'true'}">
+                                                <c:if test="${card.isDefault == 'true'}">
                                                     <input type="radio" name="payment-method" data-payment="${card.id}"
                                                            checked>
                                                 </c:if>
 
-                                                <c:if test="${card.is_default == 'false'}">
+                                                <c:if test="${card.isDefault == 'false'}">
                                                     <input type="radio" name="payment-method" data-payment="${card.id}">
                                                 </c:if>
 
@@ -275,7 +260,6 @@
 
                                     </c:forEach>
                                 </c:if>
-
                             </div>
 
                         </div>
@@ -294,16 +278,7 @@
 
         <div class="right-side col ">
             <div class="bill mid_align col ">
-                <div class="discount">
-                    <span class="title">Nhập Mã Khuyến Mãi</span>
 
-                    <div class="wrap_input">
-                        <input id="voucher" type="text" placeholder="Voucher hoặc gift code ">
-                        <label for="voucher"></label>
-                        <button type="submit">Áp Dụng</button>
-                    </div>
-
-                </div>
 
 
                 <div class="summary col">
