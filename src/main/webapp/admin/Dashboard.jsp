@@ -22,7 +22,7 @@
 <body>
 
 <div class="wrap_header">
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="Header.jsp"/>
 </div>
 
 <div class="container">
