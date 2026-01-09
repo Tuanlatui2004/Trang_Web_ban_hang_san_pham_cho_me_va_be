@@ -20,21 +20,21 @@ public class ProductDTO {
     private List<Variant> variants;
 
     public ProductDTO(Product product, List<Variant> variants) {
-        this.id = id;
-        this.name = name;
-        this.sku = sku;
-        this.description = description;
-        this.isActive = isActive;
-        this.categoryId = categoryId;
-        this.brandId = brandId;
-        this.noOfViews = noOfViews;
-        this.noOfSold = noOfSold;
-        this.imageId = imageId;
-        this.price = price;
-        this.stock = stock;
-        this.optionId = optionId;
-        this.categoryName = categoryName;
-        this.imageUrl = imageUrl;
+        this.id = product.getId();
+        this.name = product.getName();
+        this.sku = product.getSku();
+        this.description = product.getDescription();
+        this.isActive = product.getActive();
+        this.categoryId = product.getCategoryId();
+        this.brandId = product.getBrandId();
+        this.noOfViews = product.getNoOfViews();
+        this.noOfSold = product.getNoOfSold();
+        this.imageId = product.getImageId();
+        this.price = product.getPrice();
+        this.stock = product.getStock();
+        this.optionId = product.getOptionId();
+        this.categoryName = product.getCategoryName();
+        this.imageUrl = product.getImageUrl();
         this.variants = variants;
 
     }
