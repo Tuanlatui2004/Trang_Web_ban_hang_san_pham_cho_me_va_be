@@ -12,14 +12,14 @@ public class User {
     String displayName;
     LocalDate dOB;
     String gender;
-    String phone_number;
+    String phoneNumber;
     String email;
-    String password_Username;
-    Integer avatar_id;
+    String passwordUsername;
+    Integer avatarId;
     String status;
     String role;
     String salt;
-    String avatar_url;
+    String avatarUrl;
 
     // xem
 
@@ -30,14 +30,14 @@ public class User {
                 @ColumnName("displayName") @Nullable String displayName,
                 @ColumnName("dOB") @Nullable LocalDate dOB,
                 @ColumnName("gender") @Nullable String gender,
-                @ColumnName("phone") @Nullable String phone_number,
+                @ColumnName("phoneNumber") @Nullable String phoneNumber,
                 @ColumnName("email") @Nullable String email,
-                @ColumnName("password") @Nullable String password_Username,
-                @ColumnName("avatarId") @Nullable Integer avatar_id,
+                @ColumnName("passwordUsername") @Nullable String passwordUsername,
+                @ColumnName("avatarId") @Nullable Integer avatarId,
                 @ColumnName("status") @Nullable String status,
                 @ColumnName("role") @Nullable String role,
                 @ColumnName("salt") @Nullable String salt,
-                @ColumnName("avatar_url") @Nullable String avatar_url
+                @ColumnName("avatarUrl") @Nullable String avatarUrl
 
     ) {
         this.id = id;
@@ -45,14 +45,14 @@ public class User {
         this.displayName = displayName;
         this.dOB = dOB;
         this.gender = gender;
-        this.phone_number = phone_number;
+        this.phoneNumber = phoneNumber;
         this.email = email;
-        this.password_Username = password_Username;
-        this.avatar_id = avatar_id;
+        this.passwordUsername = passwordUsername;
+        this.avatarId = avatarId;
         this.status = status;
         this.role = role;
         this.salt = salt;
-        this.avatar_url = avatar_url;
+        this.avatarUrl = avatarUrl;
     }
 
     public User() {
@@ -98,12 +98,12 @@ public class User {
         this.gender = gender;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -114,20 +114,20 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword_Username() {
-        return password_Username;
+    public String getPasswordUsername() {
+        return passwordUsername;
     }
 
-    public void setPassword_Username(String password_Username) {
-        this.password_Username = password_Username;
+    public void setPasswordUsername(String passwordUsername) {
+        this.passwordUsername = passwordUsername;
     }
 
-    public Integer getAvatar_id() {
-        return avatar_id;
+    public Integer getAvatarId() {
+        return avatarId;
     }
 
-    public void setAvatar_id(Integer avatar_id) {
-        this.avatar_id = avatar_id;
+    public void setAvatarId(Integer avatarId) {
+        this.avatarId = avatarId;
     }
 
     public String getStatus() {
@@ -154,12 +154,12 @@ public class User {
         this.salt = salt;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     @Override
@@ -170,14 +170,14 @@ public class User {
                 ", displayName='" + displayName + '\'' +
                 ", dOB=" + dOB +
                 ", gender='" + gender + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", password_Username='" + password_Username + '\'' +
-                ", avatar_id=" + avatar_id +
+                ", passwordUsername='" + passwordUsername + '\'' +
+                ", avatarId=" + avatarId +
                 ", status='" + status + '\'' +
                 ", role='" + role + '\'' +
                 ", salt='" + salt + '\'' +
-                ", avatar_url='" + avatar_url + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
                 '}';
     }
 }

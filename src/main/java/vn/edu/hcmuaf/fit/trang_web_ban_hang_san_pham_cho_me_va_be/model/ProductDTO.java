@@ -6,17 +6,17 @@ public class ProductDTO {
     private  String name;
     private String sku;
     private String description;
-    private  Boolean is_active;
-    private Integer category_id;
-    private Integer brand_id;
-    private  Integer no_of_views;
-    private Integer no_of_sold;
-    private Integer image_id;
+    private  Boolean isActive;
+    private Integer categoryId;
+    private Integer brandId;
+    private  Integer noOfViews;
+    private Integer noOfSold;
+    private Integer imageId;
     private Integer price;  // option
     private Integer stock;  //option
-    private Integer option_id;
-    private  String category_name;
-    private  String image_url;
+    private Integer optionId;
+    private  String categoryName;
+    private  String imageUrl;
     private List<Variant> variants;
 
     public ProductDTO(Product product, List<Variant> variants) {
@@ -24,17 +24,17 @@ public class ProductDTO {
         this.name = name;
         this.sku = sku;
         this.description = description;
-        this.is_active = is_active;
-        this.category_id = category_id;
-        this.brand_id = brand_id;
-        this.no_of_views = no_of_views;
-        this.no_of_sold = no_of_sold;
-        this.image_id = image_id;
+        this.isActive = isActive;
+        this.categoryId = categoryId;
+        this.brandId = brandId;
+        this.noOfViews = noOfViews;
+        this.noOfSold = noOfSold;
+        this.imageId = imageId;
         this.price = price;
         this.stock = stock;
-        this.option_id = option_id;
-        this.category_name = category_name;
-        this.image_url = image_url;
+        this.optionId = optionId;
+        this.categoryName = categoryName;
+        this.imageUrl = imageUrl;
         this.variants = variants;
 
     }
@@ -71,52 +71,52 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public Boolean getIs_active() {
-        return is_active;
+    public Boolean getActive() {
+        return isActive;
     }
 
-    public void setIs_active(Boolean is_active) {
-        this.is_active = is_active;
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
-    public Integer getCategory_id() {
-        return category_id;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public Integer getBrand_id() {
-        return brand_id;
+    public Integer getBrandId() {
+        return brandId;
     }
 
-    public void setBrand_id(Integer brand_id) {
-        this.brand_id = brand_id;
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
     }
 
-    public Integer getNo_of_views() {
-        return no_of_views;
+    public Integer getNoOfViews() {
+        return noOfViews;
     }
 
-    public void setNo_of_views(Integer no_of_views) {
-        this.no_of_views = no_of_views;
+    public void setNoOfViews(Integer noOfViews) {
+        this.noOfViews = noOfViews;
     }
 
-    public Integer getNo_of_sold() {
-        return no_of_sold;
+    public Integer getNoOfSold() {
+        return noOfSold;
     }
 
-    public void setNo_of_sold(Integer no_of_sold) {
-        this.no_of_sold = no_of_sold;
+    public void setNoOfSold(Integer noOfSold) {
+        this.noOfSold = noOfSold;
     }
 
-    public Integer getImage_id() {
-        return image_id;
+    public Integer getImageId() {
+        return imageId;
     }
 
-    public void setImage_id(Integer image_id) {
-        this.image_id = image_id;
+    public void setImageId(Integer imageId) {
+        this.imageId = imageId;
     }
 
     public Integer getPrice() {
@@ -135,28 +135,28 @@ public class ProductDTO {
         this.stock = stock;
     }
 
-    public Integer getOption_id() {
-        return option_id;
+    public Integer getOptionId() {
+        return optionId;
     }
 
-    public void setOption_id(Integer option_id) {
-        this.option_id = option_id;
+    public void setOptionId(Integer optionId) {
+        this.optionId = optionId;
     }
 
-    public String getCategory_name() {
-        return category_name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public List<Variant> getVariants() {
@@ -166,5 +166,4 @@ public class ProductDTO {
     public void setVariants(List<Variant> variants) {
         this.variants = variants;
     }
-
 }

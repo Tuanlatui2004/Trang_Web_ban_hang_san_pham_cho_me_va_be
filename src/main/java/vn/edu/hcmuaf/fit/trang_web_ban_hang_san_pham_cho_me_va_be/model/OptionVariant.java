@@ -5,52 +5,55 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 public class OptionVariant {
     Integer id;
-    Integer product_id;
+    Integer productId;
     Integer price;
     Integer stock;
-    Integer variant_id;
-    String variant_name;
-    String variant_value;
+    Integer variantId;
+    String variantName;
+    String variantValue;
     public OptionVariant(@ColumnName("id") @Nullable Integer id,
-                   @ColumnName("product_id") @Nullable Integer product_id,
+                   @ColumnName("productId") @Nullable Integer productId,
                    @ColumnName("price") @Nullable Integer price,
                    @ColumnName("stock") @Nullable  Integer stock ,
-                   @ColumnName("variant_id") @Nullable Integer variant_id,
-                         @ColumnName("variant_name") @Nullable String variant_name,
-                         @ColumnName("variant_value") @Nullable String variant_value
+                   @ColumnName("variantId") @Nullable Integer variantId,
+                         @ColumnName("variantName") @Nullable String variantName,
+                         @ColumnName("variantValue") @Nullable String variantValue
     ){
         this.id = id;
-        this.product_id = product_id;
+        this.productId = productId;
         this.price = price;
         this.stock = stock;
-        this.variant_id = variant_id;
-        this.variant_name = variant_name;
-        this.variant_value = variant_value;
+        this.variantId = variantId;
+        this.variantName = variantName;
+        this.variantValue = variantValue;
 
     }
 
-    public Integer getId() {
-        return id;
+    public OptionVariant() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public String getVariantValue() {
+        return variantValue;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public void setVariantValue(String variantValue) {
+        this.variantValue = variantValue;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public String getVariantName() {
+        return variantName;
     }
 
-    public Integer getPrice() {
-        return price;
+    public void setVariantName(String variantName) {
+        this.variantName = variantName;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public Integer getVariantId() {
+        return variantId;
+    }
+
+    public void setVariantId(Integer variantId) {
+        this.variantId = variantId;
     }
 
     public Integer getStock() {
@@ -61,40 +64,40 @@ public class OptionVariant {
         this.stock = stock;
     }
 
-    public Integer getVariant_id() {
-        return variant_id;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setVariant_id(Integer variant_id) {
-        this.variant_id = variant_id;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
-    public String getVariant_name() {
-        return variant_name;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setVariant_name(String variant_name) {
-        this.variant_name = variant_name;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getVariant_value() {
-        return variant_value;
+    public Integer getId() {
+        return id;
     }
 
-    public void setVariant_value(String variant_value) {
-        this.variant_value = variant_value;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "OptionVariant{" +
                 "id=" + id +
-                ", product_id=" + product_id +
+                ", productId=" + productId +
                 ", price=" + price +
                 ", stock=" + stock +
-                ", variant_id=" + variant_id +
-                ", variant_name='" + variant_name + '\'' +
-                ", variant_value='" + variant_value + '\'' +
+                ", variantId=" + variantId +
+                ", variantName='" + variantName + '\'' +
+                ", variantValue='" + variantValue + '\'' +
                 '}';
     }
 }

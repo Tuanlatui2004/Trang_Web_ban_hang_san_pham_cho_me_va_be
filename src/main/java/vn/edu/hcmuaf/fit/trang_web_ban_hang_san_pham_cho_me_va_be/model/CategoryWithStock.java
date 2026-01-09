@@ -6,14 +6,14 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 public class CategoryWithStock {
     private Integer id;
     private String name;
-    private Integer total_stock;
-    private Boolean is_active;
+    private Integer totalStock;
+    private Boolean isActive;
 
-    public CategoryWithStock(@ColumnName("id") @Nullable Integer id, @ColumnName("name") @Nullable String name, @ColumnName("total_stock") @Nullable Integer total_stock, @ColumnName("is_active") @Nullable Boolean is_active) {
+    public CategoryWithStock(@ColumnName("id") @Nullable Integer id, @ColumnName("name") @Nullable String name, @ColumnName("totalStock") @Nullable Integer totalStock, @ColumnName("isActive") @Nullable Boolean isActive) {
         this.id = id;
         this.name = name;
-        this.total_stock = total_stock;
-        this.is_active = is_active;
+        this.totalStock = totalStock;
+        this.isActive = isActive;
     }
     public CategoryWithStock() {
 
@@ -35,20 +35,20 @@ public class CategoryWithStock {
         this.name = name;
     }
 
-    public Integer getTotal_stock() {
-        return total_stock;
+    public Integer getTotalStock() {
+        return totalStock;
     }
 
-    public void setTotal_stock(Integer total_stock) {
-        this.total_stock = total_stock;
+    public void setTotalStock(Integer totalStock) {
+        this.totalStock = totalStock;
     }
 
-    public Boolean getIs_active() {
-        return is_active;
+    public Boolean getActive() {
+        return isActive;
     }
 
-    public void setIs_active(Boolean is_active) {
-        this.is_active = is_active;
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     @Override
@@ -56,8 +56,8 @@ public class CategoryWithStock {
         return "CategoryWithStock{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", total_stock=" + total_stock +
-                ", is_active=" + is_active +
+                ", totalStock=" + totalStock +
+                ", isActive=" + isActive +
                 '}';
     }
 }

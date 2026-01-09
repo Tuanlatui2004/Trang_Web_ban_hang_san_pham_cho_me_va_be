@@ -5,14 +5,14 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 public class Category {
     Integer id;
     String name;
-    Boolean is_active;
+    Boolean isActive;
 
     public Category(@ColumnName("id") Integer id,
                     @ColumnName("name")  String name,
-                    @ColumnName("is_active") Boolean is_active) {
+                    @ColumnName("isActive") Boolean isActive) {
         this.id = id;
         this.name = name;
-        this.is_active = is_active;
+        this.isActive = isActive;
     }
 
     public Category() {
@@ -34,12 +34,12 @@ public class Category {
         this.name = name;
     }
 
-    public Boolean getIs_active() {
-        return is_active;
+    public Boolean getActive() {
+        return isActive;
     }
 
-    public void setIs_active(Boolean is_active) {
-        this.is_active = is_active;
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     @Override

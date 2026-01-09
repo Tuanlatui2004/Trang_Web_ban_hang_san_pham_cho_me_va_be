@@ -6,27 +6,27 @@ import org.jdbi.v3.core.mapper.reflect.JdbiConstructor;
 
 public class ProductReview{
     Integer id;
-    Integer user_id;
-    Integer product_id;
+    Integer userId;
+    Integer productId;
     Integer rating;
     String description;
-    Integer order_id;
+    Integer orderId;
 
 
     @JdbiConstructor
     public ProductReview(@ColumnName("id") @Nullable Integer id,
-                  @ColumnName("user_id") @Nullable Integer user_id,
-                  @ColumnName("product_id") @Nullable Integer product_id,
+                  @ColumnName("userId") @Nullable Integer userId,
+                  @ColumnName("productId") @Nullable Integer productId,
                   @ColumnName("rating")@Nullable Integer rating,
                   @ColumnName("description") @Nullable String description,
-                  @ColumnName("order_id") @Nullable Integer order_id)
+                  @ColumnName("orderId") @Nullable Integer orderId)
     {
         this.id = id;
-        this.user_id = user_id;
-        this.product_id = product_id;
+        this.userId = userId;
+        this.productId = productId;
         this.rating = rating;
         this.description = description;
-        this.order_id = order_id;
+        this.orderId = orderId;
     }
 
     public ProductReview() {
@@ -40,20 +40,20 @@ public class ProductReview{
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Integer getRating() {
@@ -72,23 +72,23 @@ public class ProductReview{
         this.description = description;
     }
 
-    public Integer getOrder_id() {
-        return order_id;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(Integer order_id) {
-        this.order_id = order_id;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     @Override
     public String toString() {
         return "ProductReview{" +
                 "id=" + id +
-                ", user_id=" + user_id +
-                ", product_id=" + product_id +
+                ", userId=" + userId +
+                ", productId=" + productId +
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
-                ", order_id=" + order_id +
+                ", orderId=" + orderId +
                 '}';
     }
 }
