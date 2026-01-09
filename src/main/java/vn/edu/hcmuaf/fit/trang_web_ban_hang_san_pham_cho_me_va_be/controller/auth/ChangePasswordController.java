@@ -43,7 +43,7 @@ public class ChangePasswordController extends  HttpServlet {
             String confirmPassword = jsonData.get("confirmPassword");
 
             HttpSession session = request.getSession();
-            Integer userId = (Integer) session.getAttribute("user_id");
+            Integer userId = (Integer) session.getAttribute("userId");
 
             if (newPassword == null || newPassword.isEmpty()) {
                 response.getWriter().write(objectMapper.writeValueAsString(new ResponseWrapper<>(

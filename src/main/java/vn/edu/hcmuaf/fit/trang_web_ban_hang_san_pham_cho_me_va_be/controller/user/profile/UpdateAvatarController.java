@@ -38,10 +38,10 @@ public class UpdateAvatarController extends HttpServlet {
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> requestData = objectMapper.readValue(stringBuilder.toString(), Map.class);
 
-        Integer imageId = (Integer) requestData.get("image_id");
+        Integer imageId = (Integer) requestData.get("imageId");
 
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("user_id");
+        Integer userId = (Integer) session.getAttribute("userId");
 
         Boolean success = userService.updateAvatar(userId, imageId);
         Map<String, Object> responseBody = new HashMap<>();

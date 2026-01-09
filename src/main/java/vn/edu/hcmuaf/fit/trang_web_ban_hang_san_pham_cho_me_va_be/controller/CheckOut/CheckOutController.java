@@ -36,7 +36,7 @@ public class CheckOutController extends HttpServlet {
 
 
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("user_id");
+        Integer userId = (Integer) session.getAttribute("userId");
         List<ProductCart > productList = new ArrayList<>();
 
         List<Address> addressList = new ArrayList<>();
@@ -107,18 +107,18 @@ public class CheckOutController extends HttpServlet {
         Integer userId = (Integer) session.getAttribute("user_id");
 
         Order order = new Order();
-        order.setCreate_at(LocalDate.now());
+        order.setCreateAt(LocalDate.now());
         // xem lại khúc này biến tạm
-        order.setPayment_status(PaymentStatus.valueOf("PAID"));
-        order.setOrder_status(OrderStatus.valueOf("DELIVERED"));
-        order.setUser_id(userId);
+        order.setPaymentStatus(PaymentStatus.valueOf("PAID"));
+        order.setOrderStatus(OrderStatus.valueOf("DELIVERED"));
+        order.setUserId(userId);
         try {
-            order.setAddress_id(Integer.parseInt(address));
+            order.setAddressId(Integer.parseInt(address));
             if (card.equals("COD")) {
                 order.setCOD(true);
             }
             else{
-                order.setCard_id(Integer.parseInt(card));
+                order.setCardId(Integer.parseInt(card));
                 order.setCOD(false);
 
             }
@@ -136,14 +136,14 @@ public class CheckOutController extends HttpServlet {
                 int productId = product.getInt("id");
                 int quantity = product.getInt("quantity");
                 int total = product.getInt("total");
-                int optionId = product.getInt("option_id");
+                int optionId = product.getInt("optionId");
 
                 OrderDetail od= new OrderDetail();
-                od.setOrder_id(oderid);
-                od.setProduct_id(productId);
+                od.setOrderId(oderid);
+                od.setProductId(productId);
                 od.setQuantity(quantity);
                 od.setTotal(total);
-                od.setOption_id(optionId);
+                od.setOptionId(optionId);
 
                 flag = orderDetailService.addOrderDetail(od);
                 if (flag){

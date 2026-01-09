@@ -25,9 +25,9 @@ public class UserOrderDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Integer orderId = Integer.parseInt(request.getParameter("orde_id"));
+        Integer orderId = Integer.parseInt(request.getParameter("orderId"));
         HttpSession session = request.getSession();
-        Integer userId = Integer.parseInt(session.getAttribute("userI_id").toString());
+        Integer userId = Integer.parseInt(session.getAttribute("userId").toString());
 
         User user = userService.getUserById(userId);
         if (user != null) {
@@ -39,14 +39,14 @@ public class UserOrderDetailController extends HttpServlet {
             request.setAttribute("order", order);
 
             if (!order.getCOD()){
-                Card card = cardService.getCardById(order.getCard_id());
+                Card card = cardService.getCardById(order.getCardId());
                 if (card != null) {
                     request.setAttribute("card", card);
                 }
             }
 
 
-            Address address = addressService.findById(order.getAddress_id());
+            Address address = addressService.findById(order.getAddressId());
             if (address != null) {
                 request.setAttribute("address", address);
             }

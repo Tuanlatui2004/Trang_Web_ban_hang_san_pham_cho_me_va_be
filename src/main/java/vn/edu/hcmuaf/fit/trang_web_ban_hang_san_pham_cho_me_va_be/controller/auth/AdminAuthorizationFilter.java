@@ -25,7 +25,7 @@ public class AdminAuthorizationFilter implements Filter{
 
 
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("user_id");
+        Integer userId = (Integer) session.getAttribute("userId");
         String role = (String) session.getAttribute("role");
 
         // Kiểm tra xem userId có tồn tại trong session hay không

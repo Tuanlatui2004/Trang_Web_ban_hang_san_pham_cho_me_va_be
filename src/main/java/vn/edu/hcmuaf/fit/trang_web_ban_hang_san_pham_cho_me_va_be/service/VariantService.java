@@ -23,19 +23,19 @@ public class VariantService {
         return variantDao.getVariantById(id);
     }
 
-    public Variant createVariant(String name, Integer category_id) {
-        int id = variantDao.createVariant(name, category_id);
+    public Variant createVariant(String name, Integer categoryId) {
+        int id = variantDao.createVariant(name, categoryId);
         return variantDao.getVariantById(id);
     }
 
 
 
-    public List<Variant> getVariantsByCategory(Integer category_id) {
-        if (category_id == null) {
+    public List<Variant> getVariantsByCategory(Integer categoryId) {
+        if (categoryId == null) {
             // Trả về toàn bộ danh sách nếu không có categoryId
             return variantDao.getAllVariants();
         }
-        return variantDao.getVariantsByCategoryId(category_id);
+        return variantDao.getVariantsByCategoryId(categoryId);
     }
     // haianh thêm bên DAO
     public List<Variant> getVariantValuesByVariantId(Integer id) {

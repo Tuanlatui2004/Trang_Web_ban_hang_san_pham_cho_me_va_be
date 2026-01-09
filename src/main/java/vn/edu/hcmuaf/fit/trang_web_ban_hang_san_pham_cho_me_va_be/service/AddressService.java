@@ -28,19 +28,19 @@ public class AddressService {
 
     public int addAddress(Address address) {
         // Đảm bảo isDefault mặc định là false nếu không được chỉ định
-        if (address.getIs_default() == null) {
-            address.setIs_default(false);//đại diện cho giá trị boolean
+        if (address.getDefault() == null) {
+            address.setDefault(false);//đại diện cho giá trị boolean
         }
         return addressDao.addAddress(
-                address.getUser_id(),
-                address.getAddress_type(),
-                address.getFull_name(),
-                address.getPhone_number(),
+                address.getUserId(),
+                address.getAddressType(),
+                address.getFullName(),
+                address.getPhoneNumber(),
                 address.getStreet(),
                 address.getCity(),
                 address.getState(),
                 address.getCountry(),
-                address.getIs_default()
+                address.getDefault()
         );
     }
 

@@ -24,7 +24,7 @@ public class UserCardController extends  HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("user_id");
+        Integer userId = (Integer) session.getAttribute("userId");
         User user = userService.getUserById(userId);
         List<Card> cards= cardService.getCartByUserId(userId);
         request.setAttribute("cards", cards);

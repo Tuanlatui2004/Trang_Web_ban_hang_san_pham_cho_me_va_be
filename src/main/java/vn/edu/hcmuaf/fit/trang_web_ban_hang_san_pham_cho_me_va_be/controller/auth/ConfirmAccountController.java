@@ -16,7 +16,7 @@ public class ConfirmAccountController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String sessionId = request.getParameter("session_id");
+        String sessionId = request.getParameter("sessionId");
 
         if (sessionId != null) {
             if (authService.verifySession(request, sessionId)) {

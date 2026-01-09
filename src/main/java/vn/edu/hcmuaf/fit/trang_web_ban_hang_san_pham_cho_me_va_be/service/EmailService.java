@@ -6,7 +6,7 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
 import java.util.Properties;
-
+// xem lại
 public class EmailService {
     String host = "smtp.gmail.com";
     String fromEmail = "23130012@st.hcmuaf.edu.vn";
