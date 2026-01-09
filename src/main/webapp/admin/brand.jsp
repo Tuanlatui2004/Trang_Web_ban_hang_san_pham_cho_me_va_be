@@ -95,6 +95,7 @@
                             <td colspan="4">Không có nhà sản xuất nào được tìm thấy.</td>
                         </tr>
                     </c:if>
+<%--&lt;%&ndash;                    lay trong brancontroleer--%>
                     <c:if test="${not empty brands}">
                         <c:forEach items="${brands}" var="b">
                             <tr>

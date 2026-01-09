@@ -5,21 +5,21 @@ import java.time.LocalDate;
 
 public class Banner  {
     Integer id;
-    String image_id;
-    LocalDate start_date;
-    LocalDate end_date;
+    String imageId;
+    LocalDate startDate;
+    LocalDate endDate;
     String status;
 
     public Banner(@ColumnName("id") Integer id,
-                  @ColumnName("image_id") String image_id,
-                  @ColumnName("start_date") LocalDate start_date,
-                  @ColumnName("end_date") LocalDate end_date,
+                  @ColumnName("imageId") String imageId,
+                  @ColumnName("startDate") LocalDate startDate,
+                  @ColumnName("endDate") LocalDate endDate,
                   @ColumnName("status") String status
     ) {
         this.id = id;
-        this.image_id = image_id;
-        this.start_date = start_date;
-        this.end_date = end_date;
+        this.imageId = imageId;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.status = status;
     }
 
@@ -31,28 +31,28 @@ public class Banner  {
         this.id = id;
     }
 
-    public String getImage_id() {
-        return image_id;
+    public String getImageId() {
+        return imageId;
     }
 
-    public void setImage_id(String image_id) {
-        this.image_id = image_id;
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 
-    public LocalDate getStart_date() {
-        return start_date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(LocalDate start_date) {
-        this.start_date = start_date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDate getEnd_date() {
-        return end_date;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(LocalDate end_date) {
-        this.end_date = end_date;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public String getStatus() {

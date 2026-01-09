@@ -4,34 +4,34 @@ import jakarta.annotation.Nullable;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 import org.jdbi.v3.core.mapper.reflect.JdbiConstructor;
 
-public class OrderDetail{
+public class OrderDetail {
     Integer id;
-    Integer order_id;
-    Integer product_id;
+    Integer orderId;
+    Integer productId;
     Integer quantity;
     Integer total;
-    Integer option_id;
-    String product_name;
-    String image_url;
+    Integer optionId;
+    String productName;
+    String imageUrl;
 
     @JdbiConstructor
     public OrderDetail(@ColumnName("id") @Nullable Integer id,
-                       @ColumnName("order_id") @Nullable Integer order_id,
-                       @ColumnName("product_id") @Nullable Integer product_id,
+                       @ColumnName("orderId") @Nullable Integer orderId,
+                       @ColumnName("productId") @Nullable Integer productId,
                        @ColumnName("quantity") @Nullable Integer quantity,
                        @ColumnName("total") @Nullable Integer total,
-                       @ColumnName("option_id") @Nullable Integer option_id,
-                       @ColumnName("product_name") @Nullable String product_name,
-                       @ColumnName("image_url") @Nullable String image_url
+                       @ColumnName("optionId") @Nullable Integer optionId,
+                       @ColumnName("productName") @Nullable String productName,
+                       @ColumnName("imageUrl") @Nullable String imageUrl
     ) {
         this.id = id;
-        this.order_id = order_id;
-        this.product_id = product_id;
+        this.orderId = orderId;
+        this.productId = productId;
         this.quantity = quantity;
         this.total = total;
-        this.option_id = option_id;
-        this.product_name = product_name;
-        this.image_url = image_url;
+        this.optionId = optionId;
+        this.productName = productName;
+        this.imageUrl = imageUrl;
     }
 
     public OrderDetail() {
@@ -45,20 +45,20 @@ public class OrderDetail{
         this.id = id;
     }
 
-    public Integer getOrder_id() {
-        return order_id;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(Integer order_id) {
-        this.order_id = order_id;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Integer getQuantity() {
@@ -77,41 +77,41 @@ public class OrderDetail{
         this.total = total;
     }
 
-    public Integer getOption_id() {
-        return option_id;
+    public Integer getOptionId() {
+        return optionId;
     }
 
-    public void setOption_id(Integer option_id) {
-        this.option_id = option_id;
+    public void setOptionId(Integer optionId) {
+        this.optionId = optionId;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
     public String toString() {
         return "OrderDetail{" +
                 "id=" + id +
-                ", order_id=" + order_id +
-                ", product_id=" + product_id +
+                ", orderId=" + orderId +
+                ", productId=" + productId +
                 ", quantity=" + quantity +
                 ", total=" + total +
-                ", option_id=" + option_id +
-                ", product_name='" + product_name + '\'' +
-                ", image_url='" + image_url + '\'' +
+                ", optionId=" + optionId +
+                ", productName='" + productName + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }

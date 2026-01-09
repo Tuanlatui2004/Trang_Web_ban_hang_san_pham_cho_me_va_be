@@ -11,42 +11,42 @@ public class Product {
     String name;
     String sku;
     String description;
-    Boolean is_active;
-    Integer category_id;
-    Integer brand_id;
-    Integer no_of_views;
-    Integer no_of_sold;
-    Integer image_id;
+    Boolean isActive;
+    Integer categoryId;
+    Integer brandId;
+    Integer noOfViews;
+    Integer noOfSold;
+    Integer imageId;
     Integer price;  // option
     Integer stock;  //option
-    Integer option_id;
-    String category_name;
-    String image_url;
+    Integer optionId;
+    String categoryName;
+    String imageUrl;
 
     Integer height;
     Integer length;
     Integer width;
     Integer weight;
 
-    @ConstructorProperties({"id", "name", "sku", "description", "is_active", "category_id", "brand_id"
-            , "no_of_views", "no_of_sold", "image_id", "price", "stock","option_id", "category_name","image_url", "height", "length", "width", "weight"
+    @ConstructorProperties({"id", "name", "sku", "description", "isActive", "categoryId", "brandId"
+            , "noOfViews", "noOfSold", "imageId", "price", "stock","optionId", "categoryName","imageUrl", "height", "length", "width", "weight"
     })
     public Product(
             @ColumnName("id") Integer id,
             @ColumnName("name") @Nullable String name,
             @ColumnName("sku") @Nullable String sku,
             @ColumnName("description") @Nullable String description,
-            @ColumnName("is_active") @Nullable Boolean is_active,
-            @ColumnName("category_id") @Nullable Integer category_id,
-            @ColumnName("brand_id") @Nullable Integer brand_id,
-            @ColumnName("no_of_views") @Nullable Integer no_of_views,
-            @ColumnName("no_of_sold") @Nullable Integer no_of_sold,
-            @ColumnName("image_id") @Nullable Integer image_id,
+            @ColumnName("isActive") @Nullable Boolean isActive,
+            @ColumnName("categoryId") @Nullable Integer categoryId,
+            @ColumnName("brandId") @Nullable Integer brandId,
+            @ColumnName("noOfViews") @Nullable Integer noOfViews,
+            @ColumnName("noOfSold") @Nullable Integer noOfSold,
+            @ColumnName("imageId") @Nullable Integer imageId,
             @ColumnName("price") @Nullable Integer price,
             @ColumnName("stock") @Nullable Integer stock,
-            @ColumnName("option_id") @Nullable Integer option_id,
-            @ColumnName("category_name") @Nullable String category_name,
-            @ColumnName("image_url") @Nullable String image_url,
+            @ColumnName("optionId") @Nullable Integer optionId,
+            @ColumnName("categoryName") @Nullable String categoryName,
+            @ColumnName("imageUrl") @Nullable String imageUrl,
             @ColumnName("height") @Nullable Integer height,
             @ColumnName("length") @Nullable Integer length,
             @ColumnName("width") @Nullable Integer width,
@@ -57,17 +57,17 @@ public class Product {
         this.name = name;
         this.sku = sku;
         this.description = description;
-        this.is_active = is_active;
-        this.category_id = category_id;
-        this.brand_id = brand_id;
-        this.no_of_views = no_of_views;
-        this.no_of_sold = no_of_sold;
-        this.image_id = image_id;
+        this.isActive = isActive;
+        this.categoryId = categoryId;
+        this.brandId = brandId;
+        this.noOfViews = noOfViews;
+        this.noOfSold = noOfSold;
+        this.imageId = imageId;
         this.price = price;
         this.stock = stock;
-        this.option_id = option_id;
-        this.category_name = category_name;
-        this.image_url = image_url;
+        this.optionId = optionId;
+        this.categoryName = categoryName;
+        this.imageUrl = imageUrl;
         this.height = height;
         this.length = length;
         this.width = width;
@@ -80,17 +80,17 @@ public class Product {
             @Nullable String name,
             @Nullable String sku,
             @Nullable String description,
-            @Nullable Boolean is_active,
-            @Nullable Integer category_id,
-            @Nullable Integer brand_id,
-            @Nullable Integer no_of_views,
-            @Nullable Integer no_of_sold,
-            @Nullable Integer image_id,
+            @Nullable Boolean isActive,
+            @Nullable Integer categoryId,
+            @Nullable Integer brandId,
+            @Nullable Integer noOfViews,
+            @Nullable Integer noOfSold,
+            @Nullable Integer imageId,
             @Nullable Integer price,
             @Nullable Integer stock,
-            @Nullable Integer option_id,
-            @Nullable String category_name,
-            @Nullable String image_url
+            @Nullable Integer optionId,
+            @Nullable String categoryName,
+            @Nullable String imageUrl
 
 
     ) {
@@ -98,165 +98,21 @@ public class Product {
         this.name = name;
         this.sku = sku;
         this.description = description;
-        this.is_active = is_active;
-        this.category_id = category_id;
-        this.brand_id = brand_id;
-        this.no_of_views = no_of_views;
-        this.no_of_sold = no_of_sold;
-        this.image_id = image_id;
+        this.isActive = isActive;
+        this.categoryId = categoryId;
+        this.brandId = brandId;
+        this.noOfViews = noOfViews;
+        this.noOfSold = noOfSold;
+        this.imageId = imageId;
         this.price = price;
         this.stock = stock;
-        this.option_id = option_id;
-        this.category_name = category_name;
-        this.image_url = image_url;
+        this.optionId = optionId;
+        this.categoryName = categoryName;
+        this.imageUrl = imageUrl;
     }
 
 
     public Product() {
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
-    public Integer getWidth() {
-        return width;
-    }
-
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    public Integer getLength() {
-        return length;
-    }
-
-    public void setLength(Integer length) {
-        this.length = length;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
-
-    public String getCategory_name() {
-        return category_name;
-    }
-
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
-    }
-
-    public Integer getOption_id() {
-        return option_id;
-    }
-
-    public void setOption_id(Integer option_id) {
-        this.option_id = option_id;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Integer getImage_id() {
-        return image_id;
-    }
-
-    public void setImage_id(Integer image_id) {
-        this.image_id = image_id;
-    }
-
-    public Integer getNo_of_sold() {
-        return no_of_sold;
-    }
-
-    public void setNo_of_sold(Integer no_of_sold) {
-        this.no_of_sold = no_of_sold;
-    }
-
-    public Integer getNo_of_views() {
-        return no_of_views;
-    }
-
-    public void setNo_of_views(Integer no_of_views) {
-        this.no_of_views = no_of_views;
-    }
-
-    public Integer getBrand_id() {
-        return brand_id;
-    }
-
-    public void setBrand_id(Integer brand_id) {
-        this.brand_id = brand_id;
-    }
-
-    public Integer getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
-    }
-
-    public Boolean getIs_active() {
-        return is_active;
-    }
-
-    public void setIs_active(Boolean is_active) {
-        this.is_active = is_active;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Integer getId() {
@@ -267,6 +123,150 @@ public class Product {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
+    }
+
+    public Integer getNoOfViews() {
+        return noOfViews;
+    }
+
+    public void setNoOfViews(Integer noOfViews) {
+        this.noOfViews = noOfViews;
+    }
+
+    public Integer getNoOfSold() {
+        return noOfSold;
+    }
+
+    public void setNoOfSold(Integer noOfSold) {
+        this.noOfSold = noOfSold;
+    }
+
+    public Integer getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Integer imageId) {
+        this.imageId = imageId;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Integer getOptionId() {
+        return optionId;
+    }
+
+    public void setOptionId(Integer optionId) {
+        this.optionId = optionId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public Integer getLength() {
+        return length;
+    }
+
+    public void setLength(Integer length) {
+        this.length = length;
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -274,17 +274,17 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", sku='" + sku + '\'' +
                 ", description='" + description + '\'' +
-                ", is_active=" + is_active +
-                ", category_id=" + category_id +
-                ", brand_id=" + brand_id +
-                ", no_of_views=" + no_of_views +
-                ", no_of_sold=" + no_of_sold +
-                ", image_id=" + image_id +
+                ", isActive=" + isActive +
+                ", categoryId=" + categoryId +
+                ", brandId=" + brandId +
+                ", noOfViews=" + noOfViews +
+                ", noOfSold=" + noOfSold +
+                ", imageId=" + imageId +
                 ", price=" + price +
                 ", stock=" + stock +
-                ", option_id=" + option_id +
-                ", category_name='" + category_name + '\'' +
-                ", image_url='" + image_url + '\'' +
+                ", optionId=" + optionId +
+                ", categoryName='" + categoryName + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", height=" + height +
                 ", length=" + length +
                 ", width=" + width +
