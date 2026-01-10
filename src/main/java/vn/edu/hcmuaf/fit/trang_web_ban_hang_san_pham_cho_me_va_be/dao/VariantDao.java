@@ -22,22 +22,22 @@ public interface VariantDao {
     @SqlQuery("SELECT * FROM variant WHERE id = :id")
     List<Variant> getVariantValuesByVariantId(@Bind("id") Integer id);
 
-    @SqlQuery("SELECT * FROM variant WHERE category_id IS NULL OR category_id = :category_id")
-    List<Variant> getVariantsByCategoryId(@Bind("category_id") Integer category_id);
+    @SqlQuery("SELECT * FROM variant WHERE categoryId IS NULL OR categoryId = :categoryId")
+    List<Variant> getVariantsByCategoryId(@Bind("categoryId") Integer categoryId);
 
 
-    @SqlUpdate("INSERT INTO variant (name, category_id) VALUES (:name, :category_id)")
+    @SqlUpdate("INSERT INTO variant (name, categoryId) VALUES (:name, :categoryId)")
     @GetGeneratedKeys("id")
-    int createVariant(@Bind("name") String name, @Bind("category_id") Integer category_id);
+    int createVariant(@Bind("name") String name, @Bind("categoryId") Integer categoryId);
 
-//    @SqlUpdate("UPDATE variant SET name = :name, category_id = :categoryId WHERE id = :id")
+//    @SqlUpdate("UPDATE variant SET name = :name, categoryId = :categoryId WHERE id = :id")
 //    void updateVariant(@Bind("id") Integer id, @Bind("name") String name, @Bind("categoryId") Integer categoryId);
 //
 //    @SqlUpdate("DELETE FROM variant WHERE id = :id")
 //    void deleteVariant(@Bind("id") Integer id);
-@SqlUpdate("INSERT INTO variant (optionId, category_id) VALUES (:option_id, :category_id)")
+@SqlUpdate("INSERT INTO variant (optionId, categoryId) VALUES (:optionId, :categoryId)")
 @GetGeneratedKeys
-int addOptionVariantValue(@Bind("option_id") Integer option_id, @Bind("category_id") Integer category_id);
+int addOptionVariantValue(@Bind("optionId") Integer optionId, @Bind("categoryId") Integer categoryId);
 
 
     @SqlQuery(value = "select *\n" +

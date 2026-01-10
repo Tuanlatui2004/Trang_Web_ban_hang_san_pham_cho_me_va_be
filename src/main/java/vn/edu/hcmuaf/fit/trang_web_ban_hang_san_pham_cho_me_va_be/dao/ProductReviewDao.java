@@ -11,11 +11,11 @@ import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.ProductR
 public interface ProductReviewDao {
 
     @SqlUpdate(value =
-            "INSERT INTO review (user_id, product_id, order_id, rating, description) " +
-                    "VALUES (:user_id, :product_id, :order_id, :rating, :description)")
-    Boolean addReview(@Bind("user_id") Integer user_id,
-                      @Bind("product_id") Integer product_id,
-                      @Bind("order_id") Integer order_id,
+            "INSERT INTO review (userId, productId, orderId, rating, description) " +
+                    "VALUES (:userId, :productId, :orderId, :rating, :description)")
+    Boolean addReview(@Bind("userId") Integer userId,
+                      @Bind("productId") Integer productId,
+                      @Bind("orderId") Integer orderId,
                       @Bind("rating") Integer rating,
                       @Bind("description") String description
     );
