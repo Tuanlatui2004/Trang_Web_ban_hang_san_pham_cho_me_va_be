@@ -28,42 +28,7 @@ $(document).ready(function () {
 
     })
     // set default cho 2 nut nay
-    buy_now.attr('href', 'buy-now?product_id=' + product_id + '&option_id=' + firstOption.attr('data-option-id'));
-
-    // Thêm kiểm tra đăng nhập cho nút mua ngay
-    buy_now.on('click', function(e) {
-        e.preventDefault();
-        const sessionId = sessionStorage.getItem("session_id");
-        if (!sessionId) {
-            alert("Bạn cần đăng nhập trước khi mua hàng!");
-            return;
-        }
-        // Lấy đúng productId và optionId từ DOM
-        const product_id = product.attr('data-id');
-        const selectedOption = $('.option-item.selected');
-        const option_id = selectedOption.attr('data-option-id');
-
-        fetch("buy-now", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: `product_id=${product_id}&option_id=${option_id}`
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = `buy-now?product_id=${product_id}&option_id=${option_id}`;
-                } else {
-                    alert(data.message || "Có lỗi xảy ra khi xử lý đơn hàng");
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                alert("Có lỗi xảy ra. Vui lòng thử lại sau!");
-            });
-    });
-
+    buy_now.attr('href', 'buy-now?productId=' + product_id + '&optionId=' + firstOption.attr('data-option-id'));
     add_to_cart.on('click', function (e) {
         e.preventDefault();
         addToCart(product_id, firstOption.attr('data-option-id'));
@@ -77,10 +42,9 @@ $(document).ready(function () {
         option_item.each(function () {
 
             $(this).on('click', function () {
-                 // optionId sửa thành option_id
-                const option_id = $(this).attr('data-option-id');
+                const optionId = $(this).attr('data-option-id');
                 $('.option-item').removeClass('selected');
-                $('.option-item[data-option-id="' + option_id + '"]').addClass('selected');
+                $('.option-item[data-option-id="' + optionId + '"]').addClass('selected');
 
 
                 //Update price
@@ -90,7 +54,7 @@ $(document).ready(function () {
 
                 // Update option id cho nút buy now và add to cart
 
-                buy_now.attr('href', 'buy-now?productId=' + product_id + '&optionId=' + option_id);
+                buy_now.attr('href', 'buy-now?productId=' + product_id + '&optionId=' + optionId);
 
 
             })
@@ -102,13 +66,13 @@ $(document).ready(function () {
 })
 
 
-function addToCart(product_id, option_id) {
+function addToCart(productId, optionId) {
     fetch("add-cart", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `product_id=${product_id}&option_id=${option_id}`
+        body: `productId=${productId}&optionId=${optionId}`
     })
         .then(data => {
             console.log(data);
