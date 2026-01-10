@@ -63,7 +63,7 @@ function reRenderProducts(products) {
                             <div class="wrap mid_align row">
 
                                 <div class="img_section">
-                                    ${p.image_url ? `<img src="${p.image_url}" alt=""/>` : ''}
+                                    ${p.imageUlr ? `<img src="${p.imageUlr}" alt=""/>` : ''}
                                 </div>
 
 
@@ -138,10 +138,10 @@ function reRenderProducts(products) {
 
 
                                     <div class="wrap_btn col">
-                                         <a href="buy-now?product_id=${p.id}&option_id=${p.option_id}" class="btn buy"
+                                         <a href="buy-now?productId=${p.id}&optionId=${p.optionId}" class="btn buy"
                                            id="buy-now-btn">Mua Ngay</a>
 
-                                        <button onclick="addToCart(${p.id},${p.option_id})" class="btn add">
+                                        <button onclick="addToCart(${p.id},${p.optionId})" class="btn add">
                                             Thêm vào giỏ hàng
                                         </button>
 
