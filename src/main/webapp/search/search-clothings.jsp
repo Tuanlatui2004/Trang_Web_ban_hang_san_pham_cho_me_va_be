@@ -33,9 +33,8 @@
         <jsp:include page="../home/banner.jsp"/>
     </div>
     <div id="body" class="row">
-        <div id="sidebar" data-category="${category_id}">
+        <div id="sidebar">
 
-            <div class="wrap_title">
                 <div class="title f18 ">
                     <i class="fa-solid fa-filter"></i>
                     Bộ lọc
@@ -43,11 +42,10 @@
 
                 <button id="apply_btn"> Áp dụng</button>
 
-            </div>
-
             <!---------------------------- Default ------------------------------------------------>
 <%--            kiểm tra xem cái này chưa có xử lí chức năng--%>
-            <div class="section_price section_item col">
+<%--            <div class="section_price section_item col">--%>
+            <div class="section_type section_item col">
 
                 <div class="title">Mức giá</div>
 
@@ -101,7 +99,7 @@
                             <div id="search_body">
 
                                 <div class="wrap_img">
-                                    <img id="image" src="${pro.image_url}"
+                                    <img id="image" src="${pro.imageUrl}"
                                          alt="" height="225"
                                          width="225"/>
                                 </div>
@@ -137,10 +135,10 @@
 
                                 <div class="operation col">
                                     <button id="buy_now">
-                                        <a href="buy-now?productId=${pro.id}&optionId=${pro.option_id}">Mua ngay</a>
+                                        <a href="buy-now?productId=${pro.id}&optionId=${pro.optionId}">Mua ngay</a>
                                         Mua ngay
                                     </button>
-                                    <button onclick="addToCart(${pro.id},${pro.option_id})" class="btn add">Thêm vào giỏ hàng</button>
+                                    <button onclick="addToCart(${pro.id},${pro.optionId})" class="btn add">Thêm vào giỏ hàng</button>
                                 </div>
 
                                 <div id="top_cart-notification" class="notification hidden">
@@ -175,8 +173,8 @@
 
                                 <div class="img_section">
 
-                                    <c:if test="${not empty p.image_url}">
-                                        <img src="${p.image_url}" alt=""/>
+                                    <c:if test="${not empty p.imageUrl}">
+                                        <img src="${p.imageUrl}" alt=""/>
                                     </c:if>
 
                                 </div>
@@ -255,7 +253,7 @@
                                         <a href="buy-now?productId=${p.id}&optionId=${p.optionId}" class="btn buy"
                                            id="buy-now-btn">Mua Ngay</a>
 
-                                        <button onclick="addToCart(${p.id},${p.option_id})" class="btn add">
+                                        <button onclick="addToCart(${p.id},${p.optionId})" class="btn add">
                                             Thêm vào giỏ hàng
                                         </button>
 

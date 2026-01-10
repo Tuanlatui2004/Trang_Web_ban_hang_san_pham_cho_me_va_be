@@ -83,11 +83,11 @@
                                 <span class="color_name">Số lượng: <span>${o.quantity}</span></span>
                             </div>
                             <div class="status">
-                                <c:if  test="${o.order_status =='DELIVERY'}">
+                                <c:if  test="${o.orderStatus =='DELIVERY'}">
                                     <span style="color: #0a7cff">Đang giao hàng</span>
                                 </c:if>
 
-                                <c:if  test="${o.order_status =='DELIVERED'}">
+                                <c:if  test="${o.orderStatus =='DELIVERED'}">
                                     <span >Đã giao hàng</span>
                                 </c:if>
 
@@ -96,7 +96,7 @@
 
                         <div class="section_price mid_align col">
                             <div class="date">
-                                <span>${o.create_at}</span>
+                                <span>${o.createAt}</span>
                             </div>
                             <div class="wrap_price col">
                                 <span class="title">Tổng thanh toán: </span>

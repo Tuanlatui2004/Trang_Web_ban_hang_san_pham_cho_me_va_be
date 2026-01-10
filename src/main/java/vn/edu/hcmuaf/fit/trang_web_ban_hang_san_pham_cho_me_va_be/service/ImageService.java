@@ -34,26 +34,26 @@ public class ImageService {
     // Upload ảnh lên Cloudinary và lưu vào DB
     public String uploadImage(byte[] fileBytes) throws Exception {
         Map uploadResult = cloudinary.uploader().upload(fileBytes, ObjectUtils.emptyMap());
-        String image_url = (String) uploadResult.get("url");
-        imageDao.saveImage(image_url);
-        return image_url;
+        String imageUrl = (String) uploadResult.get("url");
+        imageDao.saveImage(imageUrl);
+        return imageUrl;
     }
 
-    public boolean addImageToProduct(Integer product_id, Integer image_id) {
-        return imageDao.addImageToProduct(product_id, image_id);
+    public boolean addImageToProduct(Integer productId, Integer imageId) {
+        return imageDao.addImageToProduct(productId, imageId);
     }
 
-    public int saveImage(String image_url) {
-        return imageDao.saveImage(image_url);
+    public int saveImage(String imageUrl) {
+        return imageDao.saveImage(imageUrl);
     }
 
-    public String getImageUrlById(int image_id) {
-        return imageDao.getImageUrlById(image_id);
+    public String getImageUrlById(int imageId) {
+        return imageDao.getImageUrlById(imageId);
     }
 
 
-    public List<String> getAllImagesByProductId(Integer product_id) {
-        return imageDao.getAllImagesByProductId(product_id);
+    public List<String> getAllImagesByProductId(Integer productId) {
+        return imageDao.getAllImagesByProductId(productId);
     }
 
 }

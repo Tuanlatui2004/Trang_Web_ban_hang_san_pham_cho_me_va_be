@@ -29,11 +29,11 @@ public class BuyNowController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          Product product = productService.getProductByIdAndOptionId(Integer.parseInt(request.getParameter("product_id")),
-                Integer.parseInt(request.getParameter("option_id")));
+                Integer.parseInt(request.getParameter("optionId")));
 
 
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("user_id");
+        Integer userId = (Integer) session.getAttribute("userId");
 
         if (product == null) {
             throw new ServletException("Product not found");

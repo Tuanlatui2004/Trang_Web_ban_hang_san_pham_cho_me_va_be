@@ -14,8 +14,8 @@ public class OptionService {
         this.optionDao = jdbi.onDemand(OptionVariantDao.class);
     }
 
-    public int createOptions(Integer product_id, Integer price, Integer stock) {
-        return optionDao.createOption(product_id, price, stock);
+    public int createOptions(Integer productId, Integer price, Integer stock) {
+        return optionDao.createOption(productId, price, stock);
     }
 
 
@@ -34,8 +34,8 @@ public class OptionService {
     }
 
 
-    public List<OptionVariant> getOptionsByProductId(Integer product_id) {
-        return optionDao.getOptionsByProductId(product_id);
+    public List<OptionVariant> getOptionsByProductId(Integer productId) {
+        return optionDao.getOptionsByProductId(productId);
     }
 
 

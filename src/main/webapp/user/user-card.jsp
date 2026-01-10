@@ -90,7 +90,7 @@
 
 
                         <div id="footer" class="mid_align">
-                            <c:if  test="${c.is_default}">
+                            <c:if  test="${c.isDefault}">
                                 <div id="default">Mặc định</div>
                             </c:if>
                             <div class="edit_card mid_align">

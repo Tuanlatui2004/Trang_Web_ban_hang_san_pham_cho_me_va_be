@@ -35,7 +35,7 @@ public class AuthService {
         User user = userDAO.getUserByEmail(email);
         if (user != null) {
             String storedSalt = user.getSalt(); // Lấy salt từ cơ sở dữ liệu
-            String storedHashedPassword = user.getPassword_Username();
+            String storedHashedPassword = user.getPasswordUsername();
 
             // Mã hóa mật khẩu nhập vào với salt
             String hashedPassword = HashUtils.hashWithSalt(password, storedSalt);
@@ -56,7 +56,7 @@ public class AuthService {
 
         if (verifyOldPassword) {
             String storedSalt = user.getSalt();
-            String storedHashedPassword = user.getPassword_Username();
+            String storedHashedPassword = user.getPasswordUsername();
 
             String hashedPassword = HashUtils.hashWithSalt(oldPassword, storedSalt);
 

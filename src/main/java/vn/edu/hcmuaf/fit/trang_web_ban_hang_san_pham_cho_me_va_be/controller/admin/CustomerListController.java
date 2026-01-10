@@ -38,16 +38,16 @@ public class CustomerListController  extends HttpServlet {
             Address address = addressDao.getAddressByUserId(user.getId()).stream().findFirst().orElse(null);
             userAddresses.put(user.getId(), address != null ? address.getCountry() : "N/A");
 
-            if (user.getAvatar_id() != null) {
-                String avatarUrl = userService.getAvatarUrlById(user.getAvatar_id());
-                user.setAvatar_url(avatarUrl); // Set avatar URL to User object
+            if (user.getAvatarId() != null) {
+                String avatarUrl = userService.getAvatarUrlById(user.getAvatarId());
+                user.setAvatarUrl(avatarUrl); // Set avatar URL to User object
             } else {
-                user.setAvatar_url("default-avatar-url.jpg"); // Default avatar URL
+                user.setAvatarUrl("default-avatar-url.jpg"); // Default avatar URL
             }
         }
-
+// xem db có biến này không anh em
         request.setAttribute("users", users);
-        request.setAttribute("userAddresses", userAddresses);
+            request.setAttribute("userAddresses", userAddresses);
 
 
         request.getRequestDispatcher("customers.jsp").forward(request, response);

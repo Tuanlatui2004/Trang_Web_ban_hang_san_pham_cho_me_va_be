@@ -44,7 +44,7 @@ public class UpdateUserInforController extends HttpServlet {
 
 
 
-        Integer userId = (Integer) session.getAttribute("user_id");
+        Integer userId = (Integer) session.getAttribute("userId");
         User user = new User();
         user.setId(userId);
         user.setFullName(requestData.get("fullName").toString());
@@ -52,7 +52,7 @@ public class UpdateUserInforController extends HttpServlet {
         user.setGender(requestData.get("gender").toString());
         user.setdOB(LocalDate.parse(requestData.get("dOB").toString()));
         user.setEmail(requestData.get("email").toString());
-        user.setPhone_number(requestData.get("phone_number").toString());
+        user.setPhoneNumber(requestData.get("phoneNumber").toString());
 
         Boolean success = userService.updateUser(user);
 

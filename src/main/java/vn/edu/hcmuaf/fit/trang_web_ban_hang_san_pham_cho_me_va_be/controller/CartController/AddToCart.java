@@ -23,8 +23,8 @@ public class AddToCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer productId=  Integer.parseInt(request.getParameter("product_id"));
-        Integer optionId =Integer.parseInt(request.getParameter("option_id"));
+        Integer productId=  Integer.parseInt(request.getParameter("productId"));
+        Integer optionId =Integer.parseInt(request.getParameter("optionId"));
 
         Product product = productService.getProductByIdAndOptionId(productId,optionId);
 

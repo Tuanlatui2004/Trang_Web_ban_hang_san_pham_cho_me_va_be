@@ -23,8 +23,8 @@ public class ProductImageController extends HttpServlet {
 
         try {
             // Lấy dữ liệu từ request
-            int productId = Integer.parseInt(req.getParameter("product_id"));
-            int imageId = Integer.parseInt(req.getParameter("image_id"));
+            int productId = Integer.parseInt(req.getParameter("productId"));
+            int imageId = Integer.parseInt(req.getParameter("imageId"));
 
             // Gọi service để thêm ảnh vào product
             boolean isSuccess = imageService.addImageToProduct(productId, imageId);

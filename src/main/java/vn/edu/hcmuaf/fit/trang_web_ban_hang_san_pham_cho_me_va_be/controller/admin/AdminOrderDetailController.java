@@ -26,7 +26,7 @@ public class AdminOrderDetailController extends HttpServlet {
             throws ServletException, IOException {
 
 
-        Integer orderId = Integer.parseInt(request.getParameter("order_id"));
+        Integer orderId = Integer.parseInt(request.getParameter("orderId"));
         Order order = orderService.getOrderById(orderId);
 
 
@@ -37,7 +37,7 @@ public class AdminOrderDetailController extends HttpServlet {
             List<OrderDetail> orderDetails = orderDetailService.getOrderDetailByOrderId(order.getId());
             request.setAttribute("orderDetails", orderDetails);
 
-            User user = userService.getUserById(order.getUser_id());
+            User user = userService.getUserById(order.getUserId());
             request.setAttribute("user", user);
 
 

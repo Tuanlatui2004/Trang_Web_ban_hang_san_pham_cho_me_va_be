@@ -75,7 +75,7 @@
 
                         <div class="wrap mid_align row product-item"
                              data-stock="${p.stock}"
-                             data-id="${p.product_id}"  data-option-id="${p.option_id}"
+                             data-id="${p.productId}"  data-option-id="${p.optionId}"
                              data-quantity="${p.quantity}" data-price="${p.price}"
                         >
 
@@ -154,14 +154,14 @@
                                 <c:if test="${address.isDefault == true }">
                                     <div id="address" class="item_header row mid_align" data-address-id="${address.id}">
 
-                                        <span class="name">${address.name}</span>
+                                        <span class="name">${address.fullName}</span>
                                         <div class="rec_vertical"></div>
-                                        <span class="phone">${address.phone}</span>
+                                        <span class="phone">${address.phoneNumber}</span>
                                         <a href="#" class="change">Thay đổi</a>
                                     </div>
 
                                     <div class="address_detail">
-                                        <span> ${address.detail}, ${address.commune}, ${address.district}, ${address.province}  </span>
+                                        <span> ${address.street}, ${address.city}, ${address.state}, ${address.country}  </span>
                                     </div>
 
                                     <c:set var="found" value="true"/>
@@ -178,14 +178,14 @@
                                     <c:if test="${found == false}">
                                         <div id="address" class="item_header row mid_align" data-address-id="${address.id}">
 
-                                            <span class="name">${address.name}</span>
+                                            <span class="name">${address.fullName}</span>
                                             <div class="rec_vertical"></div>
-                                            <span class="phone">${address.phone}</span>
+                                            <span class="phone">${address.phoneNumber}</span>
                                             <a href="#" class="change">Thay đổi</a>
                                         </div>
 
                                         <div class="address_detail">
-                                            <span> ${address.detail}, ${address.commune}, ${address.district}, ${address.province}  </span>
+                                            <span> ${address.street}, ${address.city}, ${address.state}, ${address.country}  </span>
                                         </div>
 
                                         <c:set var="found" value="true"/>

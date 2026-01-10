@@ -49,11 +49,11 @@
 
                             <div class="form_infor row mid_align">
                                 <div class="avatar">
-                                    <c:if   test="${not empty user.avatar_url}">
-                                        <img id="avatar" src="${user.avatar_url}"/>
+                                    <c:if   test="${not empty user.avatarUrl}">
+                                        <img id="avatar" src="${user.avatarUrl}"/>
                                     </c:if>
 
-                                    <c:if   test="${empty user.avatar_url}">
+                                    <c:if   test="${empty user.avatarUrl}">
                                         <img id="avatar" src="${pageContext.request.contextPath}/static/image/medium%20(1).png" height="500" width="500"/>
                                     </c:if>
 
@@ -171,8 +171,8 @@
                                     <i class="fa-solid fa-phone"></i>
 
                                     <span id="phone" class="item_text"  >
-                             <c:if test="${not empty user.phone_number}">
-                                 ${user.phone_number}
+                             <c:if test="${not empty user.phoneNumber}">
+                                 ${user.phoneNumber}
                              </c:if>
                         </span>
 

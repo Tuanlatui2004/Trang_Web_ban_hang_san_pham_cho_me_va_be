@@ -68,8 +68,8 @@
 
                     <div class="order-info">
                         <h3>Mã Đơn Hàng: ${order.id}</h3>
-                        <p>Ngày Đặt Hàng: ${order.create_at}
-                            <c:if test="${order.payment_status =='PAID'}">
+                        <p>Ngày Đặt Hàng: ${order.createAt}
+                            <c:if test="${order.paymentStatus =='PAID'}">
                                 <span class="status-paid">Đã Thanh Toán</span>
                             </c:if>
                         </p>
@@ -93,13 +93,13 @@
                                     <tr>
                                         <td style="text-align: left;">
                                             <div class="product-info">
-                                                <img src="${od.image_url}"
-                                                     alt="${od.product_name}" class="product-image">
-                                                <span>${od.product_name}</span><br>
+                                                <img src="${od.imageUrl}"
+                                                     alt="${od.productName}" class="product-image">
+                                                <span>${od.productName}</span><br>
 
                                             </div>
                                         </td>
-                                        <td>${od.product_id}</td>
+                                        <td>${od.productId}</td>
                                         <td>${od.quantity}</td>
                                         <td>
                                             <fmt:formatNumber value="${od.total}" pattern="#,###"/> VND

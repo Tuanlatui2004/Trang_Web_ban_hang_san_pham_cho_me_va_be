@@ -32,13 +32,13 @@ public class UserService {
 
 
 
-    public String getAvatarUrlById(Integer avatar_id) {
-        return userDao.getAvatarUrlById(avatar_id);
+    public String getAvatarUrlById(Integer avatarId) {
+        return userDao.getAvatarUrlById(avatarId);
     }
 
 
-    public Boolean updateAvatar(Integer user_id, Integer avatar_id) {
-        return userDao.updateAvatar(user_id, avatar_id);
+    public Boolean updateAvatar(Integer userId, Integer avatarId) {
+        return userDao.updateAvatar(userId, avatarId);
     }
 
 
@@ -49,7 +49,7 @@ public class UserService {
                 user.getDisplayName(),
                 user.getdOB(),
                 user.getGender(),
-                user.getPhone_number()
+                user.getPhoneNumber()
         );
     }
 

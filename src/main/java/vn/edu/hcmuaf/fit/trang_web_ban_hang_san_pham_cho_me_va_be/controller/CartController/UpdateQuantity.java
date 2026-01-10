@@ -28,7 +28,7 @@ public class UpdateQuantity extends HttpServlet {
             Cart cart = (Cart) session.getAttribute("cart");
 
             if (cart != null) {
-                Integer productId = Integer.parseInt(request.getParameter("product_id"));
+                Integer productId = Integer.parseInt(request.getParameter("productId"));
                 int quantity = Integer.parseInt(request.getParameter("quantity"));
 
                 if (cart.getData().containsKey(productId)) {

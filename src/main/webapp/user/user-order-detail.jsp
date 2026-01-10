@@ -55,11 +55,11 @@
                     <div class="wrap row">
                         <div class="order_id" data-order-id="${order.id}">Mã đơn hàng: <span>${order.id}</span></div>
 
-                        <c:if test="${order.order_status =='DELIVERY'}">
+                        <c:if test="${order.orderStatus =='DELIVERY'}">
                             <div class="order_status mid_align" style="color: #0a7cff">Đang giao hàng</div>
                         </c:if>
 
-                        <c:if test="${order.order_status =='DELIVERED'}">
+                        <c:if test="${order.orderStatus =='DELIVERED'}">
                             <div class="order_status mid_align">Đã giao hàng</div>
                         </c:if>
                     </div>
@@ -78,16 +78,16 @@
                     <c:if test="${not empty orderDetails}">
                         <c:forEach var="od" items="${orderDetails}">
 
-                            <div class="order_item mid_align row" data-product-id="${od.product_id}">
+                            <div class="order_item mid_align row" data-product-id="${od.productId}">
 
 
                                 <div class="image">
-                                    <img src="${od.image_url}"/>
+                                    <img src="${od.imageUrl}"/>
                                 </div>
 
 
                                 <div class="description mid_align col  ">
-                                    <div class="title bold">${od.product_name}</div>
+                                    <div class="title bold">${od.productName}</div>
 
                                     <div class="color">
                                         <span class="color_name">Màu Sắc: <span>Đen</span></span>
@@ -204,13 +204,13 @@
 
                                     <div class="content_item full_name">
                                         <i class="fa-regular fa-user"></i>
-                                        <span> ${address.full_name} </span>
+                                        <span> ${address.fullName} </span>
                                     </div>
 
                                     <div class="content_item phone">
                                         <i class="fa-solid fa-phone"></i>
-                                        <c:if test="${not empty address.phone_number}">
-                                            <span>${address.phone_number}</span>
+                                        <c:if test="${not empty address.phoneNumber}">
+                                            <span>${address.phoneNumber}</span>
                                         </c:if>
                                     </div>
 

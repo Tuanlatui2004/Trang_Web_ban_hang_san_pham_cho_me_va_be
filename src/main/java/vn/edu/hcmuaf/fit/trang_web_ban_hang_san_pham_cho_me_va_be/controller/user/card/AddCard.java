@@ -55,19 +55,19 @@ public class AddCard extends HttpServlet{
         boolean primaryCard = json.get("primaryCard").getAsBoolean();
 
         HttpSession session = request.getSession();
-        Integer userId = Integer.parseInt(session.getAttribute("user_id").toString());
+        Integer userId = Integer.parseInt(session.getAttribute("userId").toString());
 
 
 
         Card card = new Card();
         card.setDuration(expiryDate);
         card.setType("Visa");
-        card.setUser_id(userId);
+        card.setUserId(userId);
         if (primaryCard) {
-            card.setIs_default(true);
+            card.setDefault(true);
         }
         else {
-            card.setIs_default(false);
+            card.setDefault(false);
         }
         card.setLast4(last4);
 

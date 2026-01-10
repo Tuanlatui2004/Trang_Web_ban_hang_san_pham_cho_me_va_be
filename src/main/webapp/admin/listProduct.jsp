@@ -125,13 +125,13 @@
                             <td>
                                 <div class="product">
 
-                                    <img src="${p.image_url}" alt="${p.name}" class="product-img">
+                                    <img src="${p.imageUrl}" alt="${p.name}" class="product-img">
 
                                     <p>${p.name}</p>
                                 </div>
                             </td>
 
-                            <td>${p.category_name}</td>
+                            <td>${p.categoryName}</td>
 
                             <td>01/1/2026</td>
 

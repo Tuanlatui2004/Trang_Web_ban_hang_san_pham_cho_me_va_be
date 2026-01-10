@@ -13,7 +13,7 @@ public class AdminProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher("myProfile.jsp").forward(request, response);
+        request.getRequestDispatcher("my-profile.jsp").forward(request, response);
     }
 
     @Override

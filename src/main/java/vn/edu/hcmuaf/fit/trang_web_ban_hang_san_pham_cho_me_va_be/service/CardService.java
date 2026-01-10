@@ -25,10 +25,10 @@ public class CardService {
 
     public Boolean addCard(Card card) {
         return cardDao.addCard(
-                card.getUser_id(),
+                card.getUserId(),
                 card.getDuration(),
                 card.getType(),
-                card.getIs_default()
+                card.getDefault()
 
         );
     }
@@ -37,10 +37,10 @@ public class CardService {
     public static void main(String[] args) {
         CardService cardService = new CardService(DBConnection.getJdbi());
         Card card = new Card();
-        card.setUser_id(35);
+        card.setUserId(35);
         card.setDuration(LocalDate.of(2027,1,1));
         card.setType("visa");
-        card.setIs_default(true);
+        card.setDefault(true);
 
         System.out.println(cardService.addCard(card));
 //        System.out.println(cardService.getCartByUserId(1));

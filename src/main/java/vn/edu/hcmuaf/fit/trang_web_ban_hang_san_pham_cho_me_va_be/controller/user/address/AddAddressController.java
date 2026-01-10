@@ -16,20 +16,20 @@ public class AddAddressController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Integer userId = Integer.parseInt(request.getParameter("user_id"));
-            String addressType = request.getParameter("address_type");
-            String fullName = request.getParameter("full_name");
-            String phoneNumber = request.getParameter("phone_number");
+            Integer userId = Integer.parseInt(request.getParameter("userId"));
+            String addressType = request.getParameter("addressType");
+            String fullName = request.getParameter("fullName");
+            String phoneNumber = request.getParameter("phoneNumber");
             String street = request.getParameter("street");
             String city = request.getParameter("city");
             String state = request.getParameter("state");
             String country = request.getParameter("country");
             // xem lại này nha HaiAnh
-            Boolean is_default = Boolean.valueOf(request.getParameter("is_default"));
+            Boolean isDefault = Boolean.valueOf(request.getParameter("isDefault"));
 
             // Khởi tạo Address
             Address newAddress = new Address(
-                    null, userId, addressType, fullName, phoneNumber, street, city, state, country, is_default
+                    null, userId, addressType, fullName, phoneNumber, street, city, state, country, isDefault
             );
 
             // Thêm vào cơ sở dữ liệu
