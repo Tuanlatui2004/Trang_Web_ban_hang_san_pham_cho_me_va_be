@@ -104,12 +104,12 @@
                                 <td><a href="order-detail?order_id=${o.id}" class="order-id">#${o.id}</a>
                                 </td>
 
-                                <td class="order-name">${o.user_name}</td>
+                                <td class="order-name">${o.userName}</td>
 
-                                <td class="order-date">${o.create_at}</td>
+                                <td class="order-date">${o.createAt}</td>
 
                                 <td>
-                                    <c:if test="${o.payment_status == 'PAID'}">
+                                    <c:if test="${o.paymentStatus == 'PAID'}">
                                         <span class="status status-paid">Đã Thanh Toán</span>
                                     </c:if>
                                 </td>
@@ -119,11 +119,11 @@
                                 </td>
 
                                 <td>
-                                    <c:if test="${o.order_status == 'DELIVERED'}">
+                                    <c:if test="${o.orderStatus == 'DELIVERED'}">
                                         <span class="status order-status-shipped">Đã Gửi</span>
                                     </c:if>
 
-                                    <c:if test="${o.order_status == 'DELIVERY'}">
+                                    <c:if test="${o.orderStatus == 'DELIVERY'}">
                                         <span  class="status order-status-shipped" style="color: #000;">Đang Gửi</span>
                                     </c:if>
 
