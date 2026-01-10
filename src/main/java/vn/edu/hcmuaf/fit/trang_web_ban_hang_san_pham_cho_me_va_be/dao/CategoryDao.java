@@ -13,15 +13,15 @@ import java.util.List;
 @RegisterConstructorMapper(Category.class)
 public interface CategoryDao {
 
-    @SqlQuery("SELECT * FROM categories WHERE is_active = 1")
+    @SqlQuery("SELECT * FROM categories WHERE isActive = 1")
     List<Category> getAllCategories();
 
     @SqlQuery("SELECT * FROM categories WHERE id = :id")
     Category getCategoryById(@Bind("id") Integer id);
 
-    @SqlUpdate("INSERT INTO categories (name, is_active) VALUES (:name, COALESCE(:is_active, 1))")
+    @SqlUpdate("INSERT INTO categories (name, isActive) VALUES (:name, COALESCE(:isActive, 1))")
     @GetGeneratedKeys("id")
-    int createCategory(@Bind("name") String name, @Bind("is_active") Boolean is_active);
+    int createCategory(@Bind("name") String name, @Bind("isActive") Boolean isActive);
 
 
     @SqlUpdate("UPDATE categories SET name = :name WHERE id = :id")

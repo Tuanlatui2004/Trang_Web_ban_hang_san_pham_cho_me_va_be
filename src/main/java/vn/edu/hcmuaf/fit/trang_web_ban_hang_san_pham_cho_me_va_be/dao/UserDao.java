@@ -17,10 +17,10 @@ public interface UserDao {
     @SqlQuery("SELECT * FROM user")
     List<User> getAllUsers();
 
-    @SqlQuery(value = "select u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phone,\n" +
+    @SqlQuery(value = "select u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phoneNumber,\n" +
             "        i.url as avatar_url"+
             "from user as u\n" +
-            "     left join image as i on u.avatar_id = i.id\n" +
+            "     left join image as i on u.avatarId = i.id\n" +
             "where u.id  = :id")
     User getUserById(@Bind("id") Integer id);
 
@@ -53,13 +53,13 @@ public interface UserDao {
     @SqlQuery("SELECT * FROM user WHERE id = :id")
     User getPasswordByUserId(@Bind("id") Integer userId);
 
-    @SqlQuery("SELECT url FROM image WHERE id = :avatar_id")
-    String getAvatarUrlById(@Bind("avatar_id") Integer avatar_id);
+    @SqlQuery("SELECT url FROM image WHERE id = :avatarId")
+    String getAvatarUrlById(@Bind("avatarId") Integer avatarId);
 
     @SqlUpdate(value ="UPDATE user\n" +
-            "SET avatar_id = :avatar_id " +
-            "where id = :user_id")
-    Boolean updateAvatar(@Bind("user_id") Integer user_id, @Bind("avatar_id") Integer avatar_id);
+            "SET avatarId = :avatarId " +
+            "where id = :userId")
+    Boolean updateAvatar(@Bind("userId") Integer userId, @Bind("avatarId") Integer avatarId);
 
     @SqlUpdate(value = "UPDATE user\n" +
             "SET\n" +
@@ -67,15 +67,15 @@ public interface UserDao {
             "    displayName = :displayName,\n" +
             "    dOB = :dOB, " +
             "    gender = :gender,\n" +
-            "    phone = :phone " +
-            "where id = :user_id")
+            "    phoneNumber = :phoneNumber " +
+            "where id = :userId")
     Boolean updateUser(
-            @Bind("user_id") Integer user_id,
+            @Bind("userId") Integer userId,
             @Bind("fullName") String fullName,
             @Bind("displayName") String displayName,
             @Bind("dOB") LocalDate dOB,
             @Bind("gender") String gender,
-            @Bind("phone") String phone
+            @Bind("phoneNumber") String phoneNumber
     );
 
 }

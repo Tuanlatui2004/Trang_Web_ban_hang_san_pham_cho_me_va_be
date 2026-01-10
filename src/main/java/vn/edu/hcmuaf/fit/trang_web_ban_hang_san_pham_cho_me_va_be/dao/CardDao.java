@@ -14,23 +14,23 @@ import java.util.List;
 public interface CardDao {
     @SqlQuery(value = "SELECT *\n" +
             "FROM card\n" +
-            "WHERE user_id = :user_id;")
-    List<Card> getCardByUserId(@Bind("user_id") Integer user_id);
+            "WHERE userId = :userId;")
+    List<Card> getCardByUserId(@Bind("userId") Integer userId);
 
     @SqlQuery(value = "SELECT *\n" +
             "FROM card\n" +
-            "WHERE id = :card_id;")
-    Card getCardById(@Bind("card_id") Integer card_id);
+            "WHERE id = :cardId;")
+    Card getCardById(@Bind("cardId") Integer cardId);
 
 
 
-    @SqlUpdate(value = "insert into card( user_id, duration, type, is_default) VALUE (\n" +
-            "  :user_id, :duration , :type , :is_default  \n" +
+    @SqlUpdate(value = "insert into card( userId, duration, type, isDefault) VALUE (\n" +
+            "  :userId, :duration , :type , :isDefault  \n" +
             " );")
     Boolean addCard(
-            @Bind("user_id") Integer user_id,
+            @Bind("userId") Integer userId,
             @Bind("duration") LocalDate duration,
             @Bind("type") String type,
-            @Bind("is_default") Boolean is_default
+            @Bind("isDefault") Boolean isDefault
     );
 }

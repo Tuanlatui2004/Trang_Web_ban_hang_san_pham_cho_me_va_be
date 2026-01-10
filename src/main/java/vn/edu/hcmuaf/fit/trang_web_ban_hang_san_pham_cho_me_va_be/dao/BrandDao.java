@@ -11,7 +11,7 @@ import java.util.List;
 
 @RegisterConstructorMapper(Brand.class)
 public interface BrandDao {
-    @SqlQuery("SELECT * FROM brand WHERE is_active = 1")
+    @SqlQuery("SELECT * FROM brand WHERE isActive = 1")
     List<Brand> getAllBrand();
 
     @SqlQuery("SELECT * FROM brand WHERE id = :id")

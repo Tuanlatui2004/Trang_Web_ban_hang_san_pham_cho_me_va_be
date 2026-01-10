@@ -33,7 +33,7 @@
             <div id="empty_cart" class="mid_align col">
                 <i class="fa-solid fa-cart-plus"></i>
                 <h1>Giỏ Hàng Đang Trống</h1>
-                <span>Đăng nhập vào tài khoản Samsung của bạn để xem các mục đã lưu hoặc tiếp tục mua sắm</span>
+                <span>Đăng nhập vào tài khoản của bạn để xem các mục đã lưu hoặc tiếp tục mua sắm</span>
 
                 <div class="btn row">
                     <button class="btn_shopping">Tiếp tục mua sắm</button>
