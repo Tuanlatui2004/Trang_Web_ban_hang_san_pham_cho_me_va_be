@@ -4,7 +4,7 @@ function addToCart(productId, optionId) {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `product_id=${productId}&option_id=${optionId}`
+        body: `productId=${productId}&optionId=${optionId}`
     })
         .then(data => {
             console.log(data);
@@ -17,15 +17,19 @@ function addToCart(productId, optionId) {
 
 
 function buyNow(productId, optionId) {
-    const sessionId = sessionStorage.getItem("session_id");
-    if (!sessionId) {
-        alert("Bạn cần đăng nhập trước khi mua hàng!");
-        return;
-    }
-    else {
-        window.location.href = `buy-now?product_id=${productId}&option_id=${optionId}`;
-    }
+    fetch("buy-now", {
+        method: "POST",
+        headers: {  "Content-Type": "application/x-www-form-urlencoded"},
+        body: `productId=${productId}&optionId=${optionId}`
+    })
+        .then(data => {
+            console.log(data);
+            if (data.ok){
+                // window.location.href = "cart";
+            }
+            // window.location.href= "cart";
 
+
+        }).catch(error => console.log(error));
 
 }
-

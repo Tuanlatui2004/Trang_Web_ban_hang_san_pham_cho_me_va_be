@@ -28,20 +28,20 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById('name').addEventListener('click', function () {
     const mainIframe = window.top.document.querySelector('#body iframe');
     if (mainIframe) {
-        mainIframe.src = '/src/main/webapp/fontend/component/product_detail/Product-detail.html';
+        mainIframe.src = 'D:/Trang_Web_ban_hang_san_pham_cho_me_va_be/src/main/webapp/fontend/component/product_detail/Product-detail.html';
     }
 });
 
 
 
-// const isLoggedIn = localStorage.getItem("isLoggedIn");
-// document.getElementById("buy_now").addEventListener("click", (event) => {
-//     const mainIframe = window.top.document.querySelector('#body iframe');
-//     event.preventDefault();
-//     if (!isLoggedIn) {
-//         alert("Bạn cần đăng nhập trước!");
-//     } else {
-//         mainIframe.src = '/web-programming/frontEnd/src/component/Checkout/checkout.html';
-//         history.pushState({ page: "user-checkout" }, "Thanh toán", "/checkout");
-//     }
-// });
+const isLoggedIn = localStorage.getItem("isLoggedIn");
+document.getElementById("buy_now").addEventListener("click", (event) => {
+    const mainIframe = window.top.document.querySelector('#body iframe');
+    event.preventDefault();
+    if (!isLoggedIn) {
+        alert("Bạn cần đăng nhập trước!");
+    } else {
+        mainIframe.src = 'D:/Trang_Web_ban_hang_san_pham_cho_me_va_be/src/main/webapp/fontend/component/Checkout/checkout.html';
+        history.pushState({ page: "user-checkout" }, "Thanh toán", "/checkout");
+    }
+});

@@ -286,7 +286,7 @@ function getSelectedCategoryId() {
 // Hàm tải danh sách biến thể dựa trên categoryId
 async function loadVariantsByCategory(categoryId) {
     const variantSelect = document.getElementById('variant-select'); // Hoặc chọn select khác nếu cần
-    const url = categoryId ? `api/variants?category_id=${categoryId}` : `api/variants`;
+    const url = categoryId ? `api/variants?categoryId=${categoryId}` : `api/variants`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.statusCode === 200) {
@@ -519,7 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function loadVariantsByCategory(categoryId) {
         try {
             variantSelect.innerHTML = '<option>Đang tải...</option>';
-            const url = categoryId ? `api/variants?category_id=${categoryId}` : `api/variants`;
+            const url = categoryId ? `api/variants?categoryId=${categoryId}` : `api/variants`;
             const response = await fetch(url);
             const data = await response.json();
 
@@ -625,7 +625,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const description = document.getElementById("description").value.trim();
         const price = document.getElementById("price").value.trim();
         const stock = document.getElementById("total").value.trim();
-        // const tags = document.getElementById("tags").value.trim();
+        const tags = document.getElementById("tags").value.trim();
         const imageUpload = fileInput.files;
 
         if (!productName || !category || !price || !stock || imageUpload.length === 0 || !brand) {
@@ -640,7 +640,7 @@ document.addEventListener("DOMContentLoaded", () => {
             description,
             price,
             stock,
-            // tags,
+            tags,
             imageUpload
         };
     }
@@ -669,7 +669,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: parseFloat(formData.price),
             stock: parseInt(formData.stock),
             brandId: formData.brand,
-            // tags: formData.tags.split(",").map(tag => tag.trim()),
+            tags: formData.tags.split(",").map(tag => tag.trim()),
             isActive: true,
             primaryImage: uploadData.data[0].id,
         };
@@ -695,7 +695,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return fetch("ImageDetailDao", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `product_id=${productId}&image_id=${imageId}`,
+                body: `productId=${productId}&imageId=${imageId}`,
             });
         }));
     }
@@ -776,7 +776,7 @@ function fetchProductDetails(productId) {
                 document.getElementById('price').value = product.price;
                 document.getElementById('total').value = product.stock;
                 document.getElementById('vendor').value = product.brandId || '';
-                // document.getElementById('tags').value = product.tags || '';
+                document.getElementById('tags').value = product.tags || '';
                 document.getElementById('optionsContainer1').value = product.optionId;
 
                 // Điền các variants vào dropdown
