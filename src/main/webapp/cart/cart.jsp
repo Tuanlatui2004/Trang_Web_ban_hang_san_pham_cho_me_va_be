@@ -52,15 +52,15 @@
 
                     <c:forEach items="${productCarts}" var="p">
 
-                        <div class="wrap mid_align row product-item" data-stock="${p.stock}" data-id="${p.product_id}">
-                            <input type="checkbox" checked class="product_checked" value="${p.product_id}">
+                        <div class="wrap mid_align row product-item" data-stock="${p.stock}" data-id="${p.productId}">
+                            <input type="checkbox" checked class="product_checked" value="${p.productId}">
                             <div class="image">
                                 <c:choose>
-                                    <c:when test="${empty p.image_url}">
+                                    <c:when test="${empty p.imageUrl}">
                                         <img src="${pageContext.request.contextPath}static/image/default_img.jpg" alt=""/>
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="${p.image_url}" alt=""/>
+                                        <img src="${p.imageUrl}" alt=""/>
                                     </c:otherwise>
                                 </c:choose>
                             </div>

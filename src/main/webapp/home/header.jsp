@@ -38,7 +38,7 @@
                     <div class="submenu-column">
 
                         <%--                        <a class="nav_item" href="search-do-so-sinh" >Tất cả combo đồ sơ sinh</a>--%>
-                        <a class="nav_item" href="search-category?category_id=1">Tất cả combo đồ
+                        <a class="nav_item" href="Search_Clothes">Tất cả combo đồ
                             sơ sinh</a>
 
 
@@ -60,7 +60,7 @@
                 <div class="submenu submenu-may-moc-thiet-yeu">
                     <div class="submenu-column">
                         <%--                        <a class="nav_item" href="search-tat-ca-loai-may" >Tất cả các loại máy</a>--%>
-                        <a class="nav_item" href="search-category?category_id=2">Tất cả các loại máy</a>
+                        <a class="nav_item" href="Search_mayphasua">Tất cả các loại máy</a>
 
                         <a href="#">Máy hút sữa</a>
                         <a href="#">Nồi nấu<span class="new">MỚI</span></a>
@@ -76,7 +76,7 @@
                 <a href="#">Sữa & Bình Sữa</a>
                 <div class="submenu submenu-sua-&-binh-sua">
                     <div class="submenu-column">
-                        <a class="nav_item" href="search-category?category_id=3">Tất cả các loại sữa</a>
+                        <a class="nav_item" href="Search_Sua">Tất cả các loại sữa</a>
                         <a href="#">Sữa bột</a>
                         <a href="#">Sữa pha sẵn <span class="new">MỚI</span></a>
                         <a href="#">Sữa bầu</a>
@@ -93,7 +93,7 @@
                 <a href="#">Ăn dặm</a>
                 <div class="submenu submenu-an-dam">
                     <div class="submenu-column">
-                        <a class="nav_item" href="search-category?category_id=6">Tất cả món ăn dặm</a>
+                        <a class="nav_item" href="Search_Andam">Tất cả món ăn dặm</a>
                         <a href="#">Bánh ăn dặm <span class="new">MỚI</span></a>
                         <a href="#">Bột ăn dặm</a>
                         <a href="#">Gia vị ăn dặm</a>
@@ -107,7 +107,7 @@
                 <a href="#">Bỉm tã & vệ sinh</a>
                 <div class="submenu submenu-bim-ta-&-ve-sinh">
                     <div class="submenu-column">
-                        <a class="nav_item" href="search-category?category_id=4">Tất cả các loại bỉm tã</a>
+                        <a class="nav_item" href="Search_Bimta">Tất cả các loại bỉm tã</a>
                         <<a href="#">Bĩm tã</a>
                         <a href="#">Quần đóng bĩm</a>
                         <a href="#">Quần bỏ bĩm</a>
@@ -122,7 +122,7 @@
                 <a href="#">Thời trang cho bé</a>
                 <div class="submenu submenu-thoi-trang-cho-be">
                     <div class="submenu-column">
-                        <a class="nav_item" href="search-category?category_id=5">Tất cả mẫu quần áo</a>
+                        <a class="nav_item" href="Search_TTBe">Tất cả mẫu quần áo</a>
                         <a href="#">Quần áo</a>
                         <a href="#">Balo, túi xách</a>
                         <a href="#">Giày dép</a>
@@ -136,7 +136,7 @@
                 <a href="#">Đồ cho mẹ</a>
                 <div class="submenu submenu-do-cho-me">
                     <div class="submenu-column">
-                        <a class="nav_item" href="search-category?category_id=7">Tất cả mẫu đồ cho
+                        <a class="nav_item" href="Search_Me">Tất cả mẫu đồ cho
                             mẹ</a>
                         <a href="#">Sữa bầu</a>
                         <a href="#">Vitamin cho mẹ</a>
