@@ -24,7 +24,16 @@ public class ProductDetailController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int product_id = Integer.parseInt(request.getParameter("id"));
+        String idParam = request.getParameter("id");
+
+        if (idParam == null || idParam.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing product id");
+            return;
+        }
+
+        int id = Integer.parseInt(idParam);
+
+//        int product_id = Integer.parseInt(request.getParameter("id"));
         Product product = productService.getProductById(product_id);
 
         Integer product_price = productService.getMinimumPriceForProduct(product_id); // Default to minimum price
