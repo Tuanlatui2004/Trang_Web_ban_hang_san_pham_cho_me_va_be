@@ -16,7 +16,7 @@ public interface OptionVariantDao {
 
     @SqlUpdate("INSERT INTO option_variant (product_id, price, stock) VALUES (:product_id, :price, :stock)")
     @GetGeneratedKeys
-    int createOption(@Bind("product_id") Integer product_id, @Bind("price") Integer price, @Bind("stock") Integer stock);
+    int createOption(@Bind("productId") Integer productId, @Bind("price") Integer price, @Bind("stock") Integer stock);
 
 
     @SqlQuery(value = "select *\n" +
@@ -36,23 +36,23 @@ public interface OptionVariantDao {
 
     @SqlQuery(value = "select *\n" +
             "from option_variant\n" +
-            "where product_id = :product_id")
-    List<OptionVariant> getOptionsByProductId(@Bind("product_id") Integer product_id);
+            "where productId = :productId")
+    List<OptionVariant> getOptionsByProductId(@Bind("productId") Integer productId);
 
 
 
 
 
     @SqlQuery(value = "select\n" +
-            "    o.id as id, o.product_id, o.price, o.stock,\n" +
+            "    o.id as id, o.productId, o.price, o.stock,\n" +
             "    v.id as variantId, v.name as variantName,\n" +
             "    v.value as variantValue \n" +
             "from\n" +
             "    option_variant as o\n" +
             "    inner join variant as  v\n" +
-            "        on o.id = v.option_id\n" +
-            "where o.id in (<option_ids>)\n")
-    List<OptionVariant> getVariantByOptionId(@BindList("option_ids") List<Integer> option_ids);
+            "        on o.id = v.optionId\n" +
+            "where o.id in (<optionIds>)\n")
+    List<OptionVariant> getVariantByOptionId(@BindList("optionIds") List<Integer> optionIds);
 
 
 

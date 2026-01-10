@@ -14,14 +14,14 @@ public interface ImageDao {
     @GetGeneratedKeys
     int saveImage(@Bind("url") String url);
 
-    @SqlUpdate("INSERT INTO product_images (product_id, image_id) VALUES (:product_id, :image_id)")
-    boolean addImageToProduct(@Bind("product_id") Integer product_id, @Bind("image_id") Integer image_id);
+    @SqlUpdate("INSERT INTO product_images (productId, imageId) VALUES (:productId, :imageId)")
+    boolean addImageToProduct(@Bind("productId") Integer productId, @Bind("imageId") Integer imageId);
 
     @SqlQuery("SELECT url FROM image WHERE id = :id")
     String getImageUrlById(@Bind("id") int id);
 
     @SqlQuery(value = "SELECT image.url from image " +
-            "INNER JOIN product_images ON image.id = product_images.image_id " +
-            "WHERE product_images.product_id = :product_id ")
-    List<String> getAllImagesByProductId(@Bind("product_id") Integer product_id);
+            "INNER JOIN product_images ON image.id = product_images.imageId " +
+            "WHERE product_images.productId = :producId ")
+    List<String> getAllImagesByProductId(@Bind("productId") Integer productId);
 }
