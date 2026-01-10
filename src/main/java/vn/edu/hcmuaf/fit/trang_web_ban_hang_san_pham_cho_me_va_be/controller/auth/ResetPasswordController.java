@@ -26,8 +26,9 @@ public class ResetPasswordController extends HttpServlet {
             if (user != null) {
                 try {
                     authService.changePassword(user.getId(),null, newPassword, false);
-// đổi chỗ này sao HẢI ANH
-                    response.sendRedirect("/backend_war/login");
+// pbha chừng nào mình deploy thì xài cái war
+//                    response.sendRedirect("/Trang_Web_ban_hang_san_pham_cho_me_va_be_war/login");
+                    response.sendRedirect("/Trang_Web_ban_hang_san_pham_cho_me_va_be_war_exploded/login");
                 } catch (IllegalArgumentException e) {
                     request.setAttribute("errorMessage", e.getMessage());
                     request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);

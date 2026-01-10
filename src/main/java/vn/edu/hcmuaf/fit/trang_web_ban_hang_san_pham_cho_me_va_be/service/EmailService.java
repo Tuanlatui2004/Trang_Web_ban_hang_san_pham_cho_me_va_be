@@ -42,7 +42,7 @@ public class EmailService {
             message.setSubject("Mã OTP xác thực");  // Tiêu đề email
 
             // Nội dung email
-            String emailContent = "<h3>Kiet da gui ma OTP cho ban. Ma OTP cua ban la: " + otp + "</h3>"
+            String emailContent = "<h3>Minh da gui ma OTP cho ban. Ma OTP cua ban la: " + otp + "</h3>"
                     + "<p>Vui lòng không chia sẻ mã OTP này voi bat ki ai.</p>";
             message.setContent(emailContent, "text/html");
 
@@ -80,7 +80,8 @@ public class EmailService {
             message.setSubject("Xác nhận đăng ký tài khoản");
 
             // Nội dung email chứa liên kết xác nhận
-            String confirmLink = "http://localhost:8080/backend_war/confirm?sessionId=" + sessionId;
+            //nếu deploy web thì sửa war_exploded thành war
+            String confirmLink = "http://localhost:8080/Trang_Web_ban_hang_san_pham_cho_me_va_be_war_exploded/confirm?sessionId=" + sessionId;
             String emailContent = "<h3>Xin Chào!,</h3>"
                     + "<p>Vui lòng nhap vào liên ket duoi dây de xac nhan tai khoan cua ban:</p>"
                     + "<a href=\"" + confirmLink + "\">Xác nhận</a>";
@@ -103,7 +104,7 @@ public class EmailService {
     }
     public static void main(String[] args) {
         EmailService emailService = new EmailService();
-        emailService.sendEmailWithOTP("22130136@st.hcmuaf.edu.vn", "12345");
+        emailService.sendEmailWithOTP("23130012@st.hcmuaf.edu.vn", "12345");
     }
 
 }
