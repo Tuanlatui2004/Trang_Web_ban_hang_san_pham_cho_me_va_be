@@ -28,7 +28,7 @@ public class Remove extends HttpServlet {
         // Bước 3: Kiểm tra cart tồn tại
         if( cart != null){
             // Bước 4: Lấy product_id từ request
-            Integer productId = Integer.parseInt(request.getParameter("product_id"));
+            Integer productId = Integer.parseInt(request.getParameter("productId"));
 
             // Bước 5: Xóa sản phẩm khỏi giỏ hàng
             if (cart.getData().containsKey(productId)) {

@@ -36,7 +36,7 @@ public class AddReviewController extends HttpServlet {
         Boolean flag = true;
         HttpSession session = request.getSession();
 
-        Integer user_id = (Integer) session.getAttribute("user_id");
+        Integer user_id = (Integer) session.getAttribute("userId");
 
 
         while ((line = reader.readLine()) != null) {
@@ -54,14 +54,14 @@ public class AddReviewController extends HttpServlet {
         ProductReview productReview = new ProductReview();
         productReview.setDescription(description);
         productReview.setRating(rating);
-        productReview.setOrder_id(order_id);
-        productReview.setUser_id(user_id);
+        productReview.setOrderId(order_id);
+        productReview.setUserId(user_id);
 
         JSONArray productIds = (JSONArray) jsonObject.get("productIds");
 
         for (int i = 0; i < productIds.length(); i++) {
             Integer id =(Integer) productIds.getInt(i);
-            productReview.setProduct_id(id);
+            productReview.setProductId(id);
             if (!productReviewService.addReview(productReview)){
                 flag = false;
             }

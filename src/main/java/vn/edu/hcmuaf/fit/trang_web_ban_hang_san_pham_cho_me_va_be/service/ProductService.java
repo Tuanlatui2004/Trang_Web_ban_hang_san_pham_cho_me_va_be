@@ -18,15 +18,15 @@ public class ProductService {
         this.jdbi = jdbi;
         this.productDao = jdbi.onDemand(ProductDao.class);
     }
-    public Product getProductById(int product_id){
-        return jdbi.withExtension(ProductDao.class, dao -> dao.getProductById(product_id));
+    public Product getProductById(int productId){
+        return jdbi.withExtension(ProductDao.class, dao -> dao.getProductById(productId));
     }
-    public List<Product> getProductsByCategory(int category_id){
-        return jdbi.withExtension(ProductDao.class, dao -> dao.getProductsByCategory(category_id));
+    public List<Product> getProductsByCategory(int categoryId){
+        return jdbi.withExtension(ProductDao.class, dao -> dao.getProductsByCategory(categoryId));
     }
 
-    public Product getProductByIdAndOptionId(int product_id, int option_id){
-        return jdbi.withExtension(ProductDao.class, dao -> dao.getProductByIdAndOptionId(product_id,option_id));
+    public Product getProductByIdAndOptionId(int productId, int optionId){
+        return jdbi.withExtension(ProductDao.class, dao -> dao.getProductByIdAndOptionId(productId,optionId));
     }
 
     public List<Product> getAllProducts() {
@@ -35,12 +35,12 @@ public class ProductService {
         return products;
     }
 
-    public Integer getMinimumPriceForProduct(int product_id) {
-        return productDao.getMinimumPriceForProduct(product_id);
+    public Integer getMinimumPriceForProduct(int productId) {
+        return productDao.getMinimumPriceForProduct(productId);
     }
 
-    public Integer getPriceForOption(int option_id) {
-        return productDao.getPriceForOption(option_id);
+    public Integer getPriceForOption(int optionId) {
+        return productDao.getPriceForOption(optionId);
     }
 
     public Product addProduct(Product product) {
@@ -48,14 +48,14 @@ public class ProductService {
         String generatedSku = "PRD-" + System.currentTimeMillis();
         product.setSku(generatedSku);
 
-        int product_id = productDao.addProduct(
+        int productId = productDao.addProduct(
                 product.getName(), product.getDescription(),
-                product.getIs_active(), product.getCategory_id(),
-                product.getBrand_id(), product.getImage_id(), product.getSku()
+                product.getActive(), product.getCategoryId(),
+                product.getBrandId(), product.getImageId(), product.getSku()
         );
 
-        if (product_id > 0) {
-            product.setId(product_id);
+        if (productId > 0) {
+            product.setId(productId);
             return product;
         }
 //        if (rowsAffected > 0) {
@@ -73,20 +73,20 @@ public class ProductService {
     }
 
 
-    public List<Product> getTopProductsByCategory(Integer category_id, Integer limit) {
-        if (category_id <= 0 || limit <= 0) {
+    public List<Product> getTopProductsByCategory(Integer categoryId, Integer limit) {
+        if (categoryId <= 0 || limit <= 0) {
             throw new IllegalArgumentException("Bad request");
         } else {
-            return productDao.getTopProductsByCategoryId(category_id, limit);
+            return productDao.getTopProductsByCategoryId(categoryId, limit);
         }
     }
 
-    public Boolean increaseNoOfViews(Integer product_id) {
-        return productDao.increaseNoOfViews(product_id);
+    public Boolean increaseNoOfViews(Integer productId) {
+        return productDao.increaseNoOfViews(productId);
     }
 
-    public Boolean increaseNoOfSold(Integer product_id, Integer quantity) {
-        return productDao.increaseNoOfSold(product_id, quantity );
+    public Boolean increaseNoOfSold(Integer productId, Integer quantity) {
+        return productDao.increaseNoOfSold(productId, quantity );
     }
 
     public List<Product> getTop10(){

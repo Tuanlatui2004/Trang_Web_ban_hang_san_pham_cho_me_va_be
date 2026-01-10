@@ -6,48 +6,32 @@ import org.jdbi.v3.core.mapper.reflect.JdbiConstructor;
 
 public class Variant {
     Integer id;
-    Integer category_id;
+    Integer categoryId;
     String name;
     String value;
-    Integer option_id;
+    Integer optionId;
 
     @JdbiConstructor
     public Variant(@ColumnName("id") @Nullable Integer id,
-                   @ColumnName("category_id") @Nullable Integer category_id,
+                   @ColumnName("categoryId") @Nullable Integer categoryId,
                    @ColumnName("name") @Nullable String name,
                    @ColumnName("value") @Nullable String value,
-                   @ColumnName("option_id") @Nullable Integer option_id
+                   @ColumnName("optionId") @Nullable Integer optionId
                    ){
         this.id = id;
-        this.category_id = category_id;
+        this.categoryId = categoryId;
         this.name = name;
         this.value = value;
-        this.option_id = option_id;
+        this.optionId = optionId;
 
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getOptionId() {
+        return optionId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setOptionId(Integer optionId) {
+        this.optionId = optionId;
     }
 
     public String getValue() {
@@ -58,11 +42,27 @@ public class Variant {
         this.value = value;
     }
 
-    public Integer getOption_id() {
-        return option_id;
+    public String getName() {
+        return name;
     }
 
-    public void setOption_id(Integer option_id) {
-        this.option_id = option_id;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-@WebServlet(name = "ProductDetailController",value = "/product_detail")
+@WebServlet(name = "ProductDetailController",value = "/product-detail")
 public class ProductDetailController extends HttpServlet {
     // chưa có service
     ProductService productService = new ProductService(DBConnection.getJdbi());
@@ -24,18 +24,18 @@ public class ProductDetailController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int product_id = Integer.parseInt(request.getParameter("id"));
-        Product product = productService.getProductById(product_id);
+        int productId = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.getProductById(productId);
 
-        Integer product_price = productService.getMinimumPriceForProduct(product_id); // Default to minimum price
-        if (product.getOption_id() != null) {
-            product_price = productService.getPriceForOption(product.getOption_id());
+        Integer productPrice = productService.getMinimumPriceForProduct(productId); // Default to minimum price
+        if (product.getOptionId() != null) {
+            productPrice = productService.getPriceForOption(product.getOptionId());
         }
 
 
 
         List<String> images = imageService.getAllImagesByProductId(product.getId());
-        String image_url = imageService.getImageUrlById(product.getImage_id());
+        String primaryImageUrl = imageService.getImageUrlById(product.getImageId());
         List<String> descriptions = List.of(product.getDescription().split("\\n"));
 
 // lỗi
@@ -43,20 +43,20 @@ public class ProductDetailController extends HttpServlet {
         List<Integer> optionIds = options.stream().map(OptionVariant::getId).collect(Collectors.toList());
 
         List<OptionVariant> optionVariant = optionService.getVariantByOptionId(optionIds);
-        List<String> variants = optionVariant.stream().map(OptionVariant::getVariant_name).distinct().collect(Collectors.toList());
+        List<String> variants = optionVariant.stream().map(OptionVariant::getVariantName).distinct().collect(Collectors.toList());
 
-
+        // nếu lấy chi tieets sản phẩm ra không được xem lại chỗ này
 
         request.setAttribute("images", images);
-        request.setAttribute("image_url", image_url); // Add primary image URL
+        request.setAttribute("primaryImageUrl", primaryImageUrl); // Add primary image URL
         request.setAttribute("product", product);
         request.setAttribute("descriptions", descriptions);
-        request.setAttribute("product_price", product_price);
+        request.setAttribute("productPrice", productPrice);
         request.setAttribute("optionVariant", optionVariant);
         request.setAttribute("variants ", variants );
 
 
-        productService.increaseNoOfViews(product_id);
+        productService.increaseNoOfViews(productId);
 
         request.getRequestDispatcher("product_detail/ProductDetail.jsp").forward(request, response);
     }

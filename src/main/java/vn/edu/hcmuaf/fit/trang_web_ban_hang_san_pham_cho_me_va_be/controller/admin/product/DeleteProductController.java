@@ -33,7 +33,7 @@ public class DeleteProductController extends HttpServlet {
 // Phân tích JSON (lấy productId)
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> jsonMap = objectMapper.readValue(sb.toString(), Map.class);
-        String productIdString = (String) jsonMap.get("product_id");  // lấy productId là String
+        String productIdString = (String) jsonMap.get("productId");  // lấy productId là String
 
 // Kiểm tra nếu productId là hợp lệ, chuyển nó sang Integer
         Integer productId = null;
@@ -60,7 +60,7 @@ public class DeleteProductController extends HttpServlet {
             ResponseWrapper<String> responseWrapper = new ResponseWrapper<>(
                     HttpServletResponse.SC_BAD_REQUEST,
                     "error",
-                    "product_id không hợp lệ",
+                    "productId không hợp lệ",
                     null
             );
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

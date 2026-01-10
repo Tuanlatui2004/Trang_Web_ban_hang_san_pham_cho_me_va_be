@@ -19,27 +19,27 @@ public class OrderService {
 
     public Integer addOrder(Order order) {
         return orderDao.createOrder(
-                order.getCreate_at(),
-                order.getPayment_status(),
-                order.getOrder_status(),
-                order.getUser_id(),
-                order.getAddress_id(),
-                order.getCard_id(),
+                order.getCreateAt(),
+                order.getPaymentStatus(),
+                order.getOrderStatus(),
+                order.getUserId(),
+                order.getAddressId(),
+                order.getCardId(),
                 order.getCOD()
         );
     }
 
-    public List<Order> getOrdersByUserId(Integer user_id) {
-        return orderDao.getOrdersByUserId(user_id);
+    public List<Order> getOrdersByUserId(Integer userId) {
+        return orderDao.getOrdersByUserId(userId);
     }
 
 
-    public  Order getOrderByIdAndUserId(Integer order_id ,Integer user_id) {
-        return orderDao.getOrderByIdAndUserId(order_id, user_id);
+    public  Order getOrderByIdAndUserId(Integer orderId ,Integer userId) {
+        return orderDao.getOrderByIdAndUserId(orderId, userId);
     }
 
-    public  Order getOrderById(Integer order_id  ) {
-        return orderDao.getOrderById(order_id);
+    public  Order getOrderById(Integer orderId  ) {
+        return orderDao.getOrderById(orderId);
     }
 
 

@@ -35,7 +35,7 @@ public class OptionController  extends HttpServlet {
             Map<String, Object> requestData = objectMapper.readValue(payload.toString(), Map.class);
 
             // Lấy giá trị từ JSON
-            Integer productId = (Integer) requestData.get("product_id");
+            Integer productId = (Integer) requestData.get("productId");
             Integer price = (Integer) requestData.get("price");
             Integer stock = (Integer) requestData.get("stock");
 

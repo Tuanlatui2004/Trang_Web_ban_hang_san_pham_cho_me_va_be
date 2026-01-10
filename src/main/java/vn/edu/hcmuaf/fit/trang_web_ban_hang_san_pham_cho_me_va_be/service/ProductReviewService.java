@@ -16,9 +16,9 @@ public class ProductReviewService {
     }
 
     public Boolean addReview(ProductReview review) {
-        return productReviewDao.addReview(review.getUser_id(),
-                review.getProduct_id(),
-                review.getOrder_id(),
+        return productReviewDao.addReview(review.getUserId(),
+                review.getProductId(),
+                review.getOrderId(),
                 review.getRating(),
                 review.getDescription()
         );
@@ -26,13 +26,13 @@ public class ProductReviewService {
 
     public static void main(String[] args) {
         ProductReviewService reviewService = new ProductReviewService(DBConnection.getJdbi());
-        ProductReview review = new ProductReview();
-        review.setDescription("Test Review");
-        review.setOrder_id(57);
-        review.setRating(5);
-        review.setUser_id(39);
-        review.setProduct_id(44);
+//        ProductReview review = new ProductReview();
+//        review.setDescription("Test Review");
+//        review.setOrderId(57);
+//        review.setRating(5);
+//        review.setUserId(39);
+//        review.setProductId(44);
 
-        System.out.println(reviewService.addReview(review));
+//        System.out.println(reviewService.addReview(review));
     }
 }

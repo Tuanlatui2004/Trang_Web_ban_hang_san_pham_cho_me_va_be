@@ -23,7 +23,7 @@ public class UserOrderController extends  HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("user_id");
+        Integer userId = (Integer) session.getAttribute("userId");
 
         List<Order> orders = new ArrayList<>();
         try {

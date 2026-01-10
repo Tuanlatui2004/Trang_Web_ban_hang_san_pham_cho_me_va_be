@@ -77,10 +77,10 @@
                     <td><input type="checkbox"></td>
                     <td>
                         <%--                        <%= user.getFullName() %>--%>
-                        <img src="<%= user.getAvatar_url() %>" alt="Avatar" style="width:50px; height:50px; border-radius:50%; margin-right:10px;">
+                        <img src="<%= user.getAvatarUrl() %>" alt="Avatar" style="width:50px; height:50px; border-radius:50%; margin-right:10px;">
                         <%= user.getFullName() %>
                     </td>
-                    <td><%= user.getPhone_number() %></td>
+                    <td><%= user.getPhoneNumber() %></td>
                     <td><%= user.getEmail() %></td>
                     <td><%= userAddresses.getOrDefault(user.getId(), "N/A") %></td>
                 </tr>

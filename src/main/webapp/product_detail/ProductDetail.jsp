@@ -39,7 +39,7 @@
 
             <div class="carousel-container">
 
-                <img id="mainImage" src="${image_url}" alt="Carousel Image" class="carousel-image">
+                <img id="mainImage" src="${primaryImageUrl}" alt="Carousel Image" class="carousel-image">
                 <!-- Navigation Arrows -->
                 <div class="nav-arrow left" onclick="prevImage()">&#10094;</div>
                 <div class="nav-arrow right" onclick="nextImage()">&#10095;</div>
@@ -61,7 +61,7 @@
 
     <%-- product này là gì--%>
     <div class="section1">
-        <div id="product" data-id="${product.id}" data-option-default="${product.option_id}"
+        <div id="product" data-id="${product.id}" data-option-default="${product.optionId}"
              class="container-product-Bt">
             <div class="product-title">
                 ${product.name}
@@ -90,9 +90,9 @@
 
             <div id="price" class="price">
                 <c:choose>
-                    <c:when test="${not empty product_price}">
+                    <c:when test="${not empty productPrice}">
 
-                        <fmt:formatNumber value="${product_price}" pattern="#,###"/> VND
+                        <fmt:formatNumber value="${productPrice}" pattern="#,###"/> VND
                     </c:when>
                     <c:otherwise>
                         Đang câp nhật

@@ -24,7 +24,7 @@ public class UserAddressController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("user_id");
+        Integer userId = (Integer) session.getAttribute("userId");
 
         if (userId != null) {
             User user = userService.getUserById(userId);

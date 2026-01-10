@@ -28,7 +28,7 @@ public class VariantController extends HttpServlet {
         try {
             if (pathInfo == null || pathInfo.equals("/")) {
                 // Lấy danh sách tất cả các variants
-                String categoryIdParam = request.getParameter("category_id");
+                String categoryIdParam = request.getParameter("categoryId");
                 Integer categoryId = categoryIdParam != null ? Integer.valueOf(categoryIdParam) : null;
 
                 // Gọi service để lấy danh sách variants
@@ -80,7 +80,7 @@ public class VariantController extends HttpServlet {
             Map<String, Object> jsonData = objectMapper.readValue(jsonString, new TypeReference<Map<String, Object>>() {});
 
             String name = (String) jsonData.get("name");
-            Integer categoryId = (Integer) jsonData.get("category_id");
+            Integer categoryId = (Integer) jsonData.get("categoryId");
 
             if (name == null || name.isEmpty()) {
                 throw new IllegalArgumentException("Name is required");

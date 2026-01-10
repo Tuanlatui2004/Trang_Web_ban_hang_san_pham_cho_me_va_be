@@ -25,14 +25,8 @@ public class OptionVariantValueController  extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("application/json");
-
         try {
-            if (!"application/json".equals(request.getContentType())) {
-                writeResponse(response, new ResponseWrapper<>(400, "error", "Invalid Content-Type, expected application/json", null));
-                return;
-            }
-
+            // Đọc payload JSON từ request
             StringBuilder payload = new StringBuilder();
             try (BufferedReader reader = request.getReader()) {
                 String line;
@@ -40,81 +34,41 @@ public class OptionVariantValueController  extends HttpServlet {
                     payload.append(line);
                 }
             }
-            System.out.println("Received payload: " + payload.toString());
 
+            // Chuyển đổi JSON thành đối tượng Java
             ObjectMapper objectMapper = new ObjectMapper();
-            Map<String, Object> requestData;
-            try {
-                requestData = objectMapper.readValue(payload.toString(), Map.class);
-            } catch (Exception e) {
-                writeResponse(response, new ResponseWrapper<>(400, "error", "Invalid JSON format", null));
-                return;
+            Map<String, Object> requestData = objectMapper.readValue(payload.toString(), Map.class);
+
+            // Lấy giá trị từ JSON
+            Integer optionId = (Integer) requestData.get("optionId");
+            Object variantIdObj = requestData.get("variantId");
+
+            Integer variantId = null;
+
+            // Kiểm tra xem variantValueId là String hay Integer và chuyển đổi
+            if (variantIdObj instanceof String) {
+                variantId = Integer.parseInt((String) variantIdObj);
+            } else if (variantIdObj instanceof Integer) {
+                variantId = (Integer) variantIdObj;
             }
 
-            Integer optionId = getIntegerValue(requestData.get("option_id"));
-            List<Integer> variantValueIds = (List<Integer>) requestData.get("variantValueIds");
+            int result = variantService.addOptionVariantValue(optionId, variantId);
 
-            if (optionId == null || variantValueIds == null || variantValueIds.isEmpty()) {
-                writeResponse(response, new ResponseWrapper<>(400, "error", "Missing or invalid optionId or variantValueIds", null));
-                return;
-            }
+            // Lấy thông tin OptionVariantValue mới
+            VariantService newOptionVariantValue = variantService.getOptionById(result);
 
-            List<Variant> addedValues = new ArrayList<>();
-            List<String> errors = new ArrayList<>();
-
-            for (Integer variantValueId : variantValueIds) {
-                try {
-                    System.out.println("Inserting optionId: " + optionId + ", variantValueId: " + variantValueId);
-                    int result = variantService.addOptionVariantValue(optionId, variantValueId);
-
-                    if (result > 0) {
-                        Variant newOptionVariantValue = variantService.getOptionById(result);
-                        if (newOptionVariantValue != null) {
-                            addedValues.add(newOptionVariantValue);
-                        }
-                    } else {
-                        errors.add("Failed to add OptionVariantValue for variantValueId: " + variantValueId);
-                    }
-                } catch (Exception e) {
-                    errors.add("Error processing variantValueId " + variantValueId + ": " + e.getMessage());
-                }
-            }
-
-            if (!addedValues.isEmpty()) {
-                String message = errors.isEmpty()
-                        ? "All OptionVariantValues added successfully."
-                        : "Some OptionVariantValues added with errors: " + String.join(", ", errors);
-                writeResponse(response, new ResponseWrapper<>(200, "success", message, addedValues));
+            // Trả về kết quả thành công với đối tượng OptionVariantValue
+            ResponseWrapper<VariantService> responseWrapper;
+            if (result > 0) {
+                responseWrapper = new ResponseWrapper<>(200, "success", "OptionVariantValue added successfully.", newOptionVariantValue);
             } else {
-                writeResponse(response, new ResponseWrapper<>(500, "error", "Failed to add any OptionVariantValues. Errors: " + String.join(", ", errors), null));
+                responseWrapper = new ResponseWrapper<>(500, "error", "Failed to add OptionVariantValue.", null);
             }
+
+            writeResponse(response, responseWrapper);
 
         } catch (Exception e) {
-            writeResponse(response, new ResponseWrapper<>(500, "error", "An error occurred: " + e.getMessage(), null));
+            ResponseWrapper<String> errorWrapper = new ResponseWrapper<>(500, "error", "An error occurred: " + e.getMessage(), null);
+            writeResponse(response, errorWrapper);
         }
-    }
-
-    private Integer getIntegerValue(Object value) {
-        if (value instanceof Integer) {
-            return (Integer) value;
-        } else if (value instanceof String) {
-            try {
-                return Integer.parseInt((String) value);
-            } catch (NumberFormatException e) {
-                return null;
-            }
-        } else if (value instanceof Long) {
-            return ((Long) value).intValue();
-        } else if (value instanceof Double) {
-            return ((Double) value).intValue();
-        }
-        return null;
-    }
-
-    private void writeResponse(HttpServletResponse response, ResponseWrapper<?> responseWrapper) throws IOException {
-        response.setContentType("application/json");
-        response.setStatus(responseWrapper.getStatusCode());
-        ObjectMapper objectMapper = new ObjectMapper();
-        response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
-    }
 }

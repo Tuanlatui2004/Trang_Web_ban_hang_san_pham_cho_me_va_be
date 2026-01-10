@@ -141,12 +141,12 @@
                                     ></i>
                                 </td>
                                 <td class="product">
-                                    <img class="product_image" src="${p.image_url}"/>
+                                    <img class="product_image" src="${p.imageUrl}"/>
                                     <span class="product_name">${p.name}</span>
                                 </td>
-                                <td class="sold">${p.no_of_sold}</td>
+                                <td class="sold">${p.noOfSold}</td>
                                 <td class="remaining">${p.stock}</td>
-                                <td class="view">${p.no_of_views}</td>
+                                <td class="view">${p.noOfViews}</td>
                                 <td class="rating">
                                     4.8
                                     <i class="fa-solid fa-star" style="color: #FFD43B;"></i>

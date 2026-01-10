@@ -47,12 +47,12 @@ public class SearchProductController extends HttpServlet{
                             null, // Không cần brandId
                             null, // Không cần noOfViews
                             null, // Không cần noOfSold
-                            product.getImage_id(),
+                            product.getImageId(),
                             product.getPrice(),
                             product.getStock(),
-                            product.getOption_id(),
+                            product.getOptionId(),
                             null,// Không cần categoryName
-                            product.getImage_url()
+                            product.getImageUrl()
 
                     ))
                     .collect(Collectors.toList());

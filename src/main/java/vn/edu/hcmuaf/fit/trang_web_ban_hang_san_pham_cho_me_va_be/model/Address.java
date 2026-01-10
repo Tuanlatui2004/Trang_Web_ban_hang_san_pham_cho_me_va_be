@@ -8,38 +8,38 @@ import org.jdbi.v3.core.mapper.reflect.JdbiConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Address {
     Integer id;
-    Integer user_id;
-    String address_type; // shipping | billing
-    String full_name;
-    String phone_number;
+    Integer userId;
+    String addressType; // shipping | billing
+    String fullName;
+    String phoneNumber;
     String street;
     String city;
     String state;
     String country;
-    Boolean is_default;
+    Boolean isDefault;
 
     @JdbiConstructor
     public Address(@ColumnName("id")  Integer id,
-                   @ColumnName("user_id") @Nullable Integer user_id,
-                   @ColumnName("address_type") @Nullable String address_type,
-                   @ColumnName("full_name") @Nullable String full_name,
-                   @ColumnName("phone_number") @Nullable String phone_number,
+                   @ColumnName("userId") @Nullable Integer userId,
+                   @ColumnName("addressType") @Nullable String addressType,
+                   @ColumnName("fullName") @Nullable String fullName,
+                   @ColumnName("phoneNumber") @Nullable String phoneNumber,
                    @ColumnName("street") @Nullable String street,
                    @ColumnName("city") @Nullable String city,
                    @ColumnName("state") @Nullable String state,
                    @ColumnName("country") @Nullable String country,
-                   @ColumnName("is_default") @Nullable Boolean is_default
+                   @ColumnName("isDefault") @Nullable Boolean isDefault
     ) {
         this.id = id;
-        this.user_id = user_id;
-        this.address_type = address_type;
-        this.full_name = full_name;
-        this.phone_number = phone_number;
+        this.userId = userId;
+        this.addressType = addressType;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
         this.street = street;
         this.city = city;
         this.state = state;
         this.country = country;
-        this.is_default = is_default;
+        this.isDefault = isDefault;
     }
     public Address() {}
 
@@ -51,36 +51,36 @@ public class Address {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getAddress_type() {
-        return address_type;
+    public String getAddressType() {
+        return addressType;
     }
 
-    public void setAddress_type(String address_type) {
-        this.address_type = address_type;
+    public void setAddressType(String addressType) {
+        this.addressType = addressType;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getStreet() {
@@ -115,27 +115,27 @@ public class Address {
         this.country = country;
     }
 
-    public Boolean getIs_default() {
-        return is_default;
+    public Boolean getDefault() {
+        return isDefault;
     }
 
-    public void setIs_default(Boolean is_default) {
-        this.is_default = is_default;
+    public void setDefault(Boolean aDefault) {
+        isDefault = aDefault;
     }
 
     @Override
     public String toString() {
         return "Address{" +
                 "id=" + id +
-                ", user_id=" + user_id +
-                ", address_type='" + address_type + '\'' +
-                ", full_name='" + full_name + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", userId=" + userId +
+                ", addressType='" + addressType + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
-                ", is_default=" + is_default +
+                ", isDefault=" + isDefault +
                 '}';
     }
 }

@@ -59,38 +59,38 @@
 
 
 </div>
-<script>
-    function checkLoginAndBuy(event) {
-        event.preventDefault();
-        const sessionId = sessionStorage.getItem("session_id");
-        if (!sessionId) {
-            alert("Bạn cần đăng nhập trước khi mua hàng!");
-            return;
-        }
+<%--<script>--%>
+<%--    function checkLoginAndBuy(event) {--%>
+<%--        event.preventDefault();--%>
+<%--        const sessionId = sessionStorage.getItem("session_id");--%>
+<%--        if (!sessionId) {--%>
+<%--            alert("Bạn cần đăng nhập trước khi mua hàng!");--%>
+<%--            return;--%>
+<%--        }--%>
 
-        // Gọi API BuyNowController
-        fetch("buy-now", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            // xem lại ben controller
-            body: `product_id=${product.id}&option_id=${product.optionId}&session_id=${sessionId}`
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = "/checkout/checkout.jsp";
-                } else {
-                    alert(data.message || "Có lỗi xảy ra khi xử lý đơn hàng");
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                alert("Có lỗi xảy ra. Vui lòng thử lại sau!");
-            });
-    }
-</script>
+<%--        // Gọi API BuyNowController--%>
+<%--        fetch("buy-now", {--%>
+<%--            method: "POST",--%>
+<%--            headers: {--%>
+<%--                "Content-Type": "application/x-www-form-urlencoded",--%>
+<%--            },--%>
+<%--            // xem lại ben controller--%>
+<%--            body: `product_id=${product.id}&option_id=${product.optionId}&session_id=${sessionId}`--%>
+<%--        })--%>
+<%--            .then(response => response.json())--%>
+<%--            .then(data => {--%>
+<%--                if (data.success) {--%>
+<%--                    window.location.href = "/checkout/checkout.jsp";--%>
+<%--                } else {--%>
+<%--                    alert(data.message || "Có lỗi xảy ra khi xử lý đơn hàng");--%>
+<%--                }--%>
+<%--            })--%>
+<%--            .catch(error => {--%>
+<%--                console.log(error);--%>
+<%--                alert("Có lỗi xảy ra. Vui lòng thử lại sau!");--%>
+<%--            });--%>
+<%--    }--%>
+<%--</script>--%>
 <script src="${pageContext.request.contextPath}/static/style-component/style_product/TopProduct.js"></script>
 
 

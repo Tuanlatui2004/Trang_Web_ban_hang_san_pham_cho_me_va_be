@@ -7,28 +7,28 @@ import java.time.LocalDate;
 
 public class Card {
     Integer id;
-    Integer user_id;
+    Integer userId;
     LocalDate duration;
     Integer last4;
     String type;
-    Boolean is_default;
+    Boolean isDefault;
 
 
     @JdbiConstructor
     public Card(
             @ColumnName("id") @Nullable Integer id,
-            @ColumnName("user_id")  @Nullable Integer user_id,
+            @ColumnName("userId")  @Nullable Integer userId,
             @ColumnName("duration")  @Nullable LocalDate duration,
             @ColumnName("last4")  @Nullable Integer last4,
             @ColumnName("type")  @Nullable String type,
-            @ColumnName("is_default")  @Nullable Boolean is_default) {
+            @ColumnName("isDefault")  @Nullable Boolean isDefault) {
 
         this.id = id;
-        this.user_id = user_id;
+        this.userId = userId;
         this.duration = duration;
         this.last4 = last4;
         this.type = type;
-        this.is_default = is_default;
+        this.isDefault = isDefault;
     }
 
 
@@ -43,12 +43,12 @@ public class Card {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public LocalDate getDuration() {
@@ -59,6 +59,14 @@ public class Card {
         this.duration = duration;
     }
 
+    public Integer getLast4() {
+        return last4;
+    }
+
+    public void setLast4(Integer last4) {
+        this.last4 = last4;
+    }
+
     public String getType() {
         return type;
     }
@@ -67,19 +75,11 @@ public class Card {
         this.type = type;
     }
 
-    public Boolean getIs_default() {
-        return is_default;
+    public Boolean getDefault() {
+        return isDefault;
     }
 
-    public void setIs_default(Boolean is_default) {
-        this.is_default = is_default;
-    }
-
-    public Integer getLast4() {
-        return last4;
-    }
-
-    public void setLast4(Integer last4) {
-        this.last4 = last4;
+    public void setDefault(Boolean aDefault) {
+        isDefault = aDefault;
     }
 }

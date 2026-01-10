@@ -104,31 +104,32 @@
             %>
             <div  class="address_item row" data-id ="<%= address.getId() %>" >
                 <div class="icon mid_align">
-                    <i class="fa-solid <%= address.getType().equals("house") ? "fa-house" : "fa-building" %>"></i>
+                    <i class="fa-solid <%= address.getAddressType().equals("house") ? "fa-house" : "fa-building" %>"></i>
                 </div>
 
                 <div class="infor">
                     <div class="item_header row mid_align">
-                        <span class="name"><%= address.getName() %></span>
+                        <span class="name"><%= address.getFullName() %></span>
                         <div class="rec_vertical"></div>
-                        <span class="phone"><%= address.getPhone() %></span>
-                        <% if (address.getIsDefault()) { %>
+                        <span class="phone"><%= address.getPhoneNumber() %></span>
+                        <% if (address.getDefault()) { %>
                         <% } %>
                     </div>
 
                     <div class="item_body">
                         <div class="address_detail">
-                            <span><%= address.getDetail() %></span>
+<%--                            xem lại cái Address detail là biến gì nghe HẢI ANH--%>
+                            <span><%= address.getAddressType() %></span>
                         </div>
                         <div class="location">
-                            <span><%= address.getCommune() %>, <%= address.getDistrict() %>, <%= address.getProvince() %></span>
+                            <span><%= address.getStreet() %>, <%= address.getCity() %>, <%= address.getState() %></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="manage mid_align col">
                     <button class="update_btn">Thay đổi</button>
-                    <% if (!address.getIsDefault()) { %>
+                    <% if (!address.getDefault()) { %>
                     <button class="set_default_btn" onclick= "setDefault('<%= address.getId() %>')" >Đặt làm mặc định</button>
                     <button onclick= "deleteAddress('<%= address.getId() %>')" class="delete_btn" >Xóa</button>
 
