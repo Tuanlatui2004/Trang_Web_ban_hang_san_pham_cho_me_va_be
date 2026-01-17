@@ -3,14 +3,15 @@ package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.config.ConfigLoader;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.PermissionDao;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.UserDao;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.UserRoleDao;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Permission;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.util.HashUtils;
 
 import javax.management.relation.Role;
-import java.security.Permission;
 import java.util.List;
 import java.util.UUID;
 
@@ -54,7 +55,7 @@ public class AuthService {
             Role defaultRole = userDao.getDefaultUserRole();
             if (defaultRole != null) {
                 // Thêm role vào bảng user_role
-                userRoleDAO.addUserRole(userId, defaultRole.getId());
+                userRoleDao.addUserRole(userId, defaultRole.getId());
             }
 
             // Gửi email xác nhận
@@ -74,7 +75,7 @@ public class AuthService {
     }
 
     public boolean registerWithGoogle(String firstName, String displayName, String email, String password) {
-        if (userDAO.getUserByEmail(email) != null) {
+        if (userDao.getUserByEmail(email) != null) {
             return false; // Email đã tồn tại
         }
 
@@ -86,14 +87,14 @@ public class AuthService {
         String confirmationToken = UUID.randomUUID().toString();
 
         // Tạo user mới và lưu thông tin
-        Integer userId = userDAO.createUser(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
+        Integer userId = userDao.createUser(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
 
         if (userId != null) {
             // Lấy role mặc định cho user (USER role)
-            Role defaultRole = userDAO.getDefaultUserRole();
+            Role defaultRole = userDao.getDefaultUserRole();
             if (defaultRole != null) {
                 // Thêm role vào bảng user_role
-                userRoleDAO.addUserRole(userId, defaultRole.getId());
+                userRoleDao.addUserRole(userId, defaultRole.getId());
             }
             return true;
         }
@@ -101,7 +102,7 @@ public class AuthService {
     }
 
     public boolean registerWithRole(String firstName, String displayName, String email, String password, Integer roleId) {
-        if (userDAO.getUserByEmail(email) != null) {
+        if (userDao.getUserByEmail(email) != null) {
             return false; // Email đã tồn tại
         }
 
@@ -115,11 +116,11 @@ public class AuthService {
         String confirmationToken = UUID.randomUUID().toString();
 
         // Tạo user mới và lưu thông tin
-        Integer userId = userDAO.createUser(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
+        Integer userId = userDao.createUser(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
 
         if (userId != null) {
             // Thêm role được chỉ định vào bảng user_role
-            userRoleDAO.addUserRole(userId, roleId);
+            userRoleDao.addUserRole(userId, roleId);
 
             // Gửi email xác nhận
             String confirmationLink = "http://modernhome.property/confirm?token=" + confirmationToken;
@@ -136,16 +137,16 @@ public class AuthService {
     }
 
     public boolean confirmAccount(String token) {
-        User user = userDAO.getUserByConfirmationToken(token);
+        User user = userDao.getUserByConfirmationToken(token);
         if (user != null && "PENDING".equals(user.getStatus())) {
-            userDAO.updateUserStatusByToken(token, "ACTIVE");
+            userDao.updateUserStatusByToken(token, "ACTIVE");
             return true;
         }
         return false;
     }
 
     public User login(String email, String password) {
-        User user = userDAO.getUserByEmail(email.trim());
+        User user = userDao.getUserByEmail(email.trim());
         if (user != null) {
             // Kiểm tra trạng thái tài khoản
             if ("PENDING".equals(user.getStatus())) {
@@ -171,7 +172,7 @@ public class AuthService {
     }
 
     public boolean changePassword(Integer userId, String oldPassword, String newPassword, boolean verifyOldPassword) {
-        User user = userDAO.getPasswordByUserId(userId);
+        User user = userDao.getPasswordByUserId(userId);
         if (user == null) {
             throw new IllegalArgumentException("User not found");
         }
@@ -190,15 +191,15 @@ public class AuthService {
         String newSalt = HashUtils.generateSalt();
         String hashedNewPassword = HashUtils.hashWithSalt(newPassword, newSalt);
 
-        return userDAO.updatePassword(userId, hashedNewPassword, newSalt) > 0;
+        return userDao.updatePassword(userId, hashedNewPassword, newSalt) > 0;
     }
 
     public User getUserById(Integer userId) {
-        return userDAO.getUserById(userId);
+        return userDao.getUserById(userId);
     }
 
     public boolean changeUserRole(Integer userId, Integer newRoleId) {
-        return userRoleDAO.updateUserRole(userId, newRoleId);
+        return userRoleDao.updateUserRole(userId, newRoleId);
     }
 
     public boolean verifySession(HttpServletRequest request, String sessionId) {
@@ -235,7 +236,7 @@ public class AuthService {
     }
 
     public boolean registerWithGoogleActive(String firstName, String displayName, String email, String password) {
-        if (userDAO.getUserByEmail(email) != null) {
+        if (userDao.getUserByEmail(email) != null) {
             return false; // Email đã tồn tại
         }
 
@@ -247,14 +248,14 @@ public class AuthService {
         String confirmationToken = UUID.randomUUID().toString();
 
         // Tạo user mới với status ACTIVE ngay lập tức cho Google OAuth
-        Integer userId = userDAO.createUserWithActiveStatus(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
+        Integer userId = userDao.createUserWithActiveStatus(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
 
         if (userId != null) {
             // Lấy role mặc định cho user (USER role)
-            Role defaultRole = userDAO.getDefaultUserRole();
+            Role defaultRole = userDao.getDefaultUserRole();
             if (defaultRole != null) {
                 // Thêm role vào bảng user_role
-                userRoleDAO.addUserRole(userId, defaultRole.getId());
+                userRoleDao.addUserRole(userId, defaultRole.getId());
             }
             return true;
         }
@@ -262,12 +263,12 @@ public class AuthService {
     }
 
     public void activateUserAccount(Integer userId) {
-        userDAO.updateUserStatus(userId, "ACTIVE");
+        userDao.updateUserStatus(userId, "ACTIVE");
     }
 
 
     public boolean registerWithFacebookActive(String firstName, String displayName, String email, String password, String facebookId) {
-        if (userDAO.getUserByEmail(email) != null) {
+        if (userDao.getUserByEmail(email) != null) {
             return false; // Email đã tồn tại
         }
 
@@ -279,14 +280,14 @@ public class AuthService {
         String confirmationToken = UUID.randomUUID().toString();
 
         // Tạo user mới với status ACTIVE ngay lập tức cho Google OAuth
-        Integer userId = userDAO.createUserWithActiveStatus(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
+        Integer userId = userDao.createUserWithActiveStatus(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
 
         if (userId != null) {
             // Lấy role mặc định cho user (USER role)
-            Role defaultRole = userDAO.getDefaultUserRole();
+            Role defaultRole = userDao.getDefaultUserRole();
             if (defaultRole != null) {
                 // Thêm role vào bảng user_role
-                userRoleDAO.addUserRole(userId, defaultRole.getId());
+                userRoleDao.addUserRole(userId, defaultRole.getId());
             }
             return true;
         }
