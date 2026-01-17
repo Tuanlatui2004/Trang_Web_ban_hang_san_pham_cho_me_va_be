@@ -58,7 +58,7 @@ public class User {
         this.passwordUsername = passwordUsername;
         this.avatarId = avatarId;
         this.status = status;
-        //pbha sửa
+//pbha sửa
         this.role = role;
         this.salt = salt;
         this.avatarUrl = avatarUrl;
