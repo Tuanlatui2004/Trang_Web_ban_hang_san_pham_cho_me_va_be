@@ -209,7 +209,7 @@ public class EmailService {
                 2. Xác nhận tài khoản của bạn qua email xác nhận (nếu có)
                 3. Đổi mật khẩu sau khi đăng nhập lần đầu
                 
-                ⚠️ LÚU Ý QUAN TRỌNG:
+                Lưu Ý QUAN TRỌNG:
                 - Mật khẩu này chỉ là tạm thời
                 - Vui lòng đổi mật khẩu ngay sau khi đăng nhập để bảo mật tài khoản
                 - Không chia sẻ thông tin đăng nhập với người khác
