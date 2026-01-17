@@ -17,7 +17,8 @@ public class User {
     String passwordUsername;
     Integer avatarId;
     String status;
-    String role;
+//    String role;
+    Role role;
     String salt;
     String avatarUrl;
 
@@ -38,7 +39,8 @@ public class User {
                 @ColumnName("passwordUsername") @Nullable String passwordUsername,
                 @ColumnName("avatarId") @Nullable Integer avatarId,
                 @ColumnName("status") @Nullable String status,
-                @ColumnName("role") @Nullable String role,
+                //pbha sửa
+                @ColumnName("role") @Nullable Role role,
                 @ColumnName("salt") @Nullable String salt,
                 @ColumnName("avatarUrl") @Nullable String avatarUrl,
                 @ColumnName("confirmationToken") @Nullable String confirmationToken,
@@ -56,6 +58,7 @@ public class User {
         this.passwordUsername = passwordUsername;
         this.avatarId = avatarId;
         this.status = status;
+//pbha sửa
         this.role = role;
         this.salt = salt;
         this.avatarUrl = avatarUrl;
@@ -146,12 +149,12 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public String getRole() {
+//pbha sửa
+    public Role getRole() {
         return role;
     }
-
-    public void setRole(String role) {
+    //pbha sửa
+    public void setRole(Role role) {
         this.role = role;
     }
 

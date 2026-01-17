@@ -25,7 +25,7 @@ public class FacebookLoginServlet extends HttpServlet {
     public void init() throws ServletException {
         String hostProduct = ConfigLoader.get("host.dev");
         // sửa lại nghe HA
-        this.redirectUri = hostProduct + "/backend_war/facebook-callback";
+        this.redirectUri = hostProduct + "/Trang_Web_ban_hang_san_pham_cho_me_va_be_war_exploded/facebook-callback";
         super.init();
     }
 

@@ -47,10 +47,10 @@ public class UserWithRoleMapper implements RowMapper<User> {
                 rs.getString("phoneNumber"),
                 rs.getString("passwordUsername"),
                 (Integer) rs.getObject("avatarId"),
+                rs.getString("status"),
                 role, // Truyền đối tượng Role vào đây
                 rs.getString("salt"),
                 rs.getString("avatarUrl"),
-                rs.getString("status"),
                 rs.getString("confirmationToken"),
                 rs.getString("facebookId"),
                 rs.getBoolean("needRefresh")
