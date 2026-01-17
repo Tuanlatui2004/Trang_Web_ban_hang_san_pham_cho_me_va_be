@@ -25,6 +25,7 @@ public class OptionVariantValueController  extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ResponseWrapper<VariantService> responseWrapper;
         try {
             // Đọc payload JSON từ request
             StringBuilder payload = new StringBuilder();
@@ -58,7 +59,7 @@ public class OptionVariantValueController  extends HttpServlet {
             VariantService newOptionVariantValue = variantService.getOptionById(result);
 
             // Trả về kết quả thành công với đối tượng OptionVariantValue
-            ResponseWrapper<VariantService> responseWrapper;
+            ResponseWrapper<Variant> responseWrapper;
             if (result > 0) {
                 responseWrapper = new ResponseWrapper<>(200, "success", "OptionVariantValue added successfully.", newOptionVariantValue);
             } else {
@@ -71,4 +72,21 @@ public class OptionVariantValueController  extends HttpServlet {
             ResponseWrapper<String> errorWrapper = new ResponseWrapper<>(500, "error", "An error occurred: " + e.getMessage(), null);
             writeResponse(response, errorWrapper);
         }
+
+        // Phương thức để ghi phản hồi vào response
+        private void writeResponse (HttpServletResponse response, ResponseWrapper < ? > responseWrapper) throws
+        IOException {
+            response.setContentType("application/json");
+            response.setStatus(responseWrapper.getStatusCode());
+            ObjectMapper objectMapper = new ObjectMapper();
+            response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
+        }
+    }
+
+    private void writeResponse(HttpServletResponse response, ResponseWrapper<String> errorWrapper) {
+        response.setContentType("application/json");
+        response.setStatus(responseWrapper.getStatusCode());
+        ObjectMapper objectMapper = new ObjectMapper();
+        response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
+    }
 }
