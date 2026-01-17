@@ -1,0 +1,28 @@
+package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao;
+
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Permission;
+import org.jdbi.v3.sqlobject.config.RegisterConstructorMapper;
+import org.jdbi.v3.sqlobject.customizer.Bind;
+import org.jdbi.v3.sqlobject.statement.SqlQuery;
+
+import java.util.List;
+
+@RegisterConstructorMapper(Permission.class)
+public interface PermissionDao {
+
+    @SqlQuery(value = """
+        select * from permission
+""")
+    public List<Permission> getAllPermissions();
+
+    @SqlQuery("SELECT p.id, p.name, p.type " +
+            "FROM permission p " +
+            "INNER JOIN role_permission rp ON p.id = rp.permissionId " +
+            "WHERE rp.roleId = :roleId")
+    List<Permission> getPermissionsByRoleId(@Bind("roleId") Integer roleId);
+
+    @SqlQuery("SELECT * FROM permission WHERE id = :id")
+    Permission getPermissionById(Integer id);
+
+
+}

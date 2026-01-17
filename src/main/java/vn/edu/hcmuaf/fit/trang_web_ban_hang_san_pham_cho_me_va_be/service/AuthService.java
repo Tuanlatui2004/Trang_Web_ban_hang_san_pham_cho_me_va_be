@@ -3,10 +3,14 @@ package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.PermissionDao;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.UserDao;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.UserRoleDao;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.util.HashUtils;
 
+import javax.management.relation.Role;
+import java.security.Permission;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,18 +23,17 @@ public class AuthService {
 
     public AuthService(Jdbi jdbi) {
         this.userDao = jdbi.onDemand(UserDao.class);
-        this.userRoleDao = jdbi.onDemand();
-        this.emailService = emailService;
-        this.facebookId = facebookId;
-        this.permissionDao = permissionDao;
+        this.userRoleDao = jdbi.onDemand(UserRoleDao.class);
+        this.emailService = jdbi.onDemand(EmailService.class);
+        this.permissionDao = jdbi.onDemand(PermissionDao.class);
     }
 
     public User getUserByEmail(String email) {
-        return userDAO.getUserByEmail(email);
+        return userDao.getUserByEmail(email);
     }
 
     public boolean register(String firstName, String displayName, String email, String password) {
-        if (userDAO.getUserByEmail(email) != null) {
+        if (userDao.getUserByEmail(email) != null) {
             return false; // Email đã tồn tại
         }
 
@@ -44,11 +47,11 @@ public class AuthService {
         String confirmationToken = UUID.randomUUID().toString();
 
         // Tạo user mới và lưu thông tin
-        Integer userId = userDAO.createUser(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
+        Integer userId = userDao.createUser(firstName, displayName, email, hashedPassword, salt, confirmationToken, facebookId);
 
         if (userId != null) {
             // Lấy role mặc định cho user (USER role)
-            Role defaultRole = userDAO.getDefaultUserRole();
+            Role defaultRole = userDao.getDefaultUserRole();
             if (defaultRole != null) {
                 // Thêm role vào bảng user_role
                 userRoleDAO.addUserRole(userId, defaultRole.getId());
@@ -228,7 +231,7 @@ public class AuthService {
     }
 
     public List<Permission> getPermissionsByRoleId(Integer roleId) {
-        return permissionDAO.getPermissionsByRoleId(roleId);
+        return permissionDao.getPermissionsByRoleId(roleId);
     }
 
     public boolean registerWithGoogleActive(String firstName, String displayName, String email, String password) {
