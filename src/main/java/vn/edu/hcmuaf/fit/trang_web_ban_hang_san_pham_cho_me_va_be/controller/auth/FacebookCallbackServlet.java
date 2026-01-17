@@ -39,8 +39,8 @@ public class FacebookCallbackServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         String hostProduct = ConfigLoader.get("host.dev");
-        // HAianh sửa dùm nghe
-        this.redirectUri = hostProduct + "/backend_war/facebook-callback";
+        //pbha đã sửa
+        this.redirectUri = hostProduct + "/Trang_Web_ban_hang_san_pham_cho_me_va_be_war_exploded/facebook-callback";
         super.init();
         jdbi = DBConnection.getJdbi();
         authService = new AuthService(DBConnection.getJdbi());
