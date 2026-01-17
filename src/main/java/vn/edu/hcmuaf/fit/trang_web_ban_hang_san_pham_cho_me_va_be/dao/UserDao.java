@@ -1,16 +1,19 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao;
 
 import org.jdbi.v3.sqlobject.config.RegisterConstructorMapper;
+import org.jdbi.v3.sqlobject.config.RegisterRowMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Role;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @RegisterConstructorMapper(User.class)
+@RegisterConstructorMapper(Role.class)
 //chưa thêm mapper, đang còn thiếu
 public interface UserDao {
 
@@ -28,14 +31,17 @@ public interface UserDao {
     User getUserByEmail(@Bind("email") String email);
 
 
-    @SqlUpdate("INSERT INTO user (fullName, displayName, email, password, role, salt) " +
-            "VALUES (:fullName, :displayName, :email, :password, 'USER', :salt)")
+    @SqlUpdate("INSERT INTO user (fullName, displayName, email, password, salt,status,confirmationToken,facebookId) " +
+            "VALUES (:fullName, :displayName, :email, :password, :salt,'PENDING',:confirmationToken, :facebookId)")
     @GetGeneratedKeys("id")
     String createUser(@Bind("fullName") String fullName,
                       @Bind("displayName") String displayName,
                       @Bind("email") String email,
                       @Bind("password") String password,
-                      @Bind("salt") String salt);
+                      @Bind("salt") String salt),
+                      @Bind("confirmationToken") String confirmationToken,
+                      @Bind("facebookId") String facebookId);
+
 
 
     @SqlUpdate("UPDATE user SET fullname = :fullname, email = :email, password = :password WHERE id = :id")
