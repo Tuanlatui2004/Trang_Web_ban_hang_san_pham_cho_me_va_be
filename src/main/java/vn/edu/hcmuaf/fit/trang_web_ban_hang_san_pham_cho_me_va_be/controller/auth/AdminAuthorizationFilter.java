@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.auth;
 
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.contant.ERole;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.AuthService;
 import jakarta.servlet.*;
@@ -26,7 +27,7 @@ public class AdminAuthorizationFilter implements Filter{
 
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
-        String role = (String) session.getAttribute("role");
+        ERole role = (ERole) session.getAttribute("role");
 
         // Kiểm tra xem userId có tồn tại trong session hay không
         if (userId == null) {
@@ -36,10 +37,15 @@ public class AdminAuthorizationFilter implements Filter{
 
         // Lấy thông tin người dùng từ cơ sở dữ liệu dựa trên userId từ session
         User user = authService.getUserById(userId);
-
-        if (user == null || !"ADMIN".equalsIgnoreCase(role)) {
+        if (user == null || role == ERole.USER || user.getStatus().equals("BANNED")) {
             session.invalidate();
             redirectToLoginWithMessage(request, response, "Bạn không có quyền truy cập vào trang này.");
+            return;
+        }
+
+        if (user.getNeedRefresh()) {
+            session.invalidate();
+            redirectToLoginWithMessage(request, response, "");
             return;
         }
 
