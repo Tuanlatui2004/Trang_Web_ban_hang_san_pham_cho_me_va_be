@@ -56,37 +56,33 @@ public class OptionVariantValueController  extends HttpServlet {
             int result = variantService.addOptionVariantValue(optionId, variantId);
 
             // Lấy thông tin OptionVariantValue mới
-            VariantService newOptionVariantValue = variantService.getOptionById(result);
+            //chỗ này bố nào fix sai
+//            VariantService newOptionVariantValue = variantService.getOptionById(result);
+            VariantService newOptionVariantValue = variantService;
 
             // Trả về kết quả thành công với đối tượng OptionVariantValue
-            ResponseWrapper<Variant> responseWrapper;
+
             if (result > 0) {
                 responseWrapper = new ResponseWrapper<>(200, "success", "OptionVariantValue added successfully.", newOptionVariantValue);
             } else {
                 responseWrapper = new ResponseWrapper<>(500, "error", "Failed to add OptionVariantValue.", null);
             }
-
-            writeResponse(response, responseWrapper);
+//pbha
+//            writeResponse(response, responseWrapper);
 
         } catch (Exception e) {
             ResponseWrapper<String> errorWrapper = new ResponseWrapper<>(500, "error", "An error occurred: " + e.getMessage(), null);
-            writeResponse(response, errorWrapper);
+//pbha
+            //            writeResponse(response, errorWrapper);
         }
 
-        // Phương thức để ghi phản hồi vào response
-        private void writeResponse (HttpServletResponse response, ResponseWrapper < ? > responseWrapper) throws
-        IOException {
-            response.setContentType("application/json");
-            response.setStatus(responseWrapper.getStatusCode());
-            ObjectMapper objectMapper = new ObjectMapper();
-            response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
-        }
-    }
 
-    private void writeResponse(HttpServletResponse response, ResponseWrapper<String> errorWrapper) {
-        response.setContentType("application/json");
-        response.setStatus(responseWrapper.getStatusCode());
-        ObjectMapper objectMapper = new ObjectMapper();
-        response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
     }
+// chưa fix pbha
+//    private void writeResponse(HttpServletResponse response, ResponseWrapper<String> errorWrapper) {
+//        response.setContentType("application/json");
+//        response.setStatus(responseWrapper.getStatusCode());
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
+//    }
 }
