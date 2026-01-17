@@ -22,6 +22,9 @@ public class User {
     String avatarUrl;
 
     // xem
+    String confirmationToken;
+    String facebookId;
+    Boolean needRefresh;
 
 
     @JdbiConstructor
@@ -37,7 +40,10 @@ public class User {
                 @ColumnName("status") @Nullable String status,
                 @ColumnName("role") @Nullable String role,
                 @ColumnName("salt") @Nullable String salt,
-                @ColumnName("avatarUrl") @Nullable String avatarUrl
+                @ColumnName("avatarUrl") @Nullable String avatarUrl,
+                @ColumnName("confirmationToken") @Nullable String confirmationToken,
+                @ColumnName("facebookId") @Nullable String facebookId,
+                @ColumnName("needRefresh") @Nullable Boolean needRefresh
 
     ) {
         this.id = id;
@@ -53,6 +59,9 @@ public class User {
         this.role = role;
         this.salt = salt;
         this.avatarUrl = avatarUrl;
+        this.confirmationToken = confirmationToken;
+        this.facebookId = facebookId;
+        this.needRefresh = needRefresh;
     }
 
     public User() {
@@ -162,6 +171,30 @@ public class User {
         this.avatarUrl = avatarUrl;
     }
 
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
+    }
+
+    public String getFacebookId() {
+        return facebookId;
+    }
+
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
+    }
+
+    public Boolean getNeedRefresh() {
+        return needRefresh;
+    }
+
+    public void setNeedRefresh(Boolean needRefresh) {
+        this.needRefresh = needRefresh;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -178,6 +211,9 @@ public class User {
                 ", role='" + role + '\'' +
                 ", salt='" + salt + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
+                ", confirmationToken='" + confirmationToken + '\'' +
+                ", facebookId='" + facebookId + '\'' +
+                ", needRefresh=" + needRefresh +
                 '}';
     }
 }
