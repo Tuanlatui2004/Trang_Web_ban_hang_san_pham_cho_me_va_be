@@ -8,6 +8,7 @@ import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Role;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Mapper.UserWithRoleMapper;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 @RegisterConstructorMapper(Role.class)
 //chưa thêm mapper, đang còn thiếu
 public interface UserDao {
-
+    // xem lại nghe
     @SqlQuery("SELECT * FROM user")
     List<User> getAllUsers();
 
@@ -31,17 +32,29 @@ public interface UserDao {
     User getUserByEmail(@Bind("email") String email);
 
 
-    @SqlUpdate("INSERT INTO user (fullName, displayName, email, password, salt,status,confirmationToken,facebookId) " +
-            "VALUES (:fullName, :displayName, :email, :password, :salt,'PENDING',:confirmationToken, :facebookId)")
+    @SqlUpdate("INSERT INTO user (fullName, displayName, email, passwordUsername, salt, status, confirmationToken, facebookId) " +
+            "VALUES (:fullName, :displayName, :email, :passwordUsername, :salt, 'PENDING', :confirmationToken, :facebookId)")
     @GetGeneratedKeys("id")
-    String createUser(@Bind("fullName") String fullName,
-                      @Bind("displayName") String displayName,
-                      @Bind("email") String email,
-                      @Bind("password") String password,
-                      @Bind("salt") String salt),
-                      @Bind("confirmationToken") String confirmationToken,
-                      @Bind("facebookId") String facebookId);
+    Integer createUser(@Bind("fullName") String fullName,
+                       @Bind("displayName") String displayName,
+                       @Bind("email") String email,
+                       @Bind("passwordUsername") String passwordUsername,
+                       @Bind("salt") String salt,
+                       @Bind("confirmationToken") String confirmationToken,
+                       @Bind("facebookId") String facebookId);
 
+    // mới tạo bởi NV
+    @SqlUpdate("INSERT INTO user (fullName, displayName, email, passwordUsername, roleId, salt, status, confirmationToken, facebookId) " +
+            "VALUES (:fullName, :displayName, :email, :password, :roleId, :salt, 'PENDING', :confirmationToken, :facebookId)")
+    @GetGeneratedKeys("id")
+    String createUserWithRole(@Bind("fullName") String fullName,
+                              @Bind("displayName") String displayName,
+                              @Bind("email") String email,
+                              @Bind("passwordUsername") String passwordUsername,
+                              @Bind("roleId") Integer roleId,
+                              @Bind("salt") String salt,
+                              @Bind("confirmationToken") String confirmationToken,
+                              @Bind("facebookId") String facebookId);
 
 
     @SqlUpdate("UPDATE user SET fullname = :fullname, email = :email, password = :password WHERE id = :id")
