@@ -37,7 +37,7 @@ public class User {
                 @ColumnName("email") @Nullable String email,
                 @ColumnName("passwordUsername") @Nullable String passwordUsername,
                 @ColumnName("avatarId") @Nullable Integer avatarId,
-                @ColumnName("status") @Nullable Role status,
+                @ColumnName("status") @Nullable String status,
                 @ColumnName("role") @Nullable String role,
                 @ColumnName("salt") @Nullable String salt,
                 @ColumnName("avatarUrl") @Nullable String avatarUrl,
