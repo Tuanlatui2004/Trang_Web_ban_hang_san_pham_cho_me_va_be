@@ -57,8 +57,8 @@ public class FacebookLoginServlet extends HttpServlet {
         System.out.println("Verify session state: " + session.getAttribute("facebook_state"));
         System.out.println("Verify fbAuthMode: " + session.getAttribute("fbAuthMode"));
         System.out.println("Session ID: " + session.getId());
-
-        String authUrl = "https://www.facebook.com/v18.0/dialog/oauth" +
+        // deloy lấy http bỏ vô NV ghi
+        String authUrl = "https://www.facebook.com/v24.0/dialog/oauth" +
                 "?client_id=" + FACEBOOK_APP_ID +
                 "&redirect_uri=" + redirectUri +
                 "&state=" + state +

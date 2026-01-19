@@ -16,7 +16,24 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-page/auth/auth.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '26152616920998101',
+                xfbml      : true,
+                version    : 'v22.0'
+            });
+            FB.AppEvents.logPageView();
+        };
 
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_VN/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
 </head>
 <body>
@@ -26,8 +43,8 @@
         <form action="#">
             <h1>Tạo tài khoản</h1>
             <div class="social-container">
-                <a href="https://www.facebook.com/?locale=vi_VN" class="social"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://accounts.google.com/" class="social"><i class="fa-brands fa-google"></i></a>
+                <a href="#" onclick="handleFacebookAuth('register')" class="social">h<i class="fa-brands fa-facebook-f"></i></a>
+                <a href="${pageContext.request.contextPath}/register-google" class="social"><i class="fa-brands fa-google"></i></a>
                 <a href="https://www.linkedin.com/" class="social"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
             <span>hoặc sử dụng email của bạn để đăng ký</span>
@@ -79,8 +96,8 @@
         <form action="#">
             <h1>Đăng nhập</h1>
             <div class="social-container">
-                <a href="https://www.facebook.com/?locale=vi_VN" class="social"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://accounts.google.com/" class="social"><i class="fa-brands fa-google"></i></a>
+                <a href="#" onclick="handleFacebookAuth('login')" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="${pageContext.request.contextPath}/login-google" class="social"><i class="fa-brands fa-google"></i></a>
                 <a href="https://www.linkedin.com/" class="social"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
             <span>hoặc sử dụng tài khoản của bạn</span>
@@ -98,7 +115,7 @@
                     <input type="checkbox" id="remember-checkbox" />
                     <label for="remember-checkbox">Ghi nhớ đăng nhập</label>
                 </div>
-                <a href="${pageContext.request.contextPath}/auth/forgotpassword.jsp" class="forgot">Quên mật khẩu?</a>
+                <a href="${pageContext.request.contextPath}/forgot-password" class="forgot">Quên mật khẩu?</a>
             </div>
 
 
@@ -124,13 +141,16 @@
         </div>
     </div>
 </div>
-
 <main>
-    <script src="${pageContext.request.contextPath}/static/style-page/auth/auth.js"></script>
-
+<script>
+    function handleFacebookAuth(mode) {
+        // Chuyển hướng trực tiếp đến servlet
+        window.location.href = '${pageContext.request.contextPath}/login-facebook?mode=' + mode;
+    }
+</script>
 </main>
-<% if (request.getAttribute("errorMessage") != null) { %>
-<p style="color: red;"><%= request.getAttribute("errorMessage") %></p>
-<% } %>
+<script>
+    const contextPath = '${pageContext.request.contextPath}';
+</script>
 </body>
 </html>
