@@ -23,7 +23,7 @@ public class FacebookRegisterServlet  extends HttpServlet{
     @Override
     public void init() throws ServletException {
         String hostProduct = ConfigLoader.get("host.dev");
-        this.redirectUri = hostProduct + "/backend_war/facebook-callback";
+        this.redirectUri = hostProduct + "/Trang_Web_ban_hang_san_pham_cho_me_va_be_war_exploded/facebook-callback";
         super.init();
     }
 
@@ -39,8 +39,8 @@ public class FacebookRegisterServlet  extends HttpServlet{
         // Debug logging
         System.out.println("Register - Setting session state: " + state);
         System.out.println("Register - Session ID: " + session.getId());
-
-        String authUrl = "https://www.facebook.com/v18.0/dialog/oauth" +
+        // deloy lấy http bỏ vô NV ghi
+        String authUrl = "https://www.facebook.com/v24.0/dialog/oauth" +
                 "?client_id=" + FACEBOOK_APP_ID +
                 "&redirect_uri=" + redirectUri +
                 "&state=" + state +
