@@ -10,8 +10,8 @@ import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.UserRoleDa
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Permission;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.util.HashUtils;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Role;
 
-import javax.management.relation.Role;
 import java.util.List;
 import java.util.UUID;
 
@@ -160,7 +160,7 @@ public class AuthService {
             }
 
             String storedSalt = user.getSalt();
-            String storedHashedPassword = user.getPassword();
+            String storedHashedPassword = user.getPasswordUsername();
 
             String hashedPassword = HashUtils.hashWithSalt(password.trim(), storedSalt);
 
@@ -179,7 +179,7 @@ public class AuthService {
 
         if (verifyOldPassword) {
             String storedSalt = user.getSalt();
-            String storedHashedPassword = user.getPassword();
+            String storedHashedPassword = user.getPasswordUsername();
 
             String hashedPassword = HashUtils.hashWithSalt(oldPassword, storedSalt);
 
