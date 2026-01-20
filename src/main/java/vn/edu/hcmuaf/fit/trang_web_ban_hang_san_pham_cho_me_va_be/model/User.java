@@ -18,7 +18,7 @@ public class User {
     Integer avatarId;
     String status;
 //    String role;
-    Role role;
+    String role;
     String salt;
     String avatarUrl;
 
@@ -40,7 +40,7 @@ public class User {
                 @ColumnName("avatarId") @Nullable Integer avatarId,
                 @ColumnName("status") @Nullable String status,
                 //pbha sửa
-                @ColumnName("role") @Nullable Role role,
+                @ColumnName("role") @Nullable String role,
                 @ColumnName("salt") @Nullable String salt,
                 @ColumnName("avatarUrl") @Nullable String avatarUrl,
                 @ColumnName("confirmationToken") @Nullable String confirmationToken,
@@ -149,12 +149,12 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-//pbha sửa
-    public Role getRole() {
+
+    public String getRole() {
         return role;
     }
-    //pbha sửa
-    public void setRole(Role role) {
+
+    public void setRole(String role) {
         this.role = role;
     }
 

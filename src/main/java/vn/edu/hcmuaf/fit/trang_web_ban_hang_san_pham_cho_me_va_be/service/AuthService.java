@@ -10,7 +10,6 @@ import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.UserRoleDa
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Permission;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.util.HashUtils;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Role;
 
 import java.util.List;
 import java.util.UUID;
