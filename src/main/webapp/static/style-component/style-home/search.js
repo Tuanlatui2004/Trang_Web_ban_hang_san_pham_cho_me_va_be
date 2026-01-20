@@ -86,7 +86,7 @@ function updateSuggestions(products) {
 
             // Cập nhật nội dung của productDiv để hiển thị giá, tên và ảnh
             productDiv.innerHTML = `
-                <img class="" src="${product.image_url}">
+                <img class="" src="${product.imageUrl}">
                 <p>${product.name || 'Sản phẩm chưa có tên'}</p>
                 <span>${price} VND</span>
             `;
