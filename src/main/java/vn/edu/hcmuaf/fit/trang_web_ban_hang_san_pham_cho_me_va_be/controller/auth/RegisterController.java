@@ -44,7 +44,7 @@ public class RegisterController extends HttpServlet {
             String fullName = jsonData.get("fullName");
             String displayName = jsonData.get("displayName");
             String email = jsonData.get("email");
-            String inputPassword = jsonData.get("passwordUsername");
+            String inputPassword = jsonData.get("password");
             String confirmPassword = jsonData.get("confirmPassword");
 
             // Kiểm tra mật khẩu
@@ -69,7 +69,7 @@ public class RegisterController extends HttpServlet {
                 authService.saveSessionId(request, email, sessionId);
 
                 // Gửi email xác nhận
-       //         emailService.sendConfirmationEmail(email, sessionId);
+                emailService.sendConfirmationEmail(email, sessionId);
 
                 // Chuẩn bị thông tin người dùng để trả về
                 Map<String, String> userData = Map.of(
