@@ -27,16 +27,10 @@ public class AddBrandController extends HttpServlet {
             jsonString.append(line);
         }
 
+
         JSONObject jsonRequest = new JSONObject(jsonString.toString());
-//   String brand_name = jsonRequest.getString("brand"); hay name
-//        String categoryName = jsonRequest.getString("name");
+        String categoryName = jsonRequest.getString("name");
         String brandName = jsonRequest.getString("brand");
-//        boolean is_active = jsonRequest.getBoolean("is_active");
-
         brandService.createBrand(brandName);
-
-        // Phản hồi cho client
-//        response.setContentType("application/json");
-//        response.getWriter().write("{\"status\": \"success\", \"message\": \"Brand added successfully\"}");
     }
 }

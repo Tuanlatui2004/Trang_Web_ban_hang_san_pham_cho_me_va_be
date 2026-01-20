@@ -18,52 +18,26 @@ public class ResetPasswordController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-
         String newPassword = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirmPassword");
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("resetEmail");
+        String email = (String) request.getSession().getAttribute("userEmail");
 
-        if (email == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Phiên làm việc đã hết hạn. Vui lòng thực hiện lại từ đầu.");
-            return;
-        }
-
-        if (newPassword == null || confirmPassword == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Vui lòng nhập đầy đủ thông tin mật khẩu.");
-            return;
-        }
-
-        if (!newPassword.equals(confirmPassword)) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Mật khẩu không khớp.");
-            return;
-        }
-
-        try {
+        if (newPassword.equals(confirmPassword)) {
             User user = authService.getUserByEmail(email);
-            if (user == null) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                response.getWriter().write("Không tìm thấy tài khoản.");
-                return;
+            if (user != null) {
+                try {
+                    authService.changePassword(user.getId(),null, newPassword, false);
+
+                    response.sendRedirect("/backend_war/login");
+                } catch (IllegalArgumentException e) {
+                    request.setAttribute("errorMessage", e.getMessage());
+                    request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+                }
             }
-
-            // Cập nhật mật khẩu mới
-            authService.changePassword(user.getId(), null, newPassword, false);
-
-            // Xóa email khỏi session sau khi đổi mật khẩu thành công
-            session.removeAttribute("resetEmail");
-
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write("Đặt lại mật khẩu thành công!");
-
-        } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("Đã xảy ra lỗi khi đặt lại mật khẩu: " + e.getMessage());
+        } else {
+            request.setAttribute("errorMessage", "Mật khẩu không khớp");
+            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
         }
     }
+
 }
