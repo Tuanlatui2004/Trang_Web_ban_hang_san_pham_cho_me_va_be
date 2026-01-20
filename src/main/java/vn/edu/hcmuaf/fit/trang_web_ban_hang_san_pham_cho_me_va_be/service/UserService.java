@@ -52,9 +52,7 @@ public class UserService {
                 user.getPhoneNumber()
         );
     }
-    public Boolean updateNeedRefresh (Integer userId, Boolean needRefresh ) {
-        return userDao.updateNeedRefresh(userId, needRefresh);
-    }
+
 
 
 
