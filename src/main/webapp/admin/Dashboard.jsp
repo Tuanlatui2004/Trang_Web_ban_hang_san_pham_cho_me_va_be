@@ -40,14 +40,13 @@
 
 
                 <div class="report_item col">
-            <span class="title row">Tổng Doanh Thu
-                 <div class="status increase row ">
-                    <i class="fa-solid fa-arrow-trend-up"></i>
-                    <span>12.2%</span>
-                </div>
-            </span>
+                    <span class="title row">Tổng Doanh Thu
+                        <div class="status increase row ">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <span>12.2%</span>
+                        </div>
+                    </span>
                     <span class="value">720,700,000 <span class="f16">VND</span></span>
-
                 </div>
 
                 <!--        <div class="rec_vertical"></div>-->

@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <title>Đơn Hàng</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-component/style-admin/orders.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
@@ -58,19 +58,19 @@
                     <div class="header-actions">
 
                         <div class="export-container">
-                            <button class="export-btn">Xuất <i class="fas fa-chevron-down"></i></button>
+                            <button class="export-btn">Xuất <i class="fa-solid fa-chevron-down"></i></button>
                             <div class="export-menu">
                                 <div class="options">
                                     <p>OPTIONS</p>
-                                    <button class="export-option"><i class="fas fa-copy"></i> Copy</button>
-                                    <button class="export-option"><i class="fas fa-print"></i> Print</button>
+                                    <button class="export-option"><i class="fa-solid fa-copy"></i> Copy</button>
+                                    <button class="export-option"><i class="fa-solid fa-print"></i> Print</button>
                                 </div>
                                 <div class="divider"></div>
                                 <div class="download-options">
                                     <p>DOWNLOAD OPTIONS</p>
-                                    <button class="export-option"><i class="fas fa-file-excel"></i> Excel</button>
-                                    <button class="export-option"><i class="fas fa-file-csv"></i> .CSV</button>
-                                    <button class="export-option"><i class="fas fa-file-pdf"></i> PDF</button>
+                                    <button class="export-option"><i class="fa-solid fa-file-excel"></i> Excel</button>
+                                    <button class="export-option"><i class="fa-solid fa-file-csv"></i> .CSV</button>
+                                    <button class="export-option"><i class="fa-solid fa-file-pdf"></i> PDF</button>
                                 </div>
                             </div>
                         </div>
@@ -135,19 +135,19 @@
                                     <div class="actions-menu">
                                         <div class="options">
                                             <p>OPTIONS</p>
-                                            <button class="action-option"><i class="fas fa-copy"></i> Copy</button>
-                                            <button class="action-option"><i class="fas fa-print"></i> Print</button>
+                                            <button class="action-option"><i class="fa-solid fa-copy"></i> Copy</button>
+                                            <button class="action-option"><i class="fa-solid fa-print"></i> Print</button>
                                         </div>
                                         <div class="divider"></div>
                                         <div class="download-options">
                                             <p>DOWNLOAD OPTIONS</p>
-                                            <button class="action-option"><i class="fas fa-file-excel"></i> Excel
+                                            <button class="action-option"><i class="fa-solid fa-file-excel"></i> Excel
                                             </button>
-                                            <button class="action-option"><i class="fas fa-file-csv"></i> .CSV</button>
-                                            <button class="action-option"><i class="fas fa-file-pdf"></i> PDF</button>
+                                            <button class="action-option"><i class="fa-solid fa-file-csv"></i> .CSV</button>
+                                            <button class="action-option"><i class="fa-solid fa-file-pdf"></i> PDF</button>
                                         </div>
                                         <div class="divider"></div>
-                                        <button class="action-option"><i class="fas fa-trash-alt"></i> Delete</button>
+                                        <button class="action-option"><i class="fa-solid fa-trash-alt"></i> Delete</button>
                                     </div>
                                 </td>
                             </tr>
