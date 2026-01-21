@@ -142,7 +142,7 @@
 
 
                 <button class="close-btn" onclick="closeAddCardOverlay()">
-                    <i class="fas fa-times"></i>
+                    <i class="fas-solid fa-times"></i>
                 </button>
             </div>
         </div>

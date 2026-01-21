@@ -19,7 +19,7 @@
           href="${pageContext.request.contextPath}/static/style-component/style-user_profile/Address.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/static/style-component/style-user_profile/Address.js"></script>
 
 </head>
 <body>
@@ -35,16 +35,6 @@
     </div>
 
     <div class="content">
-        <%
-            String require = request.getParameter("requireAddress");
-            if ("true".equals(require)) {
-        %>
-        <div style="color: red; font-weight: bold; margin: 10px 0;">
-            Vui lòng thêm địa chỉ để tiếp tục thanh toán.
-        </div>
-        <%
-            }
-        %>
 
         <div id="address_header" class="row mid_align">
             <span class="title">Địa Chỉ</span>
@@ -52,42 +42,38 @@
                 <i class="fa-solid fa-plus"></i>
                 <a href="#">Thêm </a>
             </div>
-            <div class="overlay"></div>
             <div id="addAddressFormContainer" style="display: none;">
-                <span class="close-icon">&times;</span>
-
                 <h2>Thêm Địa Chỉ</h2>
-                <form id="addAddressForm" action="${pageContext.request.contextPath}/add-address" method="post">
+                <form method="POST" action="AddAddressController">
+                    <label for="province">Tỉnh/Thành phố:</label>
+                    <input type="text" id="province" name="province" placeholder="Nhập tỉnh/thành phố" required/>
 
-                    <label for="province" >Tỉnh/Thành phố:<span style="color: red;">*</span></label>
-                    <select id="province" required></select>
+                    <label for="district">Quận/Huyện:</label>
+                    <input type="text" id="district" name="district" placeholder="Nhập quận/huyện" required/>
 
-                    <label for="district">Quận/Huyện:<span style="color: red;">*</span></label>
-                    <select id="district" required></select>
+                    <label for="commune">Phường/Xã:</label>
+                    <input type="text" id="commune" name="commune" placeholder="Nhập phường/xã" required/>
 
-                    <label for="commune">Xã/Phường: <span style="color: red;">*</span></label>
-                    <select id="commune" required></select>
+                    <label for="detail">Chi tiết:</label>
+                    <input type="text" id="detail" name="detail" placeholder="Nhập địa chỉ chi tiết" required/>
 
-                    <label for="detail" >Địa chỉ chi tiết:<span style="color: red;">*</span></label>
-                    <input type="text" id="detail" placeholder="Nhập địa chỉ chi tiết" required>
+                    <label for="phone">Số điện thoại:</label>
+                    <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required/>
 
+                    <label for="name">Họ tên:</label>
+                    <input type="text" id="name" name="name" placeholder="Nhập họ tên" required/>
 
-                    <label for="name">Tên người nhận:<span style="color: red;">*</span></label>
-                    <input type="text" id="name" placeholder="Nhập tên người nhận" required>
-
-                    <label for="phone">Số điện thoại:<span style="color: red;">*</span></label>
-                    <input type="text" id="phone" placeholder="Nhập số điện thoại" maxlength="10" required>
-
-
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="addressType" value="Home" checked> Nhà riêng
-                        </label>
-                        <label>
-                            <input type="radio" name="addressType" value="Office"> Văn phòng
-                        </label>
-                    </div>
-                    <button class="submit-btn" >Xác nhận</button>
+                    <label>Loại địa chỉ:</label>
+                    <input type="radio" id="home" name="type" value="Home" checked/>
+                    <label for="home">Nhà</label>
+                    <input type="radio" id="office" name="type" value="Office"/>
+                    <label for="office">Văn phòng</label>
+                    <!-- Hidden field to pass userId -->
+                    <input type="hidden" name="userId" value="${userId}"/>
+                    <label>
+                        <button type="submit">Lưu</button>
+                        <button type="reset">Hủy</button>
+                    </label>
 
                 </form>
 
@@ -102,7 +88,7 @@
                 if (user != null && addresses != null) {
                     for (Address address : addresses) {
             %>
-            <div  class="address_item row" data-id ="<%= address.getId() %>" >
+            <div class="address_item row">
                 <div class="icon mid_align">
                     <i class="fa-solid <%= address.getAddressType().equals("house") ? "fa-house" : "fa-building" %>"></i>
                 </div>
@@ -113,16 +99,16 @@
                         <div class="rec_vertical"></div>
                         <span class="phone"><%= address.getPhoneNumber() %></span>
                         <% if (address.getDefault()) { %>
+                        <div class="default">Mặc định</div>
                         <% } %>
                     </div>
 
                     <div class="item_body">
                         <div class="address_detail">
-<%--                            xem lại cái Address detail là biến gì nghe HẢI ANH--%>
-                            <span><%= address.getAddressType() %></span>
+                            <span><%= address.getStreet() %></span>
                         </div>
                         <div class="location">
-                            <span><%= address.getStreet() %>, <%= address.getCity() %>, <%= address.getState() %></span>
+                            <span><%= address.getState() %>, <%= address.getCity() %></span>
                         </div>
                     </div>
                 </div>
@@ -130,13 +116,11 @@
                 <div class="manage mid_align col">
                     <button class="update_btn">Thay đổi</button>
                     <% if (!address.getDefault()) { %>
-                    <button class="set_default_btn" onclick= "setDefault('<%= address.getId() %>')" >Đặt làm mặc định</button>
-                    <button onclick= "deleteAddress('<%= address.getId() %>')" class="delete_btn" >Xóa</button>
-
+                    <button class="set_default_btn">Đặt làm mặc định</button>
                     <% } else { %>
-                    <div class="default">Mặc định</div>
-
+                    <button class="set_default_btn disabled" disabled>Đặt làm mặc định</button>
                     <% } %>
+                    <button class="delete_btn">Xóa</button>
                 </div>
             </div>
             <%
@@ -152,8 +136,4 @@
 
 
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="${pageContext.request.contextPath}/static/style-component/style-user_profile/Address.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-
 </html>

@@ -18,9 +18,9 @@ $(document).ready(function () {
                 method: "POST",
                 body: formData,
             })
-            .then(
-                response => response.json()
-            ).then(data => {
+                .then(
+                    response => response.json()
+                ).then(data => {
                 if (data.statusCode === 200) {
                     const imageId = data.data[0].id;
 
@@ -185,6 +185,6 @@ function update_profile() {
         },
         body: JSON.stringify(jsonObject),
     }).then(response => {
-         return  response.json()
+        return  response.json()
     })
 }

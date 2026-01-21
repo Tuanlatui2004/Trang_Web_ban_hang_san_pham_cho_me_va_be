@@ -27,7 +27,7 @@
         </ul>
     </div>
     <div class="feature-benefit__img">
-        <img src="<%= request.getContextPath() %>/static/image/img-detail/feature1.jpg" alt="Carousel Image1" class="imgFeature1">
+        <img src="<%= request.getContextPath() %>/static/image/sp1.png" alt="Carousel Image1" class="imgFeature1">
     </div>
 <%--    them vai cai nua--%>
 </div>

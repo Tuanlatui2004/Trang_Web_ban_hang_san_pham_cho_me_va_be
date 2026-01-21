@@ -15,7 +15,7 @@ document.querySelectorAll('.toggle_pass')
                 eyeIcon.classList.add('fa-eye');
             }
         })
-});
+    });
 
 document.querySelector("form").addEventListener("submit", async (event) => {
     event.preventDefault();
