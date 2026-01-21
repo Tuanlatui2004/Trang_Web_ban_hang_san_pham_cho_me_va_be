@@ -35,8 +35,8 @@ body {
 #card-number{
     font-size: 12px;
 }
- #cvv{
-     font-size: 12px;
+#cvv{
+    font-size: 12px;
 }
 #expiry{
     font-size: 12px;
@@ -83,5 +83,5 @@ body > div > div.checkbox-group > label{
 
 }
 .close-btn:hover {
-   color: #377dff;
+    color: #377dff;
 }

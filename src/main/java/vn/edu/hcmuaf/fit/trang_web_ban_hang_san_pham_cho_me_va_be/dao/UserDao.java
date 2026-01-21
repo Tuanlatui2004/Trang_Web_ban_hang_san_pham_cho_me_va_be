@@ -18,7 +18,7 @@ public interface UserDao {
     List<User> getAllUsers();
 
     @SqlQuery(value = "select u.id, u.fullName, u.displayName, u.dOB, u.gender, u.email, u.phoneNumber,\n" +
-            "        i.url as avatar_url"+
+            "        i.url as avatar_url "+
             "from users as u\n" +
             "     left join image as i on u.avatarId = i.id\n" +
             "where u.id  = :id")
@@ -38,9 +38,9 @@ public interface UserDao {
                       @Bind("salt") String salt);
 
 
-    @SqlUpdate("UPDATE users SET fullname = :fullname, email = :email, passwordUsername = :passwordUsername WHERE id = :id")
+    @SqlUpdate("UPDATE users SET fullName = :fullName, email = :email, passwordUsername = :passwordUsername WHERE id = :id")
     void updateUser(@Bind("id") Integer id,
-                    @Bind("fullname") String fullname,
+                    @Bind("fullName") String fullName,
                     @Bind("email") String email,
                     @Bind("passwordUsername") String passwordUsername);
 

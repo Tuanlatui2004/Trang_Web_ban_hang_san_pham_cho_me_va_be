@@ -1,90 +1,92 @@
-* {
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: Helvetica Neue, Helvetica, Arial, serif;
 }
-
-html {
+html{
     overflow: hidden;
     width: 100%;
     height: 100%;
-    padding: 0 20px;
+    padding: 0 ;
 }
 
 
 /*Reuse*/
-.mid_align {
+.mid_align{
     display: flex;
     align-items: center;
     text-align: center;
 }
 
-.row {
+.row{
     display: flex;
     flex-direction: row;
 }
 
-.col {
+.col{
     display: flex;
     flex-direction: column;
 }
 
 
-.rec_horizontal {
+.rec_horizontal{
     width: 70%;
     height: 1px;
     background-color: #cfcfcf;
 }
 
-i {
+i{
     color: #616060;
 }
 
-.f16 {
+.f16{
     font-size: 16px;
 }
 
-.f22 {
+.f22{
     font-size: 22px;
 }
 
 /*Header*/
-body {
+body{
 }
 
-#header {
+#head_title{
     width: 100%;
 
 }
 
-.header_container {
+.header_container{
     width: 100%;
-    min-height: 80px;
+    height: 70px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.25);
-    align-items: flex-start;
-    justify-content: center;
+    align-items: flex-start !important;
+    padding-left: 20px;
+    justify-content: center ;
 }
 
 
-.description {
+
+.description{
     font-size: 14px;
     font-weight: 400;
     color: #555555;
+    padding : 10px 0;
+}
+
+
+
+/*Body*/
+#content_body, .body_container{
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
     padding: 10px 0;
 }
 
 
-/*Body*/
-#body, .body_container {
-    width: 100%;
-    height: 100%;
-    min-height: 400px;
-    padding: 10px 0px;
-}
-
-
-.info_left {
+.info_left   {
     width: 60%;
     height: 100%;
     border-right: 1px solid rgba(128, 128, 128, 0.25);
@@ -95,16 +97,16 @@ body {
     height: 30%;
 }
 
-.form_infor .avatar {
+.form_infor .avatar{
     width: 40%;
     height: 100%;
     border-radius: 100%;
     cursor: pointer;
-    padding: 10px;
+    padding: 10px ;
     position: relative;
 }
 
-.form_infor .avatar img {
+.form_infor .avatar img{
     width: 200px;
     height: 200px;
     object-fit: cover;
@@ -113,23 +115,23 @@ body {
     border: 5px solid rgba(108, 234, 65, 0.44);
 }
 
-.form_infor .avatar i {
+.form_infor .avatar i{
     position: absolute;
-    bottom: 20px;
-    right: 30px;
+    bottom: -50px;
+    right: 50px;
     font-size: 16px;
     background-color: white;
     padding: 10px;
     border-radius: 20px;
     border: 2px solid transparent;
 }
-
-.form_infor .avatar i:hover {
+.form_infor .avatar i:hover{
     background-color: #e3e3e3;
 }
 
 
-.base_infor {
+
+.base_infor{
     padding-left: 15px;
     width: 65%;
     height: 100%;
@@ -137,15 +139,15 @@ body {
     padding-top: 10px;
 }
 
-.base_infor .name_title {
-    text-align: left;
+.base_infor .name_title{
+    text-align:left;
     padding: 10px 0px;
     color: #797979;
     font-size: 14px;
 }
 
-.base_infor > input {
-    width: 90%;
+.base_infor>input{
+    width:90%;
     height: 40px;
     padding: 10px;
     border: 1px solid #cfcfcf;
@@ -153,30 +155,32 @@ body {
     color: #323232;
 }
 
-.base_infor input:focus {
+.base_infor input:focus{
     outline: none;
 
 }
 
-.base_infor .gender {
+.base_infor .gender{
     width: 100%;
-    padding-top: 20px;
+    padding-top :20px;
 }
 
 
-.base_infor .gender .gender_radio {
+.base_infor .gender .gender_radio{
     width: 70%;
     display: flex;
     justify-content: space-evenly;
 }
 
 
-.personal_infor {
-    width: 100%;
-    padding-top: 10px;
+
+.personal_infor{
+    /*padding-left: 340px;*/
+    width: 75%;
+    padding-top: 70px;
 }
 
-.personal_infor .gender_title, .birth_title {
+.personal_infor .gender_title, .birth_title{
     text-align: left;
     width: 30%;
     color: #797979;
@@ -185,31 +189,31 @@ body {
 }
 
 
-.personal_infor .birth_form {
+.personal_infor .birth_form{
     width: 70%;
     justify-content: space-between;
     padding: 0px 25px;
 }
 
 
-.birth_form select {
+.birth_form  select{
     width: 90px;
     height: 30px;
     text-align: center;
 }
 
-.birth_form label {
+.birth_form label{
     color: #797979;
     font-size: 14px;
 }
 
 
-.bottom {
+.bottom{
     padding: 25px 0;
     justify-content: center;
 }
 
-.bottom .save_btn {
+.bottom .save_btn{
     height: 40px;
     width: 150px;
     border: 1px solid rgba(128, 128, 128, 0.25);
@@ -220,9 +224,11 @@ body {
     transition: 0.3s;
 }
 
-.bottom .save_btn:hover {
+.bottom .save_btn:hover{
     scale: 1.03;
 }
+
+
 
 
 /* Info Right*/
@@ -240,7 +246,7 @@ body {
     margin-left: 20px;
 }
 
-.contact_item {
+.contact_item{
     width: 100%;
     padding: 10px;
     display: flex;
@@ -254,19 +260,19 @@ body {
 }
 
 
-.contact_item .item_text {
+.contact_item .item_text{
     padding: 0px 10px;
-    color: #4E4E52;
+    color:#4E4E52;
 }
 
 
-.contact_item .update_btn {
+.contact_item .update_btn{
     margin-left: auto;
     border: 1px solid #0974E5;
     color: #0974E5;
     border-radius: 5px;
     background-color: transparent;
-    padding: 0px 10px;
+    padding:0px 10px;
     height: 25px;
     cursor: pointer;
     width: 80px;
@@ -274,22 +280,21 @@ body {
 
 
 /*Social Link*/
-.social {
+.social{
     padding-top: 20px;
 }
 
-.social .update_btn {
+.social .update_btn{
     margin-left: auto;
     border: 1px solid #0974E5;
     color: #0974E5;
     border-radius: 5px;
     background-color: transparent;
-    padding: 0px 10px;
+    padding:0px 10px;
     height: 25px;
     width: 80px;
 }
-
-.contact_item img {
+.contact_item img{
     width: 25px;
     height: 25px;
     object-fit: cover;
