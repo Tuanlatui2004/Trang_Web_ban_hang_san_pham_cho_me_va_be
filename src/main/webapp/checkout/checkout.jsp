@@ -354,12 +354,12 @@
     </div>
 
 </div>
-<div id="choose-address-popup">
-    <div class="address-popup-content">
-        <span id="close-address-popup">&times;</span>
-        <h3>Chọn địa chỉ nhận hàng</h3>
-        <div id="address-list-popup"></div>
-    </div>
-</div>
+<%--<div id="choose-address-popup">--%>
+<%--    <div class="address-popup-content">--%>
+<%--        <span id="close-address-popup">&times;</span>--%>
+<%--        <h3>Chọn địa chỉ nhận hàng</h3>--%>
+<%--        <div id="address-list-popup"></div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 </body>
 </html>
