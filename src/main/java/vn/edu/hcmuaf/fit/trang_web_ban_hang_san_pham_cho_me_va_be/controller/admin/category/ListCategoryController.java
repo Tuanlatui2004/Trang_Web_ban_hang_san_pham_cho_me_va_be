@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.admin.category;
 
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.CategoryWithStock;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.CategoriesWithStock;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.CategoryCustomService;
 
 import jakarta.servlet.*;
@@ -17,12 +17,12 @@ public class ListCategoryController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<CategoryWithStock> categoriesWithStock = categoryCustomService.getCustomCategoriesWithTotalStock();
+            List<CategoriesWithStock> categoriesWithStock = categoryCustomService.getCustomCategoriesWithTotalStock();
             request.setAttribute("categoriesWithStock", categoriesWithStock);
             request.getRequestDispatcher("categories.jsp").forward(request, response);
         } catch (Exception e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi tải danh mục.");
+//            e.printStackTrace();
+//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi tải danh mục.");
         }
     }
 }

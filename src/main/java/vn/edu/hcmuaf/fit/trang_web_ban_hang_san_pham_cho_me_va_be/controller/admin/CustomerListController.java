@@ -50,7 +50,7 @@ public class CustomerListController  extends HttpServlet {
             request.setAttribute("userAddresses", userAddresses);
 
 
-        request.getRequestDispatcher("customers.jsp").forward(request, response);
+        request.getRequestDispatcher("customer.jsp").forward(request, response);
     }
 
     @Override

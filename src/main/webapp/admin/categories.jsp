@@ -107,7 +107,8 @@
                                         <p>${category.name}</p>
                                     </div>
                                 </td>
-                                <td>${category.totalStock}</td>
+<%--                                pbha--%>
+<%--                                <td>${category.totalStock}</td>--%>
                                 <td>
                                     <div class="action-icons">
                                         <div class="dropdown">
