@@ -80,7 +80,8 @@ CREATE TABLE `card` (
                         KEY `fk_card_1` (`userId`),
                         CONSTRAINT `fk_card_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+ALTER TABLE categories
+    ADD COLUMN isActive tinyint(4) DEFAULT 1;
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 --

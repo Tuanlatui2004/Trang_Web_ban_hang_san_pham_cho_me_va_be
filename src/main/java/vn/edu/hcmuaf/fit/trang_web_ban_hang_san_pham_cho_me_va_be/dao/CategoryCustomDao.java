@@ -3,11 +3,11 @@ package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao;
 import org.jdbi.v3.sqlobject.config.RegisterConstructorMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.CategoryWithStock;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.CategoriesWithStock;
 
 import java.util.List;
 
-@RegisterConstructorMapper(CategoryWithStock.class)
+@RegisterConstructorMapper(CategoriesWithStock.class)
 public interface CategoryCustomDao {
 
     @SqlQuery("""
@@ -18,9 +18,9 @@ public interface CategoryCustomDao {
         LEFT JOIN option_variant o ON p.id = o.productId
         GROUP BY c.id, c.name, c.isActive
     """)
-    List<CategoryWithStock> getCustomCategoriesWithStock();
+    List<CategoriesWithStock> getCustomCategoriesWithStock();
 
 
     @SqlQuery("SELECT c.id, c.name FROM categories c WHERE c.name LIKE CONCAT('%', :search, '%')")
-    List<CategoryWithStock> searchCategoriesByName(@Bind("search") String search);
+    List<CategoriesWithStock> searchCategoriesByName(@Bind("search") String search);
 }

@@ -23,7 +23,7 @@ public class AdminBrandController extends HttpServlet {
         List<Brand> brands = brandService.getAllBrands();
         request.setAttribute("brands", brands);
 
-        request.getRequestDispatcher("brand.jsp").forward(request, response);
+        request.getRequestDispatcher("brands.jsp").forward(request, response);
     }
 
     @Override

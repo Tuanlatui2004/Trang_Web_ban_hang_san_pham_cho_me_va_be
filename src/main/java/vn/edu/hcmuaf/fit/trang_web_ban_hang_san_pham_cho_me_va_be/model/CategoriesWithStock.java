@@ -3,21 +3,21 @@ package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model;
 import jakarta.annotation.Nullable;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
-public class CategoryWithStock {
+public class CategoriesWithStock {
     private Integer id;
     private String name;
     private Integer totalStock;
     private Boolean isActive;
 
-    public CategoryWithStock(@ColumnName("id") @Nullable Integer id, @ColumnName("name") @Nullable String name, @ColumnName("totalStock") @Nullable Integer totalStock, @ColumnName("isActive") @Nullable Boolean isActive) {
+    public CategoriesWithStock(@ColumnName("id") @Nullable Integer id, @ColumnName("name") @Nullable String name, @ColumnName("totalStock") @Nullable Integer totalStock, @ColumnName("isActive") @Nullable Boolean isActive) {
         this.id = id;
         this.name = name;
         this.totalStock = totalStock;
         this.isActive = isActive;
     }
-    public CategoryWithStock() {
-
-    }
+//    public CategoriesWithStock() {
+//
+//    }
 
     public Integer getId() {
         return id;
@@ -53,7 +53,7 @@ public class CategoryWithStock {
 
     @Override
     public String toString() {
-        return "CategoryWithStock{" +
+        return "CategoriesWithStock{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", totalStock=" + totalStock +
