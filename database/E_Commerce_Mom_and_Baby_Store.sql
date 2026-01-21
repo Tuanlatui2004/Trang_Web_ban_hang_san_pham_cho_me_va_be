@@ -161,7 +161,8 @@ CREATE TABLE `orders` (
                           CONSTRAINT `fk_order_2` FOREIGN KEY (`addressId`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                           CONSTRAINT `fk_order_3` FOREIGN KEY (`cardId`) REFERENCES `card` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+ALTER TABLE orders
+    MODIFY COLUMN orderStatus enum('DELIVERED','DELIVERY','PAID') COLLATE utf8mb4_unicode_ci DEFAULT 'DELIVERY';
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 - -- -- -- -- -- -- -- -- -- -- -- -- -- --

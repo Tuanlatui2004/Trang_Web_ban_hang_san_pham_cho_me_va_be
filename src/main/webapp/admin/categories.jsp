@@ -15,10 +15,8 @@
     <title>Category Management</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/static/style-component/style-admin/categories/categories.css">
-    <script src="${pageContext.request.contextPath}/static/style-component/style-admin/categories/categories1.js"
-            defer></script>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="${pageContext.request.contextPath}/static/style-component/style-admin/categories/categories1.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
@@ -82,9 +80,9 @@
                             <div class="header-content">
                                 <span class="header-text">Tổng Sản Phẩm</span>
                                 <span class="sort-arrows">
-                        <span class="sort-arrow asc">▲</span>
-                        <span class="sort-arrow desc">▼</span>
-                    </span>
+                                    <span class="sort-arrow asc">▲</span>
+                                    <span class="sort-arrow desc">▼</span>
+                                </span>
                             </div>
                         </th>
                         <th>Thao Tác</th>

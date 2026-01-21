@@ -28,7 +28,7 @@
 
 <div class="container">
         <div class="side_bar">
-            <jsp:include page="/admin/SideBar.jsp"/>
+            <jsp:include page="SideBar.jsp"/>
         </div>
 
         <div class="content">
