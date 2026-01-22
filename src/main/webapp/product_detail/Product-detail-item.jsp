@@ -1,47 +1,34 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vinhp
-  Date: 12/30/2025
-  Time: 11:56 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style-component/product-detail/Product-detail-item.css">
-    <script src="${pageContext.request.contextPath}/static/style-component/product-detail/Product-detail-item.js" defer></script>
-</head>
-<body>
 
-<!-- Carousel Container -->
 <div class="carousel-container">
-    <!-- Main Image Display -->
-    <img id="mainImage"
-         src="${pageContext.request.contextPath}/static/image/img-detail/product_cart_1.png"
-         alt="Carousel Image"
-         class="carousel-image"
-         data-context-path="${pageContext.request.contextPath}">
+    <div class="main-image-wrapper">
+        <img id="mainImage"
+             src="${not empty primaryImageUrl ? primaryImageUrl : (not empty images ? images[0] : '/static/image/default-product.png')}"
+             alt="${product.name}"
+             class="carousel-image">
+    </div>
 
-    <!-- Navigation Arrows -->
-    <div class="nav-arrow left" onclick="prevImage()">&#10094;</div>
-    <div class="nav-arrow right" onclick="nextImage()">&#10095;</div>
+    <c:if test="${images.size() > 1}">
+        <div class="nav-arrow left" onclick="prevImage()">&#10094;</div>
+        <div class="nav-arrow right" onclick="nextImage()">&#10095;</div>
+    </c:if>
 
-    <!-- Thumbnails -->
     <div class="thumbnails">
-        <c:forEach var="image" items="${images}" varStatus="status">
-            <img src="${image.url}"
+        <%-- Ảnh chính cũng nên xuất hiện trong danh sách thumbnail --%>
+        <c:if test="${not empty primaryImageUrl}">
+            <img src="${primaryImageUrl}"
+                 alt="Primary Image"
+                 class="thumbnail active"
+                 onclick="changeMainImage(this.src, this)">
+        </c:if>
+
+        <%-- Danh sách ảnh phụ --%>
+        <c:forEach var="imgUrl" items="${images}" varStatus="status">
+            <img src="${imgUrl}"
                  alt="Thumbnail ${status.index + 1}"
-                 class="thumbnail <c:if test='${status.index == 0}'>active</c:if>"
-                 onclick="showImage(${status.index})">
+                 class="thumbnail"
+                 onclick="changeMainImage(this.src, this)">
         </c:forEach>
     </div>
 </div>
-
-</body>
-</html>

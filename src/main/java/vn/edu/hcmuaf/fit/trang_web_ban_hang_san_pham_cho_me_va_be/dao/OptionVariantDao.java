@@ -14,7 +14,7 @@ import java.util.List;
 @RegisterConstructorMapper(OptionVariant.class)
 public interface OptionVariantDao {
 
-    @SqlUpdate("INSERT INTO option_variant (product_id, price, stock) VALUES (:product_id, :price, :stock)")
+    @SqlUpdate("INSERT INTO option_variant (productId, price, stock) VALUES (:productId, :price, :stock)")
     @GetGeneratedKeys
     int createOption(@Bind("productId") Integer productId, @Bind("price") Integer price, @Bind("stock") Integer stock);
 

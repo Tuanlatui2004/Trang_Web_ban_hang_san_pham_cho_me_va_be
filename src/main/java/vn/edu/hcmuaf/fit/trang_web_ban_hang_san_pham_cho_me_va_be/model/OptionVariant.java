@@ -15,9 +15,7 @@ public class OptionVariant {
                    @ColumnName("productId") @Nullable Integer productId,
                    @ColumnName("price") @Nullable Integer price,
                    @ColumnName("stock") @Nullable  Integer stock ,
-                   @ColumnName("variantId") @Nullable Integer variantId,
-                         @ColumnName("variantName") @Nullable String variantName,
-                         @ColumnName("variantValue") @Nullable String variantValue
+                   @ColumnName("variantId") @Nullable Integer variantId, @ColumnName("variantName") @Nullable String variantName, @ColumnName("variantValue") @Nullable String variantValue
     ){
         this.id = id;
         this.productId = productId;
@@ -29,8 +27,8 @@ public class OptionVariant {
 
     }
 
-    public OptionVariant() {
-    }
+//    public OptionVariant() {
+//    }
 
     public String getVariantValue() {
         return variantValue;

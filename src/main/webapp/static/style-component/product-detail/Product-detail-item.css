@@ -1,87 +1,63 @@
-/* Basic reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Container styling */
 .carousel-container {
+    position: relative;
+    width: 100%;
     max-width: 500px;
     margin: auto;
-    text-align: center;
-    position: relative;
 }
 
-/* Image styling */
-.carousel-image {
+.main-image-wrapper {
     width: 100%;
-    height: auto;
-}
-
-.product-img {
-    width: 100px;
-    height: auto;
+    height: 500px; /* Cố định chiều cao để không bị nhảy layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #f1f1f1;
     border-radius: 8px;
 }
 
-
-/* Thumbnails styling */
-.thumbnails {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+.carousel-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease-in-out;
 }
 
-.thumbnail img{
-    width: 60px;
-    height: 60px;
-    margin: 0 5px;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.3s;
+.thumbnails {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    overflow-x: auto;
+    padding-bottom: 5px;
 }
 
 .thumbnail {
-    display: contents;
-    width: 60px;
-    height: 60px;
-    margin: 0 5px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 4px;
     cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.3s;
+    transition: border-color 0.2s;
 }
 
-.image {
-
+.thumbnail.active, .thumbnail:hover {
+    border-color: #007bff;
 }
 
-.thumbnail.active {
-    opacity: 1;
-    border: 2px solid #000;
-}
-
-/* Navigation arrows */
 .nav-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 24px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: rgba(0,0,0,0.3);
+    color: white;
+    padding: 10px;
     cursor: pointer;
+    border-radius: 50%;
+    user-select: none;
+    z-index: 10;
 }
 
-.nav-arrow.left {
-    left: -20px;
-}
-
-.nav-arrow.right {
-    right: -20px;
-}
+.nav-arrow:hover { background: rgba(0,0,0,0.6); }
+.left { left: 10px; }
+.right { right: 10px; }

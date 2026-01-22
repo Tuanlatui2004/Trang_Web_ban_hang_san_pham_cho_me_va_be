@@ -18,7 +18,7 @@ import java.util.List;
 public interface ProductDao {
 
     @SqlQuery(value = " " +
-            "SELECT p.id as id, p.name as name, p.description as description, " +
+            "SELECT p.id as id, p.      name as name, p.description as description, " +
             "            p.sku as sku, p.isActive as isActive, p.brandId as brandId,  " +
             "            p.noOfViews as noOfViews, p.noOfSold as noOfSold,  " +
             "            p.categoryId as categoryId, p.imageId as imageId, " +

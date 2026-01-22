@@ -1,277 +1,171 @@
-
 $(document).ready(function () {
-    const loginButton = $('.btn_login');
 
-    // Xử lý khi người dùng click nút Đăng nhập
-    loginButton.on('click', function () {
-        // Chuyển đến trang đăng nhập
-        window.location.href = "login"; // Đường dẫn trang đăng nhập
+    /* =============================
+       LOGIN / CONTINUE SHOPPING
+    ============================== */
+    $('.btn_login').on('click', function () {
+        window.location.href = "login";
     });
 
-    // Kiểm tra trạng thái đăng nhập khi trang được tải
-    const userId = sessionStorage.getItem("userId");
-    const sessionId = sessionStorage.getItem("sessionId");
+    $('.btn_shopping').on('click', function () {
+        window.location.href = "home";
+    });
 
-    if (userId && sessionId) {
-        $('.btn_login').hide();
-    }
-
-    const tieptuc = $('.btn_shopping');
-    tieptuc.on('click', function (){
-        window.location.href = 'home';
-    })
-
-});
-
-
-
-$(document).ready(function () {
-
-
-    const pay = $('#pay')
-
-    pay.on('click', function () {
-
-        let isLoggedIn = sessionStorage.getItem("userId") && sessionStorage.getItem("sessionId");
-
-        if (!isLoggedIn) {
-            alert("Bạn cần đăng nhập trước!");
-            event.preventDefault(); // Ngừng hành động (không chuyển hướng)
-            return;
-        }
-
-
-        const products =[]
+    /* =============================
+       UPDATE BILL (CHỈ TÍNH SP ĐƯỢC CHECK)
+    ============================== */
+    function updateBill() {
+        let totalPrice = 0;
 
         $('.product_checked:checked').each(function () {
-            products.push(($(this).val()))
-        })
+            const item = $(this).closest('.product-item');
+            const priceEl = item.find('.price');
 
+            const price = parseInt(priceEl.data('price'));
+            const quantity = parseInt(priceEl.data('quantity'));
 
-        if (products.length === 0) {
-            alert('Chọn ít nhất một sản phẩm để thanh toán!');
-            return;
-        }
+            totalPrice += price * quantity;
+        });
 
-        const body= products.join(',');
+        const vat = totalPrice * 0.1;
+        const beforeTax = totalPrice - vat;
 
-        window.location.href="checkout?productIds=" + encodeURIComponent(body);
+        $('#total').text(Intl.NumberFormat('vi-VN').format(totalPrice) + ' VND');
+        $('#VAT').text(Intl.NumberFormat('vi-VN').format(vat) + ' VND');
+        $('#before_tax').text(Intl.NumberFormat('vi-VN').format(beforeTax) + ' VND');
+    }
 
-
+    /* =============================
+       CHECK ALL
+    ============================== */
+    $(document).on('change', '#check_all', function () {
+        $('.product_checked').prop('checked', this.checked);
+        updateBill();
     });
 
-    //xu  ly chua dang nhap
+    /* =============================
+       CHECK SINGLE → SYNC CHECK ALL
+    ============================== */
+    $(document).on('change', '.product_checked', function () {
+        const total = $('.product_checked').length;
+        const checked = $('.product_checked:checked').length;
 
-
-
-
-//     Increase/Decrease quantity
-
-    const product= $('.product-item')
-
-    window.onload = function () {
-        product.each(function () {
-
-            let price = $(this).find('.price');
-            let quantity = ($(this).find('.num'));
-            let increment = $(this).find('#increment');
-            let decrement = $(this).find('#decrement');
-            let remove = $(this).find('.remove');
-
-            let stock = $(this).attr('data-stock');
-            let product_id = parseInt($(this).attr('data-id'));
-
-
-
-            updatePrice(price, quantity);
-
-            increment.on('click', function () {
-                increaseQuantity( $(this), quantity, price, stock, product_id);
-            })
-
-            decrement.on('click', function () {
-                decreaseQuantity( $(this), quantity, price, product_id);
-            })
-
-            remove.on('click', function () {
-
-                let productItem = $(this).closest('.product-item');
-                let productId = parseInt(productItem.attr('data-id'));
-
-                removeItem(productId, productItem);
-            })
-
-
-
-
-        })
-
+        $('#check_all').prop('checked', total === checked);
         updateBill();
+    });
 
+    /* =============================
+       INCREASE QUANTITY
+    ============================== */
+    $(document).on('click', '.increment', function () {
+        const item = $(this).closest('.product-item');
+        const qtyEl = item.find('.num');
+        const priceEl = item.find('.price');
 
+        let quantity = parseInt(qtyEl.data('quantity'));
+        const stock = parseInt(item.data('stock'));
+        const productId = item.data('id');
 
+        if (quantity < stock) {
+            quantity++;
 
-    }
+            qtyEl.text(quantity).data('quantity', quantity);
+            priceEl.data('quantity', quantity);
 
-
-    function updatePrice(price, quantity) {
-        let price_value = parseInt(price.attr('data-price'));
-        let quantity_value = parseInt(quantity.attr('data-quantity'));
-        let total = price_value * quantity_value;
-
-        let formatted = new Intl.NumberFormat('vi-VN').format(total);
-        price.text(formatted + ' VND');
-
-        console.log("updatePrice: ", price);
-
-
-        updateBill();
-
-    }
-
-
-    function increaseQuantity( product, quantity , price , stock ,product_id) {
-        let newQuantity =parseInt(quantity.attr('data-quantity')) ;
-
-
-
-        console.log("product_id: " , product_id);
-
-        if (newQuantity < stock){
-            newQuantity += 1;
-            quantity.attr('data-quantity', newQuantity);
-            quantity.text(newQuantity);
-
-            updatePrice(price, quantity);
-            updateQuantity(  product_id, newQuantity );
+            updateQuantity(productId, quantity);
+            updateBill();
+        } else {
+            alert("Đã đạt số lượng tối đa");
         }
+    });
 
-        else {
-            console.log("stock: " , stock);
-            alert("Đã đạt số lượng tối đa")
+    /* =============================
+       DECREASE QUANTITY
+    ============================== */
+    $(document).on('click', '.decrement', function () {
+        const item = $(this).closest('.product-item');
+        const qtyEl = item.find('.num');
+        const priceEl = item.find('.price');
+
+        let quantity = parseInt(qtyEl.data('quantity'));
+        const productId = item.data('id');
+
+        if (quantity > 1) {
+            quantity--;
+
+            qtyEl.text(quantity).data('quantity', quantity);
+            priceEl.data('quantity', quantity);
+
+            updateQuantity(productId, quantity);
+            updateBill();
         }
+    });
 
-
-
-
-
-    }
-
-
-
-    function decreaseQuantity( product, quantity , price  ,product_id) {
-        let newQuantity =parseInt(quantity.attr('data-quantity')) ;
-
-        if(newQuantity  > 1){
-            newQuantity -= 1;
-
-            quantity.attr('data-quantity', newQuantity);
-            quantity.text(newQuantity);
-
-            updateQuantity(  product_id, newQuantity );
-            updatePrice(price, quantity);
-
-        }
-
-        updateBill();
-
-
-    }
-
-
-
-    function updateQuantity( productId, quantity ) {
+    /* =============================
+       UPDATE QUANTITY (AJAX)
+    ============================== */
+    function updateQuantity(productId, quantity) {
         $.ajax({
-            url: 'cart/update-quantity' ,
+            url: 'cart/update-quantity',
             method: 'POST',
             data: {
                 productId: productId,
                 quantity: quantity
             },
-            success: function (result) {
-                console.log(result);
-            },
-            error: function (xhr, status, error) {
-                console.log(xhr.responseText);
+            error: function () {
+                alert('Cập nhật số lượng thất bại');
             }
-
-
-        })
+        });
     }
 
+    /* =============================
+       REMOVE ITEM
+    ============================== */
+    $(document).on('click', '.del', function () {
+        const item = $(this).closest('.product-item');
+        const productId = item.data('id');
 
-
-    function removeItem(productId, productItem){
-
-        if (confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+        if (confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
             $.ajax({
                 url: 'cart/remove',
                 method: 'POST',
-                data: {
-                    productId: productId,
-                },
-                success: function (result) {
-                    console.log(result);
-                    productItem.remove();
-                    location.reload();
-                },
-                error: function (xhr, status, error) {
-                    console.log(xhr.responseText);
-                    alert('Xóa sản phẩm không thành công. Vui lòng thử lại!');
+                data: { productId },
+                success: function () {
+                    item.remove();
+                    updateBill();
                 }
             });
         }
+    });
 
+    /* =============================
+       CHECKOUT
+    ============================== */
+    $('#pay').on('click', function (e) {
+        const userId = sessionStorage.getItem("userId");
+        const sessionId = sessionStorage.getItem("sessionId");
 
-        updateBill();
+        if (!userId || !sessionId) {
+            alert("Bạn cần đăng nhập trước!");
+            e.preventDefault();
+            return;
+        }
 
+        const productIds = $('.product_checked:checked')
+            .map(function () {
+                return $(this).val();
+            }).get();
 
+        if (productIds.length === 0) {
+            alert('Vui lòng chọn ít nhất 1 sản phẩm');
+            return;
+        }
 
-    }
+        window.location.href = 'checkout?productIds=' + productIds.join(',');
+    });
 
-
-
-    function updateBill(){
-        const priceList = $('.price')
-
-        console.log("updateBill: ", priceList);
-
-
-        let totalPrice = 0;
-        let total = $('#total')
-        let VAT = $('#VAT')
-        let before_tax = $('#before_tax')
-
-        priceList.each(function () {
-
-            console.log("price item: ", this);
-
-            let price =  $(this).text().replace(' VND', '').replaceAll('.', '');
-            console.log("price:", price);
-            totalPrice += parseInt(price);
-        })
-
-
-        const tax = totalPrice * 10 /100;
-        const b_t = totalPrice - tax;
-
-        console.log("tax  : " ,tax);
-        console.log("b_t  : " ,b_t);
-
-
-
-
-        total.text(Intl.NumberFormat('vi-VN').format(totalPrice) + ' VND');
-        VAT.text(Intl.NumberFormat('vi-VN').format(tax) + ' VND');
-        before_tax.text(Intl.NumberFormat('vi-VN').format(b_t) + ' VND');
-
-
-
-
-    }
-
-
-
-})
-
-
+    /* =============================
+       INIT
+    ============================== */
+    updateBill();
+});

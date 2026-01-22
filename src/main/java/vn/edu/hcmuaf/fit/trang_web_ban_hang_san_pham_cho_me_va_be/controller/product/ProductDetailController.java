@@ -1,69 +1,51 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.product;
 
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.OptionVariant;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Product;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ImageService;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.OptionService;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.ProductDTO;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ImageService;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ProductService;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
-@WebServlet(name = "ProductDetailController",value = "/product-detail")
+
+@WebServlet(name = "ProductDetailController", value = "/product-detail")
 public class ProductDetailController extends HttpServlet {
-    // chưa có service
+
     ProductService productService = new ProductService(DBConnection.getJdbi());
     ImageService imageService = new ImageService(DBConnection.getJdbi());
-    OptionService optionService = new OptionService(DBConnection.getJdbi());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int productId = Integer.parseInt(request.getParameter("id"));
-        Product product = productService.getProductById(productId);
+        try {
+            int productId = Integer.parseInt(request.getParameter("id"));
 
-        Integer productPrice = productService.getMinimumPriceForProduct(productId); // Default to minimum price
-        if (product.getOptionId() != null) {
-            productPrice = productService.getPriceForOption(product.getOptionId());
+            ProductDTO productDTO = productService.editProductById(productId);
+
+            if (productDTO == null) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Sản phẩm không tồn tại");
+                return;
+            }
+
+            List<String> subImages = imageService.getAllImagesByProductId(productId);
+
+            String rawDesc = productDTO.getDescription();
+            List<String> descriptions = (rawDesc != null) ? List.of(rawDesc.split("\\n")) : List.of();
+
+            productService.increaseNoOfViews(productId);
+
+            request.setAttribute("product", productDTO);
+            request.setAttribute("images", subImages);
+            request.setAttribute("descriptions", descriptions);
+
+            request.getRequestDispatcher("product_detail/ProductDetail.jsp").forward(request, response);
+
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID sản phẩm không hợp lệ");
         }
-
-
-
-        List<String> images = imageService.getAllImagesByProductId(product.getId());
-        String primaryImageUrl = imageService.getImageUrlById(product.getImageId());
-        List<String> descriptions = List.of(product.getDescription().split("\\n"));
-
-// lỗi
-        List<OptionVariant> options = optionService.getOptionsByProductId(product.getId());
-        List<Integer> optionIds = options.stream().map(OptionVariant::getId).collect(Collectors.toList());
-
-        List<OptionVariant> optionVariant = optionService.getVariantByOptionId(optionIds);
-        List<String> variants = optionVariant.stream().map(OptionVariant::getVariantName).distinct().collect(Collectors.toList());
-
-        // nếu lấy chi tieets sản phẩm ra không được xem lại chỗ này
-
-        request.setAttribute("images", images);
-        request.setAttribute("primaryImageUrl", primaryImageUrl); // Add primary image URL
-        request.setAttribute("product", product);
-        request.setAttribute("descriptions", descriptions);
-        request.setAttribute("productPrice", productPrice);
-        request.setAttribute("optionVariant", optionVariant);
-        request.setAttribute("variants ", variants );
-
-
-        productService.increaseNoOfViews(productId);
-
-        request.getRequestDispatcher("product_detail/ProductDetail.jsp").forward(request, response);
     }
-// lỗi
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-    }
-
+}

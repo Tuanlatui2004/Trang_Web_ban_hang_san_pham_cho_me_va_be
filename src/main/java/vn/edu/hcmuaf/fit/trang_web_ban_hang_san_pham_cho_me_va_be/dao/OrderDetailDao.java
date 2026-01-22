@@ -54,7 +54,7 @@ public interface OrderDetailDao {
             "    inner join products as p\n" +
             "        on p.id = od.productId\n" +
             "    inner join option_variant as ops\n" +
-            "        on od.optionId = ops.id\n" +
+            "        on od.productId = ops.id\n" +
             "    inner join image as i\n" +
             "        on i.id = p.imageId\n" +
             "\n" +

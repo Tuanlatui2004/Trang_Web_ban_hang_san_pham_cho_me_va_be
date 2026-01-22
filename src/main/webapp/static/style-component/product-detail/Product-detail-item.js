@@ -1,49 +1,28 @@
-let images = [];
-let currentIndex = 0;
+let currentImageIndex = 0;
 
-// Lấy danh sách hình ảnh từ các thumbnails khi trang được tải
-document.addEventListener('DOMContentLoaded', () => {
-    const mainImage = document.getElementById('mainImage');
-    const contextPath = mainImage.dataset.contextPath; // Lấy contextPath từ data-attribute
+function changeMainImage(src, element) {
+    const mainImg = document.getElementById('mainImage');
+    mainImg.style.opacity = '0'; // Hiệu ứng mờ dần
 
-    // Lấy tất cả các thumbnail và tạo đường dẫn đầy đủ cho từng hình ảnh
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    images = Array.from(thumbnails).map((thumbnail) => {
-        return `${contextPath}${thumbnail.getAttribute('src').replace(contextPath, '')}`; // Thêm contextPath nếu cần
+    setTimeout(() => {
+        mainImg.src = src;
+        mainImg.style.opacity = '1';
+    }, 200);
+
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.classList.remove('active');
     });
-
-    // Hiển thị hình ảnh đầu tiên mặc định
-    showImage(currentIndex);
-});
-
-function showImage(index) {
-    const mainImage = document.getElementById('mainImage');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-
-    if (index >= 0 && index < images.length) {
-        // Cập nhật src của mainImage với đường dẫn đầy đủ từ mảng images
-        mainImage.src = images[index];
-        currentIndex = index;
-
-        // Cập nhật trạng thái active cho thumbnail
-        thumbnails.forEach((thumbnail, i) => {
-            if (i === index) {
-                thumbnail.classList.add('active');
-            } else {
-                thumbnail.classList.remove('active');
-            }
-        });
-    } else {
-        console.error(`Index ${index} is out of bounds`);
-    }
+    element.classList.add('active');
 }
 
 function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length; // Lặp vòng nếu đến cuối
-    showImage(currentIndex);
+    const thumbs = document.querySelectorAll('.thumbnail');
+    currentImageIndex = (currentImageIndex + 1) % thumbs.size;
+    thumbs[currentImageIndex].click();
 }
 
 function prevImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length; // Lặp vòng nếu về đầu
-    showImage(currentIndex);
+    const thumbs = document.querySelectorAll('.thumbnail');
+    currentImageIndex = (currentImageIndex - 1 + thumbs.length) % thumbs.length;
+    thumbs[currentImageIndex].click();
 }

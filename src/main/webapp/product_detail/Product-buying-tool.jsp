@@ -1,63 +1,92 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vinhp
-  Date: 12/30/2025
-  Time: 12:07 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/style-component/product-detail/Product-buying-tool.css">
-    <script src="<%= request.getContextPath() %>/static/style-component/product-detail/Product-buying-tool.js"></script>
+    <title>Chi tiết sản phẩm</title>
+
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/static/style-component/product-detail/Product-buying-tool.css">
+
+    <script>
+        var contextPath = "${pageContext.request.contextPath}";
+    </script>
+
+    <script src="${pageContext.request.contextPath}/static/style-component/product-detail/Product-buying-tool.js"
+            defer></script>
 </head>
 <body>
 
-<div class="container">
-    <div class="product-title">
-        <%= "Pediasure hương vani 1.6kg cho bé từ 1-10 tuổi" %>
-    </div>
-    <a href="<%= request.getContextPath() %>/link-Đánh giá" class="product-rating">
-        ★★★☆☆ <span>(<%= "3.0 / 10 đánh giá" %>)</span>
+<div class="container product-buy-tool" data-product-id="${product.id}">
+
+    <div class="product-title">${product.name}</div>
+
+    <a href="${pageContext.request.contextPath}/reviews?productId=${product.id}" class="product-rating">
+        ★★★☆☆ <span>(${product.reviewCount} đánh giá)</span>
     </a>
 
     <div class="product-features">
         <ul>
             <li>
-                <div>Tình trạng: Còn hàng</div>
-                <div>Mã sản phẩm: 105215</div>
-                <div>Thương hiệu: Pediasure</div>
-                <div>Dòng sản phẩm: Sữa bột trẻ em</div>
-                <div>Liên hệ với tư vấn viên online để biết thêm chi tiết về ưu đãi hoặc để nhận hướng dẫn mua hàng.
+                <div id="stock-status-text">
+                    Tình trạng:
+                    <c:choose>
+                        <c:when test="${product.stock > 0}">Còn hàng</c:when>
+                        <c:otherwise><span style="color:red">Hết hàng</span></c:otherwise>
+                    </c:choose>
                 </div>
+                <div>Mã sản phẩm: ${product.sku}</div>
+                <div>Thương hiệu: ${product.brand}</div>
+                <div>Dòng sản phẩm: ${product.category}</div>
             </li>
-<%--            <li>*Khuyến mại trên áp dụng khi mua hàng trực tiếp trên Website và không áp dụng FREESHIP--%>
-<%--                đối với sản phẩm ngày vàng / preorder--%>
-<%--            </li>--%>
         </ul>
     </div>
 
-<%--    <div class="option-title">Chọn Màu Sắc</div>--%>
-<%--    <div class="color-options">--%>
-<%--        <div class="color-option black"></div>--%>
-<%--        <div class="color-option silver"></div>--%>
-<%--    </div>--%>
+    <c:if test="${not empty optionVariant}">
+        <div class="option-title">Chọn phân loại</div>
+        <div class="capacity-options">
+            <c:forEach var="op" items="${optionVariant}" varStatus="st">
+                <%-- Bổ sung data-price và data-stock để JS có thể đọc được --%>
+                <div class="capacity-option option-item ${st.index == 0 ? 'active' : ''}"
+                     data-option-id="${op.id}"
+                     data-price="${op.price}"
+                     data-stock="${op.stock}">
+                        ${op.variantValue}
+                </div>
+            </c:forEach>
+        </div>
+    </c:if>
 
-    <div class="option-title">Chọn Khối Lượng</div>
-    <div class="capacity-options">
-        <div class="capacity-option">350g</div>
-        <div class="capacity-option">600g</div>
-        <div class="capacity-option">800g</div>
+    <div id="price" class="price">
+        <c:choose>
+            <c:when test="${not empty productPrice}">
+                <fmt:formatNumber value="${productPrice}" pattern="#,###"/> VND
+            </c:when>
+            <c:otherwise>Đang cập nhật</c:otherwise>
+        </c:choose>
     </div>
-    <div class="price">
-        <%= " 1.139.000 VND" %>
+
+    <div class="button-group">
+        <button type="button" id="add-to-cart" class="btn-add-to-cart" ${product.stock <= 0 ? 'disabled' : ''}>
+            Thêm vào giỏ hàng
+        </button>
+        <button type="button" id="buy-now" class="btn-buy-now" ${product.stock <= 0 ? 'disabled' : ''}>
+            Mua ngay
+        </button>
     </div>
-    <!--    <button class="btn-add-to-cart">Thêm vào giỏ hàng</button>-->
+
 </div>
+
+<form id="buyForm" method="post" action="${pageContext.request.contextPath}/buy">
+    <input type="hidden" name="productId" value="${product.id}">
+    <%-- Gán giá trị mặc định cho option đầu tiên --%>
+    <input type="hidden" name="optionId" id="selectedOptionId" value="${optionVariant[0].id}">
+    <input type="hidden" name="quantity" value="1">
+</form>
 
 </body>
 </html>

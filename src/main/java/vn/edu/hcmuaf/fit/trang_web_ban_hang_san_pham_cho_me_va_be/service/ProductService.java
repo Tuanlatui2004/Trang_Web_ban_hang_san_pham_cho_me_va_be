@@ -93,8 +93,15 @@ public class ProductService {
         return productDao.getTopProducts();
     }
 
+    public ProductDTO getProductDetailDTO(int id) {
+        Product product = productDao.getProductById(id);
 
-
+        if (product == null) {
+            return null;
+        }
+        List<Variant> variants = productDao.getVariants(id);
+        return new ProductDTO(product, variants);
+    }
 
 
 
