@@ -17,7 +17,7 @@ public class User {
     String passwordUsername;
     Integer avatarId;
     String status;
-//    String role;
+    // String role;
     String role;
     String salt;
     String avatarUrl;
@@ -27,25 +27,24 @@ public class User {
     String facebookId;
     Boolean needRefresh;
 
-
     @JdbiConstructor
     public User(@ColumnName("id") Integer id,
-                @ColumnName("fullName") @Nullable String fullName,
-                @ColumnName("displayName") @Nullable String displayName,
-                @ColumnName("dOB") @Nullable LocalDate dOB,
-                @ColumnName("gender") @Nullable String gender,
-                @ColumnName("phoneNumber") @Nullable String phoneNumber,
-                @ColumnName("email") @Nullable String email,
-                @ColumnName("passwordUsername") @Nullable String passwordUsername,
-                @ColumnName("avatarId") @Nullable Integer avatarId,
-                @ColumnName("status") @Nullable String status,
-                //pbha sửa
-                @ColumnName("role") @Nullable String role,
-                @ColumnName("salt") @Nullable String salt,
-                @ColumnName("avatarUrl") @Nullable String avatarUrl,
-                @ColumnName("confirmationToken") @Nullable String confirmationToken,
-                @ColumnName("facebookId") @Nullable String facebookId,
-                @ColumnName("needRefresh") @Nullable Boolean needRefresh
+            @ColumnName("fullName") @Nullable String fullName,
+            @ColumnName("displayName") @Nullable String displayName,
+            @ColumnName("dOB") @Nullable LocalDate dOB,
+            @ColumnName("gender") @Nullable String gender,
+            @ColumnName("phoneNumber") @Nullable String phoneNumber,
+            @ColumnName("email") @Nullable String email,
+            @ColumnName("passwordUserName") @Nullable String passwordUsername,
+            @ColumnName("avatarId") @Nullable Integer avatarId,
+            @ColumnName("status") @Nullable String status,
+            // pbha sửa
+            @ColumnName("role") @Nullable String role,
+            @ColumnName("salt") @Nullable String salt,
+            @ColumnName("avatarUrl") @Nullable String avatarUrl,
+            @ColumnName("confirmationToken") @Nullable String confirmationToken,
+            @ColumnName("facebookId") @Nullable String facebookId,
+            @ColumnName("needRefresh") @Nullable Boolean needRefresh
 
     ) {
         this.id = id;
@@ -58,7 +57,7 @@ public class User {
         this.passwordUsername = passwordUsername;
         this.avatarId = avatarId;
         this.status = status;
-//pbha sửa
+        // pbha sửa
         this.role = role;
         this.salt = salt;
         this.avatarUrl = avatarUrl;

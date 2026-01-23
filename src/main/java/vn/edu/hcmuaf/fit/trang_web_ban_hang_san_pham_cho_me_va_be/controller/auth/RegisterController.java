@@ -19,10 +19,11 @@ import java.util.Map;
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
     private final AuthService authService = new AuthService(DBConnection.getJdbi());
-    private final EmailService emailService = new EmailService();  // Khởi tạo EmailService
+    private final EmailService emailService = new EmailService(); // Khởi tạo EmailService
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -39,7 +40,8 @@ public class RegisterController extends HttpServlet {
             String jsonString = jsonBuilder.toString();
 
             // Parse JSON để lấy dữ liệu
-            Map<String, String> jsonData = objectMapper.readValue(jsonString, new TypeReference<Map<String, String>>() {});
+            Map<String, String> jsonData = objectMapper.readValue(jsonString, new TypeReference<Map<String, String>>() {
+            });
 
             String fullName = jsonData.get("fullName");
             String displayName = jsonData.get("displayName");
@@ -49,13 +51,15 @@ public class RegisterController extends HttpServlet {
 
             // Kiểm tra mật khẩu
             if (inputPassword == null || inputPassword.isEmpty()) {
-                ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(400, "error", "Password cannot be null or empty", null);
+                ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(400, "error",
+                        "Password cannot be null or empty", null);
                 response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
                 return;
             }
 
             if (!inputPassword.equals(confirmPassword)) {
-                ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(400, "error", "Passwords do not match", null);
+                ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(400, "error", "Passwords do not match",
+                        null);
                 response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
                 return;
             }
@@ -69,24 +73,32 @@ public class RegisterController extends HttpServlet {
                 authService.saveSessionId(request, email, sessionId);
 
                 // Gửi email xác nhận
-                emailService.sendConfirmationEmail(email, sessionId);
+                String message = "Registration successful. Please check your email to confirm your account.";
+                try {
+                    emailService.sendConfirmationEmail(email, sessionId);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    message = "Registration successful, but failed to send confirmation email. Please contact support.";
+                }
 
                 // Chuẩn bị thông tin người dùng để trả về
                 Map<String, String> userData = Map.of(
                         "fullName", fullName,
                         "displayName", displayName,
-                        "email", email
-                );
+                        "email", email);
 
-                ResponseWrapper<Map<String, String>> responseWrapper = new ResponseWrapper<>(201, "success", "Registration successful. Please check your email to confirm your account.", userData);
+                ResponseWrapper<Map<String, String>> responseWrapper = new ResponseWrapper<>(201, "success", message,
+                        userData);
                 response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
             } else {
-                ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(409, "error", "Email already exists", null);
+                ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(409, "error", "Email already exists",
+                        null);
                 response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
             }
 
         } catch (Exception e) {
-            ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(500, "error", "An error occurred: " + e.getMessage(), null);
+            ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(500, "error",
+                    "An error occurred: " + e.getMessage(), null);
             response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
         }
     }

@@ -22,6 +22,6 @@ public interface ImageDao {
 
     @SqlQuery(value = "SELECT image.url from image " +
             "INNER JOIN product_images ON image.id = product_images.imageId " +
-            "WHERE product_images.productId = :producId ")
+            "WHERE product_images.productId = :productId ")
     List<String> getAllImagesByProductId(@Bind("productId") Integer productId);
 }

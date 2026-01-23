@@ -1,6 +1,6 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.auth;
 
-import  vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.User;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.AuthService;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.EmailService;
@@ -14,18 +14,19 @@ import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.OtpSer
 import java.io.IOException;
 
 @WebServlet("/auth/forgot-password")
-public class ForgotPasswordController extends HttpServlet{
+public class ForgotPasswordController extends HttpServlet {
     private final AuthService authService = new AuthService(DBConnection.getJdbi());
 
-
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         request.getRequestDispatcher("/forgot-password.jsp").forward(request, response);
     }
 
     // Xử lý quên mật khẩu
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String email = request.getParameter("email");
 
         // Kiểm tra email có tồn tại trong hệ thống hay không
@@ -53,7 +54,11 @@ public class ForgotPasswordController extends HttpServlet{
 
     private void sendEmailWithOTP(String email, String otp) {
         EmailService emailService = new EmailService();
-        emailService.sendEmailWithOTP(email, otp);
+        try {
+            emailService.sendEmailWithOTP(email, otp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
