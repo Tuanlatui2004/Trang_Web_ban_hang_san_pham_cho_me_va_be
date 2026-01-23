@@ -4,44 +4,22 @@ const notification = document.getElementById("cart-notification");
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    const addToCartButtons = document.querySelectorAll(".btn.add");
+    // In top-product.jsp, notification has id top_cart-notification or cart-notification
 
     addToCartButtons.forEach(button => {
         button.addEventListener("click", function () {
-            notification.classList.remove("hidden");
-            notification.classList.add("show");
+            const container = this.closest('#search_body');
+            const notification = container.querySelector('.notification');
+            if (notification) {
+                notification.classList.remove("hidden");
+                notification.classList.add("show");
 
-            setTimeout(() => {
-                notification.classList.remove("show");
-                notification.classList.add("hidden");
-            }, 3000);
+                setTimeout(() => {
+                    notification.classList.remove("show");
+                    notification.classList.add("hidden");
+                }, 3000);
+            }
         });
     });
-});
-
-// document.getElementById('buy_now').addEventListener('click', function () {
-//     const mainIframe = window.top.document.querySelector('#body iframe');
-//     if (mainIframe) {
-//         mainIframe.src = '/web-programming/frontEnd/src/component/Checkout/checkout.html';
-//     }
-// });
-
-document.getElementById('name').addEventListener('click', function () {
-    const mainIframe = window.top.document.querySelector('#body iframe');
-    if (mainIframe) {
-        mainIframe.src = 'D:/Trang_Web_ban_hang_san_pham_cho_me_va_be/src/main/webapp/fontend/component/product_detail/Product-detail.html';
-    }
-});
-
-
-
-const isLoggedIn = localStorage.getItem("isLoggedIn");
-document.getElementById("buy_now").addEventListener("click", (event) => {
-    const mainIframe = window.top.document.querySelector('#body iframe');
-    event.preventDefault();
-    if (!isLoggedIn) {
-        alert("Bạn cần đăng nhập trước!");
-    } else {
-        mainIframe.src = 'D:/Trang_Web_ban_hang_san_pham_cho_me_va_be/src/main/webapp/fontend/component/Checkout/checkout.html';
-        history.pushState({ page: "user-checkout" }, "Thanh toán", "/checkout");
-    }
 });

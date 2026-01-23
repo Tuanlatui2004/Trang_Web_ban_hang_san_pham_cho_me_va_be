@@ -17,7 +17,7 @@ $(document).ready(function () {
     }
 
     const tieptuc = $('.btn_shopping');
-    tieptuc.on('click', function (){
+    tieptuc.on('click', function () {
         window.location.href = 'home';
     })
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
         }
 
 
-        const products =[]
+        const products = []
 
         $('.product_checked:checked').each(function () {
             products.push(($(this).val()))
@@ -53,9 +53,9 @@ $(document).ready(function () {
             return;
         }
 
-        const body= products.join(',');
+        const body = products.join(',');
 
-        window.location.href="checkout?productIds=" + encodeURIComponent(body);
+        window.location.href = "checkout?productIds=" + encodeURIComponent(body);
 
 
     });
@@ -65,9 +65,9 @@ $(document).ready(function () {
 
 
 
-//     Increase/Decrease quantity
+    //     Increase/Decrease quantity
 
-    const product= $('.product-item')
+    const product = $('.product-item')
 
     window.onload = function () {
         product.each(function () {
@@ -86,11 +86,11 @@ $(document).ready(function () {
             updatePrice(price, quantity);
 
             increment.on('click', function () {
-                increaseQuantity( $(this), quantity, price, stock, product_id);
+                increaseQuantity($(this), quantity, price, stock, product_id);
             })
 
             decrement.on('click', function () {
-                decreaseQuantity( $(this), quantity, price, product_id);
+                decreaseQuantity($(this), quantity, price, product_id);
             })
 
             remove.on('click', function () {
@@ -130,24 +130,24 @@ $(document).ready(function () {
     }
 
 
-    function increaseQuantity( product, quantity , price , stock ,product_id) {
-        let newQuantity =parseInt(quantity.attr('data-quantity')) ;
+    function increaseQuantity(product, quantity, price, stock, product_id) {
+        let newQuantity = parseInt(quantity.attr('data-quantity'));
 
 
 
-        console.log("product_id: " , product_id);
+        console.log("product_id: ", product_id);
 
-        if (newQuantity < stock){
+        if (newQuantity < stock) {
             newQuantity += 1;
             quantity.attr('data-quantity', newQuantity);
             quantity.text(newQuantity);
 
             updatePrice(price, quantity);
-            updateQuantity(  product_id, newQuantity );
+            updateQuantity(product_id, newQuantity);
         }
 
         else {
-            console.log("stock: " , stock);
+            console.log("stock: ", stock);
             alert("Đã đạt số lượng tối đa")
         }
 
@@ -159,16 +159,16 @@ $(document).ready(function () {
 
 
 
-    function decreaseQuantity( product, quantity , price  ,product_id) {
-        let newQuantity =parseInt(quantity.attr('data-quantity')) ;
+    function decreaseQuantity(product, quantity, price, product_id) {
+        let newQuantity = parseInt(quantity.attr('data-quantity'));
 
-        if(newQuantity  > 1){
+        if (newQuantity > 1) {
             newQuantity -= 1;
 
             quantity.attr('data-quantity', newQuantity);
             quantity.text(newQuantity);
 
-            updateQuantity(  product_id, newQuantity );
+            updateQuantity(product_id, newQuantity);
             updatePrice(price, quantity);
 
         }
@@ -180,9 +180,9 @@ $(document).ready(function () {
 
 
 
-    function updateQuantity( productId, quantity ) {
+    function updateQuantity(productId, quantity) {
         $.ajax({
-            url: 'cart/update-quantity' ,
+            url: 'cart/update-quantity',
             method: 'POST',
             data: {
                 productId: productId,
@@ -201,7 +201,7 @@ $(document).ready(function () {
 
 
 
-    function removeItem(productId, productItem){
+    function removeItem(productId, productItem) {
 
         if (confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?')) {
             $.ajax({
@@ -231,44 +231,37 @@ $(document).ready(function () {
 
 
 
-    function updateBill(){
-        const priceList = $('.price')
-
-        console.log("updateBill: ", priceList);
-
+    function updateBill() {
+        const productItems = $('.product-item');
 
         let totalPrice = 0;
-        let total = $('#total')
-        let VAT = $('#VAT')
-        let before_tax = $('#before_tax')
+        let total = $('#total');
+        let VAT = $('#VAT');
+        let before_tax = $('#before_tax');
 
-        priceList.each(function () {
+        productItems.each(function () {
+            const isChecked = $(this).find('.product_checked').is(':checked');
+            if (isChecked) {
+                let priceText = $(this).find('.price').text();
+                let priceValue = parseInt(priceText.replace(' VND', '').replaceAll('.', ''));
+                if (!isNaN(priceValue)) {
+                    totalPrice += priceValue;
+                }
+            }
+        });
 
-            console.log("price item: ", this);
-
-            let price =  $(this).text().replace(' VND', '').replaceAll('.', '');
-            console.log("price:", price);
-            totalPrice += parseInt(price);
-        })
-
-
-        const tax = totalPrice * 10 /100;
+        const tax = totalPrice * 10 / 100;
         const b_t = totalPrice - tax;
-
-        console.log("tax  : " ,tax);
-        console.log("b_t  : " ,b_t);
-
-
-
 
         total.text(Intl.NumberFormat('vi-VN').format(totalPrice) + ' VND');
         VAT.text(Intl.NumberFormat('vi-VN').format(tax) + ' VND');
         before_tax.text(Intl.NumberFormat('vi-VN').format(b_t) + ' VND');
-
-
-
-
     }
+
+    // Lắng nghe sự kiện thay đổi của checkbox để cập nhật lại hóa đơn
+    $(document).on('change', '.product_checked', function () {
+        updateBill();
+    });
 
 
 
