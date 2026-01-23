@@ -30,7 +30,7 @@ public class AddBrandController extends HttpServlet {
 
         JSONObject jsonRequest = new JSONObject(jsonString.toString());
         String categoryName = jsonRequest.getString("name");
-        String brandName = jsonRequest.getString("brand");
+        String brandName = jsonRequest.getString("name");
         brandService.createBrand(brandName);
     }
 }

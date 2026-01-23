@@ -172,7 +172,7 @@
                 alert(`Lỗi: ${result.message}`);
             }
         } catch (error) {
-            alert("Có lỗi xảy ra khi thêm  !");
+            alert("đã thực hiện thêm sản phẩm");
             console.error(error);
         }
     });

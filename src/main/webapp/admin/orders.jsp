@@ -112,6 +112,9 @@
                                     <c:if test="${o.paymentStatus == 'PAID'}">
                                         <span class="status status-paid">Đã Thanh Toán</span>
                                     </c:if>
+                                    <c:if test="${o.paymentStatus == 'PENDING'}">
+                                        <span class="status status-paid">Chờ Thanh Toán</span>
+                                    </c:if>
                                 </td>
 
                                 <td class="order-total">
@@ -123,7 +126,7 @@
                                         <span class="status order-status-shipped">Đã Gửi</span>
                                     </c:if>
 
-                                    <c:if test="${o.orderStatus == 'DELIVERY'}">
+                                    <c:if test="${o.orderStatus == 'PROCESSING'}">
                                         <span  class="status order-status-shipped" style="color: #000;">Đang Gửi</span>
                                     </c:if>
 
