@@ -383,8 +383,8 @@ body > #header > nav > ul > li > a {
 }
 
 .logo {
-    width: 120px;
-    height: auto;
+    width: 73px;
+    /*height: auto;*/
     object-fit: contain;
     transition: transform 0.3s ease;
 }
