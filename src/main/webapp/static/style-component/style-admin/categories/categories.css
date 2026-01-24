@@ -309,7 +309,7 @@ tr:hover{
 }
 
 /* Add Category box */
-#add-category-box {
+#add-category-box, #edit-category-box {
     /*display: none; !* Initially hidden *!*/
     position: fixed; /* Position it relative to the viewport */
     top: 50%; /* Center vertically */

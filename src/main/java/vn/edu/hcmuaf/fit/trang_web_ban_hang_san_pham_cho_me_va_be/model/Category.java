@@ -1,12 +1,14 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model;
 
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
+import org.jdbi.v3.core.mapper.reflect.JdbiConstructor;
 
 public class Category {
     Integer id;
     String name;
     Boolean isActive;
 
+    @JdbiConstructor
     public Category(@ColumnName("id") Integer id,
                     @ColumnName("name")  String name,
                     @ColumnName("isActive") Boolean isActive) {
