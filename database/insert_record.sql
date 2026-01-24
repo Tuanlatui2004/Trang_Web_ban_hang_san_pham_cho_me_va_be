@@ -16,6 +16,86 @@ INSERT INTO image (url)
 VALUES ('https://cdn1.concung.com/2022/06/57899-89665-large_mobile/bodysuit-tinh-nang-dai-vai-luoi-animo-i0322034-0-3m-xam.jpg');
 INSERT INTO image (url)
 VALUES ('https://cdn1.concung.com/2025/01/69729-117976-large_mobile/bo-yem-be-trai-ngan-bst-t-rex-animo-hn1224004-1y-xanh.jpg');
+-- thêm dữ liệu hình ảnh san phẩm 11
+--  10
+INSERT INTO image (url)
+VALUES ('https://cdn1.concung.com/2025/12/74822-132652-large_mobile/bo-be-trai-ngan-non-co-tai-animo-hn1125002-1y-do-xam-dd01.webp');
+
+INSERT INTO image (url) --11
+VALUES ('https://cdn1.concung.com/2026/01/74822-133885-large_mobile/bo-be-trai-ngan-non-co-tai-animo-hn1125002-1y-do-xam-dd01.webp');
+-- 12
+INSERT INTO image (url)
+VALUES ('https://cdn1.concung.com/2025/12/74762-132630-large_mobile/bo-be-trai-dai-animo-easy-tq1125074-1y-duong.webp');
+--13
+INSERT INTO image (url)
+VALUES ('https://cdn1.concung.com/2025/12/74762-132633-large_mobile/bo-be-trai-dai-animo-easy-tq1125074-1y-duong.webp');
+INSERT INTO image (url)--14
+VALUES ('INSERT INTO image (url)
+VALUES (''https://cdn1.concung.com/2025/12/74762-132633-large_mobile/bo-be-trai-dai-animo-easy-tq1125074-1y-duong.webp'');');
+INSERT INTO image (url)--15
+VALUES ('https://cdn1.concung.com/2025/12/74758-132648-large_mobile/bo-be-trai-dai-animo-easy-tq1225053-1y-vang.webp');
+
+INSERT INTO image (url)--16
+VALUES ('https://cdn1.concung.com/2025/12/74738-132571-large_mobile/bo-be-trai-dai-animo-easy-hn0126026-1y-kem-do.webp');
+INSERT INTO image (url)--17
+VALUES ('https://cdn1.concung.com/2025/12/74738-132574-large_mobile/bo-be-trai-dai-animo-easy-hn0126026-1y-kem-do.webp');
+
+INSERT INTO image (url)--18
+VALUES ('https://cdn1.concung.com/2025/12/74705-132276-large_mobile/non-be-trai-lon-3-6y-luoi-trai-animo-a2508-mn001-52cm-xanh.webp');
+
+INSERT INTO image (url)--19
+VALUES ('https://cdn1.concung.com/2025/12/74705-132277-large_mobile/non-be-trai-lon-3-6y-luoi-trai-animo-a2508-mn001-52cm-xanh.webp');
+
+
+INSERT INTO image (url)--20
+VALUES ('https://cdn1.concung.com/2025/12/74703-132295-large_mobile/non-luoi-trai-be-trai-1-3y-animo-a2508-mn004-48cm-xanh-trang.webp');
+
+INSERT INTO image (url)--21
+VALUES ('https://cdn1.concung.com/2025/12/74703-132296-large_mobile/non-luoi-trai-be-trai-1-3y-animo-a2508-mn004-48cm-xanh-trang.webp');
+
+INSERT INTO image (url)--22
+VALUES ('https://cdn1.concung.com/2025/12/74702-132299-large_mobile/non-luoi-trai-be-trai-1-3y-animo-a2508-mn005-50cm-xanh.webp');
+
+INSERT INTO image (url)--23
+VALUES ('https://cdn1.concung.com/2025/12/74702-132301-large_mobile/non-luoi-trai-be-trai-1-3y-animo-a2508-mn005-50cm-xanh.webp');
+
+-- sảm phẩm 18
+INSERT INTO image (url)--24
+VALUES ('https://cdn1.concung.com/2025/12/74700-132275-large_mobile/non-luoi-trai-khan-voan-be-trai-0-12m-animo-a2508-mn006-44cm-xanh-nhat.webp');
+
+INSERT INTO image (url)--25
+VALUES ('https://cdn1.concung.com/2025/12/74700-132272-large_mobile/non-luoi-trai-khan-voan-be-trai-0-12m-animo-a2508-mn006-44cm-xanh-nhat.webp');
+-- -- 19 Bộ bé trai ngắn Animo Easy HN0925072 (1-4Y,Kem-nâu, NN02)
+INSERT INTO image (url)--26
+VALUES ('https://cdn1.concung.com/2025/12/74562-132251-large_mobile/bo-be-trai-ngan-animo-easy-hn0925072-1y-kem-nau-nn02.webp');
+
+INSERT INTO image (url)--27
+VALUES ('https://cdn1.concung.com/2025/12/74562-132253-large_mobile/bo-be-trai-ngan-animo-easy-hn0925072-1y-kem-nau-nn02.webp');
+
+---- 20 Bộ bé trai ngắn Animo Easy HN0925072 (1-4Y,Kem-nâu, NN02)
+INSERT INTO image (url)--28
+VALUES ('https://cdn1.concung.com/2025/12/74558-132203-large_mobile/bo-be-trai-dai-animo-easy-tq1125073-1y-be.webp');
+
+INSERT INTO image (url)--29
+VALUES ('https://cdn1.concung.com/2025/12/74558-132207-large_mobile/bo-be-trai-dai-animo-easy-tq1125073-1y-be.webp');
+--21 Bộ bé gái dài Animo Easy TQ1125076 (1-4Y,Ruốc)
+INSERT INTO image (url)--30
+VALUES ('https://cdn1.concung.com/2025/12/74554-132126-large_mobile/bo-be-gai-dai-animo-easy-tq1125076-1y-ruoc.webp');
+
+INSERT INTO image (url)--31
+VALUES ('https://cdn1.concung.com/2025/12/74554-132131-large_mobile/bo-be-gai-dai-animo-easy-tq1125076-1y-ruoc.webp');
+--22
+INSERT INTO image (url)--32
+VALUES ('https://cdn1.concung.com/2025/12/74550-132236-large_mobile/bo-be-trai-dai-animo-easy-hn1025037-1y-duong.webpv');
+
+INSERT INTO image (url)--33
+VALUES ('https://cdn1.concung.com/2025/12/74550-132239-large_mobile/bo-be-trai-dai-animo-easy-hn1025037-1y-duong.webp');
+--23
+INSERT INTO image (url)--34
+VALUES ('https://cdn1.concung.com/2025/12/74546-132243-large_mobile/bo-be-trai-dai-animo-easy-hn1125077-1y-kem-reu.webp');
+
+INSERT INTO image (url)--35
+VALUES ('https://cdn1.concung.com/2025/12/74546-132245-large_mobile/bo-be-trai-dai-animo-easy-hn1125077-1y-kem-reu.webp');
 
 
 INSERT INTO `categories` (`name`) VALUES
@@ -40,7 +120,9 @@ INSERT INTO `brands` (`name`) VALUES
                                   ('Philips Avent'), -- 7
                                   ('Combi'), -- 8
                                   ('Nous'), -- 9 (Thời trang)
-                                  ('BioGaia'); -- 1
+                                  ('BioGaia'); -- 10
+INSERT INTO `brands` (`name`) VALUES('Animo');--11
+
 
 -- 4. Thêm dữ liệu bảng `users` (Bao gồm 1 Admin và 9 User thường)
 INSERT INTO `users` (`fullName`, `displayName`, `dOB`, `gender`, `phoneNumber`, `email`, `passwordUserName`, `avatarId`, `status`, `role`) VALUES
@@ -94,6 +176,69 @@ INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `ca
                                                                                                                                    ('Set 5 bộ Body chip Nous', 'NOUS-BODY', 'Vải sợi tre kháng khuẩn, mềm mát.', 1, 9, 5, 800, 200, 7),
                                                                                                                                    ('Máy hâm sữa Philips Avent', 'AVENT-HAM', 'Hâm nóng đều, giữ trọn dinh dưỡng.', 1, 7, 8, 600, 50, 5);
 
+ -- thời trang cho bé trai --11
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+('Bộ bé trai ngắn nón có tai Animo', 'HN1125002 ', 'Bộ bé trai ngắn có nón Animo sở hữu kiểu dáng đơn giản, hợp thời cùng hoạ tiết vô cùng năng động. Sản phẩm thích hợp cho bé điện đi học, đi chơi,... đều rất đẹp..', 1, 11, 5, 1500, 500, 10);
+-- sản phẩm 12
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Bộ bé trai dài Animo Easy TQ1125074 (1-4Y,Dương)', 'TQ1125074', 'decription todo', 1, 11, 5, 1500, 500, 12);
+
+-- sản phẩm 13
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Bộ bé trai dài Animo Easy TQ1225053 (1-4Y,Vàng)', 'TQ1225053 ', 'decription todo', 1, 11, 5, 1500, 500, 14);
+--sản phẩm 14
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Bộ bé trai dài Animo Easy HN0126026 (1-4Y,Kem-đỏ)', 'HN0126026 ', 'decription todo', 1, 11, 5, 1500, 500, 16);
+
+--sản phẩm 15
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Nón bé trai lớn 3-6Y lưỡi trai Animo A2508_MN001 (52cm,Xanh)', 'A2508_MN001 ', 'decription todo', 1, 11, 5, 1500, 500, 18);
+
+--sản phẩm 16 mũ lưỡi trai
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Nón lưỡi trai bé trai 1-3Y Animo A2508_MN004 (48cm, Xanh-Trắng)', 'A2508_MN004 ', 'decription todo', 1, 11, 5, 1500, 500, 20);
+
+--sản phẩm 17 mũ lưỡi trai có con gấu
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Nón lưỡi trai bé trai 1-3Y Animo A2508_MN005 (50cm, Xanh)', 'A2508_MN005 ', 'decription todo', 1, 11, 5, 1500, 500, 22);
+
+-- 18 mũ hình con khủng long
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Nón lưỡi trai khăn voan bé trai 0-12M Animo A2508_MN006 (44cm, Xanh nhạt)', 'A2508_MN006 ', 'decription todo', 1, 11, 5, 1500, 500, 24);
+
+-- 19 mũ hình con khủng long
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Nón lưỡi trai khăn voan bé trai 0-12M Animo A2508_MN006 (44cm, Xanh nhạt)', 'A2508_MN006 ', 'decription todo', 1, 11, 5, 1500, 500, 24);
+
+-- 19 Bộ bé trai ngắn Animo Easy HN0925072 (1-4Y,Kem-nâu, NN02)
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    (' Bộ bé trai ngắn Animo Easy HN0925072 (1-4Y,Kem-nâu, NN02)', 'HN0925072 ', 'decription todo', 1, 11, 5, 1500, 500, 26);
+-- 20 Bộ bé trai ngắn Animo Easy HN0925072 (1-4Y,Kem-nâu, NN02)
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    (' Bộ bé trai dài Animo Easy TQ1125073 (1-4Y,Be)', 'TQ1125073 ', 'decription todo', 1, 11, 5, 1500, 500, 28);
+--21 Bộ bé gái dài Animo Easy TQ1125076 (1-4Y,Ruốc)
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Bộ bé gái dài Animo Easy TQ1125076 (1-4Y,Ruốc)', 'TQ1125076 ', 'decription todo', 1, 11, 5, 1500, 500, 30);
+
+--22 Bộ bé trai dài Animo Easy HN1025037 (1-4Y,Dương)
+INSERT INTO `products` (`name`, `sku`, `description`, `isActive`, `brandId`, `categoryId`, `noOfViews`, `noOfSold`, `imageId`)
+VALUES
+    ('Bộ bé trai dài Animo Easy HN1025037 (1-4Y,Dương)', 'HN1025037 ', 'decription todo', 1, 11, 5, 1500, 500, 32);
+
+
+
 -- 8. Thêm dữ liệu bảng `attributes` (Định nghĩa các loại lọc)
 INSERT INTO `attributes` (`categoryId`, `name`) VALUES
                                                     (1, 'Độ tuổi'), -- Sữa
@@ -145,7 +290,46 @@ INSERT INTO `product_images` (`productId`, `imageId`) VALUES
                                                           (6, 6),
                                                           (7, 9),
                                                           (9, 7);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (11, 10);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (11, 11);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (12, 12);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (12, 13);
 
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (13, 14);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (13, 15);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (14, 16);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (14, 17);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (15, 18);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (15, 19);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (15, 18);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (15, 19);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (16, 20);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (16, 21);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (17, 22);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (17, 23);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (18, 24);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (18, 25);
+--
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (19, 26);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (19, 27);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (20, 28);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (20, 29);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (21, 30);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (21, 31);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (22, 32);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (22, 33);
+
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (23, 34);
+INSERT INTO `product_images` (`productId`, `imageId`) VALUES (23, 35);
 
 -- 12. Thêm dữ liệu bảng `banners`
 INSERT INTO `banners` (`imageId`, `status`, `startDate`, `endDate`) VALUES
