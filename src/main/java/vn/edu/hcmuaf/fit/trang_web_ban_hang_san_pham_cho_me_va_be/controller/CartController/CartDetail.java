@@ -26,7 +26,7 @@ public class CartDetail extends HttpServlet {
 // xem lại NV note cmt
         request.setAttribute("productCarts", productCarts);
 
-        request.getRequestDispatcher("cart/cart.jsp").forward(request, response);
+        request.getRequestDispatcher("/cart/cart.jsp").forward(request, response);
     }
 
     @Override
