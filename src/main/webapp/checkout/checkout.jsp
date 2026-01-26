@@ -140,69 +140,74 @@
 
 
                 <div class="address">
-                    <div class="address_title row ">
-                        <span class="">Địa chỉ Nhận hàng</span>
-
+                    <div class="address_title row">
+                        <span>Địa chỉ Nhận hàng</span>
                     </div>
 
                     <div class="address_body">
-                        <c:if test="${not empty addressList }">
+                        <c:if test="${not empty addressList}">
 
-                            <c:set var="found" value="fasle"/>
+                            <%-- biến đánh dấu đã tìm được địa chỉ hay chưa --%>
+                            <c:set var="found" value="false"/>
+
+                            <%-- ưu tiên địa chỉ mặc định --%>
                             <c:forEach items="${addressList}" var="address">
-
-                                <c:if test="${address.isDefault == true }">
-                                    <div id="address" class="item_header row mid_align" data-address-id="${address.id}">
-
+                                <c:if test="${address.isDefault}">
+                                    <div class="item_header row mid_align address-item"
+                                         data-address-id="${address.id}">
                                         <span class="name">${address.fullName}</span>
                                         <div class="rec_vertical"></div>
                                         <span class="phone">${address.phoneNumber}</span>
-                                        <a href="#" class="change">Thay đổi</a>
+                                        <a href="${pageContext.request.contextPath}/profile/address"
+                                           class="change">Thay đổi</a>
                                     </div>
 
                                     <div class="address_detail">
-                                        <span> ${address.street}, ${address.city}, ${address.state}, ${address.country}  </span>
+                                            ${address.street}, ${address.city},
+                                            ${address.state}, ${address.country}
                                     </div>
 
                                     <c:set var="found" value="true"/>
                                 </c:if>
-
-
                             </c:forEach>
 
-
-                            <c:if test="${found == false }">
-
+                            <%-- nếu không có địa chỉ mặc định thì lấy địa chỉ đầu tiên --%>
+                            <c:if test="${found == false}">
                                 <c:forEach items="${addressList}" var="address">
-
                                     <c:if test="${found == false}">
-                                        <div id="address" class="item_header row mid_align" data-address-id="${address.id}">
-
+                                        <div class="item_header row mid_align address-item"
+                                             data-address-id="${address.id}">
                                             <span class="name">${address.fullName}</span>
                                             <div class="rec_vertical"></div>
                                             <span class="phone">${address.phoneNumber}</span>
-                                            <a href="#" class="change">Thay đổi</a>
+                                            <a href="${pageContext.request.contextPath}/profile/address"
+                                               class="change">Thay đổi</a>
                                         </div>
 
                                         <div class="address_detail">
-                                            <span> ${address.street}, ${address.city}, ${address.state}, ${address.country}  </span>
+                                                ${address.street}, ${address.city},
+                                                ${address.state}, ${address.country}
                                         </div>
 
                                         <c:set var="found" value="true"/>
-
-
                                     </c:if>
-
                                 </c:forEach>
                             </c:if>
 
                         </c:if>
 
-
+                        <%-- nếu chưa có địa chỉ nào --%>
+                        <c:if test="${empty addressList}">
+                            <div class="notice">
+                                Bạn chưa có địa chỉ giao hàng.
+                                <a href="${pageContext.request.contextPath}/profile/address">
+                                    Thêm địa chỉ mới
+                                </a>
+                            </div>
+                        </c:if>
                     </div>
-
-
                 </div>
+
 
                 <div class="payment">
                     <div class="payment_title row ">

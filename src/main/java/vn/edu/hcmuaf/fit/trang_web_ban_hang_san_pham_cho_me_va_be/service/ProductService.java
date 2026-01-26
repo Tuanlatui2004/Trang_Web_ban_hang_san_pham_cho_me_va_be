@@ -7,16 +7,21 @@ import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.OptionVa
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Product;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.ProductDTO;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Variant;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.VariantDao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
     Jdbi jdbi;
     private ProductDao productDao;
+//    private VariantDao variantDao;
+
 
     public ProductService(Jdbi jdbi) {
         this.jdbi = jdbi;
         this.productDao = jdbi.onDemand(ProductDao.class);
+//        this.variantDao = jdbi.onDemand(VariantDao.class);
     }
     public Product getProductById(int productId){
         return jdbi.withExtension(ProductDao.class, dao -> dao.getProductById(productId));
@@ -24,6 +29,8 @@ public class ProductService {
     public List<Product> getProductsByCategory(int categoryId){
         return jdbi.withExtension(ProductDao.class, dao -> dao.getProductsByCategory(categoryId));
     }
+
+
 
     public Product getProductByIdAndOptionId(int productId, int optionId){
         return jdbi.withExtension(ProductDao.class, dao -> dao.getProductByIdAndOptionId(productId,optionId));

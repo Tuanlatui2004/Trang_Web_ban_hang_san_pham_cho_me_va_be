@@ -1,71 +1,95 @@
-// Sử lý variant
+// Xử lý variant (FIX)
 $(document).ready(function () {
 
     const buy_now = $('#buy-now');
     const add_to_cart = $('#add-to-cart');
     const product = $('#product');
-    const product_id = product.attr('data-id');
-    const option_id_default = product.attr('data-option-default');
+
+    const product_id = product.data('id');
+    const option_id_default = product.data('option-default');
 
     const wrap_variant = $('.wrap_variant');
 
+    // lưu option theo từng variant
+    let selectedOptions = {};
+    let currentOptionId = option_id_default;
 
-    // Mac dinh select option dau tien
-
-    const option_item = $(wrap_variant).find('.option-item');
-    const firstOption = option_item.first();
-
+    // ====== CHỌN MẶC ĐỊNH ======
     wrap_variant.each(function () {
-        const option_item = $(this).find('.option-item');
-        const firstOption = option_item.first();
-        option_item.removeClass('selected');
-        firstOption.addClass('selected');
+        const variantBlock = $(this);
+        const options = variantBlock.find('.option-item');
+        const first = options.first();
 
+        options.removeClass('selected');
+        first.addClass('selected');
 
-        const price = $('#price');
-        const formatedPrice = Number(firstOption.attr("data-price")).toLocaleString('vi-VN');
-        price.text(formatedPrice + ' VND');
+        const variantKey = variantBlock.data('variant');
+        // ví dụ: data-variant="weight", "age"
 
-    })
-    let currentOptionId = firstOption.attr('data-option-id') || option_id_default;
+        selectedOptions[variantKey] = {
+            optionId: first.data('option-id'),
+            price: first.data('price')
+        };
 
-    function updateButtons(optionId) {
-        currentOptionId = optionId;
-        buy_now.attr('href', 'buy-now?productId=' + product_id + '&optionId=' + currentOptionId);
-    }
+        // set giá theo option đang xét
+        if (first.data('price')) {
+            $('#price').text(
+                Number(first.data('price')).toLocaleString('vi-VN') + ' VND'
+            );
+        }
 
-    // Initialize buttons
+        currentOptionId = first.data('option-id');
+    });
+
     updateButtons(currentOptionId);
 
+    // ====== CLICK CHỌN OPTION ======
+    wrap_variant.each(function () {
+        const variantBlock = $(this);
+        const options = variantBlock.find('.option-item');
+        const variantKey = variantBlock.data('variant');
+
+        options.on('click', function () {
+
+            // ❗ CHỈ BỎ selected TRONG CÙNG 1 VARIANT
+            options.removeClass('selected');
+            $(this).addClass('selected');
+
+            const optionId = $(this).data('option-id');
+            const price = $(this).data('price');
+
+            selectedOptions[variantKey] = {
+                optionId: optionId,
+                price: price
+            };
+
+            // cập nhật giá (500g / 800g sẽ đổi đúng)
+            if (price) {
+                $('#price').text(
+                    Number(price).toLocaleString('vi-VN') + ' VND'
+                );
+            }
+
+            currentOptionId = optionId;
+            updateButtons(currentOptionId);
+        });
+    });
+
+    // ====== ADD TO CART ======
     add_to_cart.on('click', function (e) {
         e.preventDefault();
         addToCart(product_id, currentOptionId);
-    })
+    });
 
-    wrap_variant.each(function () {
-        const option_item = $(this).find('.option-item');
-        option_item.each(function () {
-            $(this).on('click', function () {
-                const optionId = $(this).attr('data-option-id');
-                // Only remove selected from items in THIS group if multiple groups exist, 
-                // but here it seems all are in one flat list or we want global single select
-                $('.option-item').removeClass('selected');
-                $(this).addClass('selected');
+    function updateButtons(optionId) {
+        buy_now.attr(
+            'href',
+            'buy-now?productId=' + product_id + '&optionId=' + optionId
+        );
+    }
+});
 
-                //Update price
-                const formatedPrice = Number($(this).attr("data-price")).toLocaleString('vi-VN');
-                $('#price').text(formatedPrice + ' VND');
-
-                // Update option id cho nút buy now và add to cart
-                updateButtons(optionId);
-            })
-        })
-    })
-
-
-})
-
-
+// ====== ADD CART ======
 function addToCart(productId, optionId) {
     fetch("add-cart", {
         method: "POST",
@@ -74,12 +98,6 @@ function addToCart(productId, optionId) {
         },
         body: `productId=${productId}&optionId=${optionId}`
     })
-        .then(data => {
-            console.log(data);
-            // alert("Sản Phẩm đã");
-
-        }).catch(error => console.log(error));
-
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
 }
-
-

@@ -29,22 +29,22 @@ public class User {
 
     @JdbiConstructor
     public User(@ColumnName("id") Integer id,
-            @ColumnName("fullName") @Nullable String fullName,
-            @ColumnName("displayName") @Nullable String displayName,
-            @ColumnName("dOB") @Nullable LocalDate dOB,
-            @ColumnName("gender") @Nullable String gender,
-            @ColumnName("phoneNumber") @Nullable String phoneNumber,
-            @ColumnName("email") @Nullable String email,
-            @ColumnName("passwordUserName") @Nullable String passwordUsername,
-            @ColumnName("avatarId") @Nullable Integer avatarId,
-            @ColumnName("status") @Nullable String status,
-            // pbha sửa
-            @ColumnName("role") @Nullable String role,
-            @ColumnName("salt") @Nullable String salt,
-            @ColumnName("avatarUrl") @Nullable String avatarUrl,
-            @ColumnName("confirmationToken") @Nullable String confirmationToken,
-            @ColumnName("facebookId") @Nullable String facebookId,
-            @ColumnName("needRefresh") @Nullable Boolean needRefresh
+                @ColumnName("fullName") @Nullable String fullName,
+                @ColumnName("displayName") @Nullable String displayName,
+                @ColumnName("dOB") @Nullable LocalDate dOB,
+                @ColumnName("gender") @Nullable String gender,
+                @ColumnName("phoneNumber") @Nullable String phoneNumber,
+                @ColumnName("email") @Nullable String email,
+                @ColumnName("passwordUserName") @Nullable String passwordUsername,
+                @ColumnName("avatarId") @Nullable Integer avatarId,
+                @ColumnName("status") @Nullable String status,
+                // pbha sửa
+                @ColumnName("role") @Nullable String role,
+                @ColumnName("salt") @Nullable String salt,
+                @ColumnName("avatarUrl") @Nullable String avatarUrl,
+                @ColumnName("confirmationToken") @Nullable String confirmationToken,
+                @ColumnName("facebookId") @Nullable String facebookId,
+                @ColumnName("needRefresh") @Nullable Boolean needRefresh
 
     ) {
         this.id = id;

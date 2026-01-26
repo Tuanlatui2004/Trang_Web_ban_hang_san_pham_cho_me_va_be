@@ -26,40 +26,49 @@ public class ProductDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         int productId = Integer.parseInt(request.getParameter("id"));
         Product product = productService.getProductById(productId);
 
-        Integer productPrice = productService.getMinimumPriceForProduct(productId); // Default to minimum price
+        if (product != null && product.getDescription() != null) {
+            String formattedDescription = product.getDescription()
+                    .trim()
+                    .replaceAll("\\.\\s*", ".<br/>");
+            product.setDescription(formattedDescription);
+        }
+
+        Integer productPrice = productService.getMinimumPriceForProduct(productId);
         if (product.getOptionId() != null) {
             productPrice = productService.getPriceForOption(product.getOptionId());
         }
 
         List<String> images = imageService.getAllImagesByProductId(product.getId());
         String primaryImageUrl = imageService.getImageUrlById(product.getImageId());
-        List<String> descriptions = List.of(product.getDescription().split("\\n"));
 
-        // lỗi
         List<OptionVariant> options = optionService.getOptionsByProductId(product.getId());
-        List<Integer> optionIds = options.stream().map(OptionVariant::getId).collect(Collectors.toList());
-
-        List<OptionVariant> optionVariant = optionService.getVariantByOptionId(optionIds);
-        List<String> variants = optionVariant.stream().map(OptionVariant::getVariantName).distinct()
+        List<Integer> optionIds = options.stream()
+                .map(OptionVariant::getId)
                 .collect(Collectors.toList());
 
-        // nếu lấy chi tieets sản phẩm ra không được xem lại chỗ này
+        List<OptionVariant> optionVariant = optionService.getVariantByOptionId(optionIds);
+        List<String> variants = optionVariant.stream()
+                .map(OptionVariant::getVariantName)
+                .distinct()
+                .collect(Collectors.toList());
 
         request.setAttribute("images", images);
-        request.setAttribute("primaryImageUrl", primaryImageUrl); // Add primary image URL
+        request.setAttribute("primaryImageUrl", primaryImageUrl);
         request.setAttribute("product", product);
-        request.setAttribute("descriptions", descriptions);
         request.setAttribute("productPrice", productPrice);
         request.setAttribute("optionVariant", optionVariant);
         request.setAttribute("variants", variants);
 
         productService.increaseNoOfViews(productId);
 
-        request.getRequestDispatcher("product_detail/ProductDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("product_detail/ProductDetail.jsp")
+                .forward(request, response);
     }
+
 
     // lỗi
     @Override

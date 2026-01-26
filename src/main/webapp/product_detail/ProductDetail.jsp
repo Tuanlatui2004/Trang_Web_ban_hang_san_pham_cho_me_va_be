@@ -69,23 +69,47 @@
 
             <%-- product này là gì--%>
             <%--   VARIANT              --%>
-            <c:if test="${not empty optionVariant  && not empty variants}">
+<%--            <c:if test="${not empty optionVariant  && not empty variants}">--%>
+<%--                <c:forEach items="${variants}" var="type">--%>
+
+<%--                    <div class="wrap_variant ">--%>
+<%--                        <div class="option-title">Chọn ${type}:</div>--%>
+
+<%--                        <c:forEach items="${optionVariant}" var="op">--%>
+<%--                            <c:if test="${op.variantName eq type  }">--%>
+<%--                                <div class="option-item" data-option-id="${op.id}"--%>
+<%--                                     data-price="${op.price}"> ${op.variantValue}</div>--%>
+<%--                            </c:if>--%>
+<%--                        </c:forEach>--%>
+<%--                    </div>--%>
+
+<%--                </c:forEach>--%>
+
+<%--            </c:if>--%>
+            <c:if test="${not empty optionVariant && not empty variants}">
                 <c:forEach items="${variants}" var="type">
 
-                    <div class="wrap_variant ">
+                    <div class="wrap_variant"
+                         data-variant-name="${type}"
+                         data-affect-price="${type eq 'Dung tích'}">
+
                         <div class="option-title">Chọn ${type}:</div>
 
                         <c:forEach items="${optionVariant}" var="op">
-                            <c:if test="${op.variantName eq type  }">
-                                <div class="option-item" data-option-id="${op.id}"
-                                     data-price="${op.price}"> ${op.variantValue}</div>
+                            <c:if test="${op.variantName eq type}">
+                                <div class="option-item"
+                                     data-option-id="${op.id}"
+                                     data-price="${op.price}">
+                                        ${op.variantValue}
+                                </div>
                             </c:if>
                         </c:forEach>
+
                     </div>
 
                 </c:forEach>
-
             </c:if>
+
 
 
             <div id="price" class="price">
