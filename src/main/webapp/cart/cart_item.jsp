@@ -24,9 +24,9 @@
     <div class="description mid_align col  ">
         <div class="title ">${item.name}</div>
 
-        <div class="color">
-            <span class="color_name">Màu Sắc: <span>Đen</span></span>
-        </div>
+<%--        <div class="color">--%>
+<%--            <span class="color_name">Màu Sắc: <span>Đen</span></span>--%>
+<%--        </div>--%>
 
         <div class="status">
             <span class="status_type">Còn hàng</span>

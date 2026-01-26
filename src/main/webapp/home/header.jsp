@@ -108,7 +108,7 @@
                 <div class="submenu submenu-bim-ta-&-ve-sinh">
                     <div class="submenu-column">
                         <a class="nav_item" href="Search_Bimta">Tất cả các loại bỉm tã</a>
-                        <<a href="#">Bĩm tã</a>
+                        <a href="#">Bĩm tã</a>
                         <a href="#">Quần đóng bĩm</a>
                         <a href="#">Quần bỏ bĩm</a>
                         <a href="#">Bỉm người lớn</a>
