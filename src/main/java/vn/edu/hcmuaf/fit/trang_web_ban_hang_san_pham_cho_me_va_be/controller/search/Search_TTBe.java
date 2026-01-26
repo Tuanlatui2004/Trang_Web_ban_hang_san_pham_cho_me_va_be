@@ -18,8 +18,8 @@ public class Search_TTBe extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> products = productService.getProductsByCategory(7);
-        List<Product> topProducts = productService.getTopProductsByCategory(7,4);
+        List<Product> products = productService.getProductsByCategory(6);
+        List<Product> topProducts = productService.getTopProductsByCategory(6,4);
 
         request.setAttribute("products", products);
         request.setAttribute("topProducts", topProducts);
