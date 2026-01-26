@@ -148,7 +148,7 @@
                     <div class="address_body">
                         <c:if test="${not empty addressList }">
 
-                            <c:set var="found" value="fasle"/>
+                            <c:set var="found" value="false"/>
                             <c:forEach items="${addressList}" var="address">
 
                                 <c:if test="${address.isDefault == true }">
@@ -310,7 +310,7 @@
                 </div>
 
 
-                <button type="submit" id="pay">
+                <button type="button" id="pay">
                     Thanh Toán
                 </button>
 

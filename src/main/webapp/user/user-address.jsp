@@ -44,37 +44,44 @@
             </div>
             <div id="addAddressFormContainer" style="display: none;">
                 <h2>Thêm Địa Chỉ</h2>
-                <form method="POST" action="AddAddressController">
-                    <label for="province">Tỉnh/Thành phố:</label>
-                    <input type="text" id="province" name="province" placeholder="Nhập tỉnh/thành phố" required/>
 
-                    <label for="district">Quận/Huyện:</label>
-                    <input type="text" id="district" name="district" placeholder="Nhập quận/huyện" required/>
+                <form method="POST" action="${pageContext.request.contextPath}/AddAddressController">
 
-                    <label for="commune">Phường/Xã:</label>
-                    <input type="text" id="commune" name="commune" placeholder="Nhập phường/xã" required/>
+                    <label for="fullName">Họ tên người nhận:</label>
+                    <input type="text" id="fullName" name="fullName"
+                           placeholder="Nhập họ tên người nhận" required/>
 
-                    <label for="detail">Chi tiết:</label>
-                    <input type="text" id="detail" name="detail" placeholder="Nhập địa chỉ chi tiết" required/>
+                    <label for="phoneNumber">Số điện thoại:</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber"
+                           placeholder="Nhập số điện thoại" required/>
 
-                    <label for="phone">Số điện thoại:</label>
-                    <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required/>
+                    <label for="street">Địa chỉ chi tiết:</label>
+                    <input type="text" id="street" name="street"
+                           placeholder="Số nhà, tên đường..." required/>
 
-                    <label for="name">Họ tên:</label>
-                    <input type="text" id="name" name="name" placeholder="Nhập họ tên" required/>
+                    <label for="city">Quận / Huyện:</label>
+                    <input type="text" id="city" name="city"
+                           placeholder="Nhập quận/huyện" required/>
 
-                    <label>Loại địa chỉ:</label>
-                    <input type="radio" id="home" name="type" value="Home" checked/>
-                    <label for="home">Nhà</label>
-                    <input type="radio" id="office" name="type" value="Office"/>
-                    <label for="office">Văn phòng</label>
-                    <!-- Hidden field to pass userId -->
-                    <input type="hidden" name="userId" value="${userId}"/>
+                    <label for="state">Tỉnh / Thành phố:</label>
+                    <input type="text" id="state" name="state"
+                           placeholder="Nhập tỉnh/thành phố" required/>
+
+                    <label for="country">Quốc gia:</label>
+                    <input type="text" id="country" name="country"
+                           value="Việt Nam" required/>
+
                     <label>
-                        <button type="submit">Lưu</button>
-                        <button type="reset">Hủy</button>
+                        <input type="checkbox" name="isDefault" value="true"/>
+                        Đặt làm địa chỉ mặc định
                     </label>
 
+                    <input type="hidden" name="userId" value="${userId}"/>
+
+                    <div class="btn-group">
+                        <button type="submit">Lưu</button>
+                        <button type="reset">Hủy</button>
+                    </div>
                 </form>
 
             </div>

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <title>List Product</title>
@@ -122,12 +123,11 @@
                                     </div>
 
                                     <div id="top_description">
-                                        <ul class="list_descriptions">
-                                            <li class="desc_item f12">Bộ quần áo dài êm mềm giúp giữ ấm cơ thể bé, đặc biệt là lưng và bụng</li>
-                                            <li class="desc_item f12">Áo cổ tròn, phom suông giúp ba mẹ dễ dàng thay ra mặc vào cho bé</li>
-                                            <li class="desc_item f12">Hoạ tiết độc đáo, giúp vẻ ngoài của bé thêm đáng yêu và năng động</li>
-                                            <li class="desc_item f12">Chất liệu 100% vải cotton mềm mại, an toàn và có khả năng thấm hút mồ hôi vượt trội</li>
-                                        </ul>
+                                        <c:if test="${not empty pro.description}">
+                                            <p class="desc_item f12">
+                                                    ${fn:escapeXml(pro.description)}
+                                            </p>
+                                        </c:if>
                                     </div>
 
                                 </div>
@@ -184,20 +184,8 @@
                                     <div class="infor_name bold f22" id="name">
                                         <a href="product-detail?id=${p.id}"> ${p.name}</a>
                                     </div>
-                                        <%--phân biệt màu sắc or khối lượng--%>
 
-                                    <div class="infor_color col">
-                                        <span class="bold f16">Size: <span class="normal f16"> Vừa vặn</span></span>
-
-                                        <div class="choose_color row">
-                                            <div class="col_item" id="pink"></div>
-                                            <div class="col_item" id="gray"></div>
-                                            <div class="col_item" id="yellow"></div>
-                                        </div>
-
-
-                                    </div>
-<%--                                        phân biệt size quần áo hoặc khối lượng sữa--%>
+                                <%--                                        phân biệt size quần áo hoặc khối lượng sữa--%>
                                     <div class="rating row mid_align">
                             <span id="noOfRatting" class="bold" style="padding: 0 5px">
                                 4.7 (153)
@@ -208,11 +196,11 @@
 
 
                                     <div id="description">
-                                        <ul class="list_descriptions">
-                                            <li class="desc_item f14">Phù hợp với trẻ mọi lứa tuổi</li>
-                                            <li class=" desc_item f14">Được các chuyên gia kiểm định đạt chuẩn</li>
-                                            <li class="desc_item f14">Là sự lựa chọn của mọi nhà</li>
-                                        </ul>
+                                        <c:if test="${not empty p.description}">
+                                            <p class="desc_item f14">
+                                                    ${fn:escapeXml(p.description)}
+                                            </p>
+                                        </c:if>
                                     </div>
 
                                 </div>
@@ -284,6 +272,7 @@
 <script src="${pageContext.request.contextPath}/static/style-component/style_product/SearchProductItem.js"></script>
 <script src="${pageContext.request.contextPath}/static/style-component/style_product/Search_Product.js"></script>
 <%-- xem thêm chỗ lọc sản phẩm bằng variant--%>
+
 </body>
 </html>
 
