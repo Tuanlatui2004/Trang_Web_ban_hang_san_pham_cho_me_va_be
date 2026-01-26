@@ -151,7 +151,8 @@
                         class="nav_item"
                         href="profile">Trang của tôi</a
                 >
-                <a href="/backend_war/login">Đăng xuất</a>
+                <a href="Trang_Web_ban_hang_san_pham_cho_me_va_be_war_exploded/login">Đăng xuất</a>
+<%--                <a href="Trang_Web_ban_hang_san_pham_cho_me_va_be_war/login">Đăng xuất</a>--%>
             </div>
         </div>
     </div>
