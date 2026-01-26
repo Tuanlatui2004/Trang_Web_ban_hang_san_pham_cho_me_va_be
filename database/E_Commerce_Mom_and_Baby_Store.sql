@@ -311,6 +311,8 @@ ALTER TABLE variant
 ADD COLUMN `optionId` int(11) DEFAULT NULL;
 ALTER TABLE variant
 ADD CONSTRAINT `fk_variant_2` FOREIGN KEY(`optionId`) REFERENCES `option_variant` (`id`);
+ALTER TABLE users
+    ADD COLUMN salt  VARCHAR(255) NOT NULL ;
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
 
