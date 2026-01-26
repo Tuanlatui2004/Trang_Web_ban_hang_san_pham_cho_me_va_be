@@ -134,10 +134,9 @@
 
 
                                 <div class="operation col">
-                                    <button id="buy_now">
-                                        <a href="buy-now?productId=${pro.id}&optionId=${pro.optionId}">Mua ngay</a>
+                                    <a href="buy-now?productId=${pro.id}&optionId=${pro.optionId}" class="btn buy">
                                         Mua ngay
-                                    </button>
+                                    </a>
                                     <button onclick="addToCart(${pro.id},${pro.optionId})" class="btn add">Thêm vào giỏ hàng</button>
                                 </div>
 
@@ -250,8 +249,7 @@
 
 
                                     <div class="wrap_btn col">
-                                        <a href="buy-now?productId=${p.id}&optionId=${p.optionId}" class="btn buy"
-                                           id="buy-now-btn">Mua Ngay</a>
+                                        <a href="buy-now?productId=${p.id}&optionId=${p.optionId}" class="btn buy buy-now-btn">Mua Ngay</a>
 
                                         <button onclick="addToCart(${p.id},${p.optionId})" class="btn add">
                                             Thêm vào giỏ hàng

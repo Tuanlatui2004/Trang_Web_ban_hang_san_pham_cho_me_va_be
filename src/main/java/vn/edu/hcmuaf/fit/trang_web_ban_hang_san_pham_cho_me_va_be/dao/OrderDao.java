@@ -100,8 +100,8 @@ public interface OrderDao {
             "from orders as o\n" +
             "     inner join order_detail as od\n" +
             "           on o.id = od.orderId\n" +
-            "     inner join user as u\n" +
-            "           on u.id = o.user Id\n" +
+            "     inner join users as u\n" +
+            "           on u.id = o.userId \n" +
             "group by\n" +
             "   o.id, o.createAt, o.paymentStatus,\n" +
             "   o.orderStatus,o.userId, o.addressId,\n" +

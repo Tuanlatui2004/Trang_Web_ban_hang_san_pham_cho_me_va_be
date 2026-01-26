@@ -20,7 +20,8 @@
 <div class="container">
     <div class="hear">
         <div class="ft1">Đặt lại mật khẩu</div>
-        <a href="https://linktrogiup " target="_blank" rel="noopener noreferrer" class="help">Bạn cần giúp đỡ?</a>
+<%--        pbha sửa tạo link--%>
+        <a href="https://linkhelp " target="_blank" rel="noopener noreferrer" class="help">Bạn cần giúp đỡ?</a>
     </div>
     <!-- Email Reset Box -->
     <div id="resetBox" class="reset-box">

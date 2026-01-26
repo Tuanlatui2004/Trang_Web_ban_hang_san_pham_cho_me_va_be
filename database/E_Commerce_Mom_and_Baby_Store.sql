@@ -80,7 +80,8 @@ CREATE TABLE `card` (
                         KEY `fk_card_1` (`userId`),
                         CONSTRAINT `fk_card_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+ALTER TABLE categories
+    ADD COLUMN isActive tinyint(4) DEFAULT 1;
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 --
@@ -161,7 +162,8 @@ CREATE TABLE `orders` (
                           CONSTRAINT `fk_order_2` FOREIGN KEY (`addressId`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                           CONSTRAINT `fk_order_3` FOREIGN KEY (`cardId`) REFERENCES `card` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+ALTER TABLE orders
+    MODIFY COLUMN orderStatus enum('DELIVERED','DELIVERY','PAID') COLLATE utf8mb4_unicode_ci DEFAULT 'DELIVERY';
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 - -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -309,6 +311,8 @@ ALTER TABLE variant
 ADD COLUMN `optionId` int(11) DEFAULT NULL;
 ALTER TABLE variant
 ADD CONSTRAINT `fk_variant_2` FOREIGN KEY(`optionId`) REFERENCES `option_variant` (`id`);
+ALTER TABLE users
+    ADD COLUMN salt  VARCHAR(255) NOT NULL ;
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
 

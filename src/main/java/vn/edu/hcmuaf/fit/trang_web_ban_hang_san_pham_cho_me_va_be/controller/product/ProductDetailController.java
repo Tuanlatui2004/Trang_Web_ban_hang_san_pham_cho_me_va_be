@@ -15,7 +15,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-@WebServlet(name = "ProductDetailController",value = "/product-detail")
+
+@WebServlet(name = "ProductDetailController", value = "/product-detail")
 public class ProductDetailController extends HttpServlet {
     // chưa có service
     ProductService productService = new ProductService(DBConnection.getJdbi());
@@ -23,7 +24,8 @@ public class ProductDetailController extends HttpServlet {
     OptionService optionService = new OptionService(DBConnection.getJdbi());
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         int productId = Integer.parseInt(request.getParameter("id"));
         Product product = productService.getProductById(productId);
 
@@ -32,18 +34,17 @@ public class ProductDetailController extends HttpServlet {
             productPrice = productService.getPriceForOption(product.getOptionId());
         }
 
-
-
         List<String> images = imageService.getAllImagesByProductId(product.getId());
         String primaryImageUrl = imageService.getImageUrlById(product.getImageId());
         List<String> descriptions = List.of(product.getDescription().split("\\n"));
 
-// lỗi
+        // lỗi
         List<OptionVariant> options = optionService.getOptionsByProductId(product.getId());
         List<Integer> optionIds = options.stream().map(OptionVariant::getId).collect(Collectors.toList());
 
         List<OptionVariant> optionVariant = optionService.getVariantByOptionId(optionIds);
-        List<String> variants = optionVariant.stream().map(OptionVariant::getVariantName).distinct().collect(Collectors.toList());
+        List<String> variants = optionVariant.stream().map(OptionVariant::getVariantName).distinct()
+                .collect(Collectors.toList());
 
         // nếu lấy chi tieets sản phẩm ra không được xem lại chỗ này
 
@@ -53,17 +54,17 @@ public class ProductDetailController extends HttpServlet {
         request.setAttribute("descriptions", descriptions);
         request.setAttribute("productPrice", productPrice);
         request.setAttribute("optionVariant", optionVariant);
-        request.setAttribute("variants ", variants );
-
+        request.setAttribute("variants", variants);
 
         productService.increaseNoOfViews(productId);
 
         request.getRequestDispatcher("product_detail/ProductDetail.jsp").forward(request, response);
     }
-// lỗi
+
+    // lỗi
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
     }
-    }
-
+}

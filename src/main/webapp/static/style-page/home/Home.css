@@ -17,13 +17,13 @@ body {
 }
 
 #main_header  {
-    justify-content: end;
+    justify-content: center;
     width: 100%;
     height: 70px;
     display: flex;
     position: fixed;
     top: 0;
-    z-index: 999;
+    z-index: 1000;
     align-items: center;
     padding: 0 50px;
     background-color: white;
@@ -43,7 +43,7 @@ body {
 .navbar {
     display: flex;
     justify-content: center;
-    gap: 140px;
+    gap: 40px;
     /*padding: 60px 217px;*/
     margin-left: 100px;
     background-color: transparent;
@@ -313,7 +313,7 @@ body > #header > nav > ul > li > a {
 .search-container {
     text-align: center;
     width: 80%;
-    max-width: 900px;
+    max-width: 600px;
     border-radius: 10px;
     position: relative;
 }
@@ -341,8 +341,8 @@ body > #header > nav > ul > li > a {
 
 .search-bar .search-icon {
     position: absolute;
-    right: 20px;
-    top: 35%;
+    left: 10px;
+    top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
@@ -353,12 +353,13 @@ body > #header > nav > ul > li > a {
     width: 100%;
     height: 600px;
     border: none;
+    margin-top: 20px;
 }
 
 .close-btn {
     position: absolute;
     top: -20px;
-    right: -200px;
+    right: -440px;
     background: none;
     border: none;
     color: #FFFFFF;
@@ -382,140 +383,9 @@ body > #header > nav > ul > li > a {
 }
 
 .logo {
-    width: 120px;
-    height: 70px;
+    width: 73px;
+    /*height: auto;*/
     object-fit: contain;
     transition: transform 0.3s ease;
-}
-
-
-
-
-.search-container {
-    text-align: center;
-    width: 80%;
-    max-width: 600px;
-}
-
-
-.search-container-title{
-    padding: 20px;
-}
-.search-bar {
-    position: relative;
-    display: flex;
-    width: 100%;
-    padding-bottom: 20px;
-}
-
-#search-input {
-    width: 100%;
-    padding: 15px;
-    border-radius: 20px;
-    font-size: 16px;
-}
-
-
-
-
-.search-bar .search-icon {
-    margin-left: -50px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-}
-
-.suggestion-box {
-    background-color: #fafafa;
-    color: black;
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 5px;
-    padding: 10px;
-    text-align: left;
-}
-
-.suggestion-box ul {
-    list-style: none;
-    padding: 0;
-}
-
-.suggestion-box li {
-    padding: 8px;
-    cursor: pointer;
-}
-
-.suggestion-box li:hover {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-}
-
-#suggestion-list{
-
-}
-
-
-.suggestion-title{
-    padding: 10px;
-}
-
-
-.product{
-    display: flex;
-    background-color: #ffffff;
-    transition: all 0.3s ease-in-out;
-    margin: 5px;
-}
-.product:hover{
-    cursor: pointer;
-    scale: 1.035;
-    border-radius: 10px;
-}
-
-
-.product img {
-    padding: 10px;
-    width: 150px;
-    height: 120px;
-    object-fit: contain;
-
-}
-
-
-.product .product-content{
-    display: flex;
-    flex-direction: column;
-
-}
-
-.product-content .product-name{
-    padding-top: 10px;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.product-content .product-price{
-    padding-top: 10px;
-}
-
-#cart-link {
-    position: relative;
-}
-
-.cart-count-badge {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background-color: #ff0000;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
-    min-width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 

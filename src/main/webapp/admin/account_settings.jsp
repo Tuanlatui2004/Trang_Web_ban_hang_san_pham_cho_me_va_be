@@ -32,19 +32,19 @@
         <!-- Navbar -->
         <div class="navbar">
             <a href="#basic-information">
-                <i class="fas fa-user"></i>
+                <i class="fa-solid fa-user"></i>
                 Thông tin cơ bản
             </a>
             <a href="#Password">
-                <i class="fas fa-key"></i>
+                <i class="fa-solid fa-key"></i>
                 Mật khẩu
             </a>
             <a href="#notifications">
-                <i class="fas fa-bell"></i>
+                <i class="fa-solid fa-bell"></i>
                 Thông báo
             </a>
             <a href="#connected-accounts">
-                <i class="fas fa-sitemap"></i>
+                <i class="fa-solid fa-sitemap"></i>
                 Tài khoản kết nối
             </a>
             <a href="#social-accounts">
@@ -69,13 +69,13 @@
                     <!-- Email -->
                     <label for="email">
                         <span>Email</span>
-                        <input type="email" id="email" value="nguyenvana@example.com" />
+                        <input type="email" id="email" value="nguyenvana@gmail.com" />
                     </label>
 
                     <!-- Số Điện Thoại -->
                     <label for="phone">
                         <span>Số điện thoại (Tuỳ chọn)</span>
-                        <input type="tel" id="phone" value="+84 912345678" />
+                        <input type="tel" id="phone" value="+84 299792458" />
                     </label>
 
                     <!-- Phòng Ban -->
@@ -163,14 +163,14 @@
             <!--                <img src="../../../resource/image/icon-user-settings/img2.jpg" alt="Ảnh bìa"-->
             <!--                     class="profile-cover-header-image">-->
             <!--                <button class="profile-cover-upload-header-btn">-->
-            <!--                    <i class="fas fa-camera"></i> Tải lên ảnh bìa-->
+            <!--                    <i class="fa-solid fa-camera"></i> Tải lên ảnh bìa-->
             <!--                </button>-->
             <!--            </div>-->
             <!--            <div class="profile-photo-container">-->
             <!--                <div class="profile-photo">-->
             <!--                    <img src="../../../resource/image/medium%20(1).png" alt="Ảnh đại diện" class="profile-photo-img">-->
             <!--                    <button class="profile-photo-edit-btn">-->
-            <!--                        <i class="fas fa-pencil-alt"></i>-->
+            <!--                        <i class="fa-solid fa-pencil-alt"></i>-->
             <!--                    </button>-->
             <!--                </div>-->
             <!--                <div class="profile-photo-visibility">-->

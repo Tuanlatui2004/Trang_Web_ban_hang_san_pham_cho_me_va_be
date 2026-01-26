@@ -128,17 +128,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderTable(1); // Hiển thị trang đầu tiên
 
-    // **Hiển thị/Ẩn thêm sản phẩm**
+    // **Hiển thị/Ẩn thêm danh mục**
     const addProductBtn = document.querySelector(".add-product-btn");
     const addCategoryBox = document.getElementById("add-category-box");
     const discardBtn = document.querySelector(".discard-btn");
 
     addProductBtn.addEventListener("click", () => {
-        addCategoryBox.classList.toggle("hidden");
+        addCategoryBox.classList.remove("hidden");
+        editCategoryBox.classList.add("hidden"); // Hide edit box if add box is shown
     });
 
     discardBtn.addEventListener("click", () => {
         addCategoryBox.classList.add("hidden");
+    });
+
+    // **Hiển thị/Ẩn sửa danh mục**
+    const editCategoryBox = document.getElementById("edit-category-box");
+    const discardEditBtn = document.getElementById("discard-edit-btn");
+    const editCategoryIdInput = document.getElementById("edit-category-id");
+    const editCategoryNameInput = document.getElementById("edit-category-name");
+
+    discardEditBtn.addEventListener("click", () => {
+        editCategoryBox.classList.add("hidden");
+    });
+
+    // **Xử lý nút "Sửa"**
+    document.querySelectorAll(".edit-icon").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const id = btn.getAttribute("data-id");
+            const name = btn.getAttribute("data-name");
+
+            editCategoryIdInput.value = id;
+            editCategoryNameInput.value = name;
+
+            editCategoryBox.classList.remove("hidden");
+            addCategoryBox.classList.add("hidden"); // Hide add box if edit box is shown
+        });
+    });
+
+    // **Xử lý nút "Cập Nhật"**
+    const updateCateBtn = document.querySelector(".update-cate-btn");
+    updateCateBtn.addEventListener("click", async () => {
+        const id = editCategoryIdInput.value;
+        const newName = editCategoryNameInput.value.trim();
+
+        if (!newName) {
+            document.getElementById("edit-error-message").classList.remove("hidden");
+            return;
+        }
+
+        try {
+            const response = await fetch(`api/categories/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: newName }),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert(`Lỗi: ${result.message}`);
+            }
+        } catch (error) {
+            alert("Có lỗi xảy ra khi cập nhật danh mục!");
+            console.error(error);
+        }
     });
 
     // **Xử lý nút "Thêm"**
@@ -149,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const categoryName = inputField.value.trim();
 
         if (!categoryName) {
-            alert("Vui lòng nhập tên danh mục!");
+            document.getElementById("error-message").classList.remove("hidden");
             return;
         }
 
@@ -162,11 +221,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({ name: categoryName }),
             });
 
-            const result = await response.json();
             if (response.ok) {
-                alert("Danh mục được thêm thành công!");
-                inputField.value = ""; // Reset input field
+                location.reload();
             } else {
+                const result = await response.json();
                 alert(`Lỗi: ${result.message}`);
             }
         } catch (error) {

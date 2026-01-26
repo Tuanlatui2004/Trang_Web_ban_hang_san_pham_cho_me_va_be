@@ -11,20 +11,20 @@ import java.util.List;
 
 @RegisterConstructorMapper(Brand.class)
 public interface BrandDao {
-    @SqlQuery("SELECT * FROM brand WHERE isActive = 1")
+    @SqlQuery("SELECT * FROM brands WHERE isActive = 1")
     List<Brand> getAllBrand();
 
-    @SqlQuery("SELECT * FROM brand WHERE id = :id")
+    @SqlQuery("SELECT * FROM brands WHERE id = :id")
     Brand getBrandById(@Bind("id") Integer id);
 
-    @SqlUpdate("INSERT INTO brand (name) VALUES (:name)")
+    @SqlUpdate("INSERT INTO brands (name) VALUES (:name)")
     @GetGeneratedKeys("id")
     int createBrand(@Bind("name") String name);
 
-    @SqlUpdate("UPDATE brand SET name = :name WHERE id = :id")
+    @SqlUpdate("UPDATE brands SET name = :name WHERE id = :id")
     void updateBrand(@Bind("id") Integer id, @Bind("name") String name);
 
-    @SqlUpdate("DELETE FROM brand WHERE id = :id")
+    @SqlUpdate("DELETE FROM brands WHERE id = :id")
     void deleteBrand(@Bind("id") Integer id);
 
 

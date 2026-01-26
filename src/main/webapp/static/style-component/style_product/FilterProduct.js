@@ -1,3 +1,4 @@
+//pbha chưa checkkĩ
 $(document).ready(function () {
     const category_id = $('#sidebar').data('category');
     const apply_btn = $('#apply_btn');

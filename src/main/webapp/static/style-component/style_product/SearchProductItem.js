@@ -1,36 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
     const addToCartButtons = document.querySelectorAll(".btn.add");
-    const notification = document.getElementById("cart-notification");
+    const notifications = document.querySelectorAll(".notification");
 
-    addToCartButtons.forEach(button => {
+    addToCartButtons.forEach((button, index) => {
         button.addEventListener("click", function () {
-            notification.classList.remove("hidden");
-            notification.classList.add("show");
+            const notification = notifications[index] || document.getElementById("cart-notification");
+            if (notification) {
+                notification.classList.remove("hidden");
+                notification.classList.add("show");
 
-            setTimeout(() => {
-                notification.classList.remove("show");
-                notification.classList.add("hidden");
-            }, 3000);
+                setTimeout(() => {
+                    notification.classList.remove("show");
+                    notification.classList.add("hidden");
+                }, 3000);
+            }
         });
     });
-});
-
-document.getElementById('name').addEventListener('click', function () {
-    const mainIframe = window.top.document.querySelector('#body iframe');
-    if (mainIframe) {
-        mainIframe.src = 'D:/Trang_Web_ban_hang_san_pham_cho_me_va_be/src/main/webapp/fontend/component/product_detail/Product-detail.html';
-    }
-});
-
-
-const isLoggedIn = localStorage.getItem("isLoggedIn");
-document.getElementById("buy-now-btn").addEventListener("click", (event) => {
-    const mainIframe = window.top.document.querySelector('#body iframe');
-    event.preventDefault();
-    if (!isLoggedIn) {
-        alert("Bạn cần đăng nhập trước!");
-    } else {
-        mainIframe.src = 'D:/Trang_Web_ban_hang_san_pham_cho_me_va_be/src/main/webapp/fontend/component/CheckOut/CheckOut.html';
-        history.pushState({ page: "user-checkout" }, "Thanh toán", "/checkout");
-    }
 });

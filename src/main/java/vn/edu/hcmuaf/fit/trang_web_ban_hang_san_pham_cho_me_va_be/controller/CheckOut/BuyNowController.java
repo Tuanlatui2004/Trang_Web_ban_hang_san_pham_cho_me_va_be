@@ -28,9 +28,8 @@ public class BuyNowController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         Product product = productService.getProductByIdAndOptionId(Integer.parseInt(request.getParameter("product_id")),
+        Product product = productService.getProductByIdAndOptionId(Integer.parseInt(request.getParameter("productId")),
                 Integer.parseInt(request.getParameter("optionId")));
-
 
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
@@ -46,19 +45,12 @@ public class BuyNowController extends HttpServlet {
         List<Address> addressList = new ArrayList<>();
         List<Card> cardList = new ArrayList<>();
 
-
         addressList = addressService.findByUserId(userId);
         cardList = cardService.getCartByUserId(userId);
-
-
-
-
 
         request.setAttribute("productList", productList);
         request.setAttribute("addressList", addressList);
         request.setAttribute("cardList", cardList);
-
-
 
         request.getRequestDispatcher("checkout/checkout.jsp").forward(request, response);
 

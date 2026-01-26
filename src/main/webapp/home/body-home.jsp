@@ -34,17 +34,17 @@
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/static/image/sua&dinhduong.png" alt="dinhduong">
             <h3>Sữa & Dinh Dưỡng</h3>
-            <a href="search-category?category_id=3" class="buy-button">Tìm hiểu thêm</a>
+            <a href="Search_Sua" class="buy-button">Tìm hiểu thêm</a>
         </div>
         <div class="product-item">
             <img src="${pageContext.request.contextPath}/static/image/dodungchobe.png" alt=dodungchobe>
             <h3>Đồ dùng cho bé</h3>
-            <a href="search-category?category_id=2" class="buy-button">Tìm hiểu thêm</a>
+            <a href="Search_mayphasua" class="buy-button">Tìm hiểu thêm</a>
         </div>
         <div class="product-item">
             <img src="https://dongangia.com/files/common/uong-sua-dac-khi-mang-bau-co-tot-khong-xg8qh.jpg" alt="mebau">
             <h3>Chăm sóc mẹ bầu</h3>
-            <a href="search-category?category_id=7" class="buy-button">Tìm hiểu thêm</a>
+            <a href="Search_Me" class="buy-button">Tìm hiểu thêm</a>
         </div>
     </div>
 </section>
@@ -119,53 +119,81 @@
         </div>
     </div>
 </div>
+<%--<section class="body">--%>
+<%--    <div class="content">--%>
+<%--        <div class="container2">--%>
+<%--            <header>--%>
+<%--                <div class="text">Sản Phẩm Nổi Bật</div>--%>
+<%--                <nav>--%>
+<%--                    <a data-target="SP1" class="nav-link active">Sữa Aptamil</a>--%>
+<%--                    <a data-target="SP2" class="nav-link">Tã quần Bobby</a>--%>
+<%--                    <a data-target="SP3" class="nav-link">Máy hâm sữa GluckBaby</a>--%>
+<%--                    <a data-target="SP4" class="nav-link">Sữa cho mẹ bầu Enfa</a>--%>
+<%--                </nav>--%>
+<%--            </header>--%>
+
+<%--            <div id="SP1" class="product-showcase active">--%>
+<%--                <div class="product-image">--%>
+<%--                    <img src="https://concung.com/img/news/2023/2129-1691567165-cover.png" alt="Sữa Aptamil">--%>
+<%--                </div>--%>
+<%--                <h2 class="product-title">Sữa Aptamil</h2>--%>
+<%--                <p class="product-description">Dinh dưỡng vàng cho bé</p>--%>
+<%--                <a href="search-category?category_id=3" class="buy-button">Mua ngay</a>--%>
+<%--            </div>--%>
+
+<%--            <div id="SP2" class="product-showcase">--%>
+<%--                <div class="product-image">--%>
+<%--                    <img src="https://concung.com/img/news/2024/2713-1709801834-cover.png" alt="Tã quần Bobby">--%>
+<%--                </div>--%>
+<%--                <h2 class="product-title">Tã quần Bobby</h2>--%>
+<%--                <p class="product-description">Siêu mềm mại, thấm hút tốt – cho bé luôn khô thoáng</p>--%>
+<%--                <a href="search-category?category_id=4" class="buy-button">Mua ngay</a>--%>
+<%--            </div>--%>
+
+<%--            <div id="SP3" class="product-showcase">--%>
+<%--                <div class="product-image">--%>
+<%--                    <img src="https://media.bibomart.net/images/2025/2/11/0/origin/may-ham-sua-1739261305.jpg" alt="Máy hâm sữa GluckBaby">--%>
+<%--                </div>--%>
+<%--                <h2 class="product-title">Máy hâm sữa GluckBaby</h2>--%>
+<%--                <p class="product-description">Giữ ấm sữa nhanh, tiện lợi – hỗ trợ mẹ chăm bé dễ dàng hơn</p>--%>
+<%--                <a href="search-category?category_id=2" class="buy-button">Mua ngay</a>--%>
+<%--            </div>--%>
+
+<%--            <div id="SP4" class="product-showcase">--%>
+<%--                <div class="product-image">--%>
+<%--                    <img src="https://cdn.tgdd.vn/Products/Images/2382/260218/Slider/tong-quan-1020x570.jpg" alt="Sữa cho mẹ bầu Enfa">--%>
+<%--                </div>--%>
+<%--                <h2 class="product-title">Sữa cho mẹ bầu Enfa</h2>--%>
+<%--                <p class="product-description">Bổ sung dưỡng chất thiết yếu cho mẹ bầu và thai nhi khỏe mạnh</p>--%>
+<%--                <a href="search-category?category_id=7" class="buy-button">Mua ngay</a>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</section>--%>
+<section class="body">
+    <h2>Sản phẩm nổi bật</h2>
+</section>
 <section class="body">
     <div class="content">
-        <div class="container2">
-            <header>
-                <div class="text">Sản Phẩm Nổi Bật</div>
-                <nav>
-                    <a data-target="SP1" class="nav-link active">Sữa Aptamil</a>
-                    <a data-target="SP2" class="nav-link">Tã quần Bobby</a>
-                    <a data-target="SP3" class="nav-link">Máy hâm sữa GluckBaby</a>
-                    <a data-target="SP4" class="nav-link">Sữa cho mẹ bầu Enfa</a>
-                </nav>
-            </header>
 
-            <div id="SP1" class="product-showcase active">
-                <div class="product-image">
-                    <img src="https://concung.com/img/news/2023/2129-1691567165-cover.png" alt="Sữa Aptamil">
-                </div>
-                <h2 class="product-title">Sữa Aptamil</h2>
-                <p class="product-description">Dinh dưỡng vàng cho bé</p>
-                <a href="search-category?category_id=3" class="buy-button">Mua ngay</a>
-            </div>
+        <div class="navbar-light">
+            <a onclick="showImage('image1')" data-text="Sữa Aptamil">Sữa Aptamil</a>
+            <a onclick="showImage('image2')" data-text="Tã quần Bobby">Tã quần Bobby</a>
+            <a onclick="showImage('image3')" data-text="Máy hâm sữa GluckBaby">Máy hâm sữa GluckBaby</a>
+            <a onclick="showImage('image4')" data-text="Sữa cho mẹ bầu Enfa">Sữa cho mẹ bầu Enfa</a>
+        </div>
 
-            <div id="SP2" class="product-showcase">
-                <div class="product-image">
-                    <img src="https://concung.com/img/news/2024/2713-1709801834-cover.png" alt="Tã quần Bobby">
-                </div>
-                <h2 class="product-title">Tã quần Bobby</h2>
-                <p class="product-description">Siêu mềm mại, thấm hút tốt – cho bé luôn khô thoáng</p>
-                <a href="search-category?category_id=4" class="buy-button">Mua ngay</a>
-            </div>
 
-            <div id="SP3" class="product-showcase">
-                <div class="product-image">
-                    <img src="https://media.bibomart.net/images/2025/2/11/0/origin/may-ham-sua-1739261305.jpg" alt="Máy hâm sữa GluckBaby">
-                </div>
-                <h2 class="product-title">Máy hâm sữa GluckBaby</h2>
-                <p class="product-description">Giữ ấm sữa nhanh, tiện lợi – hỗ trợ mẹ chăm bé dễ dàng hơn</p>
-                <a href="search-category?category_id=2" class="buy-button">Mua ngay</a>
-            </div>
+        <div class="image-container">
+            <img id="image1" src="${pageContext.request.contextPath}/static/image/suaAptamil.png" alt="Sữa Aptamil" class="active">
+            <img id="image2" src=" ${pageContext.request.contextPath}/static/image/taBoby.png" alt="Tã quần Bobby">
+            <img id="image3" src="${pageContext.request.contextPath}/static/image/MayHamSua.jpg" alt="Máy hâm sữa GluckBaby">
+            <img id="image4" src="${pageContext.request.contextPath}/static/image/sua-enfa-20.jpg" alt="Sữa cho mẹ bầu Enfa">
 
-            <div id="SP4" class="product-showcase">
-                <div class="product-image">
-                    <img src="https://cdn.tgdd.vn/Products/Images/2382/260218/Slider/tong-quan-1020x570.jpg" alt="Sữa cho mẹ bầu Enfa">
-                </div>
-                <h2 class="product-title">Sữa cho mẹ bầu Enfa</h2>
-                <p class="product-description">Bổ sung dưỡng chất thiết yếu cho mẹ bầu và thai nhi khỏe mạnh</p>
-                <a href="search-category?category_id=7" class="buy-button">Mua ngay</a>
+            <div class="text-overlay">
+                <h1 id="product-description">Sữa Aptamil</h1>
+                <a href="Search_Sua" class="link">Tìm hiểu thêm</a>
+                <!--                <a href="../../component/Checkout/Checkout.html" class="link">Mua ngay</a>-->
             </div>
         </div>
     </div>
@@ -255,122 +283,123 @@
         <p>Email: hotrotmdt@thegioididong.com</p>
     </div>
 </footer>
-<script src="${pageContext.request.contextPath}/static/style-component/style-home/homeBody.js" defer></script>
-<%--xem js lại--%>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Fetch top products
-        fetch('api/top-products')
-            .then(response => response.json())
-            .then(products => {
-                const sliderTrack = document.getElementById('slider-track');
-                const sliderDots = document.getElementById('slider-dots');
+<%--<script src="${pageContext.request.contextPath}/static/style-component/style-home/homeBody.js" defer></script>--%>
+<%--&lt;%&ndash;xem js lại&ndash;%&gt;--%>
+<%--<script>--%>
+<%--    document.addEventListener('DOMContentLoaded', function() {--%>
+<%--        // Fetch top products--%>
+<%--        fetch('api/top-products')--%>
+<%--            .then(response => response.json())--%>
+<%--            .then(products => {--%>
+<%--                const sliderTrack = document.getElementById('slider-track');--%>
+<%--                const sliderDots = document.getElementById('slider-dots');--%>
 
-                // Clear existing content
-                sliderTrack.innerHTML = '';
-                sliderDots.innerHTML = '';
+<%--                // Clear existing content--%>
+<%--                sliderTrack.innerHTML = '';--%>
+<%--                sliderDots.innerHTML = '';--%>
 
-                // Calculate number of pages (3 products per page)
-                const productsPerPage = 3;
-                const numPages = Math.ceil(products.length / productsPerPage);
+<%--                // Calculate number of pages (3 products per page)--%>
+<%--                const productsPerPage = 3;--%>
+<%--                const numPages = Math.ceil(products.length / productsPerPage);--%>
 
-                console.log('Total products:', products.length);
-                console.log('Products per page:', productsPerPage);
-                console.log('Number of pages:', numPages);
+<%--                console.log('Total products:', products.length);--%>
+<%--                console.log('Products per page:', productsPerPage);--%>
+<%--                console.log('Number of pages:', numPages);--%>
 
-                // Create product cards
-                products.forEach((product, index) => {
-                    const productCard = document.createElement('div');
-                    productCard.className = 'slider-item';
-                    productCard.innerHTML = `
-                    <div class="product-card">
-                        <div class="product-image" onclick="window.location.href='product-detail?id=\${product.id}'" style="cursor: pointer;">
-                            <img src="\${product.imageUrl}" alt="\${product.name}">
-                        </div>
-                        <h3 class="product-name" onclick="window.location.href='product-detail?id=\${product.id}'" style="cursor: pointer;">\${product.name}</h3>
-                        <p class="product-price">\${product.price.toLocaleString('vi-VN')} VND</p>
-                        <button class="buy-now" onclick="window.location.href='product-detail?id=\${product.id}'">Mua ngay</button>
-                    </div>
-                `;
-                    sliderTrack.appendChild(productCard);
-                });
+<%--                // Create product cards--%>
+<%--                products.forEach((product, index) => {--%>
+<%--                    const productCard = document.createElement('div');--%>
+<%--                    productCard.className = 'slider-item';--%>
+<%--                    productCard.innerHTML = `--%>
+<%--                    <div class="product-card">--%>
+<%--                        <div class="product-image" onclick="window.location.href='product-detail?id=\${product.id}'" style="cursor: pointer;">--%>
+<%--                            <img src="\${product.imageUrl}" alt="\${product.name}">--%>
+<%--                        </div>--%>
+<%--                        <h3 class="product-name" onclick="window.location.href='product-detail?id=\${product.id}'" style="cursor: pointer;">\${product.name}</h3>--%>
+<%--                        <p class="product-price">\${product.price.toLocaleString('vi-VN')} VND</p>--%>
+<%--                        <button class="buy-now" onclick="window.location.href='product-detail?id=\${product.id}'">Mua ngay</button>--%>
+<%--                    </div>--%>
+<%--                `;--%>
+<%--                    sliderTrack.appendChild(productCard);--%>
+<%--                });--%>
 
-                // Create dots
-                for (let i = 0; i < numPages; i++) {
-                    const dot = document.createElement('span');
-                    dot.className = 'dot' + (i === 0 ? ' active' : '');
-                    dot.setAttribute('data-index', i);
-                    sliderDots.appendChild(dot);
-                }
+<%--                // Create dots--%>
+<%--                for (let i = 0; i < numPages; i++) {--%>
+<%--                    const dot = document.createElement('span');--%>
+<%--                    dot.className = 'dot' + (i === 0 ? ' active' : '');--%>
+<%--                    dot.setAttribute('data-index', i);--%>
+<%--                    sliderDots.appendChild(dot);--%>
+<%--                }--%>
 
-                // Initialize slider
-                let currentPage = 0;
-                const items = document.querySelectorAll('.slider-item');
-                const dots = document.querySelectorAll('.dot');
+<%--                // Initialize slider--%>
+<%--                let currentPage = 0;--%>
+<%--                const items = document.querySelectorAll('.slider-item');--%>
+<%--                const dots = document.querySelectorAll('.dot');--%>
 
-                console.log('Total slider items created:', items.length);
+<%--                console.log('Total slider items created:', items.length);--%>
 
-                // FIXED: Correct updateSlider function
-                function updateSlider() {
-                    console.log('Current page:', currentPage);
+<%--                // FIXED: Correct updateSlider function--%>
+<%--                function updateSlider() {--%>
+<%--                    console.log('Current page:', currentPage);--%>
 
-                    // Calculate the translate value for the entire track
-                    // Move the entire track to show the current page
-                    const translateValue = -currentPage * 100; // Move left by 100% per page
+<%--                    // Calculate the translate value for the entire track--%>
+<%--                    // Move the entire track to show the current page--%>
+<%--                    const translateValue = -currentPage * 100; // Move left by 100% per page--%>
 
-                    // Apply transform to the slider track, not individual items
-                    sliderTrack.style.transform = `translateX(${translateValue}%)`;
+<%--                    // Apply transform to the slider track, not individual items--%>
+<%--                    sliderTrack.style.transform = `translateX(${translateValue}%)`;--%>
 
-                    // Alternative method: Hide/show items based on current page
-                    items.forEach((item, index) => {
-                        const startIndex = currentPage * productsPerPage;
-                        const endIndex = startIndex + productsPerPage;
+<%--                    // Alternative method: Hide/show items based on current page--%>
+<%--                    items.forEach((item, index) => {--%>
+<%--                        const startIndex = currentPage * productsPerPage;--%>
+<%--                        const endIndex = startIndex + productsPerPage;--%>
 
-                        if (index >= startIndex && index < endIndex) {
-                            item.style.display = 'block';
-                            item.style.opacity = '1';
-                        } else {
-                            item.style.display = 'none';
-                            item.style.opacity = '0';
-                        }
-                    });
+<%--                        if (index >= startIndex && index < endIndex) {--%>
+<%--                            item.style.display = 'block';--%>
+<%--                            item.style.opacity = '1';--%>
+<%--                        } else {--%>
+<%--                            item.style.display = 'none';--%>
+<%--                            item.style.opacity = '0';--%>
+<%--                        }--%>
+<%--                    });--%>
 
-                    // Update dots
-                    dots.forEach((dot, index) => {
-                        dot.classList.toggle('active', index === currentPage);
-                    });
-                }
+<%--                    // Update dots--%>
+<%--                    dots.forEach((dot, index) => {--%>
+<%--                        dot.classList.toggle('active', index === currentPage);--%>
+<%--                    });--%>
+<%--                }--%>
 
-                // Add click handlers for dots
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        console.log('Dot clicked:', index);
-                        currentPage = index;
-                        updateSlider();
-                    });
-                });
+<%--                // Add click handlers for dots--%>
+<%--                dots.forEach((dot, index) => {--%>
+<%--                    dot.addEventListener('click', () => {--%>
+<%--                        console.log('Dot clicked:', index);--%>
+<%--                        currentPage = index;--%>
+<%--                        updateSlider();--%>
+<%--                    });--%>
+<%--                });--%>
 
-                // Add click handlers for arrows
-                document.getElementById('prev-btn').addEventListener('click', () => {
-                    if (currentPage > 0) {
-                        console.log('Previous button clicked');
-                        currentPage--;
-                        updateSlider();
-                    }
-                });
+<%--                // Add click handlers for arrows--%>
+<%--                document.getElementById('prev-btn').addEventListener('click', () => {--%>
+<%--                    if (currentPage > 0) {--%>
+<%--                        console.log('Previous button clicked');--%>
+<%--                        currentPage--;--%>
+<%--                        updateSlider();--%>
+<%--                    }--%>
+<%--                });--%>
 
-                document.getElementById('next-btn').addEventListener('click', () => {
-                    if (currentPage < numPages - 1) {
-                        console.log('Next button clicked');
-                        currentPage++;
-                        updateSlider();
-                    }
-                });
+<%--                document.getElementById('next-btn').addEventListener('click', () => {--%>
+<%--                    if (currentPage < numPages - 1) {--%>
+<%--                        console.log('Next button clicked');--%>
+<%--                        currentPage++;--%>
+<%--                        updateSlider();--%>
+<%--                    }--%>
+<%--                });--%>
 
-                // Initial setup
-                updateSlider();
-            })
-            .catch(error => console.error('Error loading products:', error));
-    });
-</script>
+<%--                // Initial setup--%>
+<%--                updateSlider();--%>
+<%--            })--%>
+<%--            .catch(error => console.error('Error loading products:', error));--%>
+<%--    });--%>
+<%--</script>--%>
+<script src="${pageContext.request.contextPath}/static/style-component/style-home/homeBody.js"></script>
 </body>

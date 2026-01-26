@@ -22,11 +22,11 @@
 
 <%--    p là biến cho item sản phẩm chi tiết đổi tên--%>
     <div class="description mid_align col  ">
-        <div class="title ">${p.name}</div>
+        <div class="title ">${item.name}</div>
 
-        <div class="color">
-            <span class="color_name">Màu Sắc: <span>Đen</span></span>
-        </div>
+<%--        <div class="color">--%>
+<%--            <span class="color_name">Màu Sắc: <span>Đen</span></span>--%>
+<%--        </div>--%>
 
         <div class="status">
             <span class="status_type">Còn hàng</span>
@@ -36,13 +36,13 @@
 
 
     <div class="section_price mid_align col  ">
-        <span class="price">  <fmt:formatNumber value="${p.price}" pattern="#,###"/> VND</span>
+        <span class="price">  <fmt:formatNumber value="${item.price}" pattern="#,###"/> VND</span>
 
 
         <div class="quantity mid_align row">
             <i class="fa-solid fa-minus"></i>
             <span class="num mid_align">
-                ${p.quantity}
+                ${item.quantity}
             </span>
             <i class="fa-solid fa-plus"></i>
 
