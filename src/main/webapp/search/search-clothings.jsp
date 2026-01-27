@@ -184,8 +184,6 @@
                                     <div class="infor_name bold f22" id="name">
                                         <a href="product-detail?id=${p.id}"> ${p.name}</a>
                                     </div>
-
-                                <%--                                        phân biệt size quần áo hoặc khối lượng sữa--%>
                                     <div class="rating row mid_align">
                             <span id="noOfRatting" class="bold" style="padding: 0 5px">
                                 4.7 (153)
