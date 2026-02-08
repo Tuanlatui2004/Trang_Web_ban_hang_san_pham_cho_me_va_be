@@ -9,29 +9,30 @@ $(document).ready(function () {
 
     const wrap_variant = $('.wrap_variant');
 
-
     // Mac dinh select option dau tien
+    const option_items = $('.option-item');
+    const firstOption = option_items.first();
 
-    const option_item = $(wrap_variant).find('.option-item');
-    const firstOption = option_item.first();
+    if (firstOption.length > 0) {
+        wrap_variant.each(function () {
+            const group_options = $(this).find('.option-item');
+            const groupFirst = group_options.first();
+            group_options.removeClass('selected');
+            groupFirst.addClass('selected');
+        });
 
-    wrap_variant.each(function () {
-        const option_item = $(this).find('.option-item');
-        const firstOption = option_item.first();
-        option_item.removeClass('selected');
-        firstOption.addClass('selected');
+        const priceDisplay = $('#price');
+        const initialPrice = firstOption.attr("data-price");
+        if (initialPrice) {
+            priceDisplay.text(Number(initialPrice).toLocaleString('vi-VN') + ' VND');
+        }
+    }
 
-
-        const price = $('#price');
-        const formatedPrice = Number(firstOption.attr("data-price")).toLocaleString('vi-VN');
-        price.text(formatedPrice + ' VND');
-
-    })
     let currentOptionId = firstOption.attr('data-option-id') || option_id_default;
 
     function updateButtons(optionId) {
         currentOptionId = optionId;
-        buy_now.attr('href', 'buy-now?productId=' + product_id + '&optionId=' + currentOptionId);
+        buy_now.attr('href', `${contextPath}/buy-now?productId=${product_id}&optionId=${currentOptionId}`);
     }
 
     // Initialize buttons
@@ -40,46 +41,43 @@ $(document).ready(function () {
     add_to_cart.on('click', function (e) {
         e.preventDefault();
         addToCart(product_id, currentOptionId);
-    })
+    });
 
-    wrap_variant.each(function () {
-        const option_item = $(this).find('.option-item');
-        option_item.each(function () {
-            $(this).on('click', function () {
-                const optionId = $(this).attr('data-option-id');
-                // Only remove selected from items in THIS group if multiple groups exist, 
-                // but here it seems all are in one flat list or we want global single select
-                $('.option-item').removeClass('selected');
-                $(this).addClass('selected');
+    $('.option-item').on('click', function () {
+        const group = $(this).closest('.wrap_variant');
+        group.find('.option-item').removeClass('selected');
+        $(this).addClass('selected');
 
-                //Update price
-                const formatedPrice = Number($(this).attr("data-price")).toLocaleString('vi-VN');
-                $('#price').text(formatedPrice + ' VND');
+        // Update price based on selected item
+        const selectedPrice = $(this).attr("data-price");
+        if (selectedPrice) {
+            $('#price').text(Number(selectedPrice).toLocaleString('vi-VN') + ' VND');
+        }
 
-                // Update option id cho nút buy now và add to cart
-                updateButtons(optionId);
-            })
-        })
-    })
-
-
-})
-
+        // Update option id for buttons
+        const optionId = $(this).attr('data-option-id');
+        updateButtons(optionId);
+    });
+});
 
 function addToCart(productId, optionId) {
-    fetch("add-cart", {
+    fetch(`${contextPath}/add-cart`, {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
         body: `productId=${productId}&optionId=${optionId}`
     })
+        .then(response => response.json())
         .then(data => {
             console.log(data);
-            // alert("Sản Phẩm đã");
-
-        }).catch(error => console.log(error));
-
+            if (data.success) {
+                const notification = document.getElementById('cart-notification');
+                if (notification) {
+                    notification.classList.remove('hidden');
+                    setTimeout(() => notification.classList.add('hidden'), 2000);
+                }
+            }
+        })
+        .catch(error => console.log(error));
 }
-
-

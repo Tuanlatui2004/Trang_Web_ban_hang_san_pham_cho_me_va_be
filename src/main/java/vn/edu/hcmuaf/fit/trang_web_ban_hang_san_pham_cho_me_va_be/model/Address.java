@@ -19,17 +19,16 @@ public class Address {
     Boolean isDefault;
 
     @JdbiConstructor
-    public Address(@ColumnName("id")  Integer id,
-                   @ColumnName("userId") @Nullable Integer userId,
-                   @ColumnName("addressType") @Nullable String addressType,
-                   @ColumnName("fullName") @Nullable String fullName,
-                   @ColumnName("phoneNumber") @Nullable String phoneNumber,
-                   @ColumnName("street") @Nullable String street,
-                   @ColumnName("city") @Nullable String city,
-                   @ColumnName("state") @Nullable String state,
-                   @ColumnName("country") @Nullable String country,
-                   @ColumnName("isDefault") @Nullable Boolean isDefault
-    ) {
+    public Address(@ColumnName("id") Integer id,
+            @ColumnName("userId") @Nullable Integer userId,
+            @ColumnName("addressType") @Nullable String addressType,
+            @ColumnName("fullName") @Nullable String fullName,
+            @ColumnName("phoneNumber") @Nullable String phoneNumber,
+            @ColumnName("street") @Nullable String street,
+            @ColumnName("city") @Nullable String city,
+            @ColumnName("state") @Nullable String state,
+            @ColumnName("country") @Nullable String country,
+            @ColumnName("isDefault") @Nullable Boolean isDefault) {
         this.id = id;
         this.userId = userId;
         this.addressType = addressType;
@@ -41,7 +40,9 @@ public class Address {
         this.country = country;
         this.isDefault = isDefault;
     }
-    public Address() {}
+
+    public Address() {
+    }
 
     public Integer getId() {
         return id;
@@ -113,6 +114,14 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Boolean getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(Boolean aDefault) {
+        isDefault = aDefault;
     }
 
     public Boolean getDefault() {

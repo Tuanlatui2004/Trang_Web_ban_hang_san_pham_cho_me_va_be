@@ -1,9 +1,8 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service;
 
 import org.jdbi.v3.core.Jdbi;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.ProductDao;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.OptionVariant;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.dao.ProductDao;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Product;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.ProductDTO;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Variant;
@@ -18,15 +17,17 @@ public class ProductService {
         this.jdbi = jdbi;
         this.productDao = jdbi.onDemand(ProductDao.class);
     }
-    public Product getProductById(int productId){
+
+    public Product getProductById(int productId) {
         return jdbi.withExtension(ProductDao.class, dao -> dao.getProductById(productId));
     }
-    public List<Product> getProductsByCategory(int categoryId){
+
+    public List<Product> getProductsByCategory(int categoryId) {
         return jdbi.withExtension(ProductDao.class, dao -> dao.getProductsByCategory(categoryId));
     }
 
-    public Product getProductByIdAndOptionId(int productId, int optionId){
-        return jdbi.withExtension(ProductDao.class, dao -> dao.getProductByIdAndOptionId(productId,optionId));
+    public Product getProductByIdAndOptionId(int productId, int optionId) {
+        return jdbi.withExtension(ProductDao.class, dao -> dao.getProductByIdAndOptionId(productId, optionId));
     }
 
     public List<Product> getAllProducts() {
@@ -51,16 +52,16 @@ public class ProductService {
         int productId = productDao.addProduct(
                 product.getName(), product.getDescription(),
                 product.getActive(), product.getCategoryId(),
-                product.getBrandId(), product.getImageId(), product.getSku()
-        );
+                product.getBrandId(), product.getImageId(), product.getSku());
 
         if (productId > 0) {
             product.setId(productId);
             return product;
         }
-//        if (rowsAffected > 0) {
-//            return productDao.getProductById(product.getId());  // Trả về sản phẩm đã được thêm vào
-//        }
+        // if (rowsAffected > 0) {
+        // return productDao.getProductById(product.getId()); // Trả về sản phẩm đã được
+        // thêm vào
+        // }
         return null;
     }
 
@@ -68,10 +69,8 @@ public class ProductService {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Keyword must not be empty");
         }
-        String keyword = "%" + name + "%";
-        return productDao.searchProducts(keyword);
+        return productDao.searchProducts(name);
     }
-
 
     public List<Product> getTopProductsByCategory(Integer categoryId, Integer limit) {
         if (categoryId <= 0 || limit <= 0) {
@@ -86,17 +85,16 @@ public class ProductService {
     }
 
     public Boolean increaseNoOfSold(Integer productId, Integer quantity) {
-        return productDao.increaseNoOfSold(productId, quantity );
+        return productDao.increaseNoOfSold(productId, quantity);
     }
 
-    public List<Product> getTop10(){
+    public List<Product> getTop10() {
         return productDao.getTopProducts();
     }
 
-
-
-
-
+    public List<Product> filterProducts(int categoryId, Integer minPrice, Integer maxPrice) {
+        return productDao.filterProducts(categoryId, minPrice, maxPrice);
+    }
 
     // mới thêm vô bởi NV
     public ProductDTO editProductById(int id) {
@@ -107,9 +105,9 @@ public class ProductService {
 
     public static void main(String[] args) {
         ProductService productService = new ProductService(DBConnection.getJdbi());
-//        System.out.println(productService.suggestProducts( ).size());
-//        System.out.println(productService.getProductByIdAndOptionId(211, 85 ));
-        System.out.println(productService.getProductById(1 ));
+        // System.out.println(productService.suggestProducts( ).size());
+        // System.out.println(productService.getProductByIdAndOptionId(211, 85 ));
+        System.out.println(productService.getProductById(1));
 
     }
 }

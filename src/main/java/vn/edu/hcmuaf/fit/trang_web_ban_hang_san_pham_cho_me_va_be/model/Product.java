@@ -1,8 +1,9 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model;
 
-import  com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.annotation.Nullable;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
+
 import java.beans.ConstructorProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -17,8 +18,8 @@ public class Product {
     Integer noOfViews;
     Integer noOfSold;
     Integer imageId;
-    Integer price;  // option
-    Integer stock;  //option
+    Integer price; // option
+    Integer stock; // option
     Integer optionId;
     String categoryName;
     String imageUrl;
@@ -28,8 +29,9 @@ public class Product {
     Integer width;
     Integer weight;
 
-    @ConstructorProperties({"id", "name", "sku", "description", "isActive", "categoryId", "brandId"
-            , "noOfViews", "noOfSold", "imageId", "price", "stock","optionId", "categoryName","imageUrl", "height", "length", "width", "weight"
+    @ConstructorProperties({ "id", "name", "sku", "description", "isActive", "categoryId", "brandId", "noOfViews",
+            "noOfSold", "imageId", "price", "stock", "optionId", "categoryName", "imageUrl", "height", "length",
+            "width", "weight"
     })
     public Product(
             @ColumnName("id") Integer id,
@@ -74,7 +76,6 @@ public class Product {
         this.weight = weight;
     }
 
-
     public Product(
             Integer id,
             @Nullable String name,
@@ -91,7 +92,6 @@ public class Product {
             @Nullable Integer optionId,
             @Nullable String categoryName,
             @Nullable String imageUrl
-
 
     ) {
         this.id = id;
@@ -110,7 +110,6 @@ public class Product {
         this.categoryName = categoryName;
         this.imageUrl = imageUrl;
     }
-
 
     public Product() {
     }
@@ -292,4 +291,3 @@ public class Product {
                 '}';
     }
 }
-

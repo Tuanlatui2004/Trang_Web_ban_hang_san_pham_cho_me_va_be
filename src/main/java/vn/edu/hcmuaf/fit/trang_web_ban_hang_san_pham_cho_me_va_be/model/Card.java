@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model;
 import jakarta.annotation.Nullable;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 import org.jdbi.v3.core.mapper.reflect.JdbiConstructor;
+
 import java.time.LocalDate;
 
 public class Card {
@@ -13,15 +14,14 @@ public class Card {
     String type;
     Boolean isDefault;
 
-
     @JdbiConstructor
     public Card(
             @ColumnName("id") @Nullable Integer id,
-            @ColumnName("userId")  @Nullable Integer userId,
-            @ColumnName("duration")  @Nullable LocalDate duration,
-            @ColumnName("last4")  @Nullable Integer last4,
-            @ColumnName("type")  @Nullable String type,
-            @ColumnName("isDefault")  @Nullable Boolean isDefault) {
+            @ColumnName("userId") @Nullable Integer userId,
+            @ColumnName("duration") @Nullable LocalDate duration,
+            @ColumnName("last4") @Nullable Integer last4,
+            @ColumnName("type") @Nullable String type,
+            @ColumnName("isDefault") @Nullable Boolean isDefault) {
 
         this.id = id;
         this.userId = userId;
@@ -31,8 +31,7 @@ public class Card {
         this.isDefault = isDefault;
     }
 
-
-    public Card( ) {
+    public Card() {
     }
 
     public Integer getId() {
@@ -73,6 +72,14 @@ public class Card {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Boolean getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(Boolean aDefault) {
+        isDefault = aDefault;
     }
 
     public Boolean getDefault() {

@@ -1,102 +1,78 @@
 $(document).ready(function () {
-    window.onload = function () {
+
+    // TÍNH TIỀN
+    let totalPrice = 0;
+    $('.product-item').each(function () {
+        const price = Number($(this).data('price'));
+        const quantity = Number($(this).data('quantity'));
+        totalPrice += price * quantity;
+    });
+
+    const VAT = totalPrice * 0.1;
+    const beforeTax = totalPrice - VAT;
+
+    $('#total').text(Intl.NumberFormat('vi-VN').format(totalPrice) + ' VND');
+    $('#VAT').text(Intl.NumberFormat('vi-VN').format(VAT) + ' VND');
+    $('#before_tax').text(Intl.NumberFormat('vi-VN').format(beforeTax) + ' VND');
 
 
-        const productList = $('.product-item');
-        let totalPrice = 0;
-        let total = $('#total')
-        let VAT = $('#VAT')
-        let before_tax = $('#before_tax')
+    // THANH TOÁN
+    $('#pay').on('click', function (e) {
+        e.preventDefault();
 
-        productList.each(function () {
-            const price = $(this).find('#price').attr('data-price');
-            const quantity = $(this).find('#quantity').attr('data-quantity');
-
-            console.log(price);
-            totalPrice +=  quantity * price;
-
-
-
-        })
-
-        const checkout_tax = totalPrice * 10 /100;
-        const checkout_before_tax = totalPrice - checkout_tax;
-
-        console.log("tax  : " ,checkout_tax);
-        console.log("b_t  : " ,checkout_before_tax);
-
-
-
-
-        total.text(Intl.NumberFormat('vi-VN').format(totalPrice) + ' VND');
-        VAT.text(Intl.NumberFormat('vi-VN').format(checkout_tax) + ' VND');
-        before_tax.text(Intl.NumberFormat('vi-VN').format(checkout_before_tax) + ' VND');
-    }
-
-
-    const pay = $('#pay')
-    pay.on('click', function () {
-        const address_id = $('#address').attr('data-address-id');
-        const card =$('input[name="payment-method"]:checked').attr('data-payment');
-        const product_item  = $('.product-item');
-        const products= [];
-
-        product_item.each(function () {
-            const id = $(this).data('id');
-            const quantity = $(this).data('quantity');
-            const optionId = $(this).data('option-id');
-            const price = $(this).data('price');
-            const total = parseInt(price) * parseInt(quantity);
-
-
+        // Collect products
+        const products = [];
+        $('.product-item').each(function () {
             products.push({
-                id: id,
-                quantity: quantity,
-                optionId: optionId,
-                total: total,
-            })
+                id: $(this).data('id'),
+                optionId: $(this).data('option-id'),
+                quantity: $(this).data('quantity'),
+                total: Number($(this).data('price')) * Number($(this).data('quantity'))
+            });
+        });
 
-
-        })
-
-        console.log("products: ", products);
-        console.log("product_item: ",product_item);
-        console.log("payment method: " ,card);
-        console.log("address_id: ", address_id);
-
-
-
-        const form = {
-            address_id: address_id,
-            card: card,
-            products: products,
+        // Collect address
+        const address_id = $('#address').data('address-id');
+        if (!address_id) {
+            alert("Vui lòng chọn địa chỉ giao hàng");
+            return;
         }
 
-        fetch(`checkout`,
-            {
-                method: "POST",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(form),
-            }
-        ).then(function (response) {
-            if (!response.ok) {
-                console.error(response);
-            }
-            return response.json();
-        }).then(function (data) {
-            if (data.success) {
-                window.location.href = "success";
-            } else {
-                alert('Có lỗi xảy ra trong quá trình xử lý đơn hàng.');
-            }
+        // Collect payment method
+        const card = $('input[name="payment-method"]:checked').data('payment');
+        if (!card) {
+            alert("Vui lòng chọn phương thức thanh toán");
+            return;
+        }
+
+        const data = {
+            address_id: address_id.toString(),
+            card: card.toString(),
+            products: products
+        };
+
+        console.log("Sending checkout data:", data);
+
+        fetch('checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
+            .then(response => response.json())
+            .then(result => {
+                console.log("Checkout result:", result);
+                if (result.success) {
+                    window.location.href = "success";
+                } else {
+                    alert("Đã có lỗi xảy ra trong quá trình thanh toán. Vui lòng thử lại.");
+                }
+            })
+            .catch(error => {
+                console.error("Error during checkout:", error);
+                alert("Lỗi kết nối máy chủ.");
+            });
+    });
 
-
-    })
-
-
-
-
-
-
-})
+});
