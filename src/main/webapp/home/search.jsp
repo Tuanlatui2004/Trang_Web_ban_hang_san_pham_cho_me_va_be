@@ -20,25 +20,25 @@
         </div>
 
         <!-- Dropdown gợi ý -->
-        <div class="suggestion-box" id="suggestion-box">
-            <ul id="suggestion-list"></ul>
+<%--        <div class="suggestion-box" id="suggestion-box">--%>
+<%--            <ul id="suggestion-list"></ul>--%>
 
 
-            <h3 class="suggestion-title">Gợi ý dành cho bạn</h3>
-            <div class="product-suggestions">
+<%--            <h3 class="suggestion-title">Gợi ý dành cho bạn</h3>--%>
+<%--            <div class="product-suggestions">--%>
 
 
-                <div class="product">
+<%--                <div class="product">--%>
 
-                </div>
-            </div>
-
-
-
+<%--                </div>--%>
+<%--            </div>--%>
 
 
 
-        </div>
+
+
+
+<%--        </div>--%>
     </div>
 
 

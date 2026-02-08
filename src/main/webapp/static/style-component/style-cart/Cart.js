@@ -26,38 +26,31 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
+    const pay = $('#pay');
 
-
-    const pay = $('#pay')
-
-    pay.on('click', function () {
+    pay.on('click', function (event) { // ✅ Thêm tham số event
+        event.preventDefault(); // Ngăn hành động mặc định ngay từ đầu
 
         let isLoggedIn = sessionStorage.getItem("userId") && sessionStorage.getItem("sessionId");
 
         if (!isLoggedIn) {
             alert("Bạn cần đăng nhập trước!");
-            event.preventDefault(); // Ngừng hành động (không chuyển hướng)
             return;
         }
 
-
-        const products = []
+        const optionIds = [];
 
         $('.product_checked:checked').each(function () {
-            products.push(($(this).val()))
-        })
+            optionIds.push($(this).val());
+        });
 
-
-        if (products.length === 0) {
+        if (optionIds.length === 0) {
             alert('Chọn ít nhất một sản phẩm để thanh toán!');
             return;
         }
 
-        const body = products.join(',');
-
-        window.location.href = "checkout?productIds=" + encodeURIComponent(body);
-
-
+        const body = optionIds.join(',');
+        window.location.href = "checkout?optionIds=" + encodeURIComponent(body);
     });
 
     //xu  ly chua dang nhap
@@ -79,26 +72,26 @@ $(document).ready(function () {
             let remove = $(this).find('.remove');
 
             let stock = $(this).attr('data-stock');
-            let product_id = parseInt($(this).attr('data-id'));
+            let option_id = parseInt($(this).attr('data-id'));
 
 
 
             updatePrice(price, quantity);
 
             increment.on('click', function () {
-                increaseQuantity($(this), quantity, price, stock, product_id);
+                increaseQuantity($(this), quantity, price, stock, option_id);
             })
 
             decrement.on('click', function () {
-                decreaseQuantity($(this), quantity, price, product_id);
+                decreaseQuantity($(this), quantity, price, option_id);
             })
 
             remove.on('click', function () {
 
                 let productItem = $(this).closest('.product-item');
-                let productId = parseInt(productItem.attr('data-id'));
+                let optionId = parseInt(productItem.attr('data-id'));
 
-                removeItem(productId, productItem);
+                removeItem(optionId, productItem);
             })
 
 
@@ -130,12 +123,12 @@ $(document).ready(function () {
     }
 
 
-    function increaseQuantity(product, quantity, price, stock, product_id) {
+    function increaseQuantity(product, quantity, price, stock, option_id) {
         let newQuantity = parseInt(quantity.attr('data-quantity'));
 
 
 
-        console.log("product_id: ", product_id);
+        console.log("option_id: ", option_id);
 
         if (newQuantity < stock) {
             newQuantity += 1;
@@ -143,7 +136,7 @@ $(document).ready(function () {
             quantity.text(newQuantity);
 
             updatePrice(price, quantity);
-            updateQuantity(product_id, newQuantity);
+            updateQuantity(option_id, newQuantity);
         }
 
         else {
@@ -159,7 +152,7 @@ $(document).ready(function () {
 
 
 
-    function decreaseQuantity(product, quantity, price, product_id) {
+    function decreaseQuantity(product, quantity, price, option_id) {
         let newQuantity = parseInt(quantity.attr('data-quantity'));
 
         if (newQuantity > 1) {
@@ -168,7 +161,7 @@ $(document).ready(function () {
             quantity.attr('data-quantity', newQuantity);
             quantity.text(newQuantity);
 
-            updateQuantity(product_id, newQuantity);
+            updateQuantity(option_id, newQuantity);
             updatePrice(price, quantity);
 
         }
@@ -180,12 +173,12 @@ $(document).ready(function () {
 
 
 
-    function updateQuantity(productId, quantity) {
+    function updateQuantity(optionId, quantity) {
         $.ajax({
             url: 'cart/update-quantity',
             method: 'POST',
             data: {
-                productId: productId,
+                optionId: optionId,
                 quantity: quantity
             },
             success: function (result) {
@@ -201,14 +194,14 @@ $(document).ready(function () {
 
 
 
-    function removeItem(productId, productItem) {
+    function removeItem(optionId, productItem) {
 
         if (confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?')) {
             $.ajax({
                 url: 'cart/remove',
                 method: 'POST',
                 data: {
-                    productId: productId,
+                    optionId: optionId,
                 },
                 success: function (result) {
                     console.log(result);

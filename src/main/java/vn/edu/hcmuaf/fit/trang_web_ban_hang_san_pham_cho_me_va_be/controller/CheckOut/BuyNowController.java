@@ -28,8 +28,16 @@ public class BuyNowController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Product product = productService.getProductByIdAndOptionId(Integer.parseInt(request.getParameter("productId")),
-                Integer.parseInt(request.getParameter("optionId")));
+        String productIdStr = request.getParameter("productId");
+        String optionIdStr = request.getParameter("optionId");
+
+        if (productIdStr == null || optionIdStr == null) {
+            response.sendRedirect(request.getContextPath() + "/home");
+            return;
+        }
+
+        Product product = productService.getProductByIdAndOptionId(Integer.parseInt(productIdStr),
+                Integer.parseInt(optionIdStr));
 
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
@@ -42,16 +50,21 @@ public class BuyNowController extends HttpServlet {
         List<ProductCart> productList = new ArrayList<>();
         productList.add(productCart);
 
+        // Handle null userId (guest user) - use empty lists instead of querying with
+        // null
         List<Address> addressList = new ArrayList<>();
         List<Card> cardList = new ArrayList<>();
-
-        addressList = addressService.findByUserId(userId);
-        cardList = cardService.getCartByUserId(userId);
+        if (userId != null) {
+            addressList = addressService.findByUserId(userId);
+            cardList = cardService.getCartByUserId(userId);
+        }
 
         request.setAttribute("productList", productList);
         request.setAttribute("addressList", addressList);
         request.setAttribute("cardList", cardList);
 
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         request.getRequestDispatcher("checkout/checkout.jsp").forward(request, response);
 
     }
@@ -59,6 +72,17 @@ public class BuyNowController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Just delegate to doGet or handle as AJAX if needed
+        // If it's AJAX from Search_Product.js
+        String productIdStr = request.getParameter("productId");
+        String optionIdStr = request.getParameter("optionId");
 
+        if (productIdStr != null && optionIdStr != null) {
+            // For AJAX, we might just want to acknowledge it's ready for redirect
+            response.setContentType("application/json");
+            response.getWriter().write("{\"ok\": true}");
+        } else {
+            doGet(request, response);
+        }
     }
 }

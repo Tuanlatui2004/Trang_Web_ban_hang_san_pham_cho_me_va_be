@@ -1,9 +1,9 @@
 
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE IF NOT EXISTS `address` (
-    `id` int NOT NULL AUTO_INCREMENT,
-    `userId` int NOT NULL,
-    `addressType` enum('shipping','billing') COLLATE utf8mb4_unicode_ci DEFAULT 'shipping',
+                                         `id` int NOT NULL AUTO_INCREMENT,
+                                         `userId` int NOT NULL,
+                                         `addressType` enum('shipping','billing') COLLATE utf8mb4_unicode_ci DEFAULT 'shipping',
     `fullName` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
     `phoneNumber` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
     `street` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -57,10 +57,10 @@ CREATE TABLE `banners` (
 
 DROP TABLE IF EXISTS `brands`;
 CREATE TABLE IF NOT EXISTS `brands` (
-    `id` int NOT NULL AUTO_INCREMENT,
-    `name` varchar(191) default null,
+                                        `id` int NOT NULL AUTO_INCREMENT,
+                                        `name` varchar(191) default null,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -176,11 +176,14 @@ CREATE TABLE `order_detail` (
                                 `productId` int(11) NOT NULL,
                                 `quantity` int(11) NOT NULL,
                                 `total` decimal(10,2) DEFAULT NULL,
+                                `optionId` int(11) DEFAULT NULL,
                                 PRIMARY KEY (`id`),
                                 KEY `fk_order_detail_1` (`orderId`),
                                 KEY `fk_product_detail_2` (`productId`),
+                                KEY `fk_order_detail_3` (`optionId`),
                                 CONSTRAINT `fk_product_detail_1` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                                CONSTRAINT `fk_product_detail_2` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                                CONSTRAINT `fk_product_detail_2` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                                CONSTRAINT `fk_order_detail_3` FOREIGN KEY (`optionId`) REFERENCES `option_variant` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -238,7 +241,7 @@ CREATE TABLE `products` (
 
 DROP TABLE IF EXISTS `product_reviews`;
 CREATE TABLE IF NOT EXISTS `product_reviews` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
+                                                 `id` int(11) NOT NULL AUTO_INCREMENT,
     `userId` int(11) NOT NULL,
     `productId` int(11) NOT NULL,
     `rating` int(11) NOT NULL,
@@ -308,9 +311,9 @@ CREATE TABLE `variant` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 ALTER TABLE variant
-ADD COLUMN `optionId` int(11) DEFAULT NULL;
+    ADD COLUMN `optionId` int(11) DEFAULT NULL;
 ALTER TABLE variant
-ADD CONSTRAINT `fk_variant_2` FOREIGN KEY(`optionId`) REFERENCES `option_variant` (`id`);
+    ADD CONSTRAINT `fk_variant_2` FOREIGN KEY(`optionId`) REFERENCES `option_variant` (`id`);
 ALTER TABLE users
     ADD COLUMN salt  VARCHAR(255) NOT NULL ;
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 

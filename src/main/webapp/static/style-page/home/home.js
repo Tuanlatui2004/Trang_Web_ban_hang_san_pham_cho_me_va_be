@@ -56,36 +56,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Xử lý nút tìm kiếm
-    document.getElementById("search-icon").addEventListener("click", () => {
-        document.getElementById("search-overlay").style.display = "flex";
-    });
+    const searchIcon = document.getElementById("search-icon");
+    const searchOverlay = document.getElementById("search-overlay");
+    const closeSearchOverlay = document.getElementById("close-search-overlay");
 
-    document.getElementById("close-search-overlay").addEventListener("click", () => {
-        document.getElementById("search-overlay").style.display = "none";
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const searchIcon = document.getElementById("search-icon");
-        const searchOverlay = document.getElementById("search-overlay");
-        const closeSearchOverlay = document.getElementById("close-search-overlay");
-
-        // Khi bấm vào biểu tượng tìm kiếm, hiển thị overlay tìm kiếm
+    if (searchIcon) {
         searchIcon.addEventListener("click", () => {
-            // Gửi yêu cầu AJAX để tải nội dung từ search.jsp
-            fetch("search.jsp")
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("search-content").innerHTML = data;
-                    searchOverlay.style.display = "flex";
-                })
-                .catch(error => console.error("Lỗi khi tải search.jsp:", error));
+            searchOverlay.style.display = "flex";
         });
+    }
 
-        // Khi bấm nút đóng, ẩn overlay tìm kiếm
+    if (closeSearchOverlay) {
         closeSearchOverlay.addEventListener("click", () => {
             searchOverlay.style.display = "none";
         });
-    });
+    }
 
 
     // Xử lý nút "Trang của tôi"
@@ -103,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("message", (event) => {
         if (event.data.type === "navigate") {
             iframe.src = event.data.url;
-            history.pushState({page:"checkout"}, "Thanh toán", "checkout");
+            history.pushState({ page: "checkout" }, "Thanh toán", "checkout");
         }
     });
 
@@ -137,7 +122,7 @@ function showSearchOverlay() {
 }
 
 // Đóng overlay tìm kiếm khi bấm vào nút đóng
-document.getElementById("close-search-overlay").addEventListener("click", function() {
+document.getElementById("close-search-overlay").addEventListener("click", function () {
     document.getElementById("search-overlay").style.display = "none";
 });
 

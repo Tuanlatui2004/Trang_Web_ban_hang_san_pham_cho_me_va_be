@@ -1,32 +1,34 @@
 package vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.controller.search;
 
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Product;
-import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Product;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.ProductService;
 
 import java.io.IOException;
 import java.util.List;
+
 // category clothes id là 1
 @WebServlet(name = "Search_Clothes", value = "/Search_Clothes")
 public class Search_Clothes extends HttpServlet {
     ProductService productService = new ProductService(DBConnection.getJdbi());
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Product> products = productService.getProductsByCategory(1);
-        List<Product> topProducts = productService.getTopProductsByCategory(1,4);
+        List<Product> topProducts = productService.getTopProductsByCategory(1, 4);
 
         request.setAttribute("products", products);
         request.setAttribute("topProducts", topProducts);
+        request.setAttribute("categoryId", 1);
 
         request.getRequestDispatcher("search/search-clothings.jsp").forward(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
