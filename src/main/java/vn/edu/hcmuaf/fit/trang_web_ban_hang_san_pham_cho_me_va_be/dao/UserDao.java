@@ -76,4 +76,7 @@ public interface UserDao {
                         @Bind("gender") String gender,
                         @Bind("phoneNumber") String phoneNumber);
 
+        @SqlUpdate("UPDATE users SET status = :status WHERE email = :email")
+        int updateStatusByEmail(@Bind("email") String email, @Bind("status") String status);
+
 }
