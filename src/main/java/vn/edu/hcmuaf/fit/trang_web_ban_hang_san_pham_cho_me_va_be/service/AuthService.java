@@ -41,7 +41,7 @@ public class AuthService {
             // Mã hóa mật khẩu nhập vào với salt
             String hashedPassword = HashUtils.hashWithSalt(password, storedSalt);
 
-            if (hashedPassword.equals(storedHashedPassword)) {
+            if (hashedPassword.equals(storedHashedPassword) && "ACTIVE".equalsIgnoreCase(user.getStatus())) {
                 return user; // Mật khẩu đúng
             }
         }
@@ -97,9 +97,14 @@ public class AuthService {
             if (storedSessionId != null && storedSessionId.equals(sessionId)) {
                 String email = (String) session.getAttribute("email");
 
-                // Thông báo tài khoản đã được xác nhận
-                System.out.println("Tài khoản với email " + email + " đã được xác nhận.");
-//                sendAccountActivationEmail(email);
+                if (email != null) {
+                    userDAO.updateStatusByEmail(email, "ACTIVE");
+                }
+
+                System.out.println("Tài khoản với email " + email + " đã được xác nhận và kích hoạt.");
+
+                session.removeAttribute("sessionId");
+                session.removeAttribute("email");
             }
         }
     }
