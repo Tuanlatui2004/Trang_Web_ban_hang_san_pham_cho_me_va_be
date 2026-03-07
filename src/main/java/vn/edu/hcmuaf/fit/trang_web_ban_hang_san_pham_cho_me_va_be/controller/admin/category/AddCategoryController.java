@@ -31,20 +31,13 @@ public class AddCategoryController extends  HttpServlet {
 
         PrintWriter out = response.getWriter();
         try {
-            // Đọc dữ liệu từ request body
             StringBuilder jsonString = new StringBuilder();
             String line;
-            try (var reader = request.getReader()) {
-                while ((line = reader.readLine()) != null) {
-                    jsonString.append(line);
-                }
+            while ((line = request.getReader().readLine()) != null) {
+                jsonString.append(line);
             }
-
-            // Parse dữ liệu JSON
             org.json.JSONObject jsonRequest = new org.json.JSONObject(jsonString.toString());
-            String categoryName = jsonRequest.optString("name", "").trim();
-
-            // Kiểm tra dữ liệu
+            String categoryName = jsonRequest.optString("name").trim();
             if (categoryName.isEmpty()) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 out.write(new org.json.JSONObject().put("message", "Tên danh mục không được để trống").toString());
@@ -52,7 +45,7 @@ public class AddCategoryController extends  HttpServlet {
             }
 
             // Thêm danh mục sử dụng CategoryService
-            Category newCategory = categoryService.createCategory(categoryName, true);
+            Category newCategory = categoryService.createCategory(categoryName,  true);
 
             if (newCategory != null) {
                 // Phản hồi thành công
