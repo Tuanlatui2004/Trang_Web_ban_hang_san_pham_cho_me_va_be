@@ -16,27 +16,61 @@ import java.io.IOException;
 public class ResetPasswordController extends HttpServlet {
     private final AuthService authService = new AuthService(DBConnection.getJdbi());
 
+    // ít nhất 8 ký tự, 1 ký tự viết hoa, 1 số, 1 ký tự đặc biệt
+    private static final String PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+
         String newPassword = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirmPassword");
         String email = (String) request.getSession().getAttribute("userEmail");
+        Boolean otpVerified = (Boolean) request.getSession().getAttribute("otpVerified");
 
-        if (newPassword.equals(confirmPassword)) {
-            User user = authService.getUserByEmail(email);
-            if (user != null) {
-                try {
-                    authService.changePassword(user.getId(),null, newPassword, false);
+        // Kiểm tra email và OTP đã được xác thực chưa
+        if (email == null || otpVerified == null || !otpVerified) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Phiên làm việc đã hết hạn. Vui lòng thử lại.");
+            return;
+        }
 
-                    response.sendRedirect("/backend_war/login");
-                } catch (IllegalArgumentException e) {
-                    request.setAttribute("errorMessage", e.getMessage());
-                    request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
-                }
+        if (newPassword == null || newPassword.isEmpty()) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Vui lòng nhập mật khẩu mới.");
+            return;
+        }
+        if (!newPassword.equals(confirmPassword)) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Mật khẩu không khớp.");
+            return;
+        }
+        // Validate mật khẩu mạnh
+        if (!newPassword.matches(PASSWORD_PATTERN)) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Mật khẩu phải có ít nhất 8 ký tự, bao gồm một ký tự viết hoa, một ký tự số và một ký tự đặc biệt.");
+            return;
+        }
+
+
+        User user = authService.getUserByEmail(email);
+        if (user != null) {
+            try {
+                authService.changePassword(user.getId(), null, newPassword, false);
+                // Xóa session sau khi đổi mật khẩu thành công
+                request.getSession().removeAttribute("otp");
+                request.getSession().removeAttribute("userEmail");
+                request.getSession().removeAttribute("otpVerified");
+                response.setStatus(HttpServletResponse.SC_OK);
+                response.getWriter().write("success");
+            } catch (IllegalArgumentException e) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().write(e.getMessage());
             }
         } else {
-            request.setAttribute("errorMessage", "Mật khẩu không khớp");
-            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            response.getWriter().write("Không tìm thấy người dùng.");
         }
     }
 

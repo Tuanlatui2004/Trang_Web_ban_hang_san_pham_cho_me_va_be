@@ -83,10 +83,10 @@ public class EmailService {
         // Nội dung email chứa liên kết xác nhận
         String confirmLink = "http://localhost:8080/confirm?sessionId=" + sessionId;
         String emailContent = "<h3>Xin Chào!,</h3>"
-                + "<p>Vui lòng nhap vào liên ket duoi dây de xac nhan tai khoan cua ban:</p>"
+                + "<p>Vui lòng nhập vào liên kết duoi dây de xac nhan tai khoan cua ban:</p>"
                 + "<a href=\"" + confirmLink + "\">Xác nhận</a>";
 
-        message.setContent(emailContent, "text/html");
+        message.setContent(emailContent, "text/html; charset=UTF-8");
 
         // Gửi email
         Transport.send(message);
@@ -94,7 +94,7 @@ public class EmailService {
     }
 
     public String generateOTP() {
-        int otp = (int) (Math.random() * 90000) + 10000; // Tạo OTP 5 chữ số
+        int otp = (int) (Math.random() * 900000) + 100000; // Tạo OTP 6 chữ số
         return String.valueOf(otp);
     }
 }

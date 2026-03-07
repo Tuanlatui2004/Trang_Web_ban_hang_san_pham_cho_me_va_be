@@ -20,20 +20,22 @@ public class ForgotPasswordController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/forgot-password.jsp").forward(request, response);
+        request.getRequestDispatcher("/auth/forgotpassword.jsp").forward(request, response);
     }
 
     // Xử lý quên mật khẩu
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
 
         // Kiểm tra email có tồn tại trong hệ thống hay không
         User user = authService.getUserByEmail(email);
         if (user == null) {
-            request.setAttribute("errorMessage", "Email không tồn tại");
-            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            response.getWriter().write("Email không tồn tại trong hệ thống");
         } else {
             String otp = generateOTP();
             sendEmailWithOTP(user.getEmail(), otp);
@@ -42,8 +44,9 @@ public class ForgotPasswordController extends HttpServlet {
             request.getSession().setAttribute("otp", otp);
             request.getSession().setAttribute("userEmail", user.getEmail());
 
-            // Chuyển sang trang nhập OTP
-            response.sendRedirect("forgotpassword.jsp");
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write("success");
+            
         }
     }
 

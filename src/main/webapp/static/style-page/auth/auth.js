@@ -55,11 +55,13 @@ document.querySelector(".sign-up-container form").addEventListener("submit", asy
             }),
         });
 
+
         if (response.ok) {
             const data = await response.json();
+
+            console.log("Response data:", data);
             alert("Đăng ký thành công! Vui lòng vào mail để xác nhận.");
             window.location.reload();
-            // document.querySelector(".sign-in-container form").reset(); // Reset form đăng nhập
         } else {
             const errorData = await response.json();
             alert("Lỗi đăng ký: " + errorData.message);
