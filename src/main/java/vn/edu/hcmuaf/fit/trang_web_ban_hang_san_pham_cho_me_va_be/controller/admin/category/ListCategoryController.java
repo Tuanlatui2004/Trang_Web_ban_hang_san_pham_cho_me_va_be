@@ -23,8 +23,8 @@ public class ListCategoryController extends HttpServlet{
             request.setAttribute("categoriesWithStock", categoriesWithStock);
             request.getRequestDispatcher("categories.jsp").forward(request, response);
         } catch (Exception e) {
-//            e.printStackTrace();
-//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi tải danh mục.");
+           e.printStackTrace();
+           response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi tải danh mục.");
         }
     }
 }

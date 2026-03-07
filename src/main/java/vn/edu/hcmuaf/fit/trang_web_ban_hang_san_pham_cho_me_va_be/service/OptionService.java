@@ -38,6 +38,10 @@ public class OptionService {
         return optionDao.getOptionsByProductId(productId);
     }
 
+    public boolean updateOption(Integer id, Integer price, Integer stock) {
+        return optionDao.updateOption(id, price, stock);
+    }
+
 
 
     public static void main(String[] args) {
