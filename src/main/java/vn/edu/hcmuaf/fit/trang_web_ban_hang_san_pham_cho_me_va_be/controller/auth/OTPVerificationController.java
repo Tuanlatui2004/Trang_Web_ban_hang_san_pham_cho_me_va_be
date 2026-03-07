@@ -12,14 +12,21 @@ import java.io.IOException;
 public class OTPVerificationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+
         String enteredOtp = request.getParameter("otp");
         String sessionOtp = (String) request.getSession().getAttribute("otp");
 
         if (enteredOtp != null && enteredOtp.equals(sessionOtp)) {
-            response.sendRedirect("forgotpassword.jsp");
+            request.getSession().setAttribute("otpVerified", true);
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write("success");
+         
         } else {
-            request.setAttribute("errorMessage", "Mã OTP không chính xác");
-            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Mã OTP không chính xác");
+            
         }
     }
 }
