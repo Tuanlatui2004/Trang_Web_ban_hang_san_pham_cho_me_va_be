@@ -26,6 +26,11 @@ togglePasswords.forEach((togglePassword) => {
     });
 });
 
+// Ẩn thông báo lỗi khi người dùng nhập lại
+document.getElementById("emails").addEventListener("input", function() {
+    document.getElementById("email-error").style.display = "none";
+});
+
 document.querySelector(".sign-up-container form").addEventListener("submit", async (e) => {
     e.preventDefault(); // Ngăn gửi form truyền thống
 
@@ -64,7 +69,14 @@ document.querySelector(".sign-up-container form").addEventListener("submit", asy
             window.location.reload();
         } else {
             const errorData = await response.json();
-            alert("Lỗi đăng ký: " + errorData.message);
+            console.log("Error response:", errorData);
+            
+            // Hiển thị lỗi dưới input email
+            const emailError = document.getElementById("email-error");
+            if (emailError) {
+                emailError.textContent = errorData.message;
+                emailError.style.display = "block";
+            }
         }
     } catch (error) {
         console.error("Lỗi khi đăng ký:", error);

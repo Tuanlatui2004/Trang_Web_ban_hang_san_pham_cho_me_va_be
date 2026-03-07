@@ -21,6 +21,10 @@ public class EmailService {
     String fromEmail = "Vinhphanngoc61@gmail.com";
     String password = "sfqi fzci hkrv iqsp";
 
+    // Server URL - có thể set qua System property khi deploy
+    // VD: -Dserver.url=https://domain.com
+    private static String serverUrl = System.getProperty("server.url", "http://localhost:8080");
+
     // Hàm gửi email chứa mã OTP
     // Hàm gửi email chứa mã OTP
     public void sendEmailWithOTP(String toEmail, String otp) throws MessagingException {
@@ -58,6 +62,10 @@ public class EmailService {
     }
 
     public void sendConfirmationEmail(String toEmail, String sessionId) throws MessagingException {
+        sendConfirmationEmail(toEmail, sessionId, "");
+    }
+
+    public void sendConfirmationEmail(String toEmail, String sessionId, String contextPath) throws MessagingException {
 
         // Cấu hình các thuộc tính SMTP
         Properties properties = new Properties();
@@ -81,7 +89,9 @@ public class EmailService {
         message.setSubject("Xác nhận đăng ký tài khoản");
 
         // Nội dung email chứa liên kết xác nhận
-        String confirmLink = "http://localhost:8080/confirm?sessionId=" + sessionId;
+        // serverUrl được set qua System property -Dserver.url khi deploy
+        // Ví dụ: -Dserver.url=https://modernhome.property
+        String confirmLink = serverUrl + contextPath + "/confirm?sessionId=" + sessionId;
         String emailContent = "<h3>Xin Chào!,</h3>"
                 + "<p>Vui lòng nhập vào liên kết duoi dây de xac nhan tai khoan cua ban:</p>"
                 + "<a href=\"" + confirmLink + "\">Xác nhận</a>";

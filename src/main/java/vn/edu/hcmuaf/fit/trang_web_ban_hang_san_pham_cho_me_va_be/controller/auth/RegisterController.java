@@ -73,9 +73,10 @@ public class RegisterController extends HttpServlet {
                 authService.saveSessionId(request, email, sessionId);
 
                 // Gửi email xác nhận
+                String contextPath = request.getContextPath();
                 String message = "Registration successful. Please check your email to confirm your account.";
                 try {
-                    emailService.sendConfirmationEmail(email, sessionId);
+                    emailService.sendConfirmationEmail(email, sessionId, contextPath);
                 } catch (Exception e) {
                     e.printStackTrace();
                     message = "Registration successful, but failed to send confirmation email. Please contact support.";
@@ -91,7 +92,8 @@ public class RegisterController extends HttpServlet {
                         userData);
                 response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
             } else {
-                ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(409, "error", "Email already exists",
+                response.setStatus(409);
+                ResponseWrapper<Object> responseWrapper = new ResponseWrapper<>(409, "error", "Địa chỉ email này đã được đăng ký",
                         null);
                 response.getWriter().write(objectMapper.writeValueAsString(responseWrapper));
             }
