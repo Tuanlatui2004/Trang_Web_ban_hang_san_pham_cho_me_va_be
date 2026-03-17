@@ -20,12 +20,12 @@ public class Search_Sua extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> products = productService.getProductsByCategory(3);
-        List<Product> topProducts = productService.getTopProductsByCategory(3, 4);
+        List<Product> products = productService.getProductsByCategory(1);
+        List<Product> topProducts = productService.getTopProductsByCategory(1, 4);
 
         request.setAttribute("products", products);
         request.setAttribute("topProducts", topProducts);
-        request.setAttribute("categoryId", 3);
+        request.setAttribute("categoryId", 1);
 
         request.getRequestDispatcher("search/search-clothings.jsp").forward(request, response);
     }

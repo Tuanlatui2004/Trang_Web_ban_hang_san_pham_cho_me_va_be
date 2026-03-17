@@ -20,12 +20,12 @@ public class Search_Bimta extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> products = productService.getProductsByCategory(5);
-        List<Product> topProducts = productService.getTopProductsByCategory(5, 4);
+        List<Product> products = productService.getProductsByCategory(2);
+        List<Product> topProducts = productService.getTopProductsByCategory(2, 4);
 
         request.setAttribute("products", products);
         request.setAttribute("topProducts", topProducts);
-        request.setAttribute("categoryId", 5);
+        request.setAttribute("categoryId", 2);
 
         request.getRequestDispatcher("search/search-clothings.jsp").forward(request, response);
     }
