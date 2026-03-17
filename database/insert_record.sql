@@ -122,7 +122,7 @@ INSERT INTO `brands` (`name`) VALUES
                                   ('Combi'), -- 8
                                   ('Nous'), -- 9 (Thời trang)
                                   ('BioGaia'); -- 10
-INSERT INTO `brands` (`name`) VALUES('Animo');--11
+INSERT INTO `brands` (`name`) VALUES('Animo');-- 11
 
 
 -- 4. Thêm dữ liệu bảng `users` (Bao gồm 1 Admin và 9 User thường)

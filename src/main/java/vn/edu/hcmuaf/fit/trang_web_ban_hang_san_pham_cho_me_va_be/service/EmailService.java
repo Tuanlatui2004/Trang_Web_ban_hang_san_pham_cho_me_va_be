@@ -18,8 +18,8 @@ public class EmailService {
     // private static final Properties properties = new Properties();
     // private static Session session;
     String host = "smtp.gmail.com";
-    String fromEmail = "Vinhphanngoc61@gmail.com";
-    String password = "sfqi fzci hkrv iqsp";
+    String fromEmail = "tuanghiencuu@gmail.com";
+    String password = "trgm jemx lzxr dmyw";
 
     // Hàm gửi email chứa mã OTP
     // Hàm gửi email chứa mã OTP
@@ -81,7 +81,7 @@ public class EmailService {
         message.setSubject("Xác nhận đăng ký tài khoản");
 
         // Nội dung email chứa liên kết xác nhận
-        String confirmLink = "http://localhost:8080/Trang_Web_ban_hang_san_pham_cho_me_va_be_war_exploded/confirm?sessionId=" + sessionId;
+        String confirmLink = "http://localhost:8080/Trang_Web_ban_hang_san_pham_cho_me_va_be_war/confirm?sessionId=" + sessionId;
         String emailContent = "<h3>Xin Chào!,</h3>"
                 + "<p>Vui lòng nhap vào liên ket duoi dây de xac nhan tai khoan cua ban:</p>"
                 + "<a href=\"" + confirmLink + "\">Xác nhận</a>";
