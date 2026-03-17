@@ -5,16 +5,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
+import org.cloudinary.json.JSONObject;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.connection.DBConnection;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.model.Category;
+import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.CategoryManager;
 import vn.edu.hcmuaf.fit.trang_web_ban_hang_san_pham_cho_me_va_be.service.CategoryService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 @WebServlet(name = "AddCategoryController", value = "/admin/add-category")
 public class AddCategoryController extends  HttpServlet {
-    private final CategoryService categoryService = new CategoryService(DBConnection.getJdbi());
+    CategoryManager categoryManager = new CategoryManager(DBConnection.getJdbi());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,38 +35,31 @@ public class AddCategoryController extends  HttpServlet {
             // Đọc dữ liệu từ request body
             StringBuilder jsonString = new StringBuilder();
             String line;
-            try (var reader = request.getReader()) {
-                while ((line = reader.readLine()) != null) {
-                    jsonString.append(line);
-                }
+            while ((line = request.getReader().readLine()) != null) {
+                jsonString.append(line);
             }
 
             // Parse dữ liệu JSON
-            org.json.JSONObject jsonRequest = new org.json.JSONObject(jsonString.toString());
-            String categoryName = jsonRequest.optString("name", "").trim();
+            org.cloudinary.json.JSONObject jsonRequest = new org.cloudinary.json.JSONObject(jsonString.toString());
+            String categoryName = jsonRequest.getString("name");
 
             // Kiểm tra dữ liệu
-            if (categoryName.isEmpty()) {
+            if (categoryName == null || categoryName.trim().isEmpty()) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                out.write(new org.json.JSONObject().put("message", "Tên danh mục không được để trống").toString());
+                out.write(new org.cloudinary.json.JSONObject().put("message", "Tên danh mục không được để trống").toString());
                 return;
             }
 
-            // Thêm danh mục sử dụng CategoryService
-            Category newCategory = categoryService.createCategory(categoryName, true);
+            // Thêm danh mục
+            categoryManager.addCategory(new Category(null, categoryName,true));
 
-            if (newCategory != null) {
-                // Phản hồi thành công
-                response.setStatus(HttpServletResponse.SC_OK);
-                out.write(new org.json.JSONObject().put("message", "Danh mục được thêm thành công").toString());
-            } else {
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                out.write(new org.json.JSONObject().put("message", "Không thể tạo danh mục").toString());
-            }
+            // Phản hồi thành công
+            response.setStatus(HttpServletResponse.SC_OK);
+            out.write(new org.cloudinary.json.JSONObject().put("message", "Danh mục được thêm thành công").toString());
 
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            out.write(new JSONObject().put("message", "Có lỗi xảy ra khi thêm danh mục: " + e.getMessage()).toString());
+            out.write(new JSONObject().put("message", "Có lỗi xảy ra khi thêm danh mục").toString());
             e.printStackTrace();
         } finally {
             out.close();

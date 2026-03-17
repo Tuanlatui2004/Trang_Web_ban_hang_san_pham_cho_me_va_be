@@ -21,6 +21,10 @@ public class EmailService {
     String fromEmail = "tuanghiencuu@gmail.com";
     String password = "trgm jemx lzxr dmyw";
 
+    // Server URL - có thể set qua System property khi deploy
+    // VD: -Dserver.url=https://domain.com
+    private static String serverUrl = System.getProperty("server.url", "http://localhost:8080");
+
     // Hàm gửi email chứa mã OTP
     // Hàm gửi email chứa mã OTP
     public void sendEmailWithOTP(String toEmail, String otp) throws MessagingException {
@@ -58,6 +62,10 @@ public class EmailService {
     }
 
     public void sendConfirmationEmail(String toEmail, String sessionId) throws MessagingException {
+        sendConfirmationEmail(toEmail, sessionId, "");
+    }
+
+    public void sendConfirmationEmail(String toEmail, String sessionId, String contextPath) throws MessagingException {
 
         // Cấu hình các thuộc tính SMTP
         Properties properties = new Properties();
@@ -83,10 +91,10 @@ public class EmailService {
         // Nội dung email chứa liên kết xác nhận
         String confirmLink = "http://localhost:8080/Trang_Web_ban_hang_san_pham_cho_me_va_be_war/confirm?sessionId=" + sessionId;
         String emailContent = "<h3>Xin Chào!,</h3>"
-                + "<p>Vui lòng nhap vào liên ket duoi dây de xac nhan tai khoan cua ban:</p>"
+                + "<p>Vui lòng nhập vào liên kết duoi dây de xac nhan tai khoan cua ban:</p>"
                 + "<a href=\"" + confirmLink + "\">Xác nhận</a>";
 
-        message.setContent(emailContent, "text/html");
+        message.setContent(emailContent, "text/html; charset=UTF-8");
 
         // Gửi email
         Transport.send(message);
@@ -94,7 +102,7 @@ public class EmailService {
     }
 
     public String generateOTP() {
-        int otp = (int) (Math.random() * 90000) + 10000; // Tạo OTP 5 chữ số
+        int otp = (int) (Math.random() * 900000) + 100000; // Tạo OTP 6 chữ số
         return String.valueOf(otp);
     }
 }

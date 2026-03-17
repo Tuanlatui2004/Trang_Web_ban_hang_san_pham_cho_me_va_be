@@ -63,6 +63,9 @@
                 <input type="email" id="emails" placeholder=" " name="email" required />
                 <label for="emails">Email <span class="required">*</span> </label>
             </div>
+            <div id="email-error" style="color: red; display: none; margin-top: -10px; margin-bottom: 10px;">
+                Địa chỉ email này đã được đăng ký
+            </div>
 
             <div class="infield password">
                 <input type="password" id="passwordd" placeholder=" " required>

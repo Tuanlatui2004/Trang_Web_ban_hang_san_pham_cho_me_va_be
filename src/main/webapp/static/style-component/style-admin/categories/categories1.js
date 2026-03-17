@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // **Sắp xếp bảng**
+    // ==== Sắp xếp bảng ====
     let currentSortColumn = null;
     let currentSortOrder = 'asc';
 
@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const header = document.querySelectorAll("th")[columnIndex];
         const columnType = header.getAttribute("data-sort");
 
-        // Xác định hướng sắp xếp
         if (currentSortColumn === columnIndex) {
             currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
         } else {
@@ -17,73 +16,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         currentSortColumn = columnIndex;
 
-        // Sắp xếp các hàng
         const sortedRows = rows.sort((a, b) => {
             const valA = a.cells[columnIndex].innerText.trim();
             const valB = b.cells[columnIndex].innerText.trim();
 
-            if (columnType === "number") {
-                return currentSortOrder === 'asc'
-                    ? parseFloat(valA) - parseFloat(valB)
-                    : parseFloat(valB) - parseFloat(valA);
-            } else {
-                return currentSortOrder === 'asc'
-                    ? valA.localeCompare(valB)
-                    : valB.localeCompare(valA);
-            }
+            return columnType === "number"
+                ? (currentSortOrder === 'asc' ? valA - valB : valB - valA)
+                : (currentSortOrder === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA));
         });
 
-        // Cập nhật bảng
         tableBody.innerHTML = "";
         sortedRows.forEach(row => tableBody.appendChild(row));
 
-        // Cập nhật mũi tên sắp xếp
         document.querySelectorAll(".sort-arrow").forEach(arrow => arrow.classList.remove("active"));
-        if (currentSortOrder === 'asc') {
-            header.querySelector(".asc").classList.add("active");
-        } else {
-            header.querySelector(".desc").classList.add("active");
-        }
+        header.querySelector(`.${currentSortOrder}`).classList.add("active");
     }
 
     document.querySelectorAll("th[data-sort]").forEach((header, index) => {
         header.addEventListener("click", () => sortTable(index));
     });
 
-    // **Dropdown menu**
-    function toggleDropdown(button) {
-        const dropdownContent = button.nextElementSibling;
-        const isVisible = dropdownContent.style.display === "block";
-
-        document.querySelectorAll(".dropdown-content").forEach(content => {
-            content.style.display = "none";
-        });
-
-        dropdownContent.style.display = isVisible ? "none" : "block";
-    }
-
-    window.addEventListener("click", (e) => {
-        if (!e.target.closest(".dropdown")) {
-            document.querySelectorAll(".dropdown-content").forEach(content => {
-                content.style.display = "none";
-            });
-        }
-    });
-
-    // Gắn sự kiện cho các nút dropdown
-    document.querySelectorAll(".dropdown button").forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.stopPropagation();
-            toggleDropdown(button);
-        });
-    });
-
-    // **Phân trang**
+    // ==== Phân trang ====
     const pageButtons = document.querySelectorAll(".page-number");
     const prevButton = document.querySelector(".prev-btn");
     const nextButton = document.querySelector(".next-btn");
     const tableBody = document.getElementById("product-table-body");
-    const rowsPerPage = 10; // Có thể thay đổi số lượng hàng mỗi trang
+    const rowsPerPage = 10;
     const rows = Array.from(tableBody.rows);
     const totalPages = Math.ceil(rows.length / rowsPerPage);
     let currentPage = 1;
@@ -96,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
             row.style.display = index >= start && index < end ? "table-row" : "none";
         });
 
-        // Cập nhật trạng thái nút
         pageButtons.forEach((btn, index) => {
             btn.classList.toggle("active", index + 1 === page);
         });
@@ -128,79 +85,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderTable(1); // Hiển thị trang đầu tiên
 
-    // **Hiển thị/Ẩn thêm danh mục**
+    // ==== Hiển thị/Ẩn form thêm ====
     const addProductBtn = document.querySelector(".add-product-btn");
     const addCategoryBox = document.getElementById("add-category-box");
     const discardBtn = document.querySelector(".discard-btn");
 
     addProductBtn.addEventListener("click", () => {
-        addCategoryBox.classList.remove("hidden");
-        editCategoryBox.classList.add("hidden"); // Hide edit box if add box is shown
+        addCategoryBox.classList.toggle("hidden");
     });
 
     discardBtn.addEventListener("click", () => {
         addCategoryBox.classList.add("hidden");
     });
 
-    // **Hiển thị/Ẩn sửa danh mục**
-    const editCategoryBox = document.getElementById("edit-category-box");
-    const discardEditBtn = document.getElementById("discard-edit-btn");
-    const editCategoryIdInput = document.getElementById("edit-category-id");
-    const editCategoryNameInput = document.getElementById("edit-category-name");
-
-    discardEditBtn.addEventListener("click", () => {
-        editCategoryBox.classList.add("hidden");
-    });
-
-    // **Xử lý nút "Sửa"**
-    document.querySelectorAll(".edit-icon").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const id = btn.getAttribute("data-id");
-            const name = btn.getAttribute("data-name");
-
-            editCategoryIdInput.value = id;
-            editCategoryNameInput.value = name;
-
-            editCategoryBox.classList.remove("hidden");
-            addCategoryBox.classList.add("hidden"); // Hide add box if edit box is shown
-        });
-    });
-
-    // **Xử lý nút "Cập Nhật"**
-    const updateCateBtn = document.querySelector(".update-cate-btn");
-    updateCateBtn.addEventListener("click", async () => {
-        const id = editCategoryIdInput.value;
-        const newName = editCategoryNameInput.value.trim();
-
-        if (!newName) {
-            document.getElementById("edit-error-message").classList.remove("hidden");
-            return;
-        }
-
-        try {
-            const response = await fetch(`api/categories/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: newName }),
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-                location.reload();
-            } else {
-                alert(`Lỗi: ${result.message}`);
-            }
-        } catch (error) {
-            alert("Có lỗi xảy ra khi cập nhật danh mục!");
-            console.error(error);
-        }
-    });
-
-    // **Xử lý nút "Thêm"**
+    // ==== Thêm danh mục ====
     const addCateBtn = document.querySelector(".add-cate-btn");
     const inputField = document.querySelector(".input-field");
 
@@ -208,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const categoryName = inputField.value.trim();
 
         if (!categoryName) {
-            document.getElementById("error-message").classList.remove("hidden");
+            alert("Vui lòng nhập tên danh mục!");
             return;
         }
 
@@ -219,17 +117,71 @@ document.addEventListener("DOMContentLoaded", () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ name: categoryName }),
+                redirect: "manual"
+            }).then(res => {
+                console.log("Status:", res.status);
+                if (res.status === 0) {
+                    alert("Your session may have expired. Redirecting...");
+                    window.location.href = "login"
+                    return Promise.reject("Session expired");
+                }
+
+                return res.json();
+            }).then(data => {
+                console.log(data);
+                if (data && data.success) {
+                    currentRole = newRole;
+                    select.setAttribute("data-role-current", newRole);
+                    alert("Success!");
+                }
             });
 
-            if (response.ok) {
-                location.reload();
-            } else {
-                const result = await response.json();
-                alert(`Lỗi: ${result.message}`);
-            }
+
         } catch (error) {
-            alert("Có lỗi xảy ra khi thêm danh mục!");
             console.error(error);
         }
     });
+
+    // ==== Cập nhật trạng thái danh mục (toggle) ====
+    document.querySelectorAll(".toggle-icon").forEach(icon => {
+        icon.addEventListener("click", () => {
+            const categoryId = icon.dataset.id;
+            const isActive = icon.dataset.active === 'true';
+
+            fetch(`${contextPath}/admin/api/categories/${categoryId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ isActive: !isActive })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        const row = icon.closest("tr");
+                        const statusEl = row.querySelector(".category-status-toggle");
+
+                        // Cập nhật trạng thái chữ và class
+                        statusEl.classList.toggle("active", !isActive);
+                        statusEl.classList.toggle("deactive", isActive);
+                        statusEl.textContent = !isActive ? "Hoạt động" : "Không hoạt động";
+
+                        // Cập nhật biểu tượng
+                        const iconEl = icon.querySelector("i");
+                        iconEl.className = `fa-solid ${!isActive ? 'fa-trash' : 'fa-eye-slash'}`;
+
+                        // Cập nhật thuộc tính data-active
+                        icon.dataset.active = (!isActive).toString();
+                    } else {
+                        alert("Cập nhật trạng thái thất bại!");
+                    }
+                })
+                .catch(err => {
+                    console.error("Lỗi khi cập nhật trạng thái category:", err);
+                });
+        });
+    });
+
+
 });
+
