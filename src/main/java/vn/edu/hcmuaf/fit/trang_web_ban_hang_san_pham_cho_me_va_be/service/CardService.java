@@ -9,29 +9,29 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class CardService {
-    CardDao cardDao;
+        CardDao cardDao;
 
-    public CardService(Jdbi jdbi) {
-        this.cardDao = jdbi.onDemand(CardDao.class);
-    }
+        public CardService(Jdbi jdbi) {
+            this.cardDao = jdbi.onDemand(CardDao.class);
+        }
 
-    public List<Card> getCartByUserId(Integer user_id) {
-        return cardDao.getCardByUserId(user_id);
-    }
+        public List<Card> getCartByUserId(Integer user_id) {
+            return cardDao.getCardByUserId(user_id);
+        }
 
-    public Card getCardById(Integer card_id) {
-        return cardDao.getCardById(card_id);
-    }
+        public Card getCardById(Integer card_id) {
+            return cardDao.getCardById(card_id);
+        }
 
-    public Boolean addCard(Card card) {
-        return cardDao.addCard(
-                card.getUserId(),
-                card.getDuration(),
-                card.getType(),
-                card.getDefault()
+        public Boolean addCard(Card card) {
+            return cardDao.addCard(
+                    card.getUserId(),
+                    card.getDuration(),
+                    card.getType(),
+                    card.getDefault()
 
-        );
-    }
+            );
+        }
 
 
     public static void main(String[] args) {
